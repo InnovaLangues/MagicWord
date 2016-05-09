@@ -5,7 +5,7 @@ namespace MagicWordBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Language
+ * Language.
  *
  * @ORM\Table(name="language")
  * @ORM\Entity(repositoryClass="MagicWordBundle\Repository\LanguageRepository")
@@ -28,9 +28,8 @@ class Language
      */
     private $name;
 
-
     /**
-     * Get id
+     * Get id.
      *
      * @return int
      */
@@ -40,7 +39,7 @@ class Language
     }
 
     /**
-     * Set name
+     * Set name.
      *
      * @param string $name
      *
@@ -54,7 +53,7 @@ class Language
     }
 
     /**
-     * Get name
+     * Get name.
      *
      * @return string
      */

@@ -98,7 +98,7 @@ class Grid
         return $this->width;
     }
     /**
-     * Constructor
+     * Constructor.
      */
     public function __construct()
     {
@@ -106,7 +106,7 @@ class Grid
     }
 
     /**
-     * Add square
+     * Add square.
      *
      * @param \MagicWordBundle\Entity\Square $square
      *
@@ -120,7 +120,7 @@ class Grid
     }
 
     /**
-     * Remove square
+     * Remove square.
      *
      * @param \MagicWordBundle\Entity\Square $square
      */
@@ -130,7 +130,7 @@ class Grid
     }
 
     /**
-     * Get squares
+     * Get squares.
      *
      * @return \Doctrine\Common\Collections\Collection
      */

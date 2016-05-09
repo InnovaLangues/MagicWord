@@ -102,7 +102,7 @@ class Game
     }
 
     /**
-     * Set language
+     * Set language.
      *
      * @param \MagicWordBundle\Entity\Language $language
      *
@@ -116,7 +116,7 @@ class Game
     }
 
     /**
-     * Get language
+     * Get language.
      *
      * @return \MagicWordBundle\Entity\Language
      */
