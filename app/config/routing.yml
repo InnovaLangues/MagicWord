@@ -1,0 +1,4 @@
+magic_word:
+    resource: "@MagicWordBundle/Controller/"
+    type:     annotation
+    prefix:   /
