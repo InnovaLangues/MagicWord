@@ -43,9 +43,14 @@ class Round
     private $fixedGrid;
 
     /**
-     * @ORM\ManyToOne(targetEntity="MagicWordBundle\Entity\Game")
+     * @ORM\ManyToOne(targetEntity="Game")
      */
     private $game;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Grid")
+     */
+    private $grid;
 
     /**
      * Get id.
@@ -130,7 +135,7 @@ class Round
     }
 
     /**
-     * Set game
+     * Set game.
      *
      * @param \MagicWordBundle\Entity\Game $game
      *
@@ -144,12 +149,36 @@ class Round
     }
 
     /**
-     * Get game
+     * Get game.
      *
      * @return \MagicWordBundle\Entity\Game
      */
     public function getGame()
     {
         return $this->game;
+    }
+
+    /**
+     * Set grid.
+     *
+     * @param \MagicWordBundle\Entity\Grid $grid
+     *
+     * @return Round
+     */
+    public function setGrid(\MagicWordBundle\Entity\Grid $grid = null)
+    {
+        $this->grid = $grid;
+
+        return $this;
+    }
+
+    /**
+     * Get grid.
+     *
+     * @return \MagicWordBundle\Entity\Grid
+     */
+    public function getGrid()
+    {
+        return $this->grid;
     }
 }
