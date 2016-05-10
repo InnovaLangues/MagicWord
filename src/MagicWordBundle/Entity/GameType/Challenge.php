@@ -8,6 +8,7 @@ use MagicWordBundle\Entity\Game as Game;
 /**
  * Challenge.
  *
+ * @ORM\Entity
  * @ORM\Table(name="game_type_challenge")
  */
 class Challenge extends Game

@@ -22,18 +22,9 @@ class Square
     private $id;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="letter", type="string", length=1)
+     * @ORM\ManyToOne(targetEntity="MagicWordBundle\Entity\Letter\CanonicLetter")
      */
-    private $letter;
-
-    /**
-     * @var int
-     *
-     * @ORM\Column(name="value", type="integer")
-     */
-    private $value;
+    protected $letter;
 
     /**
      * @var int
@@ -58,54 +49,6 @@ class Square
     }
 
     /**
-     * Set letter.
-     *
-     * @param string $letter
-     *
-     * @return Square
-     */
-    public function setLetter($letter)
-    {
-        $this->letter = $letter;
-
-        return $this;
-    }
-
-    /**
-     * Get letter.
-     *
-     * @return string
-     */
-    public function getLetter()
-    {
-        return $this->letter;
-    }
-
-    /**
-     * Set value.
-     *
-     * @param int $value
-     *
-     * @return Square
-     */
-    public function setValue($value)
-    {
-        $this->value = $value;
-
-        return $this;
-    }
-
-    /**
-     * Get value.
-     *
-     * @return int
-     */
-    public function getValue()
-    {
-        return $this->value;
-    }
-
-    /**
      * Set position.
      *
      * @param int $position
@@ -127,5 +70,53 @@ class Square
     public function getPosition()
     {
         return $this->position;
+    }
+
+    /**
+     * Set grid.
+     *
+     * @param \MagicWordBundle\Entity\Grid $grid
+     *
+     * @return Square
+     */
+    public function setGrid(\MagicWordBundle\Entity\Grid $grid = null)
+    {
+        $this->grid = $grid;
+
+        return $this;
+    }
+
+    /**
+     * Get grid.
+     *
+     * @return \MagicWordBundle\Entity\Grid
+     */
+    public function getGrid()
+    {
+        return $this->grid;
+    }
+
+    /**
+     * Set letter.
+     *
+     * @param \MagicWordBundle\Entity\Letter\CanonicLetter $letter
+     *
+     * @return Square
+     */
+    public function setLetter(\MagicWordBundle\Entity\Letter\CanonicLetter $letter = null)
+    {
+        $this->letter = $letter;
+
+        return $this;
+    }
+
+    /**
+     * Get letter.
+     *
+     * @return \MagicWordBundle\Entity\Letter\CanonicLetter
+     */
+    public function getLetter()
+    {
+        return $this->letter;
     }
 }

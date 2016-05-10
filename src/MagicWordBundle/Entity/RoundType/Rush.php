@@ -9,6 +9,7 @@ use MagicWordBundle\Entity\Round as Round;
  * Rush.
  *
  * @ORM\Table(name="round_type_rush")
+ * @ORM\Entity
  */
 class Rush extends Round
 {

@@ -8,6 +8,7 @@ use MagicWordBundle\Entity\Game as Game;
 /**
  * Massive.
  *
+ * @ORM\Entity
  * @ORM\Table(name="game_type_massive")
  */
 class Massive extends Game

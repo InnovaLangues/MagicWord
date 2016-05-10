@@ -9,6 +9,7 @@ use MagicWordBundle\Entity\Round as Round;
  * Conquer.
  *
  * @ORM\Table(name="round_type_conquer")
+ * @ORM\Entity
  */
 class Conquer extends Round
 {
