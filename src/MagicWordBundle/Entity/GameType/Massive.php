@@ -9,7 +9,6 @@ use MagicWordBundle\Entity\Game as Game;
  * Massive.
  *
  * @ORM\Table(name="game_type_massive")
- * @ORM\Entity(repositoryClass="MagicWordBundle\Repository\GameType\MassiveRepository")
  */
 class Massive extends Game
 {

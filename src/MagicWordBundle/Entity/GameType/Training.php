@@ -9,7 +9,6 @@ use MagicWordBundle\Entity\Game as Game;
  * Training.
  *
  * @ORM\Table(name="game_type_training")
- * @ORM\Entity(repositoryClass="MagicWordBundle\Repository\GameType\TrainingRepository")
  */
 class Training extends Game
 {
