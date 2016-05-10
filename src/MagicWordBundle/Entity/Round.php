@@ -9,6 +9,9 @@ use Doctrine\ORM\Mapping as ORM;
  *
  * @ORM\Table(name="round")
  * @ORM\Entity(repositoryClass="MagicWordBundle\Repository\RoundRepository")
+ * @ORM\InheritanceType("JOINED")
+ * @ORM\DiscriminatorColumn(name="discr", type="string")
+ * @ORM\DiscriminatorMap({"round"="Round", "rush"="MagicWordBundle\Entity\RoundType\Rush", "conquer" = "MagicWordBundle\Entity\RoundType\Conquer"})
  */
 class Round
 {
