@@ -15,11 +15,16 @@ class Inflection
     /**
      * @var int
      *
-     * @ORM\Column(name="inflectionId", type="integer")
+     * @ORM\Column(name="id", type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
+
+    /**
+     * @ORM\ManyToMany(targetEntity="MagicWordBundle\Entity\Grid", mappedBy="inflections")
+     */
+    private $grids;
 
     /**
      * @ORM\ManyToOne(targetEntity="MagicWordBundle\Entity\Lexicon\Lemma")
@@ -79,6 +84,11 @@ class Inflection
      */
     private $status;
 
+    public function __construct()
+    {
+        $this->grids = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
     /**
      * Get id.
      *
@@ -90,7 +100,7 @@ class Inflection
     }
 
     /**
-     * Set content
+     * Set content.
      *
      * @param string $content
      *
@@ -104,7 +114,7 @@ class Inflection
     }
 
     /**
-     * Get content
+     * Get content.
      *
      * @return string
      */
@@ -114,7 +124,7 @@ class Inflection
     }
 
     /**
-     * Set phonetic1
+     * Set phonetic1.
      *
      * @param string $phonetic1
      *
@@ -128,7 +138,7 @@ class Inflection
     }
 
     /**
-     * Get phonetic1
+     * Get phonetic1.
      *
      * @return string
      */
@@ -138,7 +148,7 @@ class Inflection
     }
 
     /**
-     * Set phonetic2
+     * Set phonetic2.
      *
      * @param string $phonetic2
      *
@@ -152,7 +162,7 @@ class Inflection
     }
 
     /**
-     * Get phonetic2
+     * Get phonetic2.
      *
      * @return string
      */
@@ -162,7 +172,7 @@ class Inflection
     }
 
     /**
-     * Set status
+     * Set status.
      *
      * @param string $status
      *
@@ -176,7 +186,7 @@ class Inflection
     }
 
     /**
-     * Get status
+     * Get status.
      *
      * @return string
      */
@@ -186,7 +196,7 @@ class Inflection
     }
 
     /**
-     * Set lemma
+     * Set lemma.
      *
      * @param \MagicWordBundle\Entity\Lexicon\Lemma $lemma
      *
@@ -200,7 +210,7 @@ class Inflection
     }
 
     /**
-     * Get lemma
+     * Get lemma.
      *
      * @return \MagicWordBundle\Entity\Lexicon\Lemma
      */
@@ -210,7 +220,7 @@ class Inflection
     }
 
     /**
-     * Set number
+     * Set number.
      *
      * @param \MagicWordBundle\Entity\Lexicon\Number $number
      *
@@ -224,7 +234,7 @@ class Inflection
     }
 
     /**
-     * Get number
+     * Get number.
      *
      * @return \MagicWordBundle\Entity\Lexicon\Number
      */
@@ -234,7 +244,7 @@ class Inflection
     }
 
     /**
-     * Set gender
+     * Set gender.
      *
      * @param \MagicWordBundle\Entity\Lexicon\Gender $gender
      *
@@ -248,7 +258,7 @@ class Inflection
     }
 
     /**
-     * Get gender
+     * Get gender.
      *
      * @return \MagicWordBundle\Entity\Lexicon\Gender
      */
@@ -258,7 +268,7 @@ class Inflection
     }
 
     /**
-     * Set tense
+     * Set tense.
      *
      * @param \MagicWordBundle\Entity\Lexicon\Tense $tense
      *
@@ -272,7 +282,7 @@ class Inflection
     }
 
     /**
-     * Get tense
+     * Get tense.
      *
      * @return \MagicWordBundle\Entity\Lexicon\Tense
      */
@@ -282,7 +292,7 @@ class Inflection
     }
 
     /**
-     * Set person
+     * Set person.
      *
      * @param \MagicWordBundle\Entity\Lexicon\Person $person
      *
@@ -296,7 +306,7 @@ class Inflection
     }
 
     /**
-     * Get person
+     * Get person.
      *
      * @return \MagicWordBundle\Entity\Lexicon\Person
      */
@@ -306,7 +316,7 @@ class Inflection
     }
 
     /**
-     * Set mood
+     * Set mood.
      *
      * @param \MagicWordBundle\Entity\Lexicon\Mood $mood
      *
@@ -320,7 +330,7 @@ class Inflection
     }
 
     /**
-     * Get mood
+     * Get mood.
      *
      * @return \MagicWordBundle\Entity\Lexicon\Mood
      */

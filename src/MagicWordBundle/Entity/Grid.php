@@ -36,9 +36,21 @@ class Grid
     private $width;
 
     /**
+     * @ORM\ManyToMany(targetEntity="MagicWordBundle\Entity\Lexicon\Inflection", inversedBy="grids")
+     * @ORM\JoinTable(name="inflections_grids")
+     */
+    private $inflections;
+
+    /**
      * @ORM\OneToMany(targetEntity="Square", mappedBy="grid")
      */
     protected $squares;
+
+    public function __construct()
+    {
+        $this->inflections = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->squares = new \Doctrine\Common\Collections\ArrayCollection();
+    }
 
     /**
      * Get id.
@@ -96,13 +108,6 @@ class Grid
     public function getWidth()
     {
         return $this->width;
-    }
-    /**
-     * Constructor.
-     */
-    public function __construct()
-    {
-        $this->squares = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
     /**
