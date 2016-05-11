@@ -39,6 +39,13 @@ class Inflection
     private $content;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="cleaned_content", type="string", length=255)
+     */
+    private $cleanedContent;
+
+    /**
      * @ORM\ManyToOne(targetEntity="MagicWordBundle\Entity\Lexicon\Number")
      */
     private $number;
@@ -337,5 +344,63 @@ class Inflection
     public function getMood()
     {
         return $this->mood;
+    }
+
+    /**
+     * Set cleanedContent
+     *
+     * @param string $cleanedContent
+     *
+     * @return Inflection
+     */
+    public function setCleanedContent($cleanedContent)
+    {
+        $this->cleanedContent = $cleanedContent;
+
+        return $this;
+    }
+
+    /**
+     * Get cleanedContent
+     *
+     * @return string
+     */
+    public function getCleanedContent()
+    {
+        return $this->cleanedContent;
+    }
+
+    /**
+     * Add grid
+     *
+     * @param \MagicWordBundle\Entity\Grid $grid
+     *
+     * @return Inflection
+     */
+    public function addGrid(\MagicWordBundle\Entity\Grid $grid)
+    {
+        $this->grids[] = $grid;
+
+        return $this;
+    }
+
+    /**
+     * Remove grid
+     *
+     * @param \MagicWordBundle\Entity\Grid $grid
+     */
+    public function removeGrid(\MagicWordBundle\Entity\Grid $grid)
+    {
+        $this->grids->removeElement($grid);
+    }
+
+    /**
+     * Get grids
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getGrids()
+    {
+        return $this->grids;
     }
 }

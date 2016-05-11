@@ -22,6 +22,11 @@ class Lemma
     private $id;
 
     /**
+     * @ORM\ManyToOne(targetEntity="MagicWordBundle\Entity\Language")
+     */
+    protected $language;
+
+    /**
      * @var string
      *
      * @ORM\Column(name="content", type="string", length=255)
@@ -89,7 +94,7 @@ class Lemma
     }
 
     /**
-     * Set content
+     * Set content.
      *
      * @param string $content
      *
@@ -103,7 +108,7 @@ class Lemma
     }
 
     /**
-     * Get content
+     * Get content.
      *
      * @return string
      */
@@ -113,9 +118,9 @@ class Lemma
     }
 
     /**
-     * Set locution
+     * Set locution.
      *
-     * @param boolean $locution
+     * @param bool $locution
      *
      * @return Lemma
      */
@@ -127,9 +132,9 @@ class Lemma
     }
 
     /**
-     * Get locution
+     * Get locution.
      *
-     * @return boolean
+     * @return bool
      */
     public function getLocution()
     {
@@ -137,9 +142,9 @@ class Lemma
     }
 
     /**
-     * Set processStatus
+     * Set processStatus.
      *
-     * @param boolean $processStatus
+     * @param bool $processStatus
      *
      * @return Lemma
      */
@@ -151,9 +156,9 @@ class Lemma
     }
 
     /**
-     * Get processStatus
+     * Get processStatus.
      *
-     * @return boolean
+     * @return bool
      */
     public function getProcessStatus()
     {
@@ -161,7 +166,7 @@ class Lemma
     }
 
     /**
-     * Set phonetic1
+     * Set phonetic1.
      *
      * @param string $phonetic1
      *
@@ -175,7 +180,7 @@ class Lemma
     }
 
     /**
-     * Get phonetic1
+     * Get phonetic1.
      *
      * @return string
      */
@@ -185,7 +190,7 @@ class Lemma
     }
 
     /**
-     * Set phonetic2
+     * Set phonetic2.
      *
      * @param string $phonetic2
      *
@@ -199,7 +204,7 @@ class Lemma
     }
 
     /**
-     * Get phonetic2
+     * Get phonetic2.
      *
      * @return string
      */
@@ -209,7 +214,7 @@ class Lemma
     }
 
     /**
-     * Set status
+     * Set status.
      *
      * @param string $status
      *
@@ -223,7 +228,7 @@ class Lemma
     }
 
     /**
-     * Get status
+     * Get status.
      *
      * @return string
      */
@@ -233,7 +238,7 @@ class Lemma
     }
 
     /**
-     * Set category
+     * Set category.
      *
      * @param \MagicWordBundle\Entity\Lexicon\Category $category
      *
@@ -247,7 +252,7 @@ class Lemma
     }
 
     /**
-     * Get category
+     * Get category.
      *
      * @return \MagicWordBundle\Entity\Lexicon\Category
      */
@@ -257,7 +262,7 @@ class Lemma
     }
 
     /**
-     * Set subcategory
+     * Set subcategory.
      *
      * @param \MagicWordBundle\Entity\Lexicon\Subcategory $subcategory
      *
@@ -271,7 +276,7 @@ class Lemma
     }
 
     /**
-     * Get subcategory
+     * Get subcategory.
      *
      * @return \MagicWordBundle\Entity\Lexicon\Subcategory
      */
@@ -281,7 +286,7 @@ class Lemma
     }
 
     /**
-     * Set gender
+     * Set gender.
      *
      * @param \MagicWordBundle\Entity\Lexicon\Gender $gender
      *
@@ -295,12 +300,36 @@ class Lemma
     }
 
     /**
-     * Get gender
+     * Get gender.
      *
      * @return \MagicWordBundle\Entity\Lexicon\Gender
      */
     public function getGender()
     {
         return $this->gender;
+    }
+
+    /**
+     * Set language
+     *
+     * @param \MagicWordBundle\Entity\Language $language
+     *
+     * @return Lemma
+     */
+    public function setLanguage(\MagicWordBundle\Entity\Language $language = null)
+    {
+        $this->language = $language;
+
+        return $this;
+    }
+
+    /**
+     * Get language
+     *
+     * @return \MagicWordBundle\Entity\Language
+     */
+    public function getLanguage()
+    {
+        return $this->language;
     }
 }
