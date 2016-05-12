@@ -17,4 +17,33 @@ class Player extends BaseUser
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     protected $id;
+
+    /**
+     * @ORM\OneToOne(targetEntity="MagicWordBundle\Entity\Wordbox")
+     */
+    private $wordbox;
+
+    /**
+     * Set wordbox.
+     *
+     * @param \MagicWordBundle\Entity\Wordbox $wordbox
+     *
+     * @return Player
+     */
+    public function setWordbox(\MagicWordBundle\Entity\Wordbox $wordbox = null)
+    {
+        $this->wordbox = $wordbox;
+
+        return $this;
+    }
+
+    /**
+     * Get wordbox.
+     *
+     * @return \MagicWordBundle\Entity\Wordbox
+     */
+    public function getWordbox()
+    {
+        return $this->wordbox;
+    }
 }
