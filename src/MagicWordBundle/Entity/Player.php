@@ -24,6 +24,15 @@ class Player extends BaseUser
     private $wordbox;
 
     /**
+     * @ORM\ManyToMany(targetEntity="Player")
+     * @ORM\JoinTable(name="players_friends",
+     *      joinColumns={@ORM\JoinColumn(name="player_id", referencedColumnName="id")},
+     *      inverseJoinColumns={@ORM\JoinColumn(name="friend_id", referencedColumnName="id")}
+     *      )
+     */
+    private $friends;
+
+    /**
      * Set wordbox.
      *
      * @param \MagicWordBundle\Entity\Wordbox $wordbox
@@ -45,5 +54,39 @@ class Player extends BaseUser
     public function getWordbox()
     {
         return $this->wordbox;
+    }
+
+    /**
+     * Add friend
+     *
+     * @param \MagicWordBundle\Entity\Player $friend
+     *
+     * @return Player
+     */
+    public function addFriend(\MagicWordBundle\Entity\Player $friend)
+    {
+        $this->friends[] = $friend;
+
+        return $this;
+    }
+
+    /**
+     * Remove friend
+     *
+     * @param \MagicWordBundle\Entity\Player $friend
+     */
+    public function removeFriend(\MagicWordBundle\Entity\Player $friend)
+    {
+        $this->friends->removeElement($friend);
+    }
+
+    /**
+     * Get friends
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getFriends()
+    {
+        return $this->friends;
     }
 }
