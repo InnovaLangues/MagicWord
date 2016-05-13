@@ -1,0 +1,7 @@
+my wordbox ({{ app.user.wordbox.acquisitions|length}})!
+
+<ul>
+{% for acquisition in app.user.wordbox.acquisitions %}
+    <li> {{ acquisition.inflection.content }} ({{ acquisition.inflection.lemma.content }})</li>
+{% endfor %}
+</ul>

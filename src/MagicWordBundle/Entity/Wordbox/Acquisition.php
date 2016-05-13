@@ -33,9 +33,9 @@ class Acquisition
     protected $type;
 
     /**
-     * @ORM\ManyToOne(targetEntity="MagicWordBundle\Entity\Lexicon\Inflection")
+     * @ORM\ManyToOne(targetEntity="MagicWordBundle\Entity\Lexicon\Lemma")
      */
-    protected $inflection;
+    protected $lemma;
 
     /**
      * @var \DateTime
@@ -103,27 +103,27 @@ class Acquisition
     }
 
     /**
-     * Set inflection.
+     * Set lemma.
      *
-     * @param \MagicWordBundle\Entity\Lexicon\Inflection $inflection
+     * @param \MagicWordBundle\Entity\Lexicon\Lemma $lemma
      *
      * @return Acquisition
      */
-    public function setInflection(\MagicWordBundle\Entity\Lexicon\Inflection $inflection = null)
+    public function setLemma(\MagicWordBundle\Entity\Lexicon\Lemma $lemma = null)
     {
-        $this->inflection = $inflection;
+        $this->lemma = $lemma;
 
         return $this;
     }
 
     /**
-     * Get inflection.
+     * Get lemma.
      *
-     * @return \MagicWordBundle\Entity\Lexicon\Inflection
+     * @return \MagicWordBundle\Entity\Lexicon\Lemma
      */
-    public function getInflection()
+    public function getLemma()
     {
-        return $this->inflection;
+        return $this->lemma;
     }
 
     /**
