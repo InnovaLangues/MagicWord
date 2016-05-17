@@ -73,3 +73,9 @@ fos_user:
     db_driver: orm
     firewall_name: main
     user_class: MagicWordBundle\Entity\Player
+
+jms_di_extra:
+    locations:
+        all_bundles: false
+        bundles: [MagicWordBundle]
+        directories: ["%kernel.root_dir%/../src"]
