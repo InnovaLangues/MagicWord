@@ -1,0 +1,16 @@
+<h1>info sur lemme {{ lemma.id }}</h1>
+
+<h2>lemme</h2>
+{{ lemma.content }}
+
+<h2>Phonétiques</h2>
+{{ lemma.phonetic1 }} - {{ lemma.phonetic2 }}
+
+<h2>Genre</h2>
+{{ lemma.gender ? lemma.gender.value : "-" }}
+
+<h2>Catégorie</h2>
+{{ lemma.category ? lemma.category.value : "-" }}
+
+<h2>Subcatégorie</h2>
+{{ lemma.subcategory ? lemma.subcategory.value : "-" }}

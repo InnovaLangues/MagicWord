@@ -1,0 +1,25 @@
+<h1>info sur flexion {{ inflection.id }}</h1>
+
+<h2>lemme</h2>
+<a href="{{ path('lemma', {"id":  inflection.lemma.id}) }}">{{ inflection.lemma.content }}</a>
+
+<h2>flexion</h2>
+{{ inflection.content }}
+
+<h2>flexion nettoyé</h2>
+{{ inflection.cleanedContent ?  inflection.cleanedContent : "-" }}
+
+<h2>Phonétiques</h2>
+{{ inflection.phonetic1 }} - {{ inflection.phonetic2 }}
+
+<h2>Personne</h2>
+{{ inflection.person ? inflection.person.value : "-" }}
+
+<h2>Genre</h2>
+{{ inflection.gender ? inflection.gender.value : "-" }}
+
+<h2>Temps</h2>
+{{ inflection.tense ? inflection.tense.value : "-" }}
+
+<h2>Mode</h2>
+{{ inflection.mood ? inflection.mood.value : "-" }}

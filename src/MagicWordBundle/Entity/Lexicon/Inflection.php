@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
  * Inflection.
  *
  * @ORM\Table(name="inflection")
- * @ORM\Entity()
+ * @ORM\Entity(repositoryClass="MagicWordBundle\Repository\Lexicon\InflectionRepository")
  */
 class Inflection
 {
@@ -347,7 +347,7 @@ class Inflection
     }
 
     /**
-     * Set cleanedContent
+     * Set cleanedContent.
      *
      * @param string $cleanedContent
      *
@@ -361,7 +361,7 @@ class Inflection
     }
 
     /**
-     * Get cleanedContent
+     * Get cleanedContent.
      *
      * @return string
      */
@@ -371,7 +371,7 @@ class Inflection
     }
 
     /**
-     * Add grid
+     * Add grid.
      *
      * @param \MagicWordBundle\Entity\Grid $grid
      *
@@ -385,7 +385,7 @@ class Inflection
     }
 
     /**
-     * Remove grid
+     * Remove grid.
      *
      * @param \MagicWordBundle\Entity\Grid $grid
      */
@@ -395,7 +395,7 @@ class Inflection
     }
 
     /**
-     * Get grids
+     * Get grids.
      *
      * @return \Doctrine\Common\Collections\Collection
      */
