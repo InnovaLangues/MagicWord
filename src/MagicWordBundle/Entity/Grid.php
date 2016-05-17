@@ -26,14 +26,14 @@ class Grid
      *
      * @ORM\Column(name="height", type="integer")
      */
-    private $height;
+    private $height = 4;
 
     /**
      * @var int
      *
      * @ORM\Column(name="width", type="integer")
      */
-    private $width;
+    private $width = 4;
 
     /**
      * @ORM\ManyToMany(targetEntity="MagicWordBundle\Entity\Lexicon\Inflection", inversedBy="grids")
@@ -142,5 +142,48 @@ class Grid
     public function getSquares()
     {
         return $this->squares;
+    }
+
+    /**
+     * Add inflection.
+     *
+     * @param \MagicWordBundle\Entity\Lexicon\Inflection $inflection
+     *
+     * @return Grid
+     */
+    public function addInflection(\MagicWordBundle\Entity\Lexicon\Inflection $inflection)
+    {
+        $this->inflections[] = $inflection;
+
+        return $this;
+    }
+
+    public function addInflections($inflections)
+    {
+        foreach ($inflections as $inflection) {
+            $this->addInflection($inflection);
+        }
+
+        return $this;
+    }
+
+    /**
+     * Remove inflection.
+     *
+     * @param \MagicWordBundle\Entity\Lexicon\Inflection $inflection
+     */
+    public function removeInflection(\MagicWordBundle\Entity\Lexicon\Inflection $inflection)
+    {
+        $this->inflections->removeElement($inflection);
+    }
+
+    /**
+     * Get inflections.
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getInflections()
+    {
+        return $this->inflections;
     }
 }
