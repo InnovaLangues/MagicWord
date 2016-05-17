@@ -36,7 +36,7 @@ class Wordbox
         return $this->id;
     }
     /**
-     * Constructor
+     * Constructor.
      */
     public function __construct()
     {
@@ -44,7 +44,7 @@ class Wordbox
     }
 
     /**
-     * Add acquisition
+     * Add acquisition.
      *
      * @param \MagicWordBundle\Entity\Wordbox\Acquisition $acquisition
      *
@@ -58,7 +58,7 @@ class Wordbox
     }
 
     /**
-     * Remove acquisition
+     * Remove acquisition.
      *
      * @param \MagicWordBundle\Entity\Wordbox\Acquisition $acquisition
      */
@@ -68,7 +68,7 @@ class Wordbox
     }
 
     /**
-     * Get acquisitions
+     * Get acquisitions.
      *
      * @return \Doctrine\Common\Collections\Collection
      */

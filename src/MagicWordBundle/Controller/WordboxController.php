@@ -10,7 +10,7 @@ use MagicWordBundle\Entity\Lexicon\Lemma as Lemma;
 class WordboxController extends Controller
 {
     /**
-     * @Route("/wordbox")
+     * @Route("/wordbox", name ="wordbox")
      */
     public function displayWordboxAction()
     {
@@ -18,11 +18,13 @@ class WordboxController extends Controller
     }
 
     /**
-     * @Route("/wordbox/add/{id}")
+     * @Route("/wordbox/add/{id}", name="add-to-wordbox")
      * @ParamConverter("lemma", class="MagicWordBundle:Lexicon\Lemma")
      */
     public function addToWordboxAction(Lemma $lemma)
     {
-        return $this->render('MagicWordBundle:Default:index.html.twig');
+        $this->get('mw_manager.wordbox')->addToWordbox($lemma, 'manual');
+
+        return $this->redirectToRoute('wordbox');
     }
 }

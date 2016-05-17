@@ -2,6 +2,8 @@ my wordbox ({{ app.user.wordbox.acquisitions|length}})!
 
 <ul>
 {% for acquisition in app.user.wordbox.acquisitions %}
-    <li> {{ acquisition.lemma.content }}</li>
+    <li>
+        <a href="{{ path('lemma', {"id":  acquisition.lemma.id }) }}">{{ acquisition.lemma.content }}</a>
+    </li>
 {% endfor %}
 </ul>

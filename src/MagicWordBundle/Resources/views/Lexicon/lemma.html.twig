@@ -14,3 +14,5 @@
 
 <h2>Subcatégorie</h2>
 {{ lemma.subcategory ? lemma.subcategory.value : "-" }}
+
+<a href="{{ path('add-to-wordbox', {"id":  lemma.id }) }}">ajouter à ma wordbox</a>
