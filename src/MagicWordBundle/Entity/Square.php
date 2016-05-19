@@ -34,7 +34,7 @@ class Square
     private $position;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Grid", inversedBy="squares")
+     * @ORM\ManyToOne(targetEntity="Grid", inversedBy="squares", cascade={"persist"})
      */
     protected $grid;
 

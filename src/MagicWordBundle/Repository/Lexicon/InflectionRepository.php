@@ -12,7 +12,7 @@ class InflectionRepository extends \Doctrine\ORM\EntityRepository
 {
     public function getByStartingBySubstring($substring)
     {
-        $sql = 'SELECT content FROM inflection WHERE content LIKE "'.$substring.'%" LIMIT 1';
+        $sql = 'SELECT * FROM inflection_toto WHERE MATCH(content) AGAINST (\'<'.$substring.'*\' IN BOOLEAN MODE)';
         $em = $this->_em;
         $stmt = $em->getConnection()->prepare($sql);
         $stmt->execute();

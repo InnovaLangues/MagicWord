@@ -4,6 +4,7 @@ namespace  MagicWordBundle\Manager;
 
 use JMS\DiExtraBundle\Annotation as DI;
 use MagicWordBundle\Entity\Grid;
+use MagicWordBundle\Entity\Language;
 
 /**
  * @DI\Service("mw_manager.grid")
@@ -11,20 +12,41 @@ use MagicWordBundle\Entity\Grid;
 class GridManager
 {
     protected $em;
+    protected $letterLangManager;
+    protected $squareManager;
 
     /**
      * @DI\InjectParams({
      *      "entityManager" = @DI\Inject("doctrine.orm.entity_manager"),
+     *      "letterLangManager" = @DI\Inject("mw_manager.letter_language"),
+     *      "squareManager" = @DI\Inject("mw_manager.square"),
      * })
      */
-    public function __construct($entityManager)
+    public function __construct($entityManager, $letterLangManager, $squareManager)
     {
         $this->em = $entityManager;
+        $this->letterLangManager = $letterLangManager;
+        $this->squareManager = $squareManager;
+    }
+
+    public function generate(Language $language)
+    {
+        $grid = new Grid();
+        $letters = $this->letterLangManager->getWeightedLettersByLanguage($language);
+        foreach ($letters as $letter) {
+            $grid->addSquare($this->squareManager->create($letter, $grid));
+        }
+
+        $words = $this->findInflections($grid);
+        $grid = $this->saveInflections($grid);
+
+        return $grid;
     }
 
     public function saveinflections(Grid $grid)
     {
         $inflections = $this->findInflections($grid);
+
         $grid->addInflections($inflections);
 
         $this->em->persist($grid);

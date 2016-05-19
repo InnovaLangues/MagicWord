@@ -7,10 +7,10 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * LetterLanguagePoint.
  *
- * @ORM\Table(name="letter_letter_language_point")
+ * @ORM\Table(name="letter_language")
  * @ORM\Entity()
  */
-class LetterLanguagePoint
+class LetterLanguage
 {
     /**
      * @var int
@@ -27,6 +27,13 @@ class LetterLanguagePoint
      * @ORM\Column(name="point", type="integer")
      */
     private $point;
+
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="weight", type="integer")
+     */
+    private $weight;
 
     /**
      * @ORM\ManyToOne(targetEntity="CanonicLetter")
@@ -73,7 +80,7 @@ class LetterLanguagePoint
     }
 
     /**
-     * Set letter
+     * Set letter.
      *
      * @param \MagicWordBundle\Entity\Letter\CanonicLetter $letter
      *
@@ -87,7 +94,7 @@ class LetterLanguagePoint
     }
 
     /**
-     * Get letter
+     * Get letter.
      *
      * @return \MagicWordBundle\Entity\Letter\CanonicLetter
      */
@@ -97,7 +104,7 @@ class LetterLanguagePoint
     }
 
     /**
-     * Set language
+     * Set language.
      *
      * @param \MagicWordBundle\Entity\Language $language
      *
@@ -111,12 +118,36 @@ class LetterLanguagePoint
     }
 
     /**
-     * Get language
+     * Get language.
      *
      * @return \MagicWordBundle\Entity\Language
      */
     public function getLanguage()
     {
         return $this->language;
+    }
+
+    /**
+     * Set weight.
+     *
+     * @param int $weight
+     *
+     * @return LetterLanguagePoint
+     */
+    public function setWeight($weight)
+    {
+        $this->weight = $weight;
+
+        return $this;
+    }
+
+    /**
+     * Get weight.
+     *
+     * @return int
+     */
+    public function getWeight()
+    {
+        return $this->weight;
     }
 }

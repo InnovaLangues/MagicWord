@@ -27,4 +27,16 @@ class GridController extends Controller
 
         return $this->render('MagicWordBundle:Grid:list.html.twig', array('grids' => $grids));
     }
+
+    /**
+     * @Route("/generate-grid", name="grid_generate")
+     */
+    public function generateGrid()
+    {
+        $gm = $this->get('mw_manager.grid');
+        $language = $this->getDoctrine()->getRepository('MagicWordBundle:Language')->find(1); //todo
+        if ($grid = $gm->generate($language)) {
+            return $this->redirectToRoute('grid', array('id' => $grid->getId()));
+        }
+    }
 }
