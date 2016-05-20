@@ -39,4 +39,12 @@ class GridController extends Controller
             return $this->redirectToRoute('grid', array('id' => $grid->getId()));
         }
     }
+
+    /**
+     * @Route("/create-grid", name="grid_create")
+     */
+    public function createGrid()
+    {
+        return $this->render('MagicWordBundle:Grid:create.html.twig');
+    }
 }

@@ -1,6 +1,10 @@
+<a href="{{ path('grid_generate') }}">générer une grille</a>
+
+<h3>liste des grilles</h3>
 <ul>
 {% for grid in grids %}
     <li>
       <a href="{{ path('grid', {"id":  grid.id}) }}">{{ grid.id }}</a>
     </li>
 {% endfor %}
+</ul>

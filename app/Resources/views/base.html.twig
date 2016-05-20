@@ -1,13 +1,17 @@
 <!DOCTYPE html>
-<html>
+<html lang="fr">
     <head>
         <meta charset="UTF-8" />
         <title>{% block title %}Welcome!{% endblock %}</title>
         {% block stylesheets %}{% endblock %}
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+        <link rel="stylesheet" href="css/main.css" type="text/css" />
     </head>
     <body>
+      <div class="container">
         {% block body %}{% endblock %}
+      </div>
         {% block javascripts %}{% endblock %}
+        <script type="text/javascript" src="js/main.js"></script>
     </body>
 </html>

@@ -46,7 +46,6 @@ class GridManager
     public function saveinflections(Grid $grid)
     {
         $inflections = $this->findInflections($grid);
-
         $grid->addInflections($inflections);
 
         $this->em->persist($grid);
@@ -93,20 +92,16 @@ class GridManager
     {
         // ajouter la lettre en x, y au mot courant
         $word .= $grid[$y][$x];
-
         // la détruire dans la grille
         $grid[$y][$x] = '_';
-
         // vérifier en bdd s'il existe des mots qui commencent par $word à partir de 2 lettres
         if (strlen($word) > 1) {
             $words = $this->em->getRepository("MagicWordBundle:Lexicon\Inflection")->getByStartingBySubstring($word);
-
             // si pas de mot dans le dico commençant par le mot en cours, ne pas retourner le mot et arrêter la recherche
             if (!$words) {
                 return array();
             }
         }
-
         // stocker le début de mot dès qu'il atteint 2 lettres
         $words = strlen($word) > 1 ? array($word) : array();
 
