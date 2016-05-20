@@ -1,7 +1,5 @@
 function addword(){
   document.getElementById('words').insertAdjacentHTML('beforeend','<input required type="text" class="word" value=""/>');
-  console.log(document.getElementById('words').lastElementChild.focus());
-
 }
 
 function generate(){
