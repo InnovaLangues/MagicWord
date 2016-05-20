@@ -1,3 +1,7 @@
+{% extends '::base.html.twig' %}
+
+{% block body -%}
+
 my wordbox ({{ app.user.wordbox.acquisitions|length}})!
 
 <ul>
@@ -7,3 +11,4 @@ my wordbox ({{ app.user.wordbox.acquisitions|length}})!
     </li>
 {% endfor %}
 </ul>
+{% endblock %}

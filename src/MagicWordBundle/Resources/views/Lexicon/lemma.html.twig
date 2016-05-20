@@ -1,3 +1,6 @@
+{% extends '::base.html.twig' %}
+
+{% block body -%}
 <h1>info sur lemme {{ lemma.id }}</h1>
 
 <h2>lemme</h2>
@@ -16,3 +19,4 @@
 {{ lemma.subcategory ? lemma.subcategory.value : "-" }}
 
 <a href="{{ path('add-to-wordbox', {"id":  lemma.id }) }}">ajouter à ma wordbox</a>
+{% endblock %}

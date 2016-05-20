@@ -1,30 +1,41 @@
-<a href="{{ path('grid_generate') }}">Générer une grille</a>
-<a href="{{ path('grids') }}">Liste des grilles</a>
-<a href="{{ path('grid_create') }}">Créer une grille</a>
+{% extends '::base.html.twig' %}
+
+{% block title %}grille {{ grid.id }}{% endblock %}
+
+{% block body -%}
+<div class="panel">
+  <div class="panel-body">
+    <a class="btn btn-default btn-sm" href="{{ path('grid_generate') }}">Générer une grille</a>
+    <a class="btn btn-default btn-sm" href="{{ path('grid_create') }}">Créer une grille</a>
+    <a class="btn btn-default btn-sm" href="{{ path('grids') }}">Liste des grilles</a>
 
 
-<h1>info sur grille {{ grid.id }}</h1>
+    <h1>info sur grille {{ grid.id }}</h1>
 
-<h2>Grille</h2>
-<table border=1>
-{% set x = 0 %}
-{% for i in range(0,grid.height - 1) %}
-  <tr>
-  {% for j in range(0,grid.height - 1) %}
-    <td>
-      {{ grid.squares[x] is defined  ? grid.squares[x].letter.value : "_" }}
-      {% set x = x+1 %}
-    </td>
-  {% endfor %}
-</tr>
-{% endfor %}
-</table>
+    <h2>Grille</h2>
+    <table border=1>
+    {% set x = 0 %}
+    {% for i in range(0,grid.height - 1) %}
+      <tr>
+      {% for j in range(0,grid.height - 1) %}
+        <td>
+          {{ grid.squares[x] is defined  ? grid.squares[x].letter.value : "_" }}
+          {% set x = x+1 %}
+        </td>
+      {% endfor %}
+    </tr>
+    {% endfor %}
+    </table>
 
-<h2>Flexions ({{ grid.inflections | length}})</h2>
-<ul>
-{% for inflection in grid.inflections %}
-    <li>
-        <a href="{{ path('inflection', {"id": inflection.id}) }}">{{ inflection.content }}</a>
-    </li>
-{% endfor %}
-</ul>
+    <h2>Flexions ({{ grid.inflections | length}})</h2>
+    <ul>
+    {% for inflection in grid.inflections %}
+        <li>
+            <a href="{{ path('inflection', {"id": inflection.id}) }}">{{ inflection.content }}</a>
+        </li>
+    {% endfor %}
+    </ul>
+  </div>
+</div>
+
+{% endblock %}

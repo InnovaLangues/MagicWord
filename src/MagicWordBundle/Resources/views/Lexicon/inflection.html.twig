@@ -1,3 +1,7 @@
+{% extends '::base.html.twig' %}
+
+{% block body -%}
+
 <h1>info sur flexion {{ inflection.id }}</h1>
 
 <h2>lemme</h2>
@@ -23,3 +27,4 @@
 
 <h2>Mode</h2>
 {{ inflection.mood ? inflection.mood.value : "-" }}
+{% endblock %}
