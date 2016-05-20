@@ -43,6 +43,18 @@ class GridManager
         return $grid;
     }
 
+    public function createGrid($request)
+    {
+        $grid = new Grid();
+        foreach ($request->request->get('squares') as $letter) {
+            $grid->addSquare($this->squareManager->create(strtolower($letter), $grid));
+        }
+        $words = $this->findInflections($grid);
+        $grid = $this->saveInflections($grid);
+
+        return $grid;
+    }
+
     public function saveinflections(Grid $grid)
     {
         $inflections = $this->findInflections($grid);

@@ -3,8 +3,10 @@
 namespace MagicWordBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\Request;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use MagicWordBundle\Entity\Grid;
 
 class GridController extends Controller
@@ -31,20 +33,31 @@ class GridController extends Controller
     /**
      * @Route("/generate-grid", name="grid_generate")
      */
-    public function generateGrid()
+    public function generateGridAction()
     {
-        $gm = $this->get('mw_manager.grid');
         $language = $this->getDoctrine()->getRepository('MagicWordBundle:Language')->find(1); //todo
-        if ($grid = $gm->generate($language)) {
-            return $this->redirectToRoute('grid', array('id' => $grid->getId()));
-        }
+        $grid = $this->get('mw_manager.grid')->generate($language);
+
+        return $this->redirectToRoute('grid', array('id' => $grid->getId()));
     }
 
     /**
      * @Route("/create-grid", name="grid_create")
+     * @Method("GET")
      */
-    public function createGrid()
+    public function displayGridFormAction()
     {
         return $this->render('MagicWordBundle:Grid:create.html.twig');
+    }
+
+    /**
+     * @Route("/create-grid", name="grid_create_post")
+     * @Method("POST")
+     */
+    public function createGridAction(Request $request)
+    {
+        $grid = $this->get('mw_manager.grid')->createGrid($request);
+
+        return $this->redirectToRoute('grid', array('id' => $grid->getId()));
     }
 }

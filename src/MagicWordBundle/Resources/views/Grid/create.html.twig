@@ -9,18 +9,13 @@
       <label for="time">Temps max :</label>
       <input type="text" id="time" value="200"/> ms
     </div>
-
     <div>
       <label>Formes à placer :</label> <input type="button" onclick="addword()" value="Ajouter une forme"/>
       <div id="words"></div>
     </div>
-
     <input type="button" onclick="generate()" value="Générer grille"/>
-
     <hr/>
-
-    <div id="result"></div>
-
+    <form id="result" method="POST" action=""></form>
   </div>
 </div>
 {% endblock %}

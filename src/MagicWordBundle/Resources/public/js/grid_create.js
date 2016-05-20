@@ -15,15 +15,15 @@ function generate(){
   results += "<table>";
   for (var i = best.grid.length - 1; i >= 0; i--) {
     results += "<tr>";
-
     for (var j = best.grid[i].length - 1; j >= 0; j--) {
       results += "<td>";
-      results += '<input type="text" size="1" maxlength="1" value="'+best.grid[i][j]+'" pattern="[A-Za-z]"/>';
+      results += '<input type="text" name="squares[]" size="1" maxlength="1" value="'+best.grid[i][j]+'" pattern="[A-Za-z]"/>';
       results += "</td>";
     };
     results += "</tr>";
   };
   results += "</table>";
+  results += "<button class='btn btn-default' type='submit'>Create</button>";
 
   results += "<br/>";
   results += best.total;
