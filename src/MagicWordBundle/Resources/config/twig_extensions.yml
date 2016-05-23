@@ -1,0 +1,7 @@
+services:
+    twig.extension.get_languages:
+        class: MagicWordBundle\Twig\LanguageExtension
+        arguments:
+            "entityManager": "@doctrine.orm.entity_manager"
+        tags:
+            - { name: twig.extension }

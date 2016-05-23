@@ -25,6 +25,7 @@ module.exports = function (grunt) {
                 files: {
                     'web/js/main.js': [
                         "bower_components/jquery/dist/jquery.min.js",
+                        'web/bundles/fosjsrouting/js/router.js'
                     ],
                     'web/js/grid_creation.js': [
                         "src/MagicWordBundle/Resources/public/js/bologne.js",

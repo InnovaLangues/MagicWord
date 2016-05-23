@@ -3,6 +3,7 @@
 namespace MagicWordBundle\Entity\Lexicon;
 
 use Doctrine\ORM\Mapping as ORM;
+use JsonSerializable;
 
 /**
  * Inflection.
@@ -10,7 +11,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Table(name="inflection")
  * @ORM\Entity(repositoryClass="MagicWordBundle\Repository\Lexicon\InflectionRepository")
  */
-class Inflection
+class Inflection implements JsonSerializable
 {
     /**
      * @var int
@@ -20,6 +21,11 @@ class Inflection
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="MagicWordBundle\Entity\Language")
+     */
+    private $language;
 
     /**
      * @ORM\ManyToMany(targetEntity="MagicWordBundle\Entity\Grid", mappedBy="inflections")
@@ -402,5 +408,38 @@ class Inflection
     public function getGrids()
     {
         return $this->grids;
+    }
+
+    /**
+     * Set language.
+     *
+     * @param \MagicWordBundle\Entity\Language $language
+     *
+     * @return Game
+     */
+    public function setLanguage(\MagicWordBundle\Entity\Language $language = null)
+    {
+        $this->language = $language;
+
+        return $this;
+    }
+
+    /**
+     * Get language.
+     *
+     * @return \MagicWordBundle\Entity\Language
+     */
+    public function getLanguage()
+    {
+        return $this->language;
+    }
+
+    public function jsonSerialize()
+    {
+        return array(
+            'id' => $this->id,
+            'content' => $this->content,
+            'cleanedContent' => $this->cleanedContent,
+        );
     }
 }

@@ -10,9 +10,9 @@ namespace MagicWordBundle\Repository\Lexicon;
  */
 class InflectionRepository extends \Doctrine\ORM\EntityRepository
 {
-    public function getByStartingBySubstring($substring)
+    public function getByStartingBySubstring($substring, $languageId)
     {
-        $sql = 'SELECT id FROM inflection_toto WHERE MATCH(content) AGAINST (\'<'.$substring.'*\' IN BOOLEAN MODE)';
+        $sql = 'SELECT id FROM inflection_toto WHERE MATCH(content) AGAINST (\'<'.$substring.'*\' IN BOOLEAN MODE) AND language_id = '.$languageId;
         $em = $this->_em;
         $stmt = $em->getConnection()->prepare($sql);
         $stmt->execute();
@@ -20,13 +20,42 @@ class InflectionRepository extends \Doctrine\ORM\EntityRepository
         return $stmt->fetchAll();
     }
 
-    public function getExistingWords($words)
+    public function getExistingWords($words, $language)
     {
         $em = $this->_em;
         $dql = 'SELECT i FROM MagicWordBundle\Entity\Lexicon\Inflection i
-                WHERE i.content IN('.implode(', ', array_map(array($em->getConnection(), 'quote'), $words)).')';
+                WHERE i.language = :language
+                AND i.content IN('.implode(', ', array_map(array($em->getConnection(), 'quote'), $words)).')';
 
         $query = $em->createQuery($dql);
+        $query->setParameter('language', $language);
+
+        return $query->getResult();
+    }
+
+    public function getByLanguageAndContentOrCleaned($language, $content)
+    {
+        $em = $this->_em;
+        $dql = 'SELECT i FROM MagicWordBundle\Entity\Lexicon\Inflection i
+              WHERE i.language = :language
+              AND (i.content = :content OR i.cleanedContent = :content)';
+
+        $query = $em->createQuery($dql);
+        $query->setParameter('language', $language)
+              ->setParameter('content', $content)
+              ->setMaxResults(1);
+
+        return $query->getOneOrNullResult();
+    }
+
+    public function findByIdRange($range)
+    {
+        $em = $this->_em;
+        $dql = 'SELECT i FROM MagicWordBundle\Entity\Lexicon\Inflection i WHERE i.id >= :lowlimit AND i.id <= :hightlimit';
+
+        $query = $em->createQuery($dql);
+        $query->setParameter('lowlimit', $range)
+              ->setParameter('hightlimit', $range + 1000);
 
         return $query->getResult();
     }

@@ -3,23 +3,32 @@
 {% block title %}Créer une grille{% endblock %}
 
 {% block body -%}
-<div class="panel">
-  <div class="panel-body">
-    <div>
-      <label for="time">Temps max :</label>
-      <input type="text" id="time" value="200"/> ms
+    <div class="panel">
+        <div class="panel-body">
+            <div>
+                <label for="time">Temps max :</label>
+                <input type="text" id="time" value="200"/>
+                ms
+            </div>
+            <div>
+                <label>Formes à placer :</label>
+                <input type="button" onclick="addword()" value="Ajouter une forme"/>
+                <div id="words"></div>
+            </div>
+            <input type="button" onclick="generate()" value="Générer grille"/>
+            <hr/>
+            <form method="POST">
+                <select id="language-select" name="language">
+                {% for language in get_languages() %}
+                  <option value="{{language.id}}">{{language.name}}</option>
+                {% endfor %}
+                </select>
+                <div id="result"></div>
+            </form>
+        </div>
     </div>
-    <div>
-      <label>Formes à placer :</label> <input type="button" onclick="addword()" value="Ajouter une forme"/>
-      <div id="words"></div>
-    </div>
-    <input type="button" onclick="generate()" value="Générer grille"/>
-    <hr/>
-    <form id="result" method="POST" action=""></form>
-  </div>
-</div>
 {% endblock %}
 
 {% block javascripts -%}
-<script type="text/javascript" src="/js/grid_creation.js"></script>
+    <script type="text/javascript" src="/js/grid_creation.js"></script>
 {% endblock %}

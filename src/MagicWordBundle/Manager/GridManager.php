@@ -14,6 +14,7 @@ class GridManager
     protected $em;
     protected $letterLangManager;
     protected $squareManager;
+    protected $currentLanguage;
 
     /**
      * @DI\InjectParams({
@@ -29,9 +30,17 @@ class GridManager
         $this->squareManager = $squareManager;
     }
 
-    public function generate(Language $language)
+    private function newGrid($language)
     {
         $grid = new Grid();
+        $grid->setLanguage($language);
+
+        return $grid;
+    }
+
+    public function generate(Language $language)
+    {
+        $grid = $this->newGrid($language);
         $letters = $this->letterLangManager->getWeightedLettersByLanguage($language);
         foreach ($letters as $letter) {
             $grid->addSquare($this->squareManager->create($letter, $grid));
@@ -45,17 +54,21 @@ class GridManager
 
     public function createGrid($request)
     {
-        $grid = new Grid();
+        $languageId = $request->request->get('language');
+        $language = $this->em->getRepository('MagicWordBundle:Language')->find($languageId);
+
+        $grid = $this->newGrid($language);
         foreach ($request->request->get('squares') as $letter) {
             $grid->addSquare($this->squareManager->create(strtolower($letter), $grid));
         }
+
         $words = $this->findInflections($grid);
         $grid = $this->saveInflections($grid);
 
         return $grid;
     }
 
-    public function saveinflections(Grid $grid)
+    public function saveInflections(Grid $grid)
     {
         $inflections = $this->findInflections($grid);
         $grid->addInflections($inflections);
@@ -71,6 +84,7 @@ class GridManager
         $i = 0;
         $simplifiedGrid = array();
         $words = array();
+        $this->currentLanguage = $grid->getLanguage();
 
         for ($y = 0; $y < 4; ++$y) {
             for ($x = 0; $x < 4; ++$x) {
@@ -94,7 +108,7 @@ class GridManager
         // words contient tous les débuts de mots ayant été trouvé dans le dictionnaire
         // il faut vérifier si chaque word existe réellement dans le dictionnaire
         if ($words) {
-            $words = $this->em->getRepository("MagicWordBundle:Lexicon\Inflection")->getExistingWords($words);
+            $words = $this->em->getRepository("MagicWordBundle:Lexicon\Inflection")->getExistingWords($words, $this->currentLanguage);
         }
 
         return $words;
@@ -108,7 +122,7 @@ class GridManager
         $grid[$y][$x] = '_';
         // vérifier en bdd s'il existe des mots qui commencent par $word à partir de 2 lettres
         if (strlen($word) > 1) {
-            $words = $this->em->getRepository("MagicWordBundle:Lexicon\Inflection")->getByStartingBySubstring($word);
+            $words = $this->em->getRepository("MagicWordBundle:Lexicon\Inflection")->getByStartingBySubstring($word, $this->currentLanguage->getId());
             // si pas de mot dans le dico commençant par le mot en cours, ne pas retourner le mot et arrêter la recherche
             if (!$words) {
                 return array();

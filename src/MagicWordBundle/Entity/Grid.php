@@ -46,6 +46,11 @@ class Grid
      */
     protected $squares;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="Language")
+     */
+    private $language;
+
     public function __construct()
     {
         $this->inflections = new \Doctrine\Common\Collections\ArrayCollection();
@@ -185,5 +190,29 @@ class Grid
     public function getInflections()
     {
         return $this->inflections;
+    }
+
+    /**
+     * Set language.
+     *
+     * @param \MagicWordBundle\Entity\Language $language
+     *
+     * @return Game
+     */
+    public function setLanguage(\MagicWordBundle\Entity\Language $language = null)
+    {
+        $this->language = $language;
+
+        return $this;
+    }
+
+    /**
+     * Get language.
+     *
+     * @return \MagicWordBundle\Entity\Language
+     */
+    public function getLanguage()
+    {
+        return $this->language;
     }
 }
