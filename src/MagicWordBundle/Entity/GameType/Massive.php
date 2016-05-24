@@ -76,4 +76,9 @@ class Massive extends Game
     {
         return $this->end;
     }
+
+    public function getDiscr()
+    {
+        return $this->discr;
+    }
 }

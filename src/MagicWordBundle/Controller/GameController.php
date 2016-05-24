@@ -26,4 +26,14 @@ class GameController extends Controller
 
         return $this->render('MagicWordBundle:Game:training.html.twig', array('round' => $round));
     }
+
+    /**
+     * @Route("/challenge", name="challenge")
+     */
+    public function challengeAction()
+    {
+        $form = $round = $this->get('mw_manager.game')->generateForm();
+
+        return $this->render('MagicWordBundle:Game:challenge.html.twig', array('form' => $form));
+    }
 }
