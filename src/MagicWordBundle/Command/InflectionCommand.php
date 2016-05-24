@@ -5,6 +5,7 @@ namespace MagicWordBundle\Command;
 use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
+use Symfony\Component\Console\Input\InputArgument;
 
 class InflectionCommand extends ContainerAwareCommand
 {
@@ -13,15 +14,18 @@ class InflectionCommand extends ContainerAwareCommand
         $this
             ->setName('magicword:clean')
             ->setDescription('poupulate clean content')
+            ->addArgument('start', InputArgument::REQUIRED, 'start')
            ;
     }
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
+        $start = $input->getArgument('start');
+
         $em = $this->getContainer()->get('doctrine')->getEntityManager('default');
 
-        $inflections = $em->getRepository('MagicWordBundle:Lexicon\Inflection')->findByIdRange(0);
-        $this->parseInflections($inflections, 0, $output);
+        $inflections = $em->getRepository('MagicWordBundle:Lexicon\Inflection')->findByIdRange($start);
+        $this->parseInflections($inflections, $start, $output);
 
         $output->writeln('<info>Done</info>');
     }

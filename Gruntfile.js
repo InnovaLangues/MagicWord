@@ -1,4 +1,4 @@
-module.exports = function (grunt) {
+module.exports = function(grunt) {
     require('load-grunt-tasks')(grunt);
 
     grunt.initConfig({
@@ -12,6 +12,7 @@ module.exports = function (grunt) {
                 files: {
                     "web/css/main.css": [
                         "bower_components/bootstrap/dist/css/bootstrap.css",
+                        "bower_components/font-awesome/css/font-awesome.css",
                     ]
                 }
             }
@@ -25,7 +26,9 @@ module.exports = function (grunt) {
                 files: {
                     'web/js/main.js': [
                         "bower_components/jquery/dist/jquery.min.js",
-                        'web/bundles/fosjsrouting/js/router.js'
+                        "bower_components/bootstrap/dist/js/bootstrap.min.js",
+                        'web/bundles/fosjsrouting/js/router.js',
+                        'src/MagicWordBundle/Resources/public/js/main.js',
                     ],
                     'web/js/grid_creation.js': [
                         "src/MagicWordBundle/Resources/public/js/bologne.js",
@@ -34,8 +37,19 @@ module.exports = function (grunt) {
 
                 }
             }
-        }
-    });
+        },
+        copy: {
+            // customisation to add font files from CSS libraries:
+            fonts: {
+                expand: true,
+                flatten: true,
+                cwd: '',
+                dest: 'web/fonts/',
+                src: ['bower_components/font-awesome/fonts/*']
+            }
+        },
 
-    grunt.registerTask('default', ["less", "uglify"]);
+    });
+    grunt.loadNpmTasks('grunt-contrib-copy');
+    grunt.registerTask('default', ["less", "uglify", "copy:fonts"]);
 };

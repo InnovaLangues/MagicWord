@@ -1,0 +1,16 @@
+{% extends '::base.html.twig' %}
+
+{% block title %}Partie{{ round.game.id }}{% endblock %}
+
+{% block body -%}
+    <div class="panel">
+        <div class="panel-body">
+            <h1>Partie {{ round.game.id }} ({{ round.game.discr }})</h1>
+
+            On devrait pouvoir jouer sur cette grille :
+            <a href="{{ path('grid', {"id": round.grid.id}) }}" class="btn btn-default">
+                <i class="fa fa-th" aria-hidden="true"></i>
+            </a>
+        </div>
+    </div>
+{% endblock %}

@@ -5,24 +5,38 @@
 {% block body -%}
     <div class="panel">
         <div class="panel-body">
-            <div>
-                <label for="time">Temps max :</label>
-                <input type="text" id="time" value="200"/>
-                ms
+            <div class="form-group">
+                <label for="time">Temps de calcul
+                    <span class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Temps de recherche de la grille optimale">
+                        <i class="fa fa-question" aria-hidden="true"></i>
+                    </span>
+                    :
+                </label>
+                <input type="text" id="time" value="200"/>  ms
             </div>
-            <div>
+            <div class="form-group">
                 <label>Formes à placer :</label>
-                <input type="button" onclick="addword()" value="Ajouter une forme"/>
-                <div id="words"></div>
+                <span class="btn btn-default" type="button" onclick="addword()">
+                    <i class="fa fa-plus" aria-hidden="true"></i>
+                    Ajouter une forme
+                </span>
+                <div id="words" class="form-group"></div>
             </div>
-            <input type="button" onclick="generate()" value="Générer grille"/>
+            <div class="form-group">
+                <input class="btn btn-default" type="button" onclick="generate()" value="Générer grille"/>
+            </div>
+
             <hr/>
+
             <form method="POST">
-                <select id="language-select" name="language">
-                {% for language in get_languages() %}
-                  <option value="{{language.id}}">{{language.name}}</option>
-                {% endfor %}
-                </select>
+                <div class="form-group">
+                  <label for="language">Language</language>
+                  <select id="language-select" name="language" class="form-control">
+                      {% for language in get_languages() %}
+                          <option value="{{language.id}}">{{language.name}}</option>
+                      {% endfor %}
+                  </select>
+                </div>
                 <div id="result"></div>
             </form>
         </div>

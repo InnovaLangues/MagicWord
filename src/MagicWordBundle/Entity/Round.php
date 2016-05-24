@@ -43,10 +43,10 @@ class Round
      *
      * @ORM\Column(name="fixedGrid", type="boolean")
      */
-    private $fixedGrid;
+    private $fixedGrid = 1;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Game")
+     * @ORM\ManyToOne(targetEntity="Game", cascade={"persist"})
      */
     private $game;
 

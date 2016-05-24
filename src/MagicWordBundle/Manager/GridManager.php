@@ -14,6 +14,8 @@ class GridManager
     protected $em;
     protected $letterLangManager;
     protected $squareManager;
+    protected $tokenStorage;
+    protected $currentUser;
     protected $currentLanguage;
 
     /**
@@ -21,19 +23,33 @@ class GridManager
      *      "entityManager" = @DI\Inject("doctrine.orm.entity_manager"),
      *      "letterLangManager" = @DI\Inject("mw_manager.letter_language"),
      *      "squareManager" = @DI\Inject("mw_manager.square"),
+     *      "tokenStorage" = @DI\Inject("security.token_storage"),
      * })
      */
-    public function __construct($entityManager, $letterLangManager, $squareManager)
+    public function __construct($entityManager, $letterLangManager, $squareManager, $tokenStorage)
     {
         $this->em = $entityManager;
         $this->letterLangManager = $letterLangManager;
         $this->squareManager = $squareManager;
+        $this->tokenStorage = $tokenStorage;
+        $this->currentUser = $this->tokenStorage->getToken()->getUser();
     }
 
     private function newGrid($language)
     {
         $grid = new Grid();
         $grid->setLanguage($language);
+
+        return $grid;
+    }
+
+    public function seekOrGenerateForTraining()
+    {
+        $language = $this->currentUser->getLanguage();
+
+        $grid = ($existingGrid = $this->em->getRepository('MagicWordBundle:Grid')->findNotPlayedForTraining($language))
+            ? $existingGrid
+            : $this->generate($language);
 
         return $grid;
     }

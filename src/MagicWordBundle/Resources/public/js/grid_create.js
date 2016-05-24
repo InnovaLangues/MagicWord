@@ -38,7 +38,7 @@ function generate() {
     var time = document.getElementById("time").value;
     var generator = Generator();
     var best = new generator(4, word_list, time).run();
-    results += "<table>";
+    results += "<table class='table table-bordered'>";
     for (var i = best.grid.length - 1; i >= 0; i--) {
         results += "<tr>";
         for (var j = best.grid[i].length - 1; j >= 0; j--) {
@@ -49,7 +49,7 @@ function generate() {
         results += "</tr>";
     };
     results += "</table>";
-    results += "<button class='btn btn-default' type='submit'>Create</button>";
+    results += "<button class='btn btn-primary' type='submit'>Save the grid</button>";
 
     results += "<br/>";
     results += best.total;

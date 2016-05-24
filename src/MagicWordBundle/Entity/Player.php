@@ -33,6 +33,11 @@ class Player extends BaseUser
     private $friends;
 
     /**
+     * @ORM\ManyToOne(targetEntity="Language")
+     */
+    private $language;
+
+    /**
      * Set wordbox.
      *
      * @param \MagicWordBundle\Entity\Wordbox $wordbox
@@ -57,7 +62,7 @@ class Player extends BaseUser
     }
 
     /**
-     * Add friend
+     * Add friend.
      *
      * @param \MagicWordBundle\Entity\Player $friend
      *
@@ -71,7 +76,7 @@ class Player extends BaseUser
     }
 
     /**
-     * Remove friend
+     * Remove friend.
      *
      * @param \MagicWordBundle\Entity\Player $friend
      */
@@ -81,12 +86,36 @@ class Player extends BaseUser
     }
 
     /**
-     * Get friends
+     * Get friends.
      *
      * @return \Doctrine\Common\Collections\Collection
      */
     public function getFriends()
     {
         return $this->friends;
+    }
+
+    /**
+     * Set language.
+     *
+     * @param \MagicWordBundle\Entity\Language $language
+     *
+     * @return Game
+     */
+    public function setLanguage(\MagicWordBundle\Entity\Language $language = null)
+    {
+        $this->language = $language;
+
+        return $this;
+    }
+
+    /**
+     * Get language.
+     *
+     * @return \MagicWordBundle\Entity\Language
+     */
+    public function getLanguage()
+    {
+        return $this->language;
     }
 }

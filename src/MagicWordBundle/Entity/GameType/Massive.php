@@ -13,14 +13,7 @@ use MagicWordBundle\Entity\Game as Game;
  */
 class Massive extends Game
 {
-    /**
-     * @var int
-     *
-     * @ORM\Column(name="id", type="integer")
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="AUTO")
-     */
-    private $id;
+    protected $discr = 'massive';
 
     /**
      * @var \DateTime
@@ -35,16 +28,6 @@ class Massive extends Game
      * @ORM\Column(name="end", type="datetime", nullable=true)
      */
     private $end;
-
-    /**
-     * Get id.
-     *
-     * @return int
-     */
-    public function getId()
-    {
-        return $this->id;
-    }
 
     /**
      * Set start.

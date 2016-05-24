@@ -13,22 +13,10 @@ use MagicWordBundle\Entity\Round as Round;
  */
 class Rush extends Round
 {
-    /**
-     * @var int
-     *
-     * @ORM\Column(name="id", type="integer")
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="AUTO")
-     */
-    private $id;
+    protected $discr = 'rush';
 
-    /**
-     * Get id.
-     *
-     * @return int
-     */
-    public function getId()
+    public function getDiscr()
     {
-        return $this->id;
+        return $this->discr;
     }
 }

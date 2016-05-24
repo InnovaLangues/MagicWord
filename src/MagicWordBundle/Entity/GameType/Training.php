@@ -13,22 +13,10 @@ use MagicWordBundle\Entity\Game as Game;
  */
 class Training extends Game
 {
-    /**
-     * @var int
-     *
-     * @ORM\Column(name="id", type="integer")
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="AUTO")
-     */
-    private $id;
+    protected $discr = 'training';
 
-    /**
-     * Get id.
-     *
-     * @return int
-     */
-    public function getId()
+    public function getDiscr()
     {
-        return $this->id;
+        return $this->discr;
     }
 }

@@ -13,22 +13,10 @@ use MagicWordBundle\Entity\Round as Round;
  */
 class Conquer extends Round
 {
-    /**
-     * @var int
-     *
-     * @ORM\Column(name="id", type="integer")
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="AUTO")
-     */
-    private $id;
+    protected $discr = 'conquer';
 
-    /**
-     * Get id.
-     *
-     * @return int
-     */
-    public function getId()
+    public function getDiscr()
     {
-        return $this->id;
+        return $this->discr;
     }
 }

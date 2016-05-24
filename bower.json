@@ -1,13 +1,14 @@
 {
-    "name": "bower",
-    "ignore": [
-        "**/.*",
-        "node_modules",
-        "bower_components",
-        "test",
-        "tests"
-    ],
-    "dependencies": {
-        "bootstrap": "3.3.*"
-    }
+  "name": "bower",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "3.3.*",
+    "font-awesome": "^4.6.3"
+  }
 }

@@ -12,7 +12,7 @@ class InflectionRepository extends \Doctrine\ORM\EntityRepository
 {
     public function getByStartingBySubstring($substring, $languageId)
     {
-        $sql = 'SELECT id FROM inflection_toto WHERE MATCH(content) AGAINST (\'<'.$substring.'*\' IN BOOLEAN MODE) AND language_id = '.$languageId;
+        $sql = 'SELECT id FROM inflection_fulltext WHERE MATCH(cleaned_content) AGAINST (\'<'.$substring.'*\' IN BOOLEAN MODE) AND language_id = '.$languageId;
         $em = $this->_em;
         $stmt = $em->getConnection()->prepare($sql);
         $stmt->execute();
@@ -25,7 +25,7 @@ class InflectionRepository extends \Doctrine\ORM\EntityRepository
         $em = $this->_em;
         $dql = 'SELECT i FROM MagicWordBundle\Entity\Lexicon\Inflection i
                 WHERE i.language = :language
-                AND i.content IN('.implode(', ', array_map(array($em->getConnection(), 'quote'), $words)).')';
+                AND i.cleanedContent IN('.implode(', ', array_map(array($em->getConnection(), 'quote'), $words)).')';
 
         $query = $em->createQuery($dql);
         $query->setParameter('language', $language);

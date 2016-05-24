@@ -1,0 +1,19 @@
+{% extends '::base.html.twig' %}
+
+{% block title %}Liste des parties{% endblock %}
+
+{% block body -%}
+    <div class="panel">
+        <div class="panel-body">
+            <a class="btn btn-default btn-sm" href="{{ path('train') }}">S'entrainer</a>
+            <h3>liste des parties</h3>
+            <ul>
+                {% for game in games %}
+                    <li>
+                        <a href="">{{ game.id }} - {{ game.discr }}</a>
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+{% endblock %}
