@@ -67,6 +67,7 @@ class InflectionCommand extends ContainerAwareCommand
                 $em->persist($inflection);
             }
             $em->flush();
+            $em->clear();
             $i = $i + 1000;
             $inflections = $em->getRepository('MagicWordBundle:Lexicon\Inflection')->findByIdRange($i);
 
