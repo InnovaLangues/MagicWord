@@ -68,7 +68,7 @@ class GridManager
         return $grid;
     }
 
-    public function createGrid($request)
+    public function createGrid($request, $save)
     {
         $languageId = $request->request->get('language');
         $language = $this->em->getRepository('MagicWordBundle:Language')->find($languageId);
@@ -79,7 +79,9 @@ class GridManager
         }
 
         $words = $this->findInflections($grid);
-        $grid = $this->saveInflections($grid);
+        if ($save) {
+            $grid = $this->saveInflections($grid);
+        }
 
         return $grid;
     }
@@ -93,6 +95,14 @@ class GridManager
         $this->em->flush();
 
         return $grid;
+    }
+
+    public function getInflections($request)
+    {
+        $grid = $this->createGrid($request, false);
+        $inflections = $inflections = $this->findInflections($grid);
+
+        return $inflections;
     }
 
     public function findInflections(Grid $grid)

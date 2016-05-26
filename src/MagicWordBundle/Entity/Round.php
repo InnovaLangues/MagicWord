@@ -46,9 +46,16 @@ class Round
     private $fixedGrid = 1;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Game", cascade={"persist"})
+     * @ORM\ManyToOne(targetEntity="Game", inversedBy="rounds", cascade={"persist"})
      */
     private $game;
+
+    /**
+     * @var int
+     *
+     * @ORM\Column(type="integer")
+     */
+    private $displayOrder;
 
     /**
      * @ORM\ManyToOne(targetEntity="Grid")
@@ -183,5 +190,29 @@ class Round
     public function getGrid()
     {
         return $this->grid;
+    }
+
+    /**
+     * Set displayOrder.
+     *
+     * @param int $displayOrder
+     *
+     * @return Round
+     */
+    public function setDisplayOrder($displayOrder)
+    {
+        $this->displayOrder = $displayOrder;
+
+        return $this;
+    }
+
+    /**
+     * Get displayOrder.
+     *
+     * @return int
+     */
+    public function getDisplayOrder()
+    {
+        return $this->displayOrder;
     }
 }

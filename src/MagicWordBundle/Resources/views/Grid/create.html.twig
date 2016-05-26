@@ -5,40 +5,67 @@
 {% block body -%}
     <div class="panel">
         <div class="panel-body">
-            <div class="form-group">
-                <label for="time">Temps de calcul
-                    <span class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="Temps de recherche de la grille optimale">
-                        <i class="fa fa-question" aria-hidden="true"></i>
-                    </span>
-                    :
-                </label>
-                <input type="text" id="time" value="200"/>  ms
-            </div>
-            <div class="form-group">
-                <label>Formes à placer :</label>
-                <span class="btn btn-default" type="button" onclick="addword()">
-                    <i class="fa fa-plus" aria-hidden="true"></i>
-                    Ajouter une forme
-                </span>
-                <div id="words" class="form-group"></div>
-            </div>
-            <div class="form-group">
-                <input class="btn btn-default" type="button" onclick="generate()" value="Générer grille"/>
-            </div>
+            <div class="row">
+                <div class="col-md-8">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            Flexions à placer dans la grille
+                            <span class="btn btn-default btn-xs pull-right" type="button" onclick="addRequiredWord()">
+                                <i class="fa fa-plus" aria-hidden="true"></i>
+                                Ajouter une forme
+                            </span>
+                        </div>
+                        <div class="panel-body">
+                            <ul class="list-group" id="words">
+                                <li class="list-group-item">
+                                    <input required type="text" class="word" pattern="[A-Za-z]+" value="" />
+                                    <input required type="text" class="def" value="" />
+                                    <span class="pull-right">
+                                        <span class="btn btn-default">
+                                            <i class="fa fa-wikipedia-w" aria-hidden="true"></i>
+                                        </span>
+                                        <span class="btn btn-danger word-remove">
+                                            <i class="fa fa-times" aria-hidden="true"></i>
+                                        </span>
+                                    </span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="panel panel-default">
+                        <div class="panel-heading">Grille</div>
+                        <div class="panel-body">
+                            <div class="form-group">
+                                <input class="btn btn-default" type="button" onclick="generate()" value="Générer grille"/>
+                            </div>
+                            <form id="grid" method="POST">
+                                <div class="form-group">
+                                  <label for="language">Language</language>
+                                  <select id="language-select" name="language" class="form-control">
+                                      {% for language in get_languages() %}
+                                          <option value="{{language.id}}">{{language.name}}</option>
+                                      {% endfor %}
+                                  </select>
+                                </div>
+                                <div id="result"></div>
+                            </form>
+                        </div>
+                    </div>
 
-            <hr/>
-
-            <form method="POST">
-                <div class="form-group">
-                  <label for="language">Language</language>
-                  <select id="language-select" name="language" class="form-control">
-                      {% for language in get_languages() %}
-                          <option value="{{language.id}}">{{language.name}}</option>
-                      {% endfor %}
-                  </select>
                 </div>
-                <div id="result"></div>
-            </form>
+                <div class="col-md-4" >
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            Flexions présentes
+                            <span class="btn btn-default btn-xs pull-right" type="button" onclick="getInflections()">
+                                <i id="inflections-icon" class="fa fa-refresh" aria-hidden="true"></i>
+                                Mettre à jour
+                            </span>
+                        </div>
+                        <div class="panel-body" id="inflections"></div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 {% endblock %}

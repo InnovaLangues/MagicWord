@@ -30,10 +30,53 @@ class Challenge extends Game
     /**
      * @ORM\ManyToOne(targetEntity="MagicWordBundle\Entity\Player")
      */
-    protected $challenger;
+    protected $challenged;
 
     /**
-     * @ORM\ManyToOne(targetEntity="MagicWordBundle\Entity\Player")
+     * Set message.
+     *
+     * @param string $message
+     *
+     * @return Challenge
      */
-    protected $challenged;
+    public function setMessage($message)
+    {
+        $this->message = $message;
+
+        return $this;
+    }
+
+    /**
+     * Get message.
+     *
+     * @return string
+     */
+    public function getMessage()
+    {
+        return $this->message;
+    }
+
+    /**
+     * Set challenged.
+     *
+     * @param \MagicWordBundle\Entity\Player $challenged
+     *
+     * @return Challenge
+     */
+    public function setChallenged(\MagicWordBundle\Entity\Player $challenged = null)
+    {
+        $this->challenged = $challenged;
+
+        return $this;
+    }
+
+    /**
+     * Get challenged.
+     *
+     * @return \MagicWordBundle\Entity\Player
+     */
+    public function getChallenged()
+    {
+        return $this->challenged;
+    }
 }

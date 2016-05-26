@@ -1,21 +1,20 @@
 <?php
 
-namespace  MagicWordBundle\Manager;
+namespace  MagicWordBundle\Manager\GameType;
 
 use JMS\DiExtraBundle\Annotation as DI;
-use MagicWordBundle\Entity\Grid;
 use MagicWordBundle\Entity\GameType\Training;
-use MagicWordBundle\Entity\GameType\Challenge;
 
 /**
- * @DI\Service("mw_manager.game")
+ * @DI\Service("mw_manager.training")
  */
-class GameManager
+class TrainingManager
 {
     protected $em;
     protected $gridManager;
     protected $roundManager;
     protected $formFactory;
+    protected $tokenStorage;
 
     /**
      * @DI\InjectParams({
@@ -23,14 +22,16 @@ class GameManager
      *      "gridManager"   = @DI\Inject("mw_manager.grid"),
      *      "roundManager"  = @DI\Inject("mw_manager.round"),
      *      "formFactory"   = @DI\Inject("form.factory"),
+     *      "tokenStorage" = @DI\Inject("security.token_storage"),
      * })
      */
-    public function __construct($entityManager, $gridManager, $roundManager, $formFactory)
+    public function __construct($entityManager, $gridManager, $roundManager, $formFactory, $tokenStorage)
     {
         $this->em = $entityManager;
         $this->gridManager = $gridManager;
         $this->roundManager = $roundManager;
         $this->formFactory = $formFactory;
+        $this->tokenStorage = $tokenStorage;
     }
 
     public function generateTraining()
@@ -38,20 +39,12 @@ class GameManager
         $game = new Training();
 
         $grid = $this->gridManager->seekOrGenerateForTraining();
-        // pour l'instant on ne génère que des rush
         $round = $this->roundManager->generateRush($game, $grid);
-
         $game->setLanguage($grid->getLanguage());
+        $game->setAuthor($this->tokenStorage->getToken()->getUser());
         $this->em->persist($game);
         $this->em->flush();
 
         return $round;
-    }
-
-    public function generateForm()
-    {
-        $form = $this->formFactory->createBuilder('MagicWordBundle\Form\Type\ChallengeType', new Challenge())->getForm()->createView();
-
-        return $form;
     }
 }

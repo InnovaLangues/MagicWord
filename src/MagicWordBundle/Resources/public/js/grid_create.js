@@ -1,41 +1,87 @@
-$( document ).on( "blur", ".word", function() {
-  checkExistence($(this));
+$( document ).on( "blur", ".word", function(){
+    checkExistence($(this));
 });
 
-function addword() {
-    document.getElementById('words').insertAdjacentHTML('beforeend', '<input required type="text" class="word" pattern="[A-Za-z]+" value="" />');
+$( document ).on( "click", ".word-remove", function(){
+    removeWord($(this));
+});
+
+function addRequiredWord()
+{
+    var words = document.getElementById('words');
+    var word = '<li class="list-group-item">'
+            + '<input required type="text" class="word" pattern="[A-Za-z]+" value="" />'
+            + '<input required type="text" class="def" value="" />'
+            + '<span class="pull-right">'
+            + '<span class="btn btn-default">'
+            + '<i class="fa fa-wikipedia-w" aria-hidden="true"></i>'
+            + '</span> '
+            + '<span class="btn btn-danger word-remove">'
+            + '<i class="fa fa-times" aria-hidden="true"></i>'
+            + '</span>'
+            + '</span>'
+            + '</li>';
+    words.insertAdjacentHTML('beforeend', word);
 }
 
-function checkExistence(input) {
+function removeWord(word)
+{
+    word.closest('li').remove();
+}
+
+function checkExistence(input)
+{
     var inflection = input.val();
-    var language = $('#language-select').val();
-    var url = Routing.generate('check_existence', {
-        id: language
-    });
+
+    if(inflection != ""){
+        var language = $('#language-select').val();
+        var url = Routing.generate('check_existence', {
+            id: language
+        });
+
+        $.ajax({
+              type: 'POST',
+              url: url,
+              dataType: "json",
+              data: { inflection: inflection }
+          })
+          .done(function(data) {
+              if (data.id ) {
+                input.val(data.cleanedContent);
+              } else {
+                input.val(input.val()+" ??");
+              }
+          });
+      }
+}
+
+function getInflections()
+{
+    $("#inflections-icon").addClass("fa-spin");
+    var url = Routing.generate('get_inflections');
+    var data = $("#grid").serializeArray();
 
     $.ajax({
           type: 'POST',
           url: url,
-          dataType: "json",
-          data: { inflection: inflection }
+          data: data,
       })
       .done(function(data) {
-          if (data.id ) {
-            input.val(data.cleanedContent);
-          } else {
-            input.val(input.val()+" ?? ");
-          }
+          $("#inflections").html(data);
+          $("#inflections-icon").removeClass("fa-spin");
       });
 }
 
-function generate() {
+function generate()
+{
     var words = document.querySelectorAll(".word");
     var word_list = [];
     for (var i = words.length - 1; i >= 0; i--) {
         word_list.push(words[i].value);
     };
     var results = "";
-    var time = document.getElementById("time").value;
+    //var time = document.getElementById("time").value;
+    var time = 1000;
     var generator = Generator();
     var best = new generator(4, word_list, time).run();
     results += "<table class='table table-bordered'>";

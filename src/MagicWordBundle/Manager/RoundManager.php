@@ -29,10 +29,15 @@ class RoundManager
         $round = new Rush();
         $round->setGame($game);
         $round->setGrid($grid);
-
+        $round->setDisplayOrder($this->getNextDisplayOrder($game));
         $this->em->persist($round);
         $this->em->flush();
 
         return $round;
+    }
+
+    private function getNextDisplayOrder(Game $game)
+    {
+        return $game->getRounds()->count();
     }
 }
