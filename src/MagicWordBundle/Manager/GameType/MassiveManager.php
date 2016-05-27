@@ -65,4 +65,11 @@ class MassiveManager
 
         return;
     }
+
+    public function addConquerRound($massive)
+    {
+        $this->roundManager->generateConquer($massive);
+
+        return;
+    }
 }

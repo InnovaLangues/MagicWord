@@ -5,6 +5,7 @@ namespace  MagicWordBundle\Manager;
 use JMS\DiExtraBundle\Annotation as DI;
 use MagicWordBundle\Entity\Grid;
 use MagicWordBundle\Entity\Language;
+use Symfony\Component\HttpFoundation\Request;
 
 /**
  * @DI\Service("mw_manager.grid")
@@ -74,14 +75,23 @@ class GridManager
         $language = $this->em->getRepository('MagicWordBundle:Language')->find($languageId);
 
         $grid = $this->newGrid($language);
-        foreach ($request->request->get('squares') as $letter) {
-            $grid->addSquare($this->squareManager->create(strtolower($letter), $grid));
-        }
 
-        $words = $this->findInflections($grid);
+        $this->addSquares($grid, $request->request->get('squares'));
+
         if ($save) {
             $grid = $this->saveInflections($grid);
         }
+
+        return $grid;
+    }
+
+    public function updateGrid(Grid $grid, Request $request)
+    {
+        $this->removeSquare($grid);
+        $this->removeInflections($grid);
+
+        $this->addSquares($grid, $request->request->get('squares'));
+        $this->saveInflections($grid);
 
         return $grid;
     }
@@ -93,6 +103,36 @@ class GridManager
 
         $this->em->persist($grid);
         $this->em->flush();
+
+        return $grid;
+    }
+
+    private function removeSquare(Grid $grid)
+    {
+        $squares = $grid->getSquares();
+        foreach ($squares as $square) {
+            $this->em->remove($square);
+        }
+
+        $this->em->flush();
+    }
+
+    private function removeInflections(Grid $grid)
+    {
+        $inflections = $grid->getInflections();
+        foreach ($inflections as $inflection) {
+            $grid->removeInflection($inflection);
+        }
+        $this->em->persist($grid);
+
+        $this->em->flush();
+    }
+
+    private function addSquares(Grid $grid, $letters)
+    {
+        foreach ($letters as $letter) {
+            $grid->addSquare($this->squareManager->create(strtolower($letter), $grid));
+        }
 
         return $grid;
     }

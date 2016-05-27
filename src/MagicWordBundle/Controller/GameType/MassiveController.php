@@ -52,4 +52,15 @@ class MassiveController extends Controller
 
         return $this->redirectToRoute('massive_builder', array('id' => $massive->getId()));
     }
+
+    /**
+     * @Route("/massive/{id}/add-conquer", name="massive_add_conquer")
+     * @ParamConverter("massive", class="MagicWordBundle:GameType\Massive")
+     */
+    public function addConquerRoundAction(Massive $massive)
+    {
+        $this->get('mw_manager.massive')->addConquerRound($massive);
+
+        return $this->redirectToRoute('massive_builder', array('id' => $massive->getId()));
+    }
 }

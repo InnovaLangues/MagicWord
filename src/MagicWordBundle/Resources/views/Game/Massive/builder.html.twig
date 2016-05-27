@@ -3,8 +3,7 @@
 {% block title %}Massive Builder{% endblock %}
 
 {% block body -%}
-    <h1>Builder pour Massive
-        {{ massive.id }}</h1>
+    <h1>Builder pour Massive {{ massive.id }}</h1>
 
     <h3>Publique ?</h3>
     {{ massive.public ? "oui" : "non" }}
@@ -23,9 +22,10 @@
             </button>
             <ul class="dropdown-menu">
                 <li>
-                    <a href="{{ path('massive_add_rush', {"id":  massive.id}) }}">
-                        Rush
-                    </a>
+                    <a href="{{ path('massive_add_rush', {"id":  massive.id}) }}">Rush</a>
+                </li>
+                <li>
+                    <a href="{{ path('massive_add_conquer', {"id":  massive.id}) }}">Conquer</a>
                 </li>
             </ul>
         </div>
@@ -38,6 +38,10 @@
                 {% if round.discr == "rush" and round.grid %}
                     <a class="btn btn-default btn-sm" href="{{ path('grid', {"id": round.grid.id }) }}">
                         Voir la grille
+                    </a>
+                {% else %}
+                    <a class="btn btn-default btn-sm" href="{{ path('conquer', {"id": round.id }) }}">
+                        Editer la manche
                     </a>
                 {% endif %}
             </li>
