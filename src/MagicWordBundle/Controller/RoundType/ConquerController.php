@@ -4,10 +4,11 @@ namespace MagicWordBundle\Controller\RoundType;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use MagicWordBundle\Entity\RoundType\Conquer;
-use Symfony\Component\HttpFoundation\Response;
+use MagicWordBundle\Form\Type\RoundType\ConquerType;
 
 class ConquerController extends Controller
 {
@@ -17,7 +18,9 @@ class ConquerController extends Controller
      */
     public function displayConquerAction(Conquer $conquer)
     {
-        return $this->render('MagicWordBundle:Round/Conquer:edit.html.twig', array('conquer' => $conquer));
+        $form = $this->createForm(ConquerType::class, $conquer)->createView();
+
+        return $this->render('MagicWordBundle:Round/Conquer:edit.html.twig', array('conquer' => $conquer, 'form' => $form));
     }
 
     /**
@@ -31,5 +34,16 @@ class ConquerController extends Controller
         $template = $this->get('templating')->render('MagicWordBundle:Lexicon:inflections.html.twig', array('inflections' => $inflections));
 
         return new Response($template);
+    }
+
+    /**
+     * @Route("/conquer/{id}/save-objectives", name="save_objectives" , options={"expose"=true})
+     * @ParamConverter("conquer", class="MagicWordBundle:RoundType\Conquer")
+     */
+    public function saveObjectivesAction(Conquer $conquer, Request $request)
+    {
+        $this->get('mw_manager.objective')->saveObjectives($conquer, $request);
+
+        return new Response();
     }
 }

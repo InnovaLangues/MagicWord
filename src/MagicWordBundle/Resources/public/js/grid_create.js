@@ -1,4 +1,6 @@
-$( document ).on( "blur", ".word", function(){
+var inflectionSelector = "input[data-field='inflection']";
+
+$( document ).on( "blur", inflectionSelector, function(){
     checkExistence($(this));
 });
 
@@ -6,22 +8,12 @@ $( document ).on( "click", ".word-remove", function(){
     removeWord($(this));
 });
 
-function addRequiredWord()
+function addWord()
 {
-    var words = document.getElementById('words');
-    var word = '<li class="list-group-item">'
-            + '<input required type="text" class="word" pattern="[A-Za-z]+" value="" />'
-            + '<input required type="text" class="def" value="" />'
-            + '<span class="pull-right">'
-            + '<span class="btn btn-default">'
-            + '<i class="fa fa-wikipedia-w" aria-hidden="true"></i>'
-            + '</span> '
-            + '<span class="btn btn-danger word-remove">'
-            + '<i class="fa fa-times" aria-hidden="true"></i>'
-            + '</span>'
-            + '</span>'
-            + '</li>';
-    words.insertAdjacentHTML('beforeend', word);
+    var words = $('#words');
+    var objective = words.data('prototype');
+    objective = objective.replace(/__name__/g, $(".objective").length);
+    words.append(objective);
 }
 
 function removeWord(word)
@@ -32,7 +24,6 @@ function removeWord(word)
 function checkExistence(input)
 {
     var inflection = input.val();
-
     if(inflection != ""){
         var language = $('#languageId').val();
         var url = Routing.generate('check_existence', {
@@ -49,10 +40,24 @@ function checkExistence(input)
               if (data.id) {
                 input.val(data.cleanedContent);
               } else {
-                input.val(input.val()+" ??");
+                input.val(inflection +" ??");
               }
           });
       }
+}
+
+function saveObjectives()
+{
+    var url = Routing.generate('save_objectives', {id: $('#conquerId').val()});
+    var data = $("#objectives").serializeArray();
+
+    $.ajax({
+          type: 'POST',
+          url: url,
+          data: data,
+      })
+      .done(function(data) {
+      });
 }
 
 function getInflections()
@@ -74,11 +79,13 @@ function getInflections()
 
 function generate()
 {
-    var words = document.querySelectorAll(".word");
     var word_list = [];
-    for (var i = words.length - 1; i >= 0; i--) {
-        word_list.push(words[i].value);
-    };
+    $(".objective").each(function( index ) {
+        var inflection = $(this).find(inflectionSelector).val();
+        if (inflection.indexOf("?") == -1) {
+            word_list.push(inflection);
+        }
+    });
 
     var time = 1000;
     var generator = Generator();
@@ -91,10 +98,10 @@ function generate()
             x++;
         };
     };
+    checkInsertedWords(best.insertedWords);
 
     return;
 }
-
 
 function save(){
     var data = $("#grid").serializeArray();
@@ -107,4 +114,22 @@ function save(){
      .done(function(data) {
          $("#inflections").html(data);
      });
+}
+
+function checkInsertedWords(insertedWords)
+{
+    reiniatilize()
+    $(".objective").each(function( index ) {
+        var inflection = $(this).find(inflectionSelector).val();
+        var className = jQuery.inArray(inflection, insertedWords) != -1
+            ? "list-group-item-success"
+            : "list-group-item-danger";
+
+         $(this).addClass(className);
+     });
+}
+
+function reiniatilize()
+{
+    $(".objective").removeClass("list-group-item-danger list-group-item-success");
 }

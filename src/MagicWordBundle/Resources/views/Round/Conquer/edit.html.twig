@@ -3,6 +3,8 @@
 {% block title %}Conquer Builder{% endblock %}
 
 {% block body -%}
+{% set hasObj =  conquer.objectives|length > 0 ? true : false %}
+
 
 <a href="{{ path('massive_builder', {"id": conquer.game.id}) }}" class="btn btn-default btn">
     <i class="fa fa-chevron-left" aria-hidden="true"></i>
@@ -11,43 +13,18 @@
 
 <div class="panel">
     <div class="panel-body">
+        {# OBJECTIVES #}
+        <div class="row">
+            <div class="col-md-12">
+                {% include "MagicWordBundle:Round/Conquer/Objective:findword.html.twig" %}
+            </div>
+        </div>
+        {# GRID + INFLECTIONS #}
         <div class="row">
             <div class="col-md-8">
                 <div class="panel panel-default">
-                    <div class="panel-heading">
-                        Flexions à placer dans la grille
-                        <span class="btn btn-default btn-xs pull-right" onclick="generate()">
-                            <i class="fa fa-cogs" aria-hidden="true"></i>
-                            Générer grille
-                        </span>
-                        <span class="btn btn-default btn-xs pull-right" type="button" onclick="addRequiredWord()">
-                            <i class="fa fa-plus" aria-hidden="true"></i>
-                            Ajouter une forme
-                        </span>
-                    </div>
-                    <div class="panel-body">
-                        <ul class="list-group" id="words">
-                            <li class="list-group-item">
-                                <input required type="text" class="word" pattern="[A-Za-z]+" value="" placeholder="mot"/>
-                                <input required type="text" class="def" value="" placeholder="définition" />
-                                <span class="pull-right">
-                                    <span class="btn btn-default">
-                                        <i class="fa fa-wikipedia-w" aria-hidden="true"></i>
-                                    </span>
-                                    <span class="btn btn-danger word-remove">
-                                        <i class="fa fa-times" aria-hidden="true"></i>
-                                    </span>
-                                </span>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="panel panel-default">
                     <div class="panel-heading">Grille</div>
                     <div class="panel-body">
-                        <div class="form-group">
-
-                        </div>
                         <form id="grid" method="POST">
                             <div id="result">
                                 {% set grid = conquer.grid %}
@@ -55,7 +32,7 @@
                             </div>
                             <input id="conquerId" type="hidden" name="conquerId" value="{{ conquer.id }}"/>
                             <input id="languageId" type="hidden" name="language" value="{{ conquer.game.language.id }}">
-                            <span class='btn btn-primary' onclick="save()">Sauvegarder</span>
+                            <span class='btn btn-primary pull-right' onclick="save()">Sauvegarder la grille</span>
                         </form>
                     </div>
                 </div>
@@ -69,7 +46,8 @@
                             Mettre à jour
                         </span>
                     </div>
-                    <div class="panel-body" id="inflections"></div>
+                    <div class="panel-body" id="inflections">
+                    </div>
                 </div>
             </div>
         </div>

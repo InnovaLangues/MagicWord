@@ -1,0 +1,56 @@
+<div class="panel panel-default">
+    <div class="panel-heading">
+        Flexions à placer dans la grille
+        <span class="btn btn-default btn-xs pull-right" onclick="generate()">
+            <i class="fa fa-cogs" aria-hidden="true"></i>
+            Générer grille
+        </span>
+        <span class="btn btn-default btn-xs pull-right" onclick="addWord()" >
+            <i class="fa fa-plus" aria-hidden="true"></i>
+            Ajouter une forme
+        </span>
+    </div>
+    <div class="panel-body">
+        <form id="objectives">
+            <ul class="list-group" id="words" data-prototype="{{ _self.objectives_prototype(form.objectives.vars.prototype)|e }}">
+            {% for objective in form.objectives %}
+    		      {{ _self.objectives_prototype(objective) }}
+    	    {% endfor %}
+            </ul>
+            {{ form_widget(form._token) }}
+        </form>
+        <span class='btn btn-primary pull-right' onclick="saveObjectives()">Sauvegarder les objectifs</span>
+    </div>
+</div>
+
+{% macro wordToFind(word, hint) %}
+<li class="list-group-item">
+    <input required type="text" class="word" value="{{ word }}" pattern="[A-Za-z]+" placeholder="mot" />
+    <input required type="text" class="def" value="{{ hint }}" placeholder="indice" />
+    <span class="pull-right">
+        <span class="btn btn-default">
+            <i class="fa fa-wikipedia-w" aria-hidden="true"></i>
+        </span>
+        <span class="btn btn-danger word-remove">
+            <i class="fa fa-times" aria-hidden="true"></i>
+        </span>
+    </span>
+</li>
+{% endmacro %}
+
+
+{% macro objectives_prototype(objective) %}
+<li class="list-group-item objective">
+    {{ form_widget(objective.inflection) }}
+    {{ form_widget(objective.hint) }}
+
+    <span class="pull-right">
+        <span class="btn btn-default disabled">
+            <i class="fa fa-wikipedia-w" aria-hidden="true"></i>
+        </span>
+        <span class="btn btn-danger word-remove">
+            <i class="fa fa-times" aria-hidden="true"></i>
+        </span>
+    </span>
+</li>
+{% endmacro %}

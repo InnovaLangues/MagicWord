@@ -4,6 +4,7 @@ var Generator = function(Test) {
         this.run = function() {
             var best = 0;
             var grid = [];
+            var insertedWords = [];
             var remainingTime = timeOut;
             var candidateCount = 0;
             var start;
@@ -16,6 +17,7 @@ var Generator = function(Test) {
                 if (candidate.total > best) {
                     best = candidate.total;
                     grid = candidate.grid;
+                    insertedWords = candidate.inserted_words;
                 }
                 remainingTime -= (new Date().getTime() - start);
             }
@@ -23,7 +25,8 @@ var Generator = function(Test) {
             return {
                 candidateCount: candidateCount,
                 grid: grid,
-                total: best
+                total: best,
+                insertedWords: insertedWords
             };
         };
     };
@@ -45,6 +48,7 @@ function LookbackCreatorJS(gridSide, wordList, timeOut) {
   this.run = function() {
     var insertedWordCount = 0;
     var insert = false;
+    var insertedWord = Array();
 
     // Initialize grid
     for (var i = 0; i < gridSide ; i++) {
@@ -59,6 +63,7 @@ function LookbackCreatorJS(gridSide, wordList, timeOut) {
     while (insertedWordCount < wordList.length) {
       if (insertWord(wordList[insertedWordCount])) {
         insertedWordCount += 1;
+        insertedWord.push(wordList[insertedWordCount - 1]);
       } else {
         break;
       }
@@ -66,7 +71,8 @@ function LookbackCreatorJS(gridSide, wordList, timeOut) {
 
     return {
       "grid": result,
-      "total": insertedWordCount
+      "total": insertedWordCount,
+      "inserted_words": insertedWord
     };
   }
 
@@ -174,7 +180,7 @@ function LookbackCreatorJS(gridSide, wordList, timeOut) {
     return false;
   }
 
-  // Recursive function. 
+  // Recursive function.
   // insert letter into grid, retrieve potential next letter positions
   var insertLetter = function(x, y, index, word) {
     var cellId = getCellId(x,y)
@@ -230,7 +236,7 @@ function LookbackCreatorJS(gridSide, wordList, timeOut) {
     shuffle(bad_ones);
     potentialPositions = good_ones.concat(bad_ones);
 
-    return potentialPositions 
+    return potentialPositions
   }
 
   var getCellId = function(x, y) {

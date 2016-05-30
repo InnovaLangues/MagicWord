@@ -2,6 +2,10 @@ module.exports = function(grunt) {
     require('load-grunt-tasks')(grunt);
 
     grunt.initConfig({
+        watch: {
+            files: ['src/MagicWordBundle/Resources/public/js/*'],
+            tasks: ['uglify'],
+          },
         less: {
             dist: {
                 options: {
@@ -50,6 +54,7 @@ module.exports = function(grunt) {
         },
 
     });
+    grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks('grunt-contrib-copy');
-    grunt.registerTask('default', ["less", "uglify", "copy:fonts"]);
+    grunt.registerTask('default', ["less", "uglify", "copy:fonts", "watch"]);
 };
