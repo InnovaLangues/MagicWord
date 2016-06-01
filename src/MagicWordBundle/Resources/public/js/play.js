@@ -41,20 +41,18 @@ var words = {
 		return found;
 	},
 
-	addToFoundWords : function(inflection, inObjective){
+	addToFoundWords : function(inflection, inObjective, isCorrect){
 		this.foundWords.push(inflection);
-		var className = (inObjective == true) ? 'list-group-item-success' : '';
-		$("#inflections-found").prepend("<li class='list-group-item "+ className +"'>"+inflection+"</li>");
+
+		var objectiveClass = (inObjective == true) ? 'list-group-item-success' : '';
+		var typedInflection = (!isCorrect) ? "<s>"+inflection+"</s>" : inflection;
+		$("#inflections-found").prepend("<li class='list-group-item "+ objectiveClass +"'>"+typedInflection+"</li>");
 	},
 
 	checkWord: function(){
 		var inflection = grid.foundWord;
 		/*
-		this.word = grid.foundWord;
-		this.searchFoundWords();
-		if( this.correct === false ){
-			return false;
-		}
+
 		this.searchDico();
 		if( this.exists ){
 			this.getBonusWordPoints();
@@ -63,11 +61,14 @@ var words = {
 		}
 		this.displayFoundWords();
 		*/
-		if (this.inInflections(inflection) && !this.alreadyFound(inflection)) {
-			var inObjectives = this.inObjectives(inflection);
-			this.addToFoundWords(inflection.toLowerCase(), inObjectives);
+		if (!this.alreadyFound(inflection)) {
+			if (this.inInflections(inflection)){
+				var inObjectives = this.inObjectives(inflection);
+				this.addToFoundWords(inflection.toLowerCase(), inObjectives, true);
+			} else {
+				this.addToFoundWords(inflection.toLowerCase(), false);
+			}
 		}
-
 	},
 
 	searchFoundWords: function(){
@@ -130,8 +131,7 @@ var words = {
 			}
 		}
 		grid.score += grid.wordPoints;
-		if (grid.score <= 1 )
-		{
+		if (grid.score <= 1 ){
 			//$('p#countPoints').html(grid.score + ' <?php echo $lang['point']; ?>');
 			return;
 		}
@@ -139,7 +139,6 @@ var words = {
 	},
 
 	displayFoundWords: function(){
-
 		var li = $('<li />');
 		li.addClass(this.exists == true ? 'wordlist-words' : 'wordlist-mistake');
 		li.html(this.word);
@@ -153,8 +152,7 @@ var words = {
 
 	getNumberOfWords: function(){
 		this.countWords++;
-		if (this.countWords <= 1 )
-		{
+		if (this.countWords <= 1 ){
 			//$('p#countWords').html(this.countWords + ' <?php echo $lang['word']; ?>');
 			return;
 		}

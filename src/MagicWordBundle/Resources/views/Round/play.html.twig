@@ -20,9 +20,10 @@
                 {% for i in range(0,3) %}
                     {% for j in range(0, 3) %}
                             {% set value = grid.squares[x] is defined  ? grid.squares[x].letter.value|upper : "_" %}
+                            {% set point = grid.squares[x] is defined  ? get_point(grid.squares[x].letter, round.game.language) : "1" %}
                             <li id="li-square-{{ i }}-{{ j }}">
                                 <p data-value="{{value}}" id="square-{{ i }}-{{ j }}">
-                                    {{ value }} <span>2</span>
+                                    {{ value }} <span> {{ point }}</span>
                                 </p>
                             </li>
                             {% set x = x + 1 %}
