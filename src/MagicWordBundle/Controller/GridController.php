@@ -35,6 +35,19 @@ class GridController extends Controller
     }
 
     /**
+     * @Route("/get-combos", name="get_combos", options={"expose"=true})
+     * @Method("POST")
+     */
+    public function getCombosAction(Request $request)
+    {
+        $combos = $this->get('mw_manager.grid')->getCombos($request);
+
+        $template = $this->get('templating')->render('MagicWordBundle:Round/Conquer/Objective:possible-combos.html.twig', array('combos' => $combos));
+
+        return new Response($template);
+    }
+
+    /**
      * @Route("/render-grid", name="render_grid", options={"expose"=true})
      * @Method("POST")
      */

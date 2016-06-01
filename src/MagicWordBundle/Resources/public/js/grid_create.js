@@ -77,6 +77,24 @@ function getInflections()
       });
 }
 
+function getCombos()
+{
+    $("#combos-icon").addClass("fa-spin");
+    var url = Routing.generate('get_combos');
+    var data = $("#grid").serializeArray();
+
+    $.ajax({
+          type: 'POST',
+          url: url,
+          data: data,
+      })
+      .done(function(data) {
+          $("#possible-combos").html(data);
+          $("#combos-icon").removeClass("fa-spin");
+      });
+}
+
+
 function generate()
 {
     var word_list = [];

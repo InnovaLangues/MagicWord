@@ -151,6 +151,28 @@ class GridManager
         return $inflections;
     }
 
+    public function getCombos($request)
+    {
+        $inflections = $this->getInflections($request);
+        $combos = [];
+        foreach ($inflections as $inflection) {
+            $lemma = $inflection->getLemma();
+            $lemmaId = $lemma->getId();
+
+            if (!isset($combos[$lemmaId])) {
+                $combos[$lemmaId] = ['count' => 0, 'content' => $lemma->getContent()];
+            } else {
+                ++$combos[$lemmaId]['count'];
+            }
+        }
+
+        usort($combos, function ($a, $b) {
+            return $b['count'] - $a['count'];
+        });
+
+        return $combos;
+    }
+
     public function findInflections(Grid $grid)
     {
         $i = 0;

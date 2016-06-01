@@ -16,16 +16,10 @@
 
 <div class="panel">
     <div class="panel-body">
-        {# OBJECTIVES #}
-        <div class="row">
-            <div class="col-md-12">
-                {% include "MagicWordBundle:Round/Conquer/Objective:findword.html.twig" %}
-            </div>
-        </div>
         {# GRID + INFLECTIONS #}
         <div class="row">
-            <div class="col-md-8">
-                <div class="panel panel-default">
+            <div class="col-md-12">
+                <div class="panel panel-default panel-primary">
                     <div class="panel-heading">Grille</div>
                     <div class="panel-body">
                         <form id="grid" method="POST">
@@ -40,7 +34,22 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-4" >
+        </div>
+
+        <div class="row">
+            {# FINDWORD OBJECTIVES #}
+            <div class="col-md-6">
+                {% include "MagicWordBundle:Round/Conquer/Objective:findword.html.twig" %}
+            </div>
+
+            {# COMBO OBJECTIVES #}
+            <div class="col-md-6">
+                {% include "MagicWordBundle:Round/Conquer/Objective:combo.html.twig" %}
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6" >
                 <div class="panel panel-default">
                     <div class="panel-heading">
                         Flexions présentes
@@ -53,7 +62,21 @@
                     </div>
                 </div>
             </div>
+            <div class="col-md-6" >
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        Combos possible
+                        <span class="btn btn-default btn-xs pull-right" type="button" onclick="getCombos()">
+                            <i id="combos-icon" class="fa fa-refresh" aria-hidden="true"></i>
+                            Mettre à jour
+                        </span>
+                    </div>
+                    <div class="panel-body" id="possible-combos">
+                    </div>
+                </div>
+            </div>
         </div>
+
     </div>
 </div>
 {% endblock %}
