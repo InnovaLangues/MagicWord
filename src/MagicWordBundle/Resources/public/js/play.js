@@ -43,7 +43,8 @@ var words = {
 
 	addToFoundWords : function(inflection, inObjective){
 		this.foundWords.push(inflection);
-		$("#inflections-found").prepend("<li class='list-group-item "+ inObjective ? 'list-group-item-success' : '' +"'>"+inflection+"</li>");
+		var className = (inObjective == true) ? 'list-group-item-success' : '';
+		$("#inflections-found").prepend("<li class='list-group-item "+ className +"'>"+inflection+"</li>");
 	},
 
 	checkWord: function(){
@@ -64,7 +65,7 @@ var words = {
 		*/
 		if (this.inInflections(inflection) && !this.alreadyFound(inflection)) {
 			var inObjectives = this.inObjectives(inflection);
-			this.addToFoundWords(inflection.toLowerCase(), true);
+			this.addToFoundWords(inflection.toLowerCase(), inObjectives);
 		}
 
 	},
