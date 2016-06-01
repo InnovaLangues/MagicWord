@@ -223,10 +223,10 @@ class Round implements \JsonSerializable
             'type' => $this->discr,
         );
 
-        foreach ($this->getObjectives() as $objective) {
-            $jsonArray['objectives'][ $objective->getInflection()] = array(
-                'id' => $objective->getId(),
-            );
+        if ($this->discr == 'conquer') {
+            foreach ($this->getObjectives() as $objective) {
+                $jsonArray['objectives'][ $objective->getInflection()] = array('id' => $objective->getId());
+            }
         }
 
         return $jsonArray;

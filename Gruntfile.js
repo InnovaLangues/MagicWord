@@ -18,6 +18,7 @@ module.exports = function(grunt) {
                         "bower_components/bootstrap/dist/css/bootstrap.css",
                         "bower_components/font-awesome/css/font-awesome.css",
                         'src/MagicWordBundle/Resources/public/css/main.css',
+                        "bower_components/FlipClock/compiled/flipclock.css",
                         'src/MagicWordBundle/Resources/public/css/play.css',
                     ]
                 }
@@ -41,6 +42,7 @@ module.exports = function(grunt) {
                         "src/MagicWordBundle/Resources/public/js/grid_create.js"
                     ],
                     'web/js/play.js': [
+                        "bower_components/FlipClock/compiled/flipclock.min.js",
                         "src/MagicWordBundle/Resources/public/js/play.js"
                     ]
 

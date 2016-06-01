@@ -223,10 +223,18 @@ class Grid implements \JsonSerializable
         );
 
         foreach ($this->getInflections() as $inflection) {
-            $jsonArray['inflections'][$inflection->getCleanedContent()] = array(
-                'id' => $inflection->getId(),
-                'lemmaId' => $inflection->getLemma()->getId(),
-            );
+            if (!isset($jsonArray['inflections'][$inflection->getCleanedContent()])) {
+                $jsonArray['inflections'][$inflection->getCleanedContent()] = array(
+                    'ids' => [$inflection->getId()],
+                    'lemmaIds' => [$inflection->getLemma()->getId()],
+                );
+            } else {
+                $jsonArray['inflections'][$inflection->getCleanedContent()]['ids'][] = $inflection->getId();
+                $lemmaId = $inflection->getLemma()->getId();
+                if (!in_array($lemmaId, $jsonArray['inflections'][$inflection->getCleanedContent()]['lemmaIds'])) {
+                    $jsonArray['inflections'][$inflection->getCleanedContent()]['lemmaIds'][] = $inflection->getLemma()->getId();
+                }
+            }
         }
 
         return $jsonArray;

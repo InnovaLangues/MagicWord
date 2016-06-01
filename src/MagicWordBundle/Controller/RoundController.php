@@ -10,7 +10,7 @@ use MagicWordBundle\Entity\Round;
 class RoundController extends Controller
 {
     /**
-     * @Route("/round/{id}/play", name="game_play")
+     * @Route("/round/{id}/play", name="round_play")
      * @ParamConverter("round", class="MagicWordBundle:Round")
      */
     public function playAction(Round $round)

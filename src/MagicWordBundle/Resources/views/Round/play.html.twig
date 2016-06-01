@@ -5,15 +5,16 @@
 
 
 {% block body -%}
-{% set hasObj =  round.objectives|length > 0 ? true : false %}
+{% set hasObj = (round.objectives is defined and round.objectives|length > 0) ? true : false %}
 {% set grid =  round.grid %}
 
-<div id="countdown"></div>
 
-<div class="panel" id="game-container">
-    <div class="panel-body">
+<div  id="game-container">
         {# GRID #}
         <div class="row">
+            <div class="pull-right col-md-12">
+                <span id="clock"></span>
+            </div>
             <div class="col-md-5">
                 {% set x = 0 %}
                 <ul id="squares">
@@ -62,12 +63,10 @@
                 </div>
             </div>
 
-        </div>
-    </div>
 </div>
 
 <script>
-    var inflections = {{ grid | json_encode()|raw }};
+    var gridJSON = {{ grid | json_encode()|raw }};
     var round = {{ round | json_encode()|raw }};
 </script>
 

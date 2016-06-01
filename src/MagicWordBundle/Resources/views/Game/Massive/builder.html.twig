@@ -45,6 +45,14 @@
                         Editer la manche
                     </a>
                 {% endif %}
+
+                {% if round.grid %}
+                <a class="btn btn-default btn-xs" href="{{ path('round_play', {"id": round.id }) }}">
+                    <i class="fa fa-gamepad" aria-hidden="true"></i>
+                    Jouer
+                </a>
+                {% endif %}
+
                 <a class="btn btn-default btn-xs btn-danger" href="{{ path('massive_remove_round', {"massiveId": massive.id, "roundId": round.id }) }}">
                     <i class="fa fa-times" aria-hidden="true"></i>
                 </a>

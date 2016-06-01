@@ -1,3 +1,20 @@
+var clock = {
+	start: round.type == "conquer" ? 0 : 120,
+	countdown: round.type == "conquer" ? false : true,
+
+	init: function(){
+		var testClock = $('#clock').FlipClock( clock.start, {
+			countdown: clock.countdown,
+			clockFace: 'MinuteCounter',
+			language : 'french',
+			callbacks: {
+		        stop: function () {
+		        //var time = testClock.getTime().time;
+		        }
+			}
+		});
+	}
+}
 
 var words = {
 	countWords: 0,
@@ -17,7 +34,7 @@ var words = {
 	inObjectives: function(inflection){
 		if (round.objectives.hasOwnProperty(inflection.toLowerCase())){
 		 	var objectiveId = round.objectives[inflection.toLowerCase()].id;
-			$("#objective-"+objectiveId).addClass("list-group-item-success");
+			$("#objective-"+objectiveId).addClass("list-group-item-success").append(' ('+ inflection +')');
 
 			return true;
 		}
@@ -26,7 +43,7 @@ var words = {
 	},
 
 	inInflections: function(inflection){
-		var inInflections = inflections.inflections.hasOwnProperty(inflection.toLowerCase())
+		var inInflections = gridJSON.inflections.hasOwnProperty(inflection.toLowerCase())
 			? true
 			: false;
 
@@ -43,16 +60,14 @@ var words = {
 
 	addToFoundWords : function(inflection, inObjective, isCorrect){
 		this.foundWords.push(inflection);
-
-		var objectiveClass = (inObjective == true) ? 'list-group-item-success' : '';
+		inflection = inflection.toUpperCase();
 		var typedInflection = (!isCorrect) ? "<s>"+inflection+"</s>" : inflection;
-		$("#inflections-found").prepend("<li class='list-group-item "+ objectiveClass +"'>"+typedInflection+"</li>");
+		$("#inflections-found").prepend("<li class='list-group-item'>"+typedInflection+"</li>");
 	},
 
 	checkWord: function(){
 		var inflection = grid.foundWord;
 		/*
-
 		this.searchDico();
 		if( this.exists ){
 			this.getBonusWordPoints();
@@ -399,4 +414,5 @@ var grid = {
 
 $(document).ready(function () {
 	grid.draw();
+	clock.init();
 });
