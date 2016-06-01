@@ -5,11 +5,14 @@
 {% block body -%}
 {% set hasObj =  conquer.objectives|length > 0 ? true : false %}
 
-
-<a href="{{ path('massive_builder', {"id": conquer.game.id}) }}" class="btn btn-default btn">
-    <i class="fa fa-chevron-left" aria-hidden="true"></i>
-    Revenir à la partie
-</a>
+<div class="panel">
+    <div class="panel-body">
+        <a href="{{ path('massive_builder', {"id": conquer.game.id}) }}" class="btn btn-default btn">
+            <i class="fa fa-chevron-left" aria-hidden="true"></i>
+            Revenir à l'éditeur de partie
+        </a>
+    </div>
+</div>
 
 <div class="panel">
     <div class="panel-body">

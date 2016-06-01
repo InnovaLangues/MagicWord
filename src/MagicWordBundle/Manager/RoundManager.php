@@ -6,6 +6,7 @@ use Symfony\Component\HttpFoundation\Request;
 use JMS\DiExtraBundle\Annotation as DI;
 use MagicWordBundle\Entity\Game;
 use MagicWordBundle\Entity\Grid;
+use MagicWordBundle\Entity\Round;
 use MagicWordBundle\Entity\RoundType\Rush;
 use MagicWordBundle\Entity\RoundType\Conquer;
 
@@ -27,6 +28,16 @@ class RoundManager
     {
         $this->em = $entityManager;
         $this->gridManager = $gridManager;
+    }
+
+    public function getData(Round $round)
+    {
+        $grid = $round->getGrid();
+        $data = array();
+        $data['inflections'] = json_encode($grid, JSON_PRETTY_PRINT);
+        $data['objectives'] = json_encode($round, JSON_PRETTY_PRINT);
+
+        return $data;
     }
 
     public function generateRush(Game $game, Grid $grid)

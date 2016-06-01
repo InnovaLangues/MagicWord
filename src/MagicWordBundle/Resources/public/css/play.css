@@ -1,0 +1,59 @@
+ul#squares {
+    list-style-type: none;
+    list-style-position: inside;
+	padding: 0;
+	-moz-user-select: -moz-none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -o-user-select: none;
+    user-select: none;
+	-ms-user-select:none;
+    width: 395px;
+}
+
+ul#squares li {
+	background-color: #04346C;
+	float: left;
+	margin: 3px;
+	padding: 10px;
+	text-align: center;
+    border: none;
+}
+
+ul#squares li p {
+    padding: 0;
+    white-space: normal;
+    text-align: left;
+    border: none;
+	cursor: pointer;
+	color: white;
+	padding-top: 10px;
+	font-size: 3em;
+	text-align: center;
+	width: 70px;
+	height: 55px;
+}
+
+ul#squares li p span {
+	margin-top: -10px;
+	width: 60px;
+	font-size: 0.3em;
+	text-align: right;
+    margin: 0;
+    padding: 0;
+    white-space: normal;
+    text-align: left;
+    border: none;
+}
+
+ul#squares li.selected {
+	background-color: white;
+}
+
+ul#squares li.selected p {
+	color: black;
+}
+
+ul#squares li.wrongWord {
+	background-color: red;
+}

@@ -3,8 +3,8 @@ module.exports = function(grunt) {
 
     grunt.initConfig({
         watch: {
-            files: ['src/MagicWordBundle/Resources/public/js/*'],
-            tasks: ['uglify'],
+            files: ['src/MagicWordBundle/Resources/public/js/*', 'src/MagicWordBundle/Resources/public/css/*'],
+            tasks: ['uglify', 'less'],
           },
         less: {
             dist: {
@@ -17,6 +17,8 @@ module.exports = function(grunt) {
                     "web/css/main.css": [
                         "bower_components/bootstrap/dist/css/bootstrap.css",
                         "bower_components/font-awesome/css/font-awesome.css",
+                        'src/MagicWordBundle/Resources/public/css/main.css',
+                        'src/MagicWordBundle/Resources/public/css/play.css',
                     ]
                 }
             }
@@ -37,6 +39,9 @@ module.exports = function(grunt) {
                     'web/js/grid_creation.js': [
                         "src/MagicWordBundle/Resources/public/js/bologne.js",
                         "src/MagicWordBundle/Resources/public/js/grid_create.js"
+                    ],
+                    'web/js/play.js': [
+                        "src/MagicWordBundle/Resources/public/js/play.js"
                     ]
 
                 }

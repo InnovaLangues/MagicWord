@@ -4,6 +4,7 @@ namespace  MagicWordBundle\Manager\GameType;
 
 use JMS\DiExtraBundle\Annotation as DI;
 use MagicWordBundle\Entity\GameType\Massive;
+use MagicWordBundle\Entity\Round;
 use MagicWordBundle\Form\Type\MassiveType;
 use Symfony\Component\HttpFoundation\Request;
 
@@ -58,7 +59,7 @@ class MassiveManager
         return $massive;
     }
 
-    public function addRushRound($massive)
+    public function addRushRound(Massive $massive)
     {
         $grid = $this->gridManager->generate($massive->getLanguage());
         $this->roundManager->generateRush($massive, $grid);
@@ -66,9 +67,33 @@ class MassiveManager
         return;
     }
 
-    public function addConquerRound($massive)
+    public function addConquerRound(Massive $massive)
     {
         $this->roundManager->generateConquer($massive);
+
+        return;
+    }
+
+    public function removeRound(Massive $massive, Round $round)
+    {
+        $this->em->remove($round);
+        $this->em->flush();
+
+        $this->reorderRounds($massive);
+
+        return;
+    }
+
+    private function reorderRounds(Massive $massive)
+    {
+        $rounds = $massive->getRounds();
+        $i = 0;
+        foreach ($rounds as $round) {
+            $round->setDisplayOrder($i);
+            $this->em->persist($round);
+            ++$i;
+        }
+        $this->em->flush();
 
         return;
     }

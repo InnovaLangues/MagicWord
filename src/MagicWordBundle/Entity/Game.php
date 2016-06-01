@@ -41,6 +41,7 @@ class Game
 
     /**
      * @ORM\OneToMany(targetEntity="Round", mappedBy="game")
+     * @ORM\OrderBy({"displayOrder" = "ASC"})
      */
     private $rounds;
 
@@ -197,7 +198,7 @@ class Game
         return $this->author;
     }
     /**
-     * Constructor
+     * Constructor.
      */
     public function __construct()
     {
@@ -205,7 +206,7 @@ class Game
     }
 
     /**
-     * Add round
+     * Add round.
      *
      * @param \MagicWordBundle\Entity\Round $round
      *
@@ -219,7 +220,7 @@ class Game
     }
 
     /**
-     * Remove round
+     * Remove round.
      *
      * @param \MagicWordBundle\Entity\Round $round
      */
@@ -229,7 +230,7 @@ class Game
     }
 
     /**
-     * Get rounds
+     * Get rounds.
      *
      * @return \Doctrine\Common\Collections\Collection
      */

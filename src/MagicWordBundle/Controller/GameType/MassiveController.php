@@ -8,6 +8,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use MagicWordBundle\Entity\GameType\Massive;
+use MagicWordBundle\Entity\Round;
 
 class MassiveController extends Controller
 {
@@ -29,6 +30,7 @@ class MassiveController extends Controller
     public function massiveSubmitAction(Request $request)
     {
         $massive = $this->get('mw_manager.massive')->handleMassiveForm($request);
+        $this->get('session')->getFlashBag()->add('success', 'Partie massive créée');
 
         return $this->redirectToRoute('massive_builder', array('id' => $massive->getId()));
     }
@@ -49,6 +51,20 @@ class MassiveController extends Controller
     public function addRushRoundAction(Massive $massive)
     {
         $this->get('mw_manager.massive')->addRushRound($massive);
+        $this->get('session')->getFlashBag()->add('success', 'Round rush ajouté');
+
+        return $this->redirectToRoute('massive_builder', array('id' => $massive->getId()));
+    }
+
+    /**
+     * @Route("/massive/{massiveId}/remove/{roundId}", name="massive_remove_round")
+     * @ParamConverter("massive", class="MagicWordBundle:GameType\Massive", options={"id" = "massiveId"})
+     * @ParamConverter("round", class="MagicWordBundle:Round", options={"id" = "roundId"})
+     */
+    public function removeRoundAction(Massive $massive, Round $round)
+    {
+        $this->get('mw_manager.massive')->removeRound($massive, $round);
+        $this->get('session')->getFlashBag()->add('success', 'Round supprimé');
 
         return $this->redirectToRoute('massive_builder', array('id' => $massive->getId()));
     }
@@ -60,6 +76,7 @@ class MassiveController extends Controller
     public function addConquerRoundAction(Massive $massive)
     {
         $this->get('mw_manager.massive')->addConquerRound($massive);
+        $this->get('session')->getFlashBag()->add('success', 'Round conquer ajouté');
 
         return $this->redirectToRoute('massive_builder', array('id' => $massive->getId()));
     }

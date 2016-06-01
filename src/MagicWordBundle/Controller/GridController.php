@@ -22,47 +22,6 @@ class GridController extends Controller
     }
 
     /**
-     * @Route("/grids", name="grids")
-     */
-    public function listAction()
-    {
-        $grids = $this->getDoctrine()->getRepository('MagicWordBundle:Grid')->findAll();
-
-        return $this->render('MagicWordBundle:Grid:list.html.twig', array('grids' => $grids));
-    }
-
-    /**
-     * @Route("/generate-grid", name="grid_generate")
-     */
-    public function generateGridAction()
-    {
-        $language = $this->getDoctrine()->getRepository('MagicWordBundle:Language')->find(1); //todo
-        $grid = $this->get('mw_manager.grid')->generate($language);
-
-        return $this->redirectToRoute('grid', array('id' => $grid->getId()));
-    }
-
-    /**
-     * @Route("/create-grid", name="grid_create")
-     * @Method("GET")
-     */
-    public function displayGridFormAction()
-    {
-        return $this->render('MagicWordBundle:Grid:create.html.twig');
-    }
-
-    /**
-     * @Route("/create-grid", name="grid_create_post")
-     * @Method("POST")
-     */
-    public function createGridAction(Request $request)
-    {
-        $grid = $this->get('mw_manager.grid')->createGrid($request);
-
-        return $this->redirectToRoute('grid', array('id' => $grid->getId()));
-    }
-
-    /**
      * @Route("/get-inflections", name="get_inflections", options={"expose"=true})
      * @Method("POST")
      */

@@ -12,7 +12,7 @@ class FindWordType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder->add('inflection', TextType::class,  array(
-            'attr' => array('data-field' => 'inflection'),
+            'attr' => array('data-field' => 'inflection', 'pattern' => '[A-Za-z]+'),
         ));
 
         $builder->add('hint', TextType::class, array(

@@ -90,8 +90,13 @@ class GridManager
         $this->removeSquare($grid);
         $this->removeInflections($grid);
 
+        $this->em->refresh($grid);
+
         $this->addSquares($grid, $request->request->get('squares'));
-        $this->saveInflections($grid);
+        $grid = $this->saveInflections($grid);
+
+        $this->em->persist($grid);
+        $this->em->flush($grid);
 
         return $grid;
     }
@@ -99,6 +104,7 @@ class GridManager
     public function saveInflections(Grid $grid)
     {
         $inflections = $this->findInflections($grid);
+
         $grid->addInflections($inflections);
 
         $this->em->persist($grid);
@@ -170,7 +176,6 @@ class GridManager
                 $words = array_merge($words, $this->nextLetter('', $simplifiedGrid, $x, $y));
             }
         }
-
         // words contient tous les débuts de mots ayant été trouvé dans le dictionnaire
         // il faut vérifier si chaque word existe réellement dans le dictionnaire
         if ($words) {

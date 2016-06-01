@@ -10,7 +10,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Table(name="grid")
  * @ORM\Entity(repositoryClass="MagicWordBundle\Repository\GridRepository")
  */
-class Grid
+class Grid implements \JsonSerializable
 {
     /**
      * @var int
@@ -214,5 +214,21 @@ class Grid
     public function getLanguage()
     {
         return $this->language;
+    }
+
+    public function jsonSerialize()
+    {
+        $jsonArray = array(
+            'inflections' => array(),
+        );
+
+        foreach ($this->getInflections() as $inflection) {
+            $jsonArray['inflections'][$inflection->getCleanedContent()] = array(
+                'id' => $inflection->getId(),
+                'lemmaId' => $inflection->getLemma()->getId(),
+            );
+        }
+
+        return $jsonArray;
     }
 }

@@ -31,6 +31,7 @@ class SquareManager
         $square->setLetter($letter);
         $square->setGrid($grid);
         $this->em->persist($square);
+        $this->em->persist($grid);
         $this->em->flush();
 
         return $square;

@@ -13,7 +13,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\DiscriminatorColumn(name="discr", type="string")
  * @ORM\DiscriminatorMap({"round"="Round", "rush"="MagicWordBundle\Entity\RoundType\Rush", "conquer" = "MagicWordBundle\Entity\RoundType\Conquer"})
  */
-class Round
+class Round implements \JsonSerializable
 {
     /**
      * @var int
@@ -214,5 +214,21 @@ class Round
     public function getDisplayOrder()
     {
         return $this->displayOrder;
+    }
+
+    public function jsonSerialize()
+    {
+        $jsonArray = array(
+            'objectives' => array(),
+            'type' => $this->discr,
+        );
+
+        foreach ($this->getObjectives() as $objective) {
+            $jsonArray['objectives'][ $objective->getInflection()] = array(
+                'id' => $objective->getId(),
+            );
+        }
+
+        return $jsonArray;
     }
 }

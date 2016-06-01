@@ -5,9 +5,6 @@
 {% block body -%}
     <h1>Builder pour Massive {{ massive.id }}</h1>
 
-    <h3>Publique ?</h3>
-    {{ massive.public ? "oui" : "non" }}
-
     <h3>Author</h3>
     {{ massive.author }}
 
@@ -25,7 +22,7 @@
                     <a href="{{ path('massive_add_rush', {"id":  massive.id}) }}">Rush</a>
                 </li>
                 <li>
-                    <a href="{{ path('massive_add_conquer', {"id":  massive.id}) }}">Conquer</a>
+                    <a href="{{ path('massive_add_conquer', {"id":  massive.id}) }}">Conquer (findword)</a>
                 </li>
             </ul>
         </div>
@@ -34,16 +31,24 @@
     <ul class="list-group">
         {% for round in massive.rounds %}
             <li class="list-group-item">
-                {{ round.displayOrder }}
+                {{ round.displayOrder + 1 }} - {{ round.discr }}
+
+                <span class="pull-right">
                 {% if round.discr == "rush" and round.grid %}
-                    <a class="btn btn-default btn-sm" href="{{ path('grid', {"id": round.grid.id }) }}">
+                    <a class="btn btn-default btn-xs" href="{{ path('grid', {"id": round.grid.id }) }}">
+                        <i class="fa fa-eye" aria-hidden="true"></i>
                         Voir la grille
                     </a>
                 {% else %}
-                    <a class="btn btn-default btn-sm" href="{{ path('conquer', {"id": round.id }) }}">
+                    <a class="btn btn-default btn-xs" href="{{ path('conquer', {"id": round.id }) }}">
+                        <i class="fa fa-pencil" aria-hidden="true"></i>
                         Editer la manche
                     </a>
                 {% endif %}
+                <a class="btn btn-default btn-xs btn-danger" href="{{ path('massive_remove_round', {"massiveId": massive.id, "roundId": round.id }) }}">
+                    <i class="fa fa-times" aria-hidden="true"></i>
+                </a>
+                </span>
             </li>
         {% endfor %}
     </ul>
