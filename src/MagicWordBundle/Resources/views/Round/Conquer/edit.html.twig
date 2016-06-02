@@ -11,6 +11,10 @@
             <i class="fa fa-chevron-left" aria-hidden="true"></i>
             Revenir à l'éditeur de partie
         </a>
+
+        <button type="button" class="btn btn-default" data-toggle="modal" data-target="#helper">
+             Helpers
+        </button>
     </div>
 </div>
 
@@ -19,7 +23,7 @@
         {# GRID + INFLECTIONS #}
         <div class="row">
             <div class="col-md-12">
-                <div class="panel panel-default panel-primary">
+                <div class="panel panel-default">
                     <div class="panel-heading">Grille</div>
                     <div class="panel-body">
                         <form id="grid" method="POST">
@@ -47,38 +51,11 @@
                 {% include "MagicWordBundle:Round/Conquer/Objective:combo.html.twig" %}
             </div>
         </div>
-
-        <div class="row">
-            <div class="col-md-6" >
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                        Flexions présentes
-                        <span class="btn btn-default btn-xs pull-right" type="button" onclick="getInflections()">
-                            <i id="inflections-icon" class="fa fa-refresh" aria-hidden="true"></i>
-                            Mettre à jour
-                        </span>
-                    </div>
-                    <div class="panel-body" id="inflections">
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-6" >
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                        Combos possible
-                        <span class="btn btn-default btn-xs pull-right" type="button" onclick="getCombos()">
-                            <i id="combos-icon" class="fa fa-refresh" aria-hidden="true"></i>
-                            Mettre à jour
-                        </span>
-                    </div>
-                    <div class="panel-body" id="possible-combos">
-                    </div>
-                </div>
-            </div>
-        </div>
-
     </div>
 </div>
+
+{% include "MagicWordBundle:Round/Conquer/Objective:helpers.html.twig" %}
+
 {% endblock %}
 
 {% block javascripts -%}

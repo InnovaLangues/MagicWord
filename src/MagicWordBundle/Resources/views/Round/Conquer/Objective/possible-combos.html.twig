@@ -1,5 +1,20 @@
-<ul class="list-group">
-{% for combo in combos %}
-    <li class="list-group-item">{{ combo.content }} ({{ combo.count }})</li>
-{% endfor %}
-</ul>
+<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true" style="max-height:600px; overflow-y:scroll">
+    {% for combo in combos %}
+    <div class="panel panel-default">
+        <div class="panel-heading" role="tab" id="headingOne">
+            <h4 class="panel-title">
+                <a role="button" data-toggle="collapse" data-parent="#accordion" href="#{{ combo.lemma.id }}" aria-expanded="true" aria-controls="{{ combo.lemma.id }}">
+                    {{ combo.lemma.content }} ({{ combo.count }})
+                </a>
+            </h4>
+        </div>
+        <div id="{{ combo.lemma.id }}" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+            <div class="list-group" >
+                {% for inflection in combo.inflections %}
+                <li class="list-group-item">{{ inflection.content }}</li>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
