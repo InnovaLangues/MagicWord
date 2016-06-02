@@ -12,9 +12,18 @@ function addWord()
 {
     var words = $('#words');
     var objective = words.data('prototype');
-    objective = objective.replace(/__name__/g, $(".objective").length);
+    objective = objective.replace(/__name__/g, $(".findWord").length);
     words.append(objective);
 }
+
+function addCombo()
+{
+    var combos = $('#combos');
+    var combo = combos.data('prototype');
+    combo = combo.replace(/__name__/g, $(".combo").length);
+    combos.append(combo);
+}
+
 
 function removeWord(word)
 {
@@ -98,7 +107,7 @@ function getCombos()
 function generate()
 {
     var word_list = [];
-    $(".objective").each(function( index ) {
+    $(".findWord").each(function( index ) {
         var inflection = $(this).find(inflectionSelector).val();
         if (inflection.indexOf("?") == -1) {
             word_list.push(inflection);
@@ -137,7 +146,7 @@ function save(){
 function checkInsertedWords(insertedWords)
 {
     reiniatilize()
-    $(".objective").each(function( index ) {
+    $(".findWord").each(function( index ) {
         var inflection = $(this).find(inflectionSelector).val();
         var className = jQuery.inArray(inflection, insertedWords) != -1
             ? "list-group-item-success"
@@ -149,5 +158,5 @@ function checkInsertedWords(insertedWords)
 
 function reiniatilize()
 {
-    $(".objective").removeClass("list-group-item-danger list-group-item-success");
+    $(".findWord").removeClass("list-group-item-danger list-group-item-success");
 }

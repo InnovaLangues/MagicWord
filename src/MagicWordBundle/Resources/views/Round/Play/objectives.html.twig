@@ -1,0 +1,32 @@
+{% if hasObj %}
+<div class="col-md-4">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            Objectifs
+        </div>
+        <div class="panel-body">
+            {% if round.findWords is not empty %}
+            <ul class="list-group">
+                <li href="#" class="list-group-item disabled">Find words</li>
+                {% for findWord in round.findWords %}
+                <li id="objective-findword-{{ findWord.id }}" class="list-group-item">
+                    {{ findWord.hint }}
+                </li>
+                {% endfor %}
+            </ul>
+            {% endif %}
+
+            {% if round.combos is not empty %}
+            <ul class="list-group">
+                <li href="#" class="list-group-item disabled">Combos</li>
+                {% for combo in round.combos %}
+                <li id="objective-combo-{{ combo.id }}" class="list-group-item">
+                    {{ combo.lenght }} - {{ combo.number }}
+                </li>
+                {% endfor %}
+            </ul>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endif %}

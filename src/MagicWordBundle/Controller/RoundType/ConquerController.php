@@ -8,7 +8,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use MagicWordBundle\Entity\RoundType\Conquer;
-use MagicWordBundle\Form\Type\RoundType\ConquerType;
+use MagicWordBundle\Form\Type\RoundType;
 
 class ConquerController extends Controller
 {
@@ -18,9 +18,15 @@ class ConquerController extends Controller
      */
     public function displayConquerAction(Conquer $conquer)
     {
-        $form = $this->createForm(ConquerType::class, $conquer)->createView();
+        $form = $this->createForm(RoundType::class, $conquer)->createView();
+        //$comboForm = $this->createForm(CombosType::class, $conquer)->createView();
 
-        return $this->render('MagicWordBundle:Round/Conquer:edit.html.twig', array('conquer' => $conquer, 'form' => $form));
+        return $this->render('MagicWordBundle:Round/Conquer:edit.html.twig',
+            [
+                'conquer' => $conquer,
+                'form' => $form,
+            ]
+        );
     }
 
     /**

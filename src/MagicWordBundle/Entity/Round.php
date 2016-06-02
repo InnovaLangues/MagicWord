@@ -63,6 +63,16 @@ class Round implements \JsonSerializable
     private $grid;
 
     /**
+     * @ORM\OneToMany(targetEntity="MagicWordBundle\Entity\ObjectiveType\Combo", mappedBy="round", cascade={"persist"})
+     */
+    private $combos;
+
+    /**
+     * @ORM\OneToMany(targetEntity="MagicWordBundle\Entity\ObjectiveType\FindWord", mappedBy="round", cascade={"persist"})
+     */
+    private $findWords;
+
+    /**
      * Get id.
      *
      * @return int
@@ -216,17 +226,111 @@ class Round implements \JsonSerializable
         return $this->displayOrder;
     }
 
+    /**
+     * Constructor.
+     */
+    public function __construct()
+    {
+        $this->combos = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->findWords = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Add combo.
+     *
+     * @param \MagicWordBundle\Entity\ObjectiveType\Combo $combo
+     *
+     * @return Round
+     */
+    public function addCombo(\MagicWordBundle\Entity\ObjectiveType\Combo $combo)
+    {
+        $this->combos[] = $combo;
+
+        return $this;
+    }
+
+    /**
+     * Remove combo.
+     *
+     * @param \MagicWordBundle\Entity\ObjectiveType\Combo $combo
+     */
+    public function removeCombo(\MagicWordBundle\Entity\ObjectiveType\Combo $combo)
+    {
+        $this->combos->removeElement($combo);
+    }
+
+    /**
+     * Get combos.
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getCombos()
+    {
+        return $this->combos;
+    }
+
+    /**
+     * Add findWord.
+     *
+     * @param \MagicWordBundle\Entity\ObjectiveType\FindWord $findWord
+     *
+     * @return Round
+     */
+    public function addFindWord(\MagicWordBundle\Entity\ObjectiveType\FindWord $findWord)
+    {
+        $this->findWords[] = $findWord;
+
+        return $this;
+    }
+
+    /**
+     * Remove findWord.
+     *
+     * @param \MagicWordBundle\Entity\ObjectiveType\FindWord $findWord
+     */
+    public function removeFindWord(\MagicWordBundle\Entity\ObjectiveType\FindWord $findWord)
+    {
+        $this->findWords->removeElement($findWord);
+    }
+
+    /**
+     * Get findWords.
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getFindWords()
+    {
+        return $this->findWords;
+    }
+
+    public function getObjectives()
+    {
+        $objectives = array();
+        $objectives[] = $this->findWords;
+        $objectives[] = $this->combos;
+
+        return $objectives;
+    }
+
     public function jsonSerialize()
     {
         $jsonArray = array(
-            'objectives' => array(),
+            'findWords' => array(),
+            'combos' => array(),
             'type' => $this->discr,
         );
 
-        if ($this->discr == 'conquer') {
-            foreach ($this->getObjectives() as $objective) {
-                $jsonArray['objectives'][ $objective->getInflection()] = array('id' => $objective->getId());
-            }
+        foreach ($this->getFindWords() as $findWord) {
+            $jsonArray['findWords'][$findWord->getInflection()] = array('id' => $findWord->getId());
+        }
+
+        foreach ($this->getCombos() as $combo) {
+            $jsonArray['combos'][] =
+                [
+                    'id' => $combo->getId(),
+                    'lenght' => $combo->getLenght(),
+                    'number' => $combo->getNumber(),
+                ];
         }
 
         return $jsonArray;

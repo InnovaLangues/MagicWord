@@ -1,7 +1,48 @@
 <div class="panel panel-default">
     <div class="panel-heading">
-        Combos
+        Flexions à placer dans la grille
+        <span class="pull-right">
+            <span class="btn btn-default btn-xs" onclick="addCombo()" >
+                <i class="fa fa-plus" aria-hidden="true"></i>
+                Ajouter un combo
+            </span>
+        </span>
     </div>
     <div class="panel-body">
+            <ul class="list-group" id="combos" data-prototype="{{ _self.combos_prototype(form.combos.vars.prototype)|e }}">
+            {% for combo in form.combos %}
+    		      {{ _self.combos_prototype(combo) }}
+    	    {% endfor %}
+            </ul>
+        <span class='btn btn-primary pull-right' onclick="saveObjectives()">Sauvegarder les objectifs</span>
     </div>
 </div>
+
+{% macro wordToFind(word, hint) %}
+<li class="list-group-item">
+    <input required type="text" class="word" value="{{ word }}" pattern="[A-Za-z]+" placeholder="mot" />
+    <input required type="text" class="def" value="{{ hint }}" placeholder="indice" />
+    <span class="pull-right">
+        <span class="btn btn-default">
+            <i class="fa fa-wikipedia-w" aria-hidden="true"></i>
+        </span>
+        <span class="btn btn-danger word-remove">
+            <i class="fa fa-times" aria-hidden="true"></i>
+        </span>
+    </span>
+</li>
+{% endmacro %}
+
+
+{% macro combos_prototype(combo) %}
+<li class="list-group-item combo">
+    {{ form_widget(combo.lenght) }}
+    {{ form_widget(combo.number) }}
+
+    <span class="pull-right">
+        <span class="btn btn-danger word-remove">
+            <i class="fa fa-times" aria-hidden="true"></i>
+        </span>
+    </span>
+</li>
+{% endmacro %}

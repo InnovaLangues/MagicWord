@@ -4,9 +4,9 @@ namespace  MagicWordBundle\Manager;
 
 use JMS\DiExtraBundle\Annotation as DI;
 use Doctrine\Common\Collections\ArrayCollection;
-use Symfony\Component\HttpFoundation\Request;
 use MagicWordBundle\Entity\RoundType\Conquer;
-use MagicWordBundle\Form\Type\RoundType\ConquerType;
+use MagicWordBundle\Form\Type\RoundType;
+use Symfony\Component\HttpFoundation\Request;
 
 /**
  * @DI\Service("mw_manager.objective")
@@ -30,31 +30,48 @@ class ObjectiveManager
 
     public function saveObjectives(Conquer $conquer, Request $request)
     {
-        $form = $this->formFactory->createBuilder(ConquerType::class, $conquer)->getForm();
+        $form = $this->formFactory->createBuilder(RoundType::class, $conquer)->getForm();
 
-        // retrieve former objectives
-        $formerObjectives = new ArrayCollection();
-        foreach ($conquer->getObjectives() as $objective) {
-            $formerObjectives->add($objective);
+        // retrieve former combos
+        $formerCombos = new ArrayCollection();
+        foreach ($conquer->getCombos() as $combo) {
+            $formerCombos->add($combo);
+        }
+
+        // retrieve former findword
+        $formerFindWords = new ArrayCollection();
+        foreach ($conquer->getFindWords() as $findWord) {
+            $formerFindWords->add($findWord);
         }
 
         $form->handleRequest($request);
         if ($form->isValid()) {
-            // remove unused objectives
-            foreach ($formerObjectives as $objective) {
-                if ($conquer->getObjectives()->contains($objective) === false) {
-                    $this->em->remove($objective);
+            // remove unused combos
+            foreach ($formerCombos as $combo) {
+                if ($conquer->getCombos()->contains($combo) === false) {
+                    $this->em->remove($combo);
                 }
             }
+
+            // remove unused objectives
+            foreach ($formerFindWords as $findWord) {
+                if ($conquer->getFindWords()->contains($findWord) === false) {
+                    $this->em->remove($findWord);
+                }
+            }
+
             //link new ones to conquer
-            foreach ($conquer->getObjectives() as $objective) {
-                $objective->setConquer($conquer);
+            foreach ($conquer->getCombos() as $combo) {
+                $combo->setRound($conquer);
+            }
+
+            //link new ones to conquer
+            foreach ($conquer->getFindWords() as $findWord) {
+                $findWord->setRound($conquer);
             }
 
             $this->em->persist($conquer);
             $this->em->flush();
-        } else {
-            die('dddddddd');
         }
 
         return;

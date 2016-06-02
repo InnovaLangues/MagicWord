@@ -2,72 +2,27 @@
 
 {% block title %}PLAY ROUND {% endblock %}
 
-
-
 {% block body -%}
-{% set hasObj = (round.objectives is defined and round.objectives|length > 0) ? true : false %}
+
+{% set hasObj = (round.combos is not empty or round.findWords is not empty ) ? true : false %}
 {% set grid =  round.grid %}
 
-
 <div  id="game-container">
+    <div class="row">
+        {# CLOCK #}
+        {% include "MagicWordBundle:Round/Play:clock.html.twig" %}
         {# GRID #}
-        <div class="row">
-            <div class="pull-right col-md-12">
-                <span id="clock"></span>
-            </div>
-            <div class="col-md-5">
-                {% set x = 0 %}
-                <ul id="squares">
-                {% for i in range(0,3) %}
-                    {% for j in range(0, 3) %}
-                            {% set value = grid.squares[x] is defined  ? grid.squares[x].letter.value|upper : "_" %}
-                            {% set point = grid.squares[x] is defined  ? get_point(grid.squares[x].letter, round.game.language) : "1" %}
-                            <li id="li-square-{{ i }}-{{ j }}">
-                                <p data-value="{{value}}" id="square-{{ i }}-{{ j }}">
-                                    {{ value }} <span> {{ point }}</span>
-                                </p>
-                            </li>
-                            {% set x = x + 1 %}
-                    {% endfor %}
-                {% endfor %}
-                </ul>
-            </div>
-
-            {# OBJECTIVES #}
-            {% if hasObj %}
-            <div class="col-md-4">
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                        Objectives ({{ round.objectives[0].discr }})
-                    </div>
-                    <div class="panel-body">
-                        <ul class="list-group">
-                        {% for i, objective in round.objectives %}
-                            <li id="objective-{{ objective.id }}" class="list-group-item">{{ i + 1 }} - {{ objective.hint }}</li>
-                        {% endfor %}
-                        </ul>
-                    </div>
-                </div>
-            </div>
-            {% endif %}
-
-            {# INFLECTIONS FOUND #}
-            <div class="col-md-{{ hasObj ? 3 : 7 }}" >
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                        Inflections found
-                    </div>
-                    <div class="panel-body">
-                        <ul class="list-group" id="inflections-found"></ul>
-                    </div>
-                </div>
-            </div>
-
+        {% include "MagicWordBundle:Round/Play:grid.html.twig" %}
+        {# OBJECTIVES #}
+        {% include "MagicWordBundle:Round/Play:objectives.html.twig" %}
+        {# INFLECTIONS FOUND #}
+        {% include "MagicWordBundle:Round/Play:found.html.twig" %}
+    </div>
 </div>
 
 <script>
     var gridJSON = {{ grid | json_encode()|raw }};
-    var round = {{ round | json_encode()|raw }};
+    var roundJSON = {{ round | json_encode()|raw }};
 </script>
 
 {% endblock %}

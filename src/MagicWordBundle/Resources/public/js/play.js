@@ -1,6 +1,6 @@
 var clock = {
-	start: round.type == "conquer" ? 0 : 120,
-	countdown: round.type == "conquer" ? false : true,
+	start: roundJSON.type == "conquer" ? 0 : 120,
+	countdown: roundJSON.type == "conquer" ? false : true,
 
 	init: function(){
 		var testClock = $('#clock').FlipClock( clock.start, {
@@ -25,16 +25,10 @@ var words = {
 	bonusPoints: [],
 	foundWords: [],
 
-	countAllWords: function(){
-		var countWords = 0;
-		countWords  = grid.all_words.length;
-		//$('p#number-of-words').html(countWords + ' <?php echo $lang['words_to_find'];?>');
-	},
-
 	inObjectives: function(inflection){
-		if (round.objectives.hasOwnProperty(inflection.toLowerCase())){
-		 	var objectiveId = round.objectives[inflection.toLowerCase()].id;
-			$("#objective-"+objectiveId).addClass("list-group-item-success").append(' ('+ inflection +')');
+		if (roundJSON.findWords.hasOwnProperty(inflection.toLowerCase())){
+		 	var findWordId = roundJSON.findWords[inflection.toLowerCase()].id;
+			$("#objective-findword-"+findWordId).addClass("list-group-item-success").append(' ('+ inflection +')');
 
 			return true;
 		}
@@ -67,15 +61,7 @@ var words = {
 
 	checkWord: function(){
 		var inflection = grid.foundWord;
-		/*
-		this.searchDico();
-		if( this.exists ){
-			this.getBonusWordPoints();
-			this.getWordPoints();
-			this.getNumberOfWords();
-		}
-		this.displayFoundWords();
-		*/
+
 		if (!this.alreadyFound(inflection)) {
 			if (this.inInflections(inflection)){
 				var inObjectives = this.inObjectives(inflection);
@@ -86,105 +72,6 @@ var words = {
 		}
 	},
 
-	searchFoundWords: function(){
-		var wordCorrect = true;
-		var wordLi = '';
-		$('ul#wordlist').find('li').each(function(idx, li){
-			wordLi = $(li).text();
-			if ( grid.foundWord  == wordLi ){
-				wordCorrect = false;
-			}
-		});
-		this.correct = wordCorrect;
-	},
-
-	searchDico: function(){
-		this.exists = false;
-		for (i = 0; i < grid.all_words.length; i++ ){
-			if( this.word == grid.all_words[i] ){
-				this.exists = true;
-			}
-		}
-	},
-
-	getBonusWordPoints: function(){
-		this.bonusPoints = 0;
-		var wordLength = 0;
-		wordLength = this.word.length;
-		switch(grid.gametype){
-			case 2:
-				this.bonusPoints = [0, 0, 5, 10, 25, 30, 40, 50, 60];
-				if( wordLength >= 8 ){
-					this.bonus = this.bonusPoints[8];
-				} else {
-					this.bonus = this.bonusPoints[wordLength];
-				}
-			break;
-			case 3:
-				this.bonusPoints = [0, 0, 1, 2, 8, 50, 90, 120, 150];
-				if( wordLength >= 8 ){
-					this.bonus = this.bonusPoints[8];
-				} else {
-				this.bonus = this.bonusPoints[wordLength];
-				}
-			break;
-			case 4:
-				var str = this.word;
-				var reg = str.match(/^CI.*$/);
-				if(	this.word == reg ){
-					this.bonus = this.word.length * 5;
-				}
-			break;
-		}
-	},
-
-	getWordPoints: function(){
-		grid.wordPoints = 0;
-		for (i = 0; i < grid.all_words.length; i++ ){
-			if( this.word == grid.all_words[i] ){
-				grid.wordPoints = grid.all_points[i];
-			}
-		}
-		grid.score += grid.wordPoints;
-		if (grid.score <= 1 ){
-			//$('p#countPoints').html(grid.score + ' <?php echo $lang['point']; ?>');
-			return;
-		}
-		//$('p#countPoints').html(grid.score + ' <?php echo $lang['points']; ?>');
-	},
-
-	displayFoundWords: function(){
-		var li = $('<li />');
-		li.addClass(this.exists == true ? 'wordlist-words' : 'wordlist-mistake');
-		li.html(this.word);
-		li.appendTo('ul#wordlist');
-		this.sendFoundWord();
-
-		var li = $('<li class="pointlist-points" />');
-		li.html(this.exists === true ? grid.wordPoints : '&nbsp;');
-		li.appendTo('ul#pointlist');
-	},
-
-	getNumberOfWords: function(){
-		this.countWords++;
-		if (this.countWords <= 1 ){
-			//$('p#countWords').html(this.countWords + ' <?php echo $lang['word']; ?>');
-			return;
-		}
-		//$('p#countWords').html(this.countWords + ' <?php echo $lang['word']; ?>');
-	},
-
-	sendFoundWord: function(){
-		/*
-		$.get('?mode=game.word', {
-			gameid: grid.gameid,
-			gridid: grid.gridid,
-			word: this.word,
-			wordexists: this.exists === true ? 1 : 0,
-			wordpoints: this.exists === true ? grid.wordPoints : 0
-		});
-		*/
-	}
 };
 
 var grid = {

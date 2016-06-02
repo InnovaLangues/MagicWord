@@ -41,15 +41,18 @@
         </div>
 
         <div class="row">
-            {# FINDWORD OBJECTIVES #}
-            <div class="col-md-6">
-                {% include "MagicWordBundle:Round/Conquer/Objective:findword.html.twig" %}
-            </div>
+            <form id="objectives">
+                {# FINDWORD OBJECTIVES #}
+                <div class="col-md-6">
+                    {% include "MagicWordBundle:Round/Conquer/Objective:findword.html.twig" %}
+                </div>
 
-            {# COMBO OBJECTIVES #}
-            <div class="col-md-6">
-                {% include "MagicWordBundle:Round/Conquer/Objective:combo.html.twig" %}
-            </div>
+                {# COMBO OBJECTIVES #}
+                <div class="col-md-6">
+                    {% include "MagicWordBundle:Round/Conquer/Objective:combo.html.twig" %}
+                </div>
+                {{ form_widget(form._token) }}
+            </form>
         </div>
     </div>
 </div>
