@@ -4,7 +4,7 @@
 
 {% block body -%}
 
-{% set hasObj = (round.combos is not empty or round.findWords is not empty ) ? true : false %}
+{% set hasObj = (round.objectives is not empty ) ? true : false %}
 {% set grid =  round.grid %}
 
 <div id="game-container">
