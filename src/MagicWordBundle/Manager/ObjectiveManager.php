@@ -32,42 +32,23 @@ class ObjectiveManager
     {
         $form = $this->formFactory->createBuilder(RoundType::class, $conquer)->getForm();
 
-        // retrieve former combos
-        $formerCombos = new ArrayCollection();
-        foreach ($conquer->getCombos() as $combo) {
-            $formerCombos->add($combo);
-        }
-
-        // retrieve former findword
-        $formerFindWords = new ArrayCollection();
-        foreach ($conquer->getFindWords() as $findWord) {
-            $formerFindWords->add($findWord);
+        // retrieve former objectives
+        $formerObjectives = new ArrayCollection();
+        foreach ($conquer->getObjectives() as $objective) {
+            $formerObjectives->add($objective);
         }
 
         $form->handleRequest($request);
         if ($form->isValid()) {
-            // remove unused combos
-            foreach ($formerCombos as $combo) {
-                if ($conquer->getCombos()->contains($combo) === false) {
-                    $this->em->remove($combo);
-                }
-            }
-
             // remove unused objectives
-            foreach ($formerFindWords as $findWord) {
-                if ($conquer->getFindWords()->contains($findWord) === false) {
-                    $this->em->remove($findWord);
+            foreach ($formerObjectives as $formerObjective) {
+                if ($conquer->getObjectives()->contains($formerObjective) === false) {
+                    $this->em->remove($formerObjective);
                 }
             }
-
-            //link new ones to conquer
-            foreach ($conquer->getCombos() as $combo) {
-                $combo->setRound($conquer);
-            }
-
-            //link new ones to conquer
-            foreach ($conquer->getFindWords() as $findWord) {
-                $findWord->setRound($conquer);
+            //link objectives to conquer
+            foreach ($conquer->getObjectives() as $objective) {
+                $objective->setConquer($conquer);
             }
 
             $this->em->persist($conquer);

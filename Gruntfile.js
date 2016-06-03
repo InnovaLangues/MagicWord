@@ -3,7 +3,7 @@ module.exports = function(grunt) {
 
     grunt.initConfig({
         watch: {
-            files: ['src/MagicWordBundle/Resources/public/js/*', 'src/MagicWordBundle/Resources/public/css/*'],
+            files: ['src/MagicWordBundle/Resources/public/js/**', 'src/MagicWordBundle/Resources/public/css/**'],
             tasks: ['uglify', 'less'],
           },
         less: {
@@ -43,7 +43,11 @@ module.exports = function(grunt) {
                     ],
                     'web/js/play.js': [
                         "bower_components/FlipClock/compiled/flipclock.min.js",
-                        "src/MagicWordBundle/Resources/public/js/play.js"
+                        "src/MagicWordBundle/Resources/public/js/play/clock.js",
+                        "src/MagicWordBundle/Resources/public/js/play/play.js",
+                        "src/MagicWordBundle/Resources/public/js/play/combo.js",
+                        "src/MagicWordBundle/Resources/public/js/play/word.js",
+                        "src/MagicWordBundle/Resources/public/js/play/grid.js"
                     ]
 
                 }
