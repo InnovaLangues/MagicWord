@@ -21,7 +21,7 @@
                 <li href="#" class="list-group-item disabled">Combos</li>
                 {% for combo in round.combos %}
                 <li id="objective-combo-{{ combo.id }}" class="list-group-item">
-                    {{ combo.lenght }} - {{ combo.number }}
+                    <b>{{ combo.number }}</b> combo de longueur <b>{{ combo.lenght }}</b> 
                 </li>
                 {% endfor %}
             </ul>
