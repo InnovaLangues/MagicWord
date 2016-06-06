@@ -34,6 +34,11 @@ var words = {
 		inflection = inflection.toUpperCase();
 		var typedInflection = (!isCorrect) ? "<s>"+inflection+"</s>" : inflection;
 		$("#inflections-found").prepend("<li class='list-group-item'>"+typedInflection+"</li>");
+
+		if(isCorrect){
+			localstor.add(inflection);
+		}
+
 	},
 
 	checkWord: function(){

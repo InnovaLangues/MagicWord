@@ -219,6 +219,7 @@ class Round implements \JsonSerializable
     public function jsonSerialize()
     {
         $jsonArray = array(
+            'id' => $this->id,
             'findWords' => array(),
             'combos' => array(),
             'type' => $this->discr,

@@ -56,20 +56,23 @@ var combo = {
 	},
 
 	checkObjectives: function(){
+		var combos = this.currentCombos.slice();
+		var comboSaved = this.savedCombos.slice();
+
 		for (var i = 0; i < roundJSON.combos.length; i++) {
             var objective = roundJSON.combos[i];
 			var effectiveCount = 0;
 
-			for (var j = 0; j < this.currentCombos.length; j++) {
-				var currentCombo = this.currentCombos[j];
+			for (var j = 0; j < combos.length; j++) {
+				var currentCombo = combos[j];
 				if (currentCombo.count >= objective.length) {
 					currentCombo.used = true;
 					effectiveCount++;
 				}
 			}
 
-			for (var j = 0; j < this.savedCombos.length; j++) {
-				var currentCombo = this.savedCombos[j];
+			for (var j = 0; j < comboSaved.length; j++) {
+				var currentCombo = comboSaved[j];
 				if (currentCombo.count >= objective.length && !currentCombo.used) {
 					effectiveCount++;
 					currentCombo.used = true;
