@@ -21,9 +21,10 @@ class Conquer extends Round
     }
 
    /**
-    * @ORM\OneToMany(targetEntity="MagicWordBundle\Entity\Objective", mappedBy="conquer", cascade={"persist"})
+    * @ORM\OneToMany(targetEntity="MagicWordBundle\Entity\Objective", mappedBy="conquer", cascade={"persist", "remove"})
     */
    private $objectives;
+
    /**
     * Constructor.
     */
