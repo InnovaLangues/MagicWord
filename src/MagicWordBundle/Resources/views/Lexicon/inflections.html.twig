@@ -1,5 +1,10 @@
 <ul class="list-group" style="max-height:600px; overflow-y:scroll">
     {% for inflection in inflections %}
-        <li class="list-group-item">{{ inflection.content }} ({{ inflection.lemma.content }} [{{ inflection.lemma.category ? inflection.lemma.category.value : "" }}])</li>
+        <li class="list-group-item">
+            {{ inflection.content }} ({{ inflection.lemma.content }} [{{ inflection.lemma.category ? inflection.lemma.category.value : "" }}])
+            <span class="btn btn-default btn-xs pull-right" onclick="addInflection('{{ inflection.cleanedContent }}')">
+                <i class="fa fa-plus" aria-hidden="true"></i> ajouter 
+            </span>
+        </li>
     {% endfor %}
 </ul>

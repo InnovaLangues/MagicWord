@@ -12,8 +12,16 @@ function addWord()
 {
     var words = $('#words');
     var objective = words.data('prototype');
-    objective = objective.replace(/__name__/g, $(".findWord").length);
+    var length = $(".findWord").length;
+    objective = objective.replace(/__name__/g, length);
     words.append(objective);
+
+    return length;
+}
+
+function addInflection(inflection){
+    var length = addWord();
+    $("#round_findWords_"+ length +"_inflection").val(inflection);
 }
 
 function addCombo()

@@ -11,10 +11,6 @@
             <i class="fa fa-chevron-left" aria-hidden="true"></i>
             Revenir à l'éditeur de partie
         </a>
-
-        <button type="button" class="btn btn-default" data-toggle="modal" data-target="#helper">
-             Helpers
-        </button>
     </div>
 </div>
 
@@ -24,7 +20,15 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="panel panel-default">
-                    <div class="panel-heading">Grille</div>
+                    <div class="panel-heading">
+                        Grille
+                        <span class="pull-right">
+                            <span class="btn btn-default btn-xs" onclick="generate()">
+                                <i class="fa fa-cogs" aria-hidden="true"></i>
+                                Générer grille
+                            </span>
+                        </span>
+                    </div>
                     <div class="panel-body">
                         <form id="grid" method="POST">
                             <div id="result">
@@ -57,7 +61,8 @@
     </div>
 </div>
 
-{% include "MagicWordBundle:Round/Conquer/Objective:helpers.html.twig" %}
+{% include "MagicWordBundle:Round/Conquer/Objective:helper-inflections.html.twig" %}
+{% include "MagicWordBundle:Round/Conquer/Objective:helper-combos.html.twig" %}
 
 {% endblock %}
 
