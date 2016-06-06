@@ -14,10 +14,9 @@ var combo = {
 	},
 
 	saveOrDestroy: function(callback){
-
-		for (var i = 0; i < this.currentCombos.length; i++) {
+		var i = this.currentCombos.length;
+		while (i--) {
 			var currentCombo = this.currentCombos[i];
-
 			// cas où le lemme du combo n'est pas dans les lemmes courants
 			if ($.inArray(currentCombo.lemmaId, this.newIds) == -1) {
 				// si il a la taille requise on le sauvegarde
@@ -25,12 +24,16 @@ var combo = {
 					this.savedCombos.push(currentCombo);
 				}
 				// et dans tous les cas on l'enlève des combo courants
-				for( j=this.currentCombos.length-1; j>=0; j--) {
-    				if( this.currentCombos[j].lemmaId == currentCombo.lemmaId) this.currentCombos.splice(j,1);
+				var j = this.currentCombos.length;
+				while (j--) {
+					if( this.currentCombos[j].lemmaId == currentCombo.lemmaId) {
+
+						this.currentCombos.splice(j,1);
+					}
 				}
-				console.log("still a removing pb of current combos");
 			}
 		}
+
 		callback();
 	},
 
@@ -46,7 +49,7 @@ var combo = {
 				}
 			}
 			if(!found){
-				this.currentCombos.push({lemmaId:newId, count:1});
+				this.currentCombos.push({lemmaId:newId, count:1, used:false});
 			}
 		}
 		callback();
@@ -56,24 +59,27 @@ var combo = {
 		for (var i = 0; i < roundJSON.combos.length; i++) {
             var objective = roundJSON.combos[i];
 			var effectiveCount = 0;
+
 			for (var j = 0; j < this.currentCombos.length; j++) {
 				var currentCombo = this.currentCombos[j];
 				if (currentCombo.count >= objective.length) {
+					currentCombo.used = true;
 					effectiveCount++;
 				}
 			}
 
 			for (var j = 0; j < this.savedCombos.length; j++) {
 				var currentCombo = this.savedCombos[j];
-				if (currentCombo.count >= objective.length) {
+				if (currentCombo.count >= objective.length && !currentCombo.used) {
 					effectiveCount++;
+					currentCombo.used = true;
 				}
 			}
 
 			if (effectiveCount >= objective.number){
 				$("#objective-combo-"+objective.id).addClass("list-group-item-success");
+				$("#objective-combo-"+objective.id).append(" +");
 			}
-
 		}
 	},
 
