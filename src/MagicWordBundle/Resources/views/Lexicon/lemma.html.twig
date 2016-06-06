@@ -1,22 +1,27 @@
 {% extends '::base.html.twig' %}
 
 {% block body -%}
-<h1>info sur lemme {{ lemma.id }}</h1>
+<div class="panel panel-default">
+    <div class="panel-heading">
+        info sur lemme {{ lemma.id }}
+    </div>
+    <div class="panel-body">
+        <h2>lemme</h2>
+        {{ lemma.content }}
 
-<h2>lemme</h2>
-{{ lemma.content }}
+        <h2>Phonétiques</h2>
+        {{ lemma.phonetic1 }} - {{ lemma.phonetic2 }}
 
-<h2>Phonétiques</h2>
-{{ lemma.phonetic1 }} - {{ lemma.phonetic2 }}
+        <h2>Genre</h2>
+        {{ lemma.gender ? lemma.gender.value : "-" }}
 
-<h2>Genre</h2>
-{{ lemma.gender ? lemma.gender.value : "-" }}
+        <h2>Catégorie</h2>
+        {{ lemma.category ? lemma.category.value : "-" }}
 
-<h2>Catégorie</h2>
-{{ lemma.category ? lemma.category.value : "-" }}
+        <h2>Subcatégorie</h2>
+        {{ lemma.subcategory ? lemma.subcategory.value : "-" }}
 
-<h2>Subcatégorie</h2>
-{{ lemma.subcategory ? lemma.subcategory.value : "-" }}
-
-<a href="{{ path('add-to-wordbox', {"id":  lemma.id }) }}">ajouter à ma wordbox</a>
+        <a href="{{ path('add-to-wordbox', {"id":  lemma.id }) }}">ajouter à ma wordbox</a>
+    </div>
+</div>
 {% endblock %}

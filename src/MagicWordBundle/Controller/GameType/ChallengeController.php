@@ -17,7 +17,7 @@ class ChallengeController extends Controller
     {
         $form = $round = $this->get('mw_manager.challenge')->generateChallengeForm();
 
-        return $this->render('MagicWordBundle:Game:challenge.html.twig', array('form' => $form));
+        return $this->render('MagicWordBundle:Game/Challenge:challenge.html.twig', array('form' => $form));
     }
 
     /**
@@ -40,7 +40,7 @@ class ChallengeController extends Controller
         $author = $this->get('security.token_storage')->getToken()->getUser();
         $challenges = $this->getDoctrine()->getRepository('MagicWordBundle:GameType\Challenge')->findByAuthor($author);
 
-        return $this->render('MagicWordBundle:Player:challenges-sent.html.twig', array('challenges' => $challenges));
+        return $this->render('MagicWordBundle:Game/Challenge:challenges-sent.html.twig', array('challenges' => $challenges));
     }
 
     /**
@@ -52,6 +52,6 @@ class ChallengeController extends Controller
         $challenged = $this->get('security.token_storage')->getToken()->getUser();
         $challenges = $this->getDoctrine()->getRepository('MagicWordBundle:GameType\Challenge')->findByChallenged($challenged);
 
-        return $this->render('MagicWordBundle:Player:challenges-received.html.twig', array('challenges' => $challenges));
+        return $this->render('MagicWordBundle:Game/Challenge:challenges-received.html.twig', array('challenges' => $challenges));
     }
 }

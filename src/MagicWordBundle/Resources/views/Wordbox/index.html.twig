@@ -1,14 +1,16 @@
 {% extends '::base.html.twig' %}
 
 {% block body -%}
-
-my wordbox ({{ app.user.wordbox.acquisitions|length}})!
-
-<ul>
-{% for acquisition in app.user.wordbox.acquisitions %}
-    <li>
-        <a href="{{ path('lemma', {"id":  acquisition.lemma.id }) }}">{{ acquisition.lemma.content }}</a>
-    </li>
-{% endfor %}
-</ul>
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h4>My wordbox ({{ app.user.wordbox.acquisitions|length}})</h4>
+        </div>
+        <ul class="list-group">
+        {% for acquisition in app.user.wordbox.acquisitions %}
+            <li class="list-group-item">
+                <a href="{{ path('lemma', {"id":  acquisition.lemma.id }) }}">{{ acquisition.lemma.content }}</a>
+            </li>
+        {% endfor %}
+        </ul>
+    </div>
 {% endblock %}

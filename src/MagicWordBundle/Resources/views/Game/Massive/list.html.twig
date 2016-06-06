@@ -1,0 +1,18 @@
+{% extends '::base.html.twig' %}
+
+{% block title %}Liste des parties massives{% endblock %}
+
+{% block body -%}
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h4>Liste des parties massives</h4>
+        </div>
+        <ul class="list-group">
+            {% for massive in massives %}
+            <li class="list-group-item">
+                {{ massive.id }} - {{ massive.name }}
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+{% endblock %}

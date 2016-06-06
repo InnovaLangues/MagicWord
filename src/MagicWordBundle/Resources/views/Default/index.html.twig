@@ -1,5 +1,65 @@
 {% extends '::base.html.twig' %}
 
 {% block body -%}
-Hello World!
+<div class="row">
+    <div class="col-md-4">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h4>
+                    <i class="fa fa-gamepad" aria-hidden="true"></i>
+                    Jouer
+                </h4>
+            </div>
+            <ul class="list-group">
+                <li class="list-group-item">
+                    <a href="{{ path('train') }}">S'entrainer</a>
+                </li>
+                <li class="list-group-item">
+                    <a href="{{ path('challenge') }}">Défier quelqu'un</a>
+                </li>
+                <li class="list-group-item">
+                    <a href="{{ path('challenges_received') }}">Défis reçus</a>
+                </li>
+                <li class="list-group-item">
+                    <a href="{{ path('massives') }}">Parties massives</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="col-md-4">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h4>
+                    <i class="fa fa-cogs" aria-hidden="true"></i>
+                    Créer
+                </h4>
+            </div>
+            <ul class="list-group">
+                <li class="list-group-item">
+                    <a href="{{ path('massive') }}">Nouvelle partie massive</a>
+                </li>
+                <li class="list-group-item">
+                    <a href="{{ path('my_massives') }}">Editer partie</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="col-md-4">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h4>
+                    <i class="fa fa-user" aria-hidden="true"></i>
+                    Me
+                </h4>
+            </div>
+            <ul class="list-group">
+                <li class="list-group-item">
+                    <a href="{{ path('wordbox') }}">Wordbox</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
 {% endblock %}

@@ -1,6 +1,6 @@
 <div class="panel panel-default">
     <div class="panel-heading">
-        Flexions à placer dans la grille
+        Combos
         <span class="pull-right">
             <span class="btn btn-default btn-xs" onclick="addCombo()" >
                 <i class="fa fa-plus" aria-hidden="true"></i>
@@ -37,11 +37,10 @@
 </li>
 {% endmacro %}
 
-
 {% macro combos_prototype(combo) %}
 <li class="list-group-item combo">
-    {{ form_widget(combo.lenght) }}
     {{ form_widget(combo.number) }}
+    {{ form_widget(combo.lenght) }}
 
     <span class="pull-right">
         <span class="btn btn-danger word-remove">

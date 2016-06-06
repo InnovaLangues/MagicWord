@@ -3,61 +3,65 @@
 {% block title %}Massive Builder{% endblock %}
 
 {% block body -%}
-    <h1>Builder pour Massive {{ massive.id }}</h1>
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h4>
+            Massive {{ massive.id }} - {{ massive.name }}
+        </h4>
+    </div>
+    <div class="panel-body">
+        <h4>Language</h4>
+        {{ massive.language.name }}
 
-    <h3>Author</h3>
-    {{ massive.author }}
+        <h4>Manches ({{ massive.rounds|length }})
+            <div class="btn-group">
+                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <i class="fa fa-plus" aria-hidden="true"></i> Ajouter une manche
+                    <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu">
+                    <li>
+                        <a href="{{ path('massive_add_rush', {"id":  massive.id}) }}">Rush</a>
+                    </li>
+                    <li>
+                        <a href="{{ path('massive_add_conquer', {"id":  massive.id}) }}">Conquer</a>
+                    </li>
+                </ul>
+            </div>
+        </h4>
 
-    <h3>Language</h3>
-    {{ massive.language.name }}
+        <ul class="list-group">
+            {% for round in massive.rounds %}
+                <li class="list-group-item">
+                    {{ round.displayOrder + 1 }} - {{ round.discr }}
 
-    <h3>Manches ({{ massive.rounds|length }})
-        <div class="btn-group">
-            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <i class="fa fa-plus" aria-hidden="true"></i> Ajouter une manche
-                <span class="caret"></span>
-            </button>
-            <ul class="dropdown-menu">
-                <li>
-                    <a href="{{ path('massive_add_rush', {"id":  massive.id}) }}">Rush</a>
-                </li>
-                <li>
-                    <a href="{{ path('massive_add_conquer', {"id":  massive.id}) }}">Conquer (findword)</a>
-                </li>
-            </ul>
-        </div>
-    </h3>
+                    <span class="pull-right">
+                    {% if round.discr == "rush" and round.grid %}
+                        <a class="btn btn-default btn-xs" href="{{ path('rush', {"id": round.id }) }}">
+                            <i class="fa fa-eye" aria-hidden="true"></i>
+                            Voir la grille
+                        </a>
+                    {% else %}
+                        <a class="btn btn-default btn-xs" href="{{ path('conquer', {"id": round.id }) }}">
+                            <i class="fa fa-pencil" aria-hidden="true"></i>
+                            Editer la manche
+                        </a>
+                    {% endif %}
 
-    <ul class="list-group">
-        {% for round in massive.rounds %}
-            <li class="list-group-item">
-                {{ round.displayOrder + 1 }} - {{ round.discr }}
-
-                <span class="pull-right">
-                {% if round.discr == "rush" and round.grid %}
-                    <a class="btn btn-default btn-xs" href="{{ path('grid', {"id": round.grid.id }) }}">
-                        <i class="fa fa-eye" aria-hidden="true"></i>
-                        Voir la grille
+                    {% if round.grid %}
+                    <a class="btn btn-default btn-xs" href="{{ path('round_play', {"id": round.id }) }}">
+                        <i class="fa fa-gamepad" aria-hidden="true"></i>
+                        Jouer
                     </a>
-                {% else %}
-                    <a class="btn btn-default btn-xs" href="{{ path('conquer', {"id": round.id }) }}">
-                        <i class="fa fa-pencil" aria-hidden="true"></i>
-                        Editer la manche
+                    {% endif %}
+
+                    <a class="btn btn-default btn-xs btn-danger" href="{{ path('massive_remove_round', {"massiveId": massive.id, "roundId": round.id }) }}">
+                        <i class="fa fa-times" aria-hidden="true"></i>
                     </a>
-                {% endif %}
-
-                {% if round.grid %}
-                <a class="btn btn-default btn-xs" href="{{ path('round_play', {"id": round.id }) }}">
-                    <i class="fa fa-gamepad" aria-hidden="true"></i>
-                    Jouer
-                </a>
-                {% endif %}
-
-                <a class="btn btn-default btn-xs btn-danger" href="{{ path('massive_remove_round', {"massiveId": massive.id, "roundId": round.id }) }}">
-                    <i class="fa fa-times" aria-hidden="true"></i>
-                </a>
-                </span>
-            </li>
-        {% endfor %}
-    </ul>
+                    </span>
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+</div>
 {% endblock %}

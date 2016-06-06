@@ -12,11 +12,17 @@ class ComboType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder->add('lenght', IntegerType::class,  array(
-            'attr' => array('data-field' => 'lenght'),
+            'attr' => [
+                'data-field' => 'lenght',
+                'placeholder' => 'Longueur',
+            ],
         ));
 
         $builder->add('number', IntegerType::class,  array(
-            'attr' => array('data-field' => 'number'),
+            'attr' => [
+                'data-field' => 'number',
+                'placeholder' => 'Nombre de combos',
+            ],
         ));
     }
 

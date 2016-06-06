@@ -6,21 +6,11 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use MagicWordBundle\Entity\Grid;
 
 class GridController extends Controller
 {
-    /**
-     * @Route("/grid/{id}", name="grid")
-     * @ParamConverter("grid", class="MagicWordBundle:Grid")
-     */
-    public function getInfosAction(Grid $grid)
-    {
-        return $this->render('MagicWordBundle:Grid:index.html.twig', array('grid' => $grid));
-    }
-
     /**
      * @Route("/get-inflections", name="get_inflections", options={"expose"=true})
      * @Method("POST")

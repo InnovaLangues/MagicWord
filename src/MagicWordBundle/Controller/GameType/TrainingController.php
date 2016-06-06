@@ -14,6 +14,6 @@ class TrainingController extends Controller
     {
         $round = $this->get('mw_manager.training')->generateTraining();
 
-        return $this->render('MagicWordBundle:Game:training.html.twig', array('round' => $round));
+        return $this->redirectToRoute('round_play', ['id' => $round->getId()]);
     }
 }

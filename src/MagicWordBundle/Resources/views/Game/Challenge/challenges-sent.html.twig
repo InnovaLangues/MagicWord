@@ -1,0 +1,18 @@
+{% extends '::base.html.twig' %}
+
+{% block title %}Challenge envoyés{% endblock %}
+
+{% block body -%}
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h4>Challenges envoyés</h4>
+        </div>
+        <ul class="list-group">
+        {% for challenge in challenges %}
+            <li class="list-group-item">à {{ challenge.challenged.username }} le {{ challenge.date|date("m/d/Y") }}
+                <span class="text-muted">({{ challenge.message | truncate(20, true, "...")}})</span>
+            </li>
+        {% endfor %}
+        </ul>
+    </div>
+{% endblock %}

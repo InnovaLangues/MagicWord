@@ -225,17 +225,19 @@ class Round implements \JsonSerializable
             'type' => $this->discr,
         );
 
-        foreach ($this->getFindWords() as $findWord) {
-            $jsonArray['findWords'][$findWord->getInflection()] = array('id' => $findWord->getId());
-        }
+        if ($this->discr == 'conquer') {
+            foreach ($this->getFindWords() as $findWord) {
+                $jsonArray['findWords'][$findWord->getInflection()] = array('id' => $findWord->getId());
+            }
 
-        foreach ($this->getCombos() as $combo) {
-            $jsonArray['combos'][] =
-                [
-                    'id' => $combo->getId(),
-                    'length' => $combo->getLenght(),
-                    'number' => $combo->getNumber(),
-                ];
+            foreach ($this->getCombos() as $combo) {
+                $jsonArray['combos'][] =
+                    [
+                        'id' => $combo->getId(),
+                        'length' => $combo->getLenght(),
+                        'number' => $combo->getNumber(),
+                    ];
+            }
         }
 
         return $jsonArray;

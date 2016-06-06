@@ -13,6 +13,29 @@ use MagicWordBundle\Entity\Round;
 class MassiveController extends Controller
 {
     /**
+     * @Route("/massives", name="massives")
+     * @Method("GET")
+     */
+    public function listMassivesAction()
+    {
+        $massives = $this->getDoctrine()->getRepository('MagicWordBundle:GameType\Massive')->findAll();
+
+        return $this->render('MagicWordBundle:Game/Massive:list.html.twig', array('massives' => $massives));
+    }
+
+    /**
+     * @Route("/my-massives", name="my_massives")
+     * @Method("GET")
+     */
+    public function listMyMassivesAction()
+    {
+        $user = $this->container->get('security.token_storage')->getToken()->getUser()->getId();
+        $massives = $this->getDoctrine()->getRepository('MagicWordBundle:GameType\Massive')->findByAuthor($user);
+
+        return $this->render('MagicWordBundle:Game/Massive:my-list.html.twig', array('massives' => $massives));
+    }
+
+    /**
      * @Route("/massive", name="massive")
      * @Method("GET")
      */

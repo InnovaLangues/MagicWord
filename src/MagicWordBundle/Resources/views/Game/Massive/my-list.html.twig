@@ -1,0 +1,18 @@
+{% extends '::base.html.twig' %}
+
+{% block title %}Liste de mes parties{% endblock %}
+
+{% block body -%}
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h4>Liste de mes parties massives</h4>
+        </div>
+        <ul class="list-group">
+            {% for massive in massives %}
+            <li class="list-group-item">
+                <a href="{{ path('massive_builder', {"id": massive.id}) }}">{{ massive.id }} - {{ massive.name }}</a>
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+{% endblock %}
