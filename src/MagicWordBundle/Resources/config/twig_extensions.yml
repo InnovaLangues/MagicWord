@@ -12,3 +12,11 @@ services:
             "entityManager": "@doctrine.orm.entity_manager"
         tags:
             - { name: twig.extension }
+
+    twig.extension.get_connected:
+        class: MagicWordBundle\Twig\UserExtension
+        arguments:
+            "entityManager": "@doctrine.orm.entity_manager"
+            "userManager": "@mw_manager.user"
+        tags:
+            - { name: twig.extension }

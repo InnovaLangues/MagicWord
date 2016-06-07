@@ -6,7 +6,7 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Table(name="session_pdo")
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="MagicWordBundle\Repository\PDOSessionRepository")
  */
 class PDOSession
 {

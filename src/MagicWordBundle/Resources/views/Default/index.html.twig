@@ -60,6 +60,22 @@
                 </li>
             </ul>
         </div>
+
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h4>
+                    <i class="fa fa-users" aria-hidden="true"></i>
+                    Online
+                </h4>
+            </div>
+            <ul class="list-group">
+                {% for user in get_connected(500) %}
+                <li class="list-group-item">
+                    <a href="#">{{ user.username }}</a>
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
     </div>
 </div>
 {% endblock %}

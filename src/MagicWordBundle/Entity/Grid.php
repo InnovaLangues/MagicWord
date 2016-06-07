@@ -219,6 +219,7 @@ class Grid implements \JsonSerializable
     public function jsonSerialize()
     {
         $jsonArray = array(
+            'id' => $this->id,
             'inflections' => array(),
         );
 
