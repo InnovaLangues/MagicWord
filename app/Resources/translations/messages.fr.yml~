@@ -1,0 +1,8 @@
+login: Se connecter
+logout: 'Se déconnecter'
+register: 'Créer un compte'
+registration.password_confirmation: Confirmation du mot de passe
+registration.password: Mot de passe
+registration.username: Nom d'utilisateur
+user.email: Adresse mail
+create_account: Créer un compte
