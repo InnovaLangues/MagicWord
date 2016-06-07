@@ -157,22 +157,22 @@ class GridManager
         $combos = [];
         foreach ($inflections as $inflection) {
             $lemma = $inflection->getLemma();
+            $form = $inflection->getCleanedContent();
             $lemmaId = $lemma->getId();
 
-            // todo vérifier que le cleanedcontent de la flexion courante
-            // ne soit pas déjà le cleanedContent de l'une des flexions déjà ajoutées
             if (!isset($combos[$lemmaId])) {
-                $combos[$lemmaId] = ['count' => 1, 'lemma' => $lemma, 'inflections' => []];
-            } else {
-                ++$combos[$lemmaId]['count'];
+                $combos[$lemmaId] = ['lemma' => $lemma, 'inflections' => []];
             }
-            $combos[$lemmaId]['inflections'][] = $inflection;
+
+            if (!in_array($form, $combos[$lemmaId]['inflections'])) {
+                $combos[$lemmaId]['inflections'][] = $form;
+            }
         }
 
-        $combos = array_filter($combos, function ($v) {return $v['count'] > 1;});
+        $combos = array_filter($combos, function ($v) {return count($v['inflections']) > 1;});
 
         usort($combos, function ($a, $b) {
-            return $b['count'] - $a['count'];
+            return count($b['inflections']) - count($a['inflections']);
         });
 
         return $combos;
