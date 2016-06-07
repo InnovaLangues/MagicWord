@@ -2,12 +2,14 @@
 <div class="col-md-4">
     <div class="panel panel-default">
         <div class="panel-heading">
-            Objectifs
+            <h3>Objectifs</h3>
         </div>
-        <div class="panel-body">
             {% if round.findWords is not empty %}
             <ul class="list-group">
-                <li href="#" class="list-group-item disabled">Find words</li>
+                <li href="#" class="list-group-item disabled">
+                    <i class="fa fa-binoculars" aria-hidden="true"></i> 
+                    Find words
+                </li>
                 {% for findWord in round.findWords %}
                 <li id="objective-findword-{{ findWord.id }}" class="list-group-item">
                     {{ findWord.hint }}
@@ -18,15 +20,18 @@
 
             {% if round.combos is not empty %}
             <ul class="list-group">
-                <li href="#" class="list-group-item disabled">Combos</li>
+                <li href="#" class="list-group-item disabled">
+                    <i class="fa fa-tachometer" aria-hidden="true"></i>
+                    Combos
+                </li>
                 {% for combo in round.combos %}
                 <li id="objective-combo-{{ combo.id }}" class="list-group-item">
-                    <b>{{ combo.number }}</b> combo de longueur <b>{{ combo.lenght }}</b> 
+                    <b>{{ combo.number }}</b> combo de longueur <b>{{ combo.lenght }}</b>
                 </li>
                 {% endfor %}
             </ul>
             {% endif %}
-        </div>
+
     </div>
 </div>
 {% endif %}
