@@ -14,7 +14,9 @@ class WordboxController extends Controller
      */
     public function displayWordboxAction()
     {
-        return $this->render('MagicWordBundle:Wordbox:index.html.twig');
+        $wordbox = $this->get('mw_manager.wordbox')->getWordbox();
+
+        return $this->render('MagicWordBundle:Wordbox:index.html.twig', ['wordbox' => $wordbox]);
     }
 
     /**
