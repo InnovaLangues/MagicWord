@@ -4,7 +4,7 @@
     <head>
         <meta charset="UTF-8"/>
         <title>
-            {% block title %}Welcome!{% endblock %}
+            {% block title %}MAGIC WORD{% endblock %}
         </title>
         <link rel="stylesheet" href="{{ asset('/css/main.css')}}" type="text/css"/>
         {% block stylesheets %}{% endblock %}
@@ -20,17 +20,17 @@
         {% if logged %}
             <a href="{{ path('fos_user_security_logout') }}" class="btn btn-default">
                 <i class="fa fa-sign-out" aria-hidden="true"></i>
-                Logout
+                {{ 'logout' | trans }}
             </a>
         {% else %}
 
         <a href="{{ path('fos_user_registration_register') }}" class="btn btn-default">
             <i class="fa fa-user-plus" aria-hidden="true"></i>
-            Register
+            {{ 'register' | trans }}
         </a>
         <a href="{{ path('fos_user_security_login') }}" class="btn btn-default">
             <i class="fa fa-sign-in" aria-hidden="true"></i>
-            Login
+            {{ 'login' | trans }}
         </a>
         {% endif %}
         </span>

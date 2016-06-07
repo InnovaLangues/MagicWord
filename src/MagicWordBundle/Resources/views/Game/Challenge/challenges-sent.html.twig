@@ -1,15 +1,15 @@
 {% extends '::base.html.twig' %}
 
-{% block title %}Challenge envoyés{% endblock %}
+{% block title %}{{ 'challenge_sent' | trans }}{% endblock %}
 
 {% block body -%}
     <div class="panel panel-default">
         <div class="panel-heading">
-            <h4>Challenges envoyés</h4>
+            <h4>{{ 'challenge_sent' | trans }}</h4>
         </div>
         <ul class="list-group">
         {% for challenge in challenges %}
-            <li class="list-group-item">à {{ challenge.challenged.username }} le {{ challenge.date|date("m/d/Y") }}
+            <li class="list-group-item">{{ 'to' | trans }} {{ challenge.challenged.username }} - {{ challenge.date|date("m/d/Y") }}
                 <span class="text-muted">({{ challenge.message | truncate(20, true, "...")}})</span>
             </li>
         {% endfor %}

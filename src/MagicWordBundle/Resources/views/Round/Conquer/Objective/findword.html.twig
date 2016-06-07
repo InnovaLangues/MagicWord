@@ -1,14 +1,14 @@
 <div class="panel panel-default">
     <div class="panel-heading">
-        <i class="fa fa-binoculars" aria-hidden="true"></i>  Find words
+        <i class="fa fa-binoculars" aria-hidden="true"></i> {{ 'find_words' | trans }}
         <span class="pull-right">
             <span class="btn btn-default btn-xs" onclick="addWord()" >
                 <i class="fa fa-plus" aria-hidden="true"></i>
-                Ajouter une forme
+                {{ 'add_form' | trans }}
             </span>
             <button type="button" class="btn btn-default  btn-xs" data-toggle="modal" data-target="#helper-inflections">
                 <i class="fa fa-plus" aria-hidden="true"></i>
-                 Ajouter une forme présente
+                 {{ 'add_existing_form' | trans }}
             </button>
         </span>
     </div>

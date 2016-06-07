@@ -6,7 +6,7 @@
                 {{ inflection.lemma.content }} {{ inflection.lemma.category ? "-"~inflection.lemma.category.value : "" }}
             </span>
             <span class="btn btn-default btn-xs pull-right" onclick="addInflection('{{ inflection.cleanedContent }}')">
-                <i class="fa fa-plus" aria-hidden="true"></i> ajouter
+                <i class="fa fa-plus" aria-hidden="true"></i> {{ 'add' | trans }}
             </span>
         </li>
     {% endfor %}

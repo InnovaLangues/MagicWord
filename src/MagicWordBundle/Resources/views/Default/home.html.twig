@@ -7,21 +7,21 @@
             <div class="panel-heading">
                 <h4>
                     <i class="fa fa-gamepad" aria-hidden="true"></i>
-                    Jouer
+                    {{ 'play' | trans }}
                 </h4>
             </div>
             <ul class="list-group">
                 <li class="list-group-item">
-                    <a href="{{ path('train') }}">S'entrainer</a>
+                    <a href="{{ path('train') }}">{{ 'train' | trans }}</a>
                 </li>
                 <li class="list-group-item">
-                    <a href="{{ path('challenge') }}">Défier quelqu'un</a>
+                    <a href="{{ path('challenge') }}">{{ 'challenge' | trans }}</a>
                 </li>
                 <li class="list-group-item">
-                    <a href="{{ path('challenges_received') }}">Défis reçus</a>
+                    <a href="{{ path('challenges_received') }}">{{ 'challenge_received' | trans }}</a>
                 </li>
                 <li class="list-group-item">
-                    <a href="{{ path('massives') }}">Parties massives</a>
+                    <a href="{{ path('massives') }}">{{ 'massives' | trans }}</a>
                 </li>
             </ul>
         </div>
@@ -32,15 +32,15 @@
             <div class="panel-heading">
                 <h4>
                     <i class="fa fa-cogs" aria-hidden="true"></i>
-                    Créer
+                    {{ 'create' | trans }}
                 </h4>
             </div>
             <ul class="list-group">
                 <li class="list-group-item">
-                    <a href="{{ path('massive') }}">Nouvelle partie massive</a>
+                    <a href="{{ path('massive') }}">{{ 'new_massive' | trans }}</a>
                 </li>
                 <li class="list-group-item">
-                    <a href="{{ path('my_massives') }}">Editer partie</a>
+                    <a href="{{ path('my_massives') }}">{{ 'edit_game' | trans }}</a>
                 </li>
             </ul>
         </div>
@@ -51,18 +51,18 @@
             <div class="panel-heading">
                 <h4>
                     <i class="fa fa-user" aria-hidden="true"></i>
-                    Me
+                    {{ 'me' | trans }} <span class="text-muted">({{app.user.username}})</span>
                 </h4>
             </div>
             <ul class="list-group">
                 <li class="list-group-item">
-                    <a href="{{ path('wordbox') }}">Wordbox</a>
+                    <a href="{{ path('wordbox') }}">{{ 'wordbox' | trans }}</a>
                 </li>
                 <li class="list-group-item">
-                    <a href="{{ path('parameters') }}">Paramètres</a>
+                    <a href="{{ path('parameters') }}">{{ 'parameters' | trans }}</a>
                 </li>
                 <li class="list-group-item">
-                    <a href="{{ path('my_friends') }}">Mes amis</a>
+                    <a href="{{ path('my_friends') }}">{{ 'my_friends' | trans }} ({{app.user.friends|length}})</a>
                 </li>
             </ul>
         </div>
@@ -71,7 +71,7 @@
             <div class="panel-heading">
                 <h4>
                     <i class="fa fa-users" aria-hidden="true"></i>
-                    Online
+                    {{ 'online' | trans }}
                 </h4>
             </div>
             <ul class="list-group">

@@ -1,11 +1,11 @@
 {% extends '::base.html.twig' %}
 
-{% block title %}Liste des parties massives{% endblock %}
+{% block title %}{{ 'massives' | trans }}{% endblock %}
 
 {% block body -%}
     <div class="panel panel-default">
         <div class="panel-heading">
-            <h4>Liste des parties massives</h4>
+            <h4>{{ 'massives' | trans }}</h4>
         </div>
         <ul class="list-group">
             {% for massive in massives %}

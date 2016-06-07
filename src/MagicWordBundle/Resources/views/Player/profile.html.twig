@@ -4,12 +4,12 @@
 <div class="panel panel-default">
     <div class="panel-heading">
         <h4>
-            Profil de {{ player.username }}
+            {{ 'profile_of' | trans }} {{ player.username }}
             <span class="pull-right">
                 {% if player in app.user.friends %}
-                    <a class="btn btn-default" href="{{ path('remove_friend', {"id":  player.id}) }}">Retirer des amis</a>
+                    <a class="btn btn-default" href="{{ path('remove_friend', {"id":  player.id}) }}">{{ 'remove__from_friends' | trans }}</a>
                 {% else %}
-                    <a class="btn btn-default" href="{{ path('add_friend', {"id":  player.id}) }}">Ajouter en ami</a>
+                    <a class="btn btn-default" href="{{ path('add_friend', {"id":  player.id}) }}">{{ 'add_to_friends' | trans }}</a>
                 {% endif %}
             </span>
         </h4>

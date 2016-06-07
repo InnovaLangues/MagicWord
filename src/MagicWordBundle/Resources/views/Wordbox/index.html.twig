@@ -3,7 +3,7 @@
 {% block body -%}
     <div class="panel panel-default">
         <div class="panel-heading">
-            <h4>My wordbox ({{ wordbox.acquisitions|length}})</h4>
+            <h4>{{ 'wordbox' | trans }} ({{ wordbox.acquisitions|length}})</h4>
         </div>
         <ul class="list-group">
         {% for acquisition in wordbox.acquisitions %}

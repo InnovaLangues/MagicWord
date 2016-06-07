@@ -2,13 +2,13 @@
 <div class="col-md-4">
     <div class="panel panel-default">
         <div class="panel-heading">
-            <h3>Objectifs</h3>
+            <h3>{{ 'objectives' | trans }}</h3>
         </div>
             {% if round.findWords is not empty %}
             <ul class="list-group">
                 <li href="#" class="list-group-item disabled">
-                    <i class="fa fa-binoculars" aria-hidden="true"></i> 
-                    Find words
+                    <i class="fa fa-binoculars" aria-hidden="true"></i>
+                    {{ 'find_words' | trans }}
                 </li>
                 {% for findWord in round.findWords %}
                 <li id="objective-findword-{{ findWord.id }}" class="list-group-item">
@@ -22,11 +22,11 @@
             <ul class="list-group">
                 <li href="#" class="list-group-item disabled">
                     <i class="fa fa-tachometer" aria-hidden="true"></i>
-                    Combos
+                    {{ 'combos' | trans }}
                 </li>
                 {% for combo in round.combos %}
                 <li id="objective-combo-{{ combo.id }}" class="list-group-item">
-                    <b>{{ combo.number }}</b> combo de longueur <b>{{ combo.lenght }}</b>
+                    <b>{{ combo.number }}</b> {{ 'combos__with_length' | trans }} <b>{{ combo.lenght }}</b>
                 </li>
                 {% endfor %}
             </ul>

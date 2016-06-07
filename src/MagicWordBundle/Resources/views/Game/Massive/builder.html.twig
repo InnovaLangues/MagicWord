@@ -6,25 +6,25 @@
 <div class="panel panel-default">
     <div class="panel-heading">
         <h4>
-            Massive {{ massive.id }} - {{ massive.name }}
+            {{ 'massive' | trans }} {{ massive.id }} - {{ massive.name }}
         </h4>
     </div>
     <div class="panel-body">
-        <h4>Language</h4>
+        <h4>{{ 'language' | trans }}</h4>
         {{ massive.language.name }}
 
-        <h4>Manches ({{ massive.rounds|length }})
+        <h4>{{ 'round' | trans }} ({{ massive.rounds|length }})
             <div class="btn-group">
                 <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <i class="fa fa-plus" aria-hidden="true"></i> Ajouter une manche
+                    <i class="fa fa-plus" aria-hidden="true"></i> {{ 'add_round' | trans }}
                     <span class="caret"></span>
                 </button>
                 <ul class="dropdown-menu">
                     <li>
-                        <a href="{{ path('massive_add_rush', {"id":  massive.id}) }}">Rush</a>
+                        <a href="{{ path('massive_add_rush', {"id":  massive.id}) }}">{{ 'rush' | trans }}</a>
                     </li>
                     <li>
-                        <a href="{{ path('massive_add_conquer', {"id":  massive.id}) }}">Conquer</a>
+                        <a href="{{ path('massive_add_conquer', {"id":  massive.id}) }}">{{ 'conquer' | trans }}</a>
                     </li>
                 </ul>
             </div>
@@ -39,19 +39,19 @@
                     {% if round.discr == "rush" and round.grid %}
                         <a class="btn btn-default btn-xs" href="{{ path('rush', {"id": round.id }) }}">
                             <i class="fa fa-eye" aria-hidden="true"></i>
-                            Voir la grille
+                            {{ 'see_grid' | trans }}
                         </a>
                     {% else %}
                         <a class="btn btn-default btn-xs" href="{{ path('conquer', {"id": round.id }) }}">
                             <i class="fa fa-pencil" aria-hidden="true"></i>
-                            Editer la manche
+                            {{ 'edit_round' | trans }}
                         </a>
                     {% endif %}
 
                     {% if round.grid %}
                     <a class="btn btn-default btn-xs" href="{{ path('round_play', {"id": round.id }) }}">
                         <i class="fa fa-gamepad" aria-hidden="true"></i>
-                        Jouer
+                        {{ 'play' | trans }}
                     </a>
                     {% endif %}
 
