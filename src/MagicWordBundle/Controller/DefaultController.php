@@ -8,7 +8,15 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 class DefaultController extends Controller
 {
     /**
-     * @Route("/", name="hello")
+     * @Route("/home", name="home")
+     */
+    public function homeAction()
+    {
+        return $this->render('MagicWordBundle:Default:home.html.twig');
+    }
+
+    /**
+     * @Route("/", name="index")
      */
     public function indexAction()
     {

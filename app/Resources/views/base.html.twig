@@ -1,3 +1,4 @@
+{% set logged = app.user is not null ? true : false %}
 <!DOCTYPE html>
 <html lang="fr">
     <head>
@@ -10,9 +11,30 @@
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}"/>
     </head>
     <body>
-        <a href="{{ path('hello') }}">
-            <div id="header-logo"></div>
+        <a href="{{ path('home') }}">
+            <div id="header-logo">
+            </div>
         </a>
+
+        <span class="header-buttons">
+        {% if logged %}
+            <a href="{{ path('fos_user_security_logout') }}" class="btn btn-default">
+                <i class="fa fa-sign-out" aria-hidden="true"></i>
+                Logout
+            </a>
+        {% else %}
+
+        <a href="{{ path('fos_user_registration_register') }}" class="btn btn-default">
+            <i class="fa fa-user-plus" aria-hidden="true"></i>
+            Register
+        </a>
+        <a href="{{ path('fos_user_security_login') }}" class="btn btn-default">
+            <i class="fa fa-sign-in" aria-hidden="true"></i>
+            Login
+        </a>
+        {% endif %}
+        </span>
+
         <div class="container">
             {% for label, flashes in app.session.flashbag.all %}
                 {% for flash in flashes %}

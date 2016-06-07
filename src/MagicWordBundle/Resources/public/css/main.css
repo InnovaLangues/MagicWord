@@ -38,3 +38,9 @@ div#header-logo {
     height: 150px;
     border-bottom: 2px solid white;
 }
+
+.header-buttons {
+    position:absolute;
+    top:105px;
+    right:10px;
+}
