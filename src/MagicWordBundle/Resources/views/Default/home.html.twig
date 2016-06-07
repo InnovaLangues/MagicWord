@@ -58,6 +58,12 @@
                 <li class="list-group-item">
                     <a href="{{ path('wordbox') }}">Wordbox</a>
                 </li>
+                <li class="list-group-item">
+                    <a href="{{ path('parameters') }}">Paramètres</a>
+                </li>
+                <li class="list-group-item">
+                    <a href="{{ path('my_friends') }}">Mes amis</a>
+                </li>
             </ul>
         </div>
 
@@ -71,7 +77,7 @@
             <ul class="list-group">
                 {% for user in get_connected(500) %}
                 <li class="list-group-item">
-                    <a href="#">{{ user.username }}</a>
+                    <a href="{{ path('profile', {"id":  user.id}) }}">{{ user.username }}</a>
                 </li>
                 {% endfor %}
             </ul>

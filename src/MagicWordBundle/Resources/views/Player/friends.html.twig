@@ -1,0 +1,18 @@
+{% extends '::base.html.twig' %}
+
+{% block body -%}
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h4>
+            Mes amis
+        </h4>
+    </div>
+    <ul class="list-group">
+    {% for player in app.user.friends %}
+        <li class="list-group-item">
+            <a href="{{ path('profile', {"id":  player.id}) }}">{{ player.username }}</a>
+        </li>
+    {% endfor %}
+    </ul>
+</div>
+{% endblock %}

@@ -3,6 +3,8 @@
 namespace  MagicWordBundle\Manager;
 
 use JMS\DiExtraBundle\Annotation as DI;
+use MagicWordBundle\Form\Type\PlayerType;
+use Symfony\Component\HttpFoundation\Request;
 
 /**
  * @DI\Service("mw_manager.user")
@@ -11,20 +13,20 @@ class UserManager
 {
     protected $em;
     protected $tokenStorage;
-    protected $acquisitionManager;
+    protected $formFactory;
 
     /**
      * @DI\InjectParams({
      *      "entityManager" = @DI\Inject("doctrine.orm.entity_manager"),
      *      "tokenStorage" = @DI\Inject("security.token_storage"),
-     *      "acquisitionManager" = @DI\Inject("mw_manager.acquisition"),
+     *      "formFactory" = @DI\Inject("form.factory"),
      * })
      */
-    public function __construct($entityManager, $tokenStorage, $acquisitionManager)
+    public function __construct($entityManager, $tokenStorage, $formFactory)
     {
         $this->em = $entityManager;
         $this->tokenStorage = $tokenStorage;
-        $this->acquisitionManager = $acquisitionManager;
+        $this->formFactory = $formFactory;
     }
 
     public function getConnected($threshold)
@@ -45,11 +47,50 @@ class UserManager
             $data = unserialize($data);
             $username = $data->getUser()->getUsername();
             $user = $this->em->getRepository('MagicWordBundle:Player')->findOneByUsername($username);
-            if (!in_array($user, $connectedUsers)) {
+            if (!in_array($user, $connectedUsers) && !$user->getHidden()) {
                 $connectedUsers[] = $user;
             }
         }
 
         return $connectedUsers;
+    }
+
+    public function getParametersForm()
+    {
+        $currentUser = $this->tokenStorage->getToken()->getUser();
+        $form = $this->formFactory->createBuilder(PlayerType::class, $currentUser)->getForm();
+
+        return $form;
+    }
+
+    public function handleParametersForm(Request $request)
+    {
+        $currentUser = $this->tokenStorage->getToken()->getUser();
+
+        $form = $this->formFactory->createBuilder(PlayerType::class, $currentUser)->getForm();
+        $form->handleRequest($request);
+
+        if ($form->isValid()) {
+            $this->em->persist($currentUser);
+            $this->em->flush();
+        }
+
+        return $currentUser;
+    }
+
+    public function addFriend($friend)
+    {
+        $currentUser = $this->tokenStorage->getToken()->getUser();
+        $currentUser->addFriend($friend);
+        $this->em->persist($currentUser);
+        $this->em->flush();
+    }
+
+    public function removeFriend($friend)
+    {
+        $currentUser = $this->tokenStorage->getToken()->getUser();
+        $currentUser->removeFriend($friend);
+        $this->em->persist($currentUser);
+        $this->em->flush();
     }
 }

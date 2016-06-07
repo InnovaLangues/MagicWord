@@ -1,0 +1,26 @@
+{% extends '::base.html.twig' %}
+
+{% block body -%}
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h4>
+            Profil de {{ player.username }}
+            <span class="pull-right">
+                {% if player in app.user.friends %}
+                    <a class="btn btn-default" href="{{ path('remove_friend', {"id":  player.id}) }}">Retirer des amis</a>
+                {% else %}
+                    <a class="btn btn-default" href="{{ path('add_friend', {"id":  player.id}) }}">Ajouter en ami</a>
+                {% endif %}
+            </span>
+        </h4>
+    </div>
+    <div class="panel-body">
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam eleifend lacinia nulla ac luctus.
+        Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae;
+        Duis tempor turpis eget erat faucibus, eget vehicula magna elementum.
+        Sed aliquet semper neque, ac ornare ipsum varius vitae. Vestibulum sagittis dui eu finibus dictum.
+        Ut at orci ac nisi porttitor commodo eget pellentesque ligula. Sed elementum nibh non tempus bibendum.
+        Nullam volutpat nulla arcu, ut venenatis felis cursus quis.
+    </div>
+</div>
+{% endblock %}

@@ -33,6 +33,13 @@ class Player extends BaseUser
     private $friends;
 
     /**
+     * @var bool
+     *
+     * @ORM\Column(name="hidden", type="boolean")
+     */
+    private $hidden = false;
+
+    /**
      * @ORM\ManyToOne(targetEntity="Language")
      */
     private $language;
@@ -117,5 +124,29 @@ class Player extends BaseUser
     public function getLanguage()
     {
         return $this->language;
+    }
+
+    /**
+     * Set hidden
+     *
+     * @param boolean $hidden
+     *
+     * @return Player
+     */
+    public function setHidden($hidden)
+    {
+        $this->hidden = $hidden;
+
+        return $this;
+    }
+
+    /**
+     * Get hidden
+     *
+     * @return boolean
+     */
+    public function getHidden()
+    {
+        return $this->hidden;
     }
 }
