@@ -1,47 +1,58 @@
-add_combo: Ajouter un combo
-add_existing_form: Ajouter une forme existante
-add_form: Ajouter une forme
+add_combo: 'Ajouter un combo'
+add_existing_form: 'Ajouter une forme existante'
+add_form: 'Ajouter une forme'
 add_round: 'Ajouter une manche'
-add_to_friends: Ajouter aux amis
+add_to_friends: 'Ajouter aux amis'
 add: Ajouter
-back_to_editor: etour à l'editeur de partie
+back_to_editor: 'Retour à l''éditeur de partie'
 challenge_received: 'Défis reçus'
 challenge_sent: 'Défis envoyés'
 challenge_someone: 'Défier quelqu''un'
 challenge: Défier
+challenged: 'Joueur défié'
 close: Fermer
-combos__with_length: combo(s) de longueur
+combo_length: 'Longueur des combos'
+combo_number: 'Nombre de combos'
+combos__with_length: 'combo(s) de longueur'
 combos: Combos
 conquer: Conquer
 create: Créer
+description: Description
 edit_game: 'Editer partie'
 edit_round: 'Editer la manche'
-existing_forms: Formes présentes
+existing_forms: 'Formes présentes'
 find_words: FindWord
-forms_found: Formes trouvées
+form: Forme
+forms_found: 'Formes trouvées'
+french: Français
 from: 'De la part de'
-generate_grid: Générer Grille
+generate_grid: 'Générer Grille'
 grid: Grille
+hidden: 'Masquer sa présence'
+hint: Indice
 language: Langue
 massive: 'Partie massive'
 massives: 'Parties massives'
 me: Moi
+message: Message
 my_friends: 'Mes amis'
 my_massives: 'Mes parties massives'
+name: Nom
 new_massive: 'Nouvelle partie massive'
 objectives: Objectifs
 online: 'En ligne'
 parameters: Paramètres
 play: Jouer
-profile_of: Profil de
-remove__from_friends: Retirer des amis
+profile_of: 'Profil de'
+remove__from_friends: 'Retirer des amis'
 round: Manche
 rush: Rush
-save_grid: Sauvegarder la grille
-save_objectives: Sauvegarder les objectifs
-see_combos: Voir les combos
+save_grid: 'Sauvegarder la grille'
+save_objectives: 'Sauvegarder les objectifs'
+save: Sauvegarder
+see_combos: 'Voir les combos'
 see_grid: 'Voir la grille'
 to: à
 train: 'S''entrainer'
-update: Mettre à jour
+update: 'Mettre à jour'
 wordbox: Wordbox

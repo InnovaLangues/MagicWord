@@ -14,21 +14,28 @@ class MassiveType extends AbstractType
     {
         $builder->add('name', TextType::class, array(
             'attr' => array('class' => 'form-control'),
+            'label' => 'name',
+            'translation_domain' => 'messages',
         ));
 
         $builder->add('description', TextType::class, array(
             'attr' => array('class' => 'form-control'),
+            'label' => 'description',
+            'translation_domain' => 'messages',
         ));
 
         $builder->add('language', EntityType::class, array(
            'class' => 'MagicWordBundle:Language',
            'choice_label' => 'name',
+           'label' => 'language',
+           'translation_domain' => 'messages',
+           'choice_translation_domain' => 'messages',
            'attr' => array('class' => 'form-control'),
         ));
 
         $builder->add('save', SubmitType::class, array(
             'attr' => array('class' => 'btn btn-default'),
-            'label' => 'generic.validate',
+            'label' => 'save',
             'translation_domain' => 'messages',
         ));
     }

@@ -15,7 +15,8 @@ class FindWordType extends AbstractType
                 'attr' => [
                     'data-field' => 'inflection',
                     'pattern' => '[A-Za-z]+',
-                    'placeholder' => 'Forme',
+                    'placeholder' => 'form',
+                    'translation_domain' => 'messages',
                 ],
             )
         );
@@ -23,7 +24,8 @@ class FindWordType extends AbstractType
         $builder->add('hint', TextType::class, array(
             'attr' => [
                 'data-field' => 'hint',
-                'placeholder' => 'Indice',
+                'placeholder' => 'hint',
+                'translation_domain' => 'messages',
             ],
         ));
     }

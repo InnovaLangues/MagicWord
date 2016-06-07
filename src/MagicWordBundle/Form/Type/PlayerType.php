@@ -15,17 +15,20 @@ class PlayerType extends AbstractType
         $builder->add('hidden', CheckboxType::class, array(
             'label' => 'hidden',
             'required' => false,
+            'translation_domain' => 'messages',
         ));
 
         $builder->add('language', EntityType::class, array(
            'class' => 'MagicWordBundle:Language',
            'choice_label' => 'name',
            'attr' => array('class' => 'form-control'),
+           'translation_domain' => 'messages',
+           'choice_translation_domain' => 'messages',
         ));
 
         $builder->add('save', SubmitType::class, array(
             'attr' => array('class' => 'btn btn-default'),
-            'label' => 'submit',
+            'label' => 'save',
             'translation_domain' => 'messages',
         ));
     }

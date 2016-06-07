@@ -14,16 +14,20 @@ class ChallengeType extends AbstractType
     {
         $builder->add('message', TextType::class, array(
             'attr' => array('class' => 'form-control'),
+            'label' => 'message',
+            'translation_domain' => 'messages',
         ));
 
         $builder->add('challenged', EntityType::class, array(
            'class' => 'MagicWordBundle:Player',
            'attr' => array('class' => 'form-control'),
+           'label' => 'challenged',
+           'translation_domain' => 'messages',
        ));
 
         $builder->add('save', SubmitType::class, array(
             'attr' => array('class' => 'btn btn-default'),
-            'label' => 'generic.validate',
+            'label' => 'save',
             'translation_domain' => 'messages',
         ));
     }

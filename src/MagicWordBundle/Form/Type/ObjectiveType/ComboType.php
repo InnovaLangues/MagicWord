@@ -14,14 +14,16 @@ class ComboType extends AbstractType
         $builder->add('lenght', IntegerType::class,  array(
             'attr' => [
                 'data-field' => 'lenght',
-                'placeholder' => 'Longueur',
+                'placeholder' => 'combo_length',
+                'translation_domain' => 'messages',
             ],
         ));
 
         $builder->add('number', IntegerType::class,  array(
             'attr' => [
                 'data-field' => 'number',
-                'placeholder' => 'Nombre de combos',
+                'placeholder' => 'combo_number',
+                'translation_domain' => 'messages',
             ],
         ));
     }
