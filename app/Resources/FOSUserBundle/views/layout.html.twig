@@ -1,12 +1,6 @@
 {% extends '::base.html.twig' %}
 
 {% block body %}
-<div class="panel panel-default">
-    <div class="panel-body">
-        <div>
-            {% block fos_user_content %}
-            {% endblock fos_user_content %}
-        </div>
-    </div>
-</div>
+    {% block fos_user_content %}
+    {% endblock fos_user_content %}
 {% endblock %}

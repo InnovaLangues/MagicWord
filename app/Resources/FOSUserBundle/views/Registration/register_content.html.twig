@@ -1,57 +1,62 @@
-
-<form action="{{ path('fos_user_registration_register') }}" method="post" class="form-horizontal fos_user_registration_register" autocomplete="off">
-    <div class="tab-pane fade active in" id="step1">
-        <div class="form-group">
-            <span class="form-error">{{ form_errors(form.email) }}</span>
-            <label class="col-md-3 control-label required" for="fos_user_registration_form_email">
-                {{ 'user.email' | trans({}, 'messages') }}
-            </label>
-            <div class="col-md-4">
-                <input value="{{ form.vars.value.email }}" class="form-control" id="fos_user_registration_form_email" type="email" required="required" name="fos_user_registration_form[email]">
-            </div>
-            <div class="col-md-offset-5">
-            </div>
-        </div>
-
-        <div class="form-group">
-            <span class="form-error">{{ form_errors(form.username) }}</span>
-            <label class="col-md-3 control-label required" for="fos_user_registration_form_username">
-                {{ 'registration.username' | trans({}, 'messages') }}
-            </label>
-            <div class="col-md-4">
-                <input value="{{ form.vars.value.username }}" class="form-control" id="fos_user_registration_form_username" type="text" maxlength="255" required="required" name="fos_user_registration_form[username]">
-            </div>
-            <div class="col-md-offset-5">
-            </div>
-        </div>
-        <div class="form-group">
-            <span class="form-error">{{ form_errors(form.plainPassword.first) }}</span>
-            <label class="col-md-3 control-label required" for="fos_user_registration_form_plainPassword_first">
-                {{ 'registration.password' | trans({}, 'messages') }}
-            </label>
-            <div class="col-md-4">
-                <input class="form-control" id="fos_user_registration_form_plainPassword_first" type="password" required="required" name="fos_user_registration_form[plainPassword][first]">
-            </div>
-            <div class="col-md-offset-5">
-            </div>
-        </div>
-        <div class="form-group">
-            <label class="col-md-3 control-label required" for="fos_user_registration_form_plainPassword_second">
-                {{ 'registration.password_confirmation' | trans({}, 'messages') }}
-            </label>
-            <div class="col-md-4">
-                <input class="form-control" id="fos_user_registration_form_plainPassword_second" type="password" required="required" name="fos_user_registration_form[plainPassword][second]">
-            </div>
-            <div class="col-md-offset-5">
-            </div>
-        </div>
-
-        <div class="form-group">
-            {{ form_widget(form._token) }}
-            <div class="col-md-offset-4 col-md-8">
-                <input type="submit" id="_submit" name="_submit" value="{{ 'create_account' | trans({}, 'messages') }}" class="btn btn-primary"/>
-            </div>
-        </div>
-
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h4>Inscription</h4>
     </div>
-</form>
+    <div class="panel-body">
+        <form action="{{ path('fos_user_registration_register') }}" method="post" class="form-horizontal fos_user_registration_register" autocomplete="off">
+            <div class="tab-pane fade active in" id="step1">
+                <div class="form-group">
+                    <span class="form-error">{{ form_errors(form.email) }}</span>
+                    <label class="col-md-3 control-label required" for="fos_user_registration_form_email">
+                        {{ 'user.email' | trans({}, 'messages') }}
+                    </label>
+                    <div class="col-md-4">
+                        <input value="{{ form.vars.value.email }}" class="form-control" id="fos_user_registration_form_email" type="email" required="required" name="fos_user_registration_form[email]">
+                    </div>
+                    <div class="col-md-offset-5">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <span class="form-error">{{ form_errors(form.username) }}</span>
+                    <label class="col-md-3 control-label required" for="fos_user_registration_form_username">
+                        {{ 'registration.username' | trans({}, 'messages') }}
+                    </label>
+                    <div class="col-md-4">
+                        <input value="{{ form.vars.value.username }}" class="form-control" id="fos_user_registration_form_username" type="text" maxlength="255" required="required" name="fos_user_registration_form[username]">
+                    </div>
+                    <div class="col-md-offset-5">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <span class="form-error">{{ form_errors(form.plainPassword.first) }}</span>
+                    <label class="col-md-3 control-label required" for="fos_user_registration_form_plainPassword_first">
+                        {{ 'registration.password' | trans({}, 'messages') }}
+                    </label>
+                    <div class="col-md-4">
+                        <input class="form-control" id="fos_user_registration_form_plainPassword_first" type="password" required="required" name="fos_user_registration_form[plainPassword][first]">
+                    </div>
+                    <div class="col-md-offset-5">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-3 control-label required" for="fos_user_registration_form_plainPassword_second">
+                        {{ 'registration.password_confirmation' | trans({}, 'messages') }}
+                    </label>
+                    <div class="col-md-4">
+                        <input class="form-control" id="fos_user_registration_form_plainPassword_second" type="password" required="required" name="fos_user_registration_form[plainPassword][second]">
+                    </div>
+                    <div class="col-md-offset-5">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    {{ form_widget(form._token) }}
+                    <div class="col-md-offset-4 col-md-8">
+                        <input type="submit" id="_submit" name="_submit" value="{{ 'create_account' | trans({}, 'messages') }}" class="btn btn-primary"/>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
