@@ -25,7 +25,7 @@ class LetterPointExtension extends \Twig_Extension
     public function getFunctions()
     {
         return array(
-            'get_point' => new \Twig_Function_Method($this, 'getPoint'),
+            new \Twig_SimpleFunction('get_point', array($this, 'getPoint')),
         );
     }
 

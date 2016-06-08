@@ -23,7 +23,7 @@ class UserExtension extends \Twig_Extension
     public function getFunctions()
     {
         return array(
-            'get_connected' => new \Twig_Function_Method($this, 'getConnected'),
+            new \Twig_SimpleFunction('get_connected', array($this, 'getConnected')),
         );
     }
 

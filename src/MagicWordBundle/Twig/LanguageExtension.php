@@ -21,7 +21,7 @@ class LanguageExtension extends \Twig_Extension
     public function getFunctions()
     {
         return array(
-            'get_languages' => new \Twig_Function_Method($this, 'getLanguages'),
+            new \Twig_SimpleFunction('get_languages', array($this, 'getLanguages')),
         );
     }
 
