@@ -14,19 +14,22 @@ class UserManager
     protected $em;
     protected $tokenStorage;
     protected $formFactory;
+    protected $session;
 
     /**
      * @DI\InjectParams({
      *      "entityManager" = @DI\Inject("doctrine.orm.entity_manager"),
      *      "tokenStorage" = @DI\Inject("security.token_storage"),
      *      "formFactory" = @DI\Inject("form.factory"),
+     *      "session" = @DI\Inject("session"),
      * })
      */
-    public function __construct($entityManager, $tokenStorage, $formFactory)
+    public function __construct($entityManager, $tokenStorage, $formFactory, $session)
     {
         $this->em = $entityManager;
         $this->tokenStorage = $tokenStorage;
         $this->formFactory = $formFactory;
+        $this->session = $session;
     }
 
     public function getConnected($threshold)
@@ -74,6 +77,8 @@ class UserManager
             $this->em->persist($currentUser);
             $this->em->flush();
         }
+
+        $this->session->set('_locale', $currentUser->getLanguageUI()->getValue());
 
         return $currentUser;
     }

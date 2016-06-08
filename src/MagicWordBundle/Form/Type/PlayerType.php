@@ -19,11 +19,21 @@ class PlayerType extends AbstractType
         ));
 
         $builder->add('language', EntityType::class, array(
+           'label' => 'game_language',
            'class' => 'MagicWordBundle:Language',
            'choice_label' => 'name',
            'attr' => array('class' => 'form-control'),
            'translation_domain' => 'messages',
            'choice_translation_domain' => 'messages',
+        ));
+
+        $builder->add('languageUI', EntityType::class, array(
+            'label' => 'language_ui',
+            'class' => 'MagicWordBundle:LanguageUI',
+            'choice_label' => 'name',
+            'attr' => array('class' => 'form-control'),
+            'translation_domain' => 'messages',
+            'choice_translation_domain' => 'messages',
         ));
 
         $builder->add('save', SubmitType::class, array(

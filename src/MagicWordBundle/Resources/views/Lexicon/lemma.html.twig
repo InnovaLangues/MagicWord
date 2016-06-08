@@ -3,25 +3,25 @@
 {% block body -%}
 <div class="panel panel-default">
     <div class="panel-heading">
-        info sur lemme {{ lemma.id }}
+        <h4>
+            {{ "lemma_info" | trans}} <strong>{{ lemma.content }}</strong>
+            <span class="pull-right">
+                <a class="btn btn-default" href="{{ path('add-to-wordbox', {"id":  lemma.id }) }}">{{ "add_to_wordbox" | trans}}</a>
+            </span>
+        </h4>
     </div>
     <div class="panel-body">
-        <h2>lemme</h2>
-        {{ lemma.content }}
-
-        <h2>Phonétiques</h2>
+        <h3>{{ "phonetic" | trans}}</h3>
         {{ lemma.phonetic1 }} - {{ lemma.phonetic2 }}
 
-        <h2>Genre</h2>
+        <h3>{{ "gender" | trans}}</h3>
         {{ lemma.gender ? lemma.gender.value : "-" }}
 
-        <h2>Catégorie</h2>
+        <h3>{{ "category" | trans}}</h3>
         {{ lemma.category ? lemma.category.value : "-" }}
 
-        <h2>Subcatégorie</h2>
+        <h3>{{ "subcategory" | trans}}</h3>
         {{ lemma.subcategory ? lemma.subcategory.value : "-" }}
-
-        <a href="{{ path('add-to-wordbox', {"id":  lemma.id }) }}">ajouter à ma wordbox</a>
     </div>
 </div>
 {% endblock %}

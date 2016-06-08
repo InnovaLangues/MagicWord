@@ -154,28 +154,4 @@ class Player extends BaseUser
     {
         return $this->hidden;
     }
-
-    /**
-     * Set languageUI
-     *
-     * @param \MagicWordBundle\Entity\LanguageUI $languageUI
-     *
-     * @return Player
-     */
-    public function setLanguageUI(\MagicWordBundle\Entity\LanguageUI $languageUI = null)
-    {
-        $this->languageUI = $languageUI;
-
-        return $this;
-    }
-
-    /**
-     * Get languageUI
-     *
-     * @return \MagicWordBundle\Entity\LanguageUI
-     */
-    public function getLanguageUI()
-    {
-        return $this->languageUI;
-    }
 }

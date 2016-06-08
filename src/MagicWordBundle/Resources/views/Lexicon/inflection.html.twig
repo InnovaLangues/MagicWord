@@ -3,32 +3,33 @@
 {% block body -%}
 <div class="panel panel-default">
     <div class="panel-heading">
-        info sur flexion {{ inflection.id }}
+        <h4>
+            {{ "inflexion_info" | trans}} {{ inflection.content }}
+            <span class="pull-right">
+                <a class="btn btn-default" href="{{ path('add-to-wordbox', {"id":  inflection.lemma.id }) }}">{{ "add_to_wordbox" | trans}}</a>
+            </span>
+        </h4>
     </div>
     <div class="panel-body">
-
-        <h2>lemme</h2>
+        <h2>{{ "lemma" | trans}}</h2>
         <a href="{{ path('lemma', {"id":  inflection.lemma.id}) }}">{{ inflection.lemma.content }}</a>
 
-        <h2>flexion</h2>
-        {{ inflection.content }}
-
-        <h2>flexion nettoyé</h2>
+        <h2>{{ "cleaned_content" | trans}}</h2>
         {{ inflection.cleanedContent ?  inflection.cleanedContent : "-" }}
 
-        <h2>Phonétiques</h2>
+        <h2>{{ "phonetic" | trans}}</h2>
         {{ inflection.phonetic1 }} - {{ inflection.phonetic2 }}
 
-        <h2>Personne</h2>
+        <h2>{{ "person" | trans}}</h2>
         {{ inflection.person ? inflection.person.value : "-" }}
 
-        <h2>Genre</h2>
+        <h2>{{ "gender" | trans}}</h2>
         {{ inflection.gender ? inflection.gender.value : "-" }}
 
-        <h2>Temps</h2>
+        <h2>{{ "tense" | trans}}</h2>
         {{ inflection.tense ? inflection.tense.value : "-" }}
 
-        <h2>Mode</h2>
+        <h2>{{ "mood" | trans}}</h2>
         {{ inflection.mood ? inflection.mood.value : "-" }}
     </div>
 </div>

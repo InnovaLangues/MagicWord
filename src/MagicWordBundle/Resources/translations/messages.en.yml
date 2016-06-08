@@ -1,0 +1,73 @@
+add_combo: 'Add a combo'
+add_existing_form: 'Add existing form'
+add_form: 'Add a form'
+add_round: 'Add a round'
+add_to_friends: 'Add to friends'
+add_to_wordbox: Add to wordbox
+add: Add
+back_to_editor: 'Back to editor'
+category: Category
+challenge_received: 'Challenges received'
+challenge_sent: 'Challenges sent'
+challenge_someone: 'Challenge someone'
+challenge: Challenge
+challenged: Challenged player
+cleaned_content: Cleaned form
+close: Close
+combo_length: Combo length
+combo_number: Combo count
+combos__with_length: 'combo(s) with a length of'
+combos: Combos
+conquer: Conquer
+create: Create
+description: Description
+edit_game: Edit games
+edit_round: Edit round
+english: English
+existing_forms: 'Present forms'
+find_words: FindWord
+form: Form
+forms_found: 'Found forms'
+french: French
+from: 'From'
+game_language: Game language
+gender: Genre
+generate_grid: 'Generate grid'
+grid: Grid
+hidden: 'Hide presence'
+hint: Hint
+inflexion_info: Infos about form
+language_ui: UI Language
+language: Language
+lemma_info: Infos about lemma
+lemma: Lemma
+massive: Massive game
+massives: 'Massive games'
+me: Me
+message: Message
+mood: Mood
+my_friends: 'My friends'
+my_massives: 'My massive games'
+name: Name
+new_massive: New massive game
+objectives: Objectives
+online: 'Online'
+parameters: Parameters
+person: Person
+phonetic: Phonetic
+play: Play
+profile_of: 'Profil'
+remove__from_friends: Remove from friends
+round: Round
+rush: Rush
+save_grid: Save the grid
+save_objectives: Save objectives
+save: Save
+see_combos: See combos
+see_grid: See grid
+subcategory: Subcategory
+tense: Tense
+to: to
+train: 'Train'
+update: 'update'
+wordbox: Wordbox

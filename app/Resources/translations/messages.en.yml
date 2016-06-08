@@ -1,0 +1,8 @@
+login: 'Connect'
+logout: 'Disconnect'
+register: 'Create account'
+registration.password_confirmation: 'Password confirmation'
+registration.password: 'Password'
+registration.username: 'Username'
+user.email: 'Email'
+create_account: 'Create account'

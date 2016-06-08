@@ -3,13 +3,16 @@ add_existing_form: 'Ajouter une forme existante'
 add_form: 'Ajouter une forme'
 add_round: 'Ajouter une manche'
 add_to_friends: 'Ajouter aux amis'
+add_to_wordbox: Ajouter à ma wordbox
 add: Ajouter
 back_to_editor: 'Retour à l''éditeur de partie'
+category: Catégorie
 challenge_received: 'Défis reçus'
 challenge_sent: 'Défis envoyés'
 challenge_someone: 'Défier quelqu''un'
 challenge: Défier
 challenged: 'Joueur défié'
+cleaned_content: Flexion "nettoyée"
 close: Fermer
 combo_length: 'Longueur des combos'
 combo_number: 'Nombre de combos'
@@ -20,21 +23,29 @@ create: Créer
 description: Description
 edit_game: 'Editer partie'
 edit_round: 'Editer la manche'
+english: Anglais
 existing_forms: 'Formes présentes'
 find_words: FindWord
 form: Forme
 forms_found: 'Formes trouvées'
 french: Français
 from: 'De la part de'
+game_language: Langue du jeu
+gender: Genre
 generate_grid: 'Générer Grille'
 grid: Grille
 hidden: 'Masquer sa présence'
 hint: Indice
+inflexion_info: Infos sur la flexion
+language_ui: Langue de l'interface
 language: Langue
+lemma_info: Infos sur le lemme
+lemma: Lemme
 massive: 'Partie massive'
 massives: 'Parties massives'
 me: Moi
 message: Message
+mood: Mode
 my_friends: 'Mes amis'
 my_massives: 'Mes parties massives'
 name: Nom
@@ -42,6 +53,8 @@ new_massive: 'Nouvelle partie massive'
 objectives: Objectifs
 online: 'En ligne'
 parameters: Paramètres
+person: Personne
+phonetic: Phonétique
 play: Jouer
 profile_of: 'Profil de'
 remove__from_friends: 'Retirer des amis'
@@ -52,6 +65,8 @@ save_objectives: 'Sauvegarder les objectifs'
 save: Sauvegarder
 see_combos: 'Voir les combos'
 see_grid: 'Voir la grille'
+subcategory: Subcatégorie
+tense: Temps
 to: à
 train: 'S''entrainer'
 update: 'Mettre à jour'
