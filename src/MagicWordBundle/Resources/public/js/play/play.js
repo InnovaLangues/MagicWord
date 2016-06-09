@@ -4,6 +4,7 @@ $(document).ready(function () {
 		grid.draw();
 		localstor.init();
 		clock.init();
+		$("#game-container").show();
 	});
 
 });

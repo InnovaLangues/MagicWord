@@ -10,7 +10,7 @@ var clock = {
 			: this.start - this.delta;
 
 
-		if (startTime > 0) {
+		if (startTime > 0 || roundJSON.type == "conquer") {
 			var testClock = $('#clock').FlipClock( startTime, {
 				countdown: clock.countdown,
 				clockFace: 'MinuteCounter',
