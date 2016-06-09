@@ -15,8 +15,39 @@ class Massive extends Game
 {
     protected $discr = 'massive';
 
+    /**
+     * @var bool
+     *
+     * @ORM\Column(name="published", type="boolean")
+     */
+    private $published = 0;
+
     public function getDiscr()
     {
         return $this->discr;
+    }
+
+    /**
+     * Set published.
+     *
+     * @param bool $published
+     *
+     * @return Massive
+     */
+    public function setPublished($published)
+    {
+        $this->published = $published;
+
+        return $this;
+    }
+
+    /**
+     * Get published.
+     *
+     * @return bool
+     */
+    public function getPublished()
+    {
+        return $this->published;
     }
 }

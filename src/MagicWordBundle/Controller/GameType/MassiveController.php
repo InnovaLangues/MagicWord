@@ -18,7 +18,7 @@ class MassiveController extends Controller
      */
     public function listMassivesAction()
     {
-        $massives = $this->getDoctrine()->getRepository('MagicWordBundle:GameType\Massive')->findAll();
+        $massives = $this->getDoctrine()->getRepository('MagicWordBundle:GameType\Massive')->findBy(['published' => 1]);
 
         return $this->render('MagicWordBundle:Game/Massive:list.html.twig', array('massives' => $massives));
     }
