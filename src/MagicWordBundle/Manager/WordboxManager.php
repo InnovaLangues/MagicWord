@@ -40,7 +40,7 @@ class WordboxManager
 
     public function addToWordbox(Lemma $lemma, $acquisitionType)
     {
-        $user = $this->tokenStorage->getToken()->getUser();
+        $wordbox = $this->getWordbox();
 
         $acquisitionType = $this->em->getRepository("MagicWordBundle:Wordbox\AcquisitionType")->findOneByValue($acquisitionType);
         if ($acquisition = $this->acquisitionManager->create($wordbox, $acquisitionType, $lemma)) {

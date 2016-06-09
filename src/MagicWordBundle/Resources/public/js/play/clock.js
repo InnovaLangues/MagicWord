@@ -9,7 +9,7 @@ var clock = {
 			language : 'french',
 			callbacks: {
 		        stop: function () {
-		        //var time = testClock.getTime().time;
+			        activity.end(testClock.getTime().time);
 		        }
 			}
 		});

@@ -17,4 +17,15 @@ class RoundController extends Controller
     {
         return $this->render('MagicWordBundle:Round:play.html.twig', array('round' => $round));
     }
+
+    /**
+     * @Route("/round/{id}/end", name="round_end", options={"expose"=true})
+     * @ParamConverter("round", class="MagicWordBundle:Round")
+     */
+    public function endAction(Round $round)
+    {
+        $activity = $this->get('mw_manager.activity')->getActivity($round);
+
+        return $this->render('MagicWordBundle:Round:end.html.twig', array('round' => $round, 'activity' => $activity));
+    }
 }

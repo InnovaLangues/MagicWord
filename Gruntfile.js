@@ -36,6 +36,7 @@ module.exports = function(grunt) {
                         "bower_components/bootstrap/dist/js/bootstrap.min.js",
                         'web/bundles/fosjsrouting/js/router.js',
                         'src/MagicWordBundle/Resources/public/js/main.js',
+                        'src/MagicWordBundle/Resources/public/js/wordbox.js',
                     ],
                     'web/js/grid_creation.js': [
                         "src/MagicWordBundle/Resources/public/js/bologne.js",
@@ -43,12 +44,14 @@ module.exports = function(grunt) {
                     ],
                     'web/js/play.js': [
                         "bower_components/FlipClock/compiled/flipclock.min.js",
+                        "src/MagicWordBundle/Resources/public/js/play/activity.js",
                         "src/MagicWordBundle/Resources/public/js/play/clock.js",
-                        "src/MagicWordBundle/Resources/public/js/play/play.js",
-                        "src/MagicWordBundle/Resources/public/js/play/combo.js",
+                        "src/MagicWordBundle/Resources/public/js/play/objective-combo.js",
+                        "src/MagicWordBundle/Resources/public/js/play/objective-findword.js",
                         "src/MagicWordBundle/Resources/public/js/play/word.js",
                         "src/MagicWordBundle/Resources/public/js/play/grid.js",
-                        "src/MagicWordBundle/Resources/public/js/play/localstorage.js"
+                        "src/MagicWordBundle/Resources/public/js/play/localstorage.js",
+                        "src/MagicWordBundle/Resources/public/js/play/play.js",
                     ]
 
                 }

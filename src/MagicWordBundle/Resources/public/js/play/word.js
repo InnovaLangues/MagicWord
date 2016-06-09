@@ -2,17 +2,6 @@ var words = {
 	word: '',
 	foundWords: [],
 
-	inWordsToFound: function(inflection){
-		if (roundJSON.findWords.hasOwnProperty(inflection.toLowerCase())){
-		 	var findWordId = roundJSON.findWords[inflection.toLowerCase()].id;
-			$("#objective-findword-"+findWordId).addClass("list-group-item-success").append(' ('+ inflection +')');
-
-			return true;
-		}
-
-		return false;
-	},
-
 	inInflections: function(inflection){
 		var inInflections = gridJSON.inflections.hasOwnProperty(inflection.toLowerCase())
 			? true
@@ -35,7 +24,9 @@ var words = {
 		var typedInflection = (!isCorrect) ? "<s>"+inflection+"</s>" : inflection;
 		$("#inflections-found").prepend("<li class='list-group-item'>"+typedInflection+"</li>");
 
+
 		if(isCorrect){
+			activity.sendFoundWord(inflection, 0);
 			localstor.add(inflection);
 		}
 
@@ -46,7 +37,7 @@ var words = {
 
 		if (!this.alreadyFound(inflection)) {
 			if (this.inInflections(inflection)){
-				var inWordsToFound = this.inWordsToFound(inflection);
+				var inWordsToFound = findword.inWordsToFound(inflection);
 				this.addToFoundWords(inflection.toLowerCase(), inWordsToFound, true);
 				combo.handleNewInflection(inflection);
 			} else {
