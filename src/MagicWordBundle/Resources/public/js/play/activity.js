@@ -9,7 +9,6 @@ var activity = {
               dataType: "json",
           })
           .done(function(data) {
-			  console.log(data.delta);
               clock.delta = data.delta;
 			  callback();
           });
@@ -30,8 +29,6 @@ var activity = {
                   form: inflection,
                   inflectionIds: ids
               }
-          })
-          .done(function(data) {
           });
 	},
 

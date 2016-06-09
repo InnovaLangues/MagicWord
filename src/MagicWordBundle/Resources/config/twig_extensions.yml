@@ -20,3 +20,10 @@ services:
             "userManager": "@mw_manager.user"
         tags:
             - { name: twig.extension }
+
+    twig.extension.get_word_length_point:
+        class: MagicWordBundle\Twig\WordLengthPointExtension
+        arguments:
+            "entityManager": "@doctrine.orm.entity_manager"
+        tags:
+            - { name: twig.extension }

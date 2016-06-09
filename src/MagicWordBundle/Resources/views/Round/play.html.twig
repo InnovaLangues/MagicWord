@@ -23,10 +23,11 @@
 </div>
 
 <script>
-    var gridJSON = {{ grid | json_encode()|raw }};
-    var roundJSON = {{ round | json_encode()|raw }};
+var gridJSON = {{ grid | json_encode()|raw }};
+var roundJSON = {{ round | json_encode()|raw }};
+var wordLengthPoints = {{ getWordLengthPoints() | json_encode()|raw }};
+var letterPoints = {{ getLetterPoints(round.game.language) | json_encode()|raw }};
 </script>
-
 {% endblock %}
 
 {% block javascripts -%}

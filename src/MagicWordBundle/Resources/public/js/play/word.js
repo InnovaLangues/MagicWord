@@ -18,17 +18,19 @@ var words = {
 		return found;
 	},
 
-	addToFoundWords : function(inflection, inObjective, isCorrect){
+	addToFoundWords: function(inflection, inObjective, isCorrect){
+		var point = "";
 		this.foundWords.push(inflection);
 		inflection = inflection.toUpperCase();
 		var typedInflection = (!isCorrect) ? "<s>"+inflection+"</s>" : inflection;
-		$("#inflections-found").prepend("<li class='list-group-item'>"+typedInflection+"</li>");
-
 
 		if(isCorrect){
-			activity.sendFoundWord(inflection, 0);
-			localstor.add(inflection);
+			points = score.calculatePoints(inflection);
+			activity.sendFoundWord(inflection, points);
+			//localstor.add(inflection);
 		}
+
+		$("#inflections-found").prepend("<li class='list-group-item'>"+typedInflection+"<span class='pull-right'>"+points+"</span></li>");
 
 	},
 

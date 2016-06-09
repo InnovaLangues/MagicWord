@@ -15,7 +15,7 @@ class RoundController extends Controller
      */
     public function playAction(Round $round)
     {
-        return $this->render('MagicWordBundle:Round:play.html.twig', array('round' => $round));
+        return $this->render('MagicWordBundle:Round:play.html.twig', ['round' => $round]);
     }
 
     /**

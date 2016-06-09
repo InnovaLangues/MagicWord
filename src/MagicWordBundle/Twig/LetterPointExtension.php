@@ -22,10 +22,23 @@ class LetterPointExtension extends \Twig_Extension
         return $point;
     }
 
+    public function getLetterPoints($language)
+    {
+        $letters = $this->em->getRepository("MagicWordBundle:Letter\LetterLanguage")->findByLanguage($language);
+
+        $jsonArray = array();
+        foreach ($letters as $letter) {
+            $jsonArray[$letter->getLetter()->getValue()] = $letter->getPoint();
+        }
+
+        return $jsonArray;
+    }
+
     public function getFunctions()
     {
         return array(
             new \Twig_SimpleFunction('get_point', array($this, 'getPoint')),
+            new \Twig_SimpleFunction('getLetterPoints', array($this, 'getLetterPoints')),
         );
     }
 

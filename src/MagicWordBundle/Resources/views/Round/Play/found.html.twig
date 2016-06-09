@@ -1,7 +1,12 @@
 <div class="col-md-{{ hasObj ? 3 : 7 }}" >
     <div class="panel panel-default">
         <div class="panel-heading">
-            <h3>{{ 'forms_found' | trans }}</h3>
+            <h3>
+                {{ 'forms_found' | trans }}
+                <span class="pull-right">
+                    <span id="score-total"></span>
+                </span>
+            </h3>
         </div>
         <ul class="list-group" id="inflections-found"></ul>
     </div>
