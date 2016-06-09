@@ -1,6 +1,6 @@
 var activity = {
 
-	init: function(){
+	init: function(callback){
         var roundId = roundJSON.id;
         var url = Routing.generate('init_activity', {id: roundId});
         $.ajax({
@@ -9,7 +9,9 @@ var activity = {
               dataType: "json",
           })
           .done(function(data) {
-              // to do : mettre à jour le timer
+			  console.log(data.delta);
+              clock.delta = data.delta;
+			  callback();
           });
 	},
 
