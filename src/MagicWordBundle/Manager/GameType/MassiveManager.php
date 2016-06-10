@@ -37,6 +37,30 @@ class MassiveManager
         $this->tokenStorage = $tokenStorage;
     }
 
+    public function play(Massive $massive)
+    {
+        $round = $this->em->getRepository('MagicWordBundle:Round')->find(180);
+
+        return $round;
+    }
+
+    public function publish(Massive $massive)
+    {
+        $massive->setPublished(true);
+        $this->em->persist($massive);
+        $this->em->flush();
+
+        return;
+    }
+
+    public function getMyMassives($published)
+    {
+        $user = $this->tokenStorage->getToken()->getUser();
+        $massives = $this->em->getRepository('MagicWordBundle:GameType\Massive')->findBy(['author' => $user, 'published' => $published]);
+
+        return $massives;
+    }
+
     public function generateMassiveForm()
     {
         $form = $this->formFactory->createBuilder(MassiveType::class)->getForm()->createView();

@@ -1,16 +1,16 @@
 {% extends '::base.html.twig' %}
 
-{% block title %}{{ 'my_massives_under_construction' | trans }}{% endblock %}
+{% block title %}{{ 'my_massives_published' | trans }}{% endblock %}
 
 {% block body -%}
     <div class="panel panel-default">
         <div class="panel-heading">
-            <h4>{{ 'my_massives_under_construction' | trans }}</h4>
+            <h4>{{ 'my_massives_published' | trans }}</h4>
         </div>
         <ul class="list-group">
             {% for massive in massives %}
             <li class="list-group-item">
-                <a href="{{ path('massive_builder', {"id": massive.id}) }}">{{ massive.id }} - {{ massive.name }}</a>
+                {{ massive.id }} - {{ massive.name }}
             </li>
             {% endfor %}
         </ul>

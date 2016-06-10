@@ -13,6 +13,29 @@ use MagicWordBundle\Entity\Round;
 class MassiveController extends Controller
 {
     /**
+     * @Route("/massive/{id}/play", name="massive_play")
+     * @ParamConverter("massive", class="MagicWordBundle:GameType\Massive")
+     */
+    public function playAction(Massive $massive)
+    {
+        $round = $this->get('mw_manager.massive')->play($massive);
+
+        return $this->redirectToRoute('round_play', ['id' => $round->getId()]);
+    }
+
+    /**
+     * @Route("/massive/{id}/publish", name="massive_publish")
+     * @ParamConverter("massive", class="MagicWordBundle:GameType\Massive")
+     */
+    public function publishAction(Massive $massive)
+    {
+        $this->get('mw_manager.massive')->publish($massive);
+        $this->get('session')->getFlashBag()->add('success', 'Partie massive publiée');
+
+        return $this->redirectToRoute('home');
+    }
+
+    /**
      * @Route("/massives", name="massives")
      * @Method("GET")
      */
@@ -24,15 +47,25 @@ class MassiveController extends Controller
     }
 
     /**
-     * @Route("/my-massives", name="my_massives")
+     * @Route("/my-massives-unpublished", name="my_massives_under_construction")
      * @Method("GET")
      */
-    public function listMyMassivesAction()
+    public function listMyMassivesUnpublishedAction()
     {
-        $user = $this->container->get('security.token_storage')->getToken()->getUser()->getId();
-        $massives = $this->getDoctrine()->getRepository('MagicWordBundle:GameType\Massive')->findByAuthor($user);
+        $massives = $this->get('mw_manager.massive')->getMyMassives(false);
 
         return $this->render('MagicWordBundle:Game/Massive:my-list.html.twig', array('massives' => $massives));
+    }
+
+    /**
+     * @Route("/my-massives-published", name="my_massives_published")
+     * @Method("GET")
+     */
+    public function listMyMassivespublishedAction()
+    {
+        $massives = $this->get('mw_manager.massive')->getMyMassives(true);
+
+        return $this->render('MagicWordBundle:Game/Massive:my-published-list.html.twig', array('massives' => $massives));
     }
 
     /**
