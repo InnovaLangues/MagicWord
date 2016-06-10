@@ -18,6 +18,7 @@ class MassiveManager
     protected $roundManager;
     protected $formFactory;
     protected $tokenStorage;
+    protected $router;
 
     /**
      * @DI\InjectParams({
@@ -25,23 +26,37 @@ class MassiveManager
      *      "gridManager"   = @DI\Inject("mw_manager.grid"),
      *      "roundManager"  = @DI\Inject("mw_manager.round"),
      *      "formFactory"   = @DI\Inject("form.factory"),
-     *      "tokenStorage" = @DI\Inject("security.token_storage"),
+     *      "tokenStorage"  = @DI\Inject("security.token_storage"),
+     *      "router"        = @DI\Inject("router"),
      * })
      */
-    public function __construct($entityManager, $gridManager, $roundManager, $formFactory, $tokenStorage)
+    public function __construct($entityManager, $gridManager, $roundManager, $formFactory, $tokenStorage, $router)
     {
         $this->em = $entityManager;
         $this->gridManager = $gridManager;
         $this->roundManager = $roundManager;
         $this->formFactory = $formFactory;
         $this->tokenStorage = $tokenStorage;
+        $this->router = $router;
     }
 
-    public function play(Massive $massive)
+    public function getNextRound(Massive $massive)
     {
-        $round = $this->em->getRepository('MagicWordBundle:Round')->find(180);
+        $user = $this->tokenStorage->getToken()->getUser();
+        $round = $this->em->getRepository('MagicWordBundle:Round')->getNotPlayedYet($massive, $user);
 
         return $round;
+    }
+
+    public function getNextURL(Massive $massive)
+    {
+        $round = $this->getNextRound($massive);
+
+        $url = (!$round)
+            ? $this->router->generate('massive_end', ['id' => $massive->getId()])
+            : $this->router->generate('round_play', ['id' => $round->getId()]);
+
+        return $url;
     }
 
     public function publish(Massive $massive)

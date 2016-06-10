@@ -18,9 +18,18 @@ class MassiveController extends Controller
      */
     public function playAction(Massive $massive)
     {
-        $round = $this->get('mw_manager.massive')->play($massive);
+        $url = $this->get('mw_manager.massive')->getNextURL($massive);
 
-        return $this->redirectToRoute('round_play', ['id' => $round->getId()]);
+        return $this->redirect($url);
+    }
+
+    /**
+     * @Route("/massive/{id}/end", name="massive_end")
+     * @ParamConverter("massive", class="MagicWordBundle:GameType\Massive")
+     */
+    public function EndAction(Massive $massive)
+    {
+        return $this->render('MagicWordBundle:Game/Massive:end.html.twig', array('massive' => $massive));
     }
 
     /**

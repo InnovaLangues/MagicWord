@@ -3,7 +3,7 @@ add_existing_form: 'Ajouter une forme existante'
 add_form: 'Ajouter une forme'
 add_round: 'Ajouter une manche'
 add_to_friends: 'Ajouter aux amis'
-add_to_wordbox: Ajouter à ma wordbox
+add_to_wordbox: 'Ajouter à ma wordbox'
 add: Ajouter
 back_to_editor: 'Retour à l''éditeur de partie'
 category: Catégorie
@@ -12,7 +12,7 @@ challenge_sent: 'Défis envoyés'
 challenge_someone: 'Défier quelqu''un'
 challenge: Défier
 challenged: 'Joueur défié'
-cleaned_content: Flexion "nettoyée"
+cleaned_content: 'Flexion "nettoyée"'
 close: Fermer
 combo_length: 'Longueur des combos'
 combo_number: 'Nombre de combos'
@@ -30,16 +30,16 @@ form: Forme
 forms_found: 'Formes trouvées'
 french: Français
 from: 'De la part de'
-game_language: Langue du jeu
+game_language: 'Langue du jeu'
 gender: Genre
 generate_grid: 'Générer Grille'
 grid: Grille
 hidden: 'Masquer sa présence'
 hint: Indice
-inflexion_info: Infos sur la flexion
-language_ui: Langue de l'interface
+inflexion_info: 'Infos sur la flexion'
+language_ui: 'Langue de l''interface'
 language: Langue
-lemma_info: Infos sur le lemme
+lemma_info: 'Infos sur le lemme'
 lemma: Lemme
 massive: 'Partie massive'
 massives: 'Parties massives'
@@ -71,3 +71,5 @@ to: à
 train: 'S''entrainer'
 update: 'Mettre à jour'
 wordbox: Wordbox
+my_massives_under_construction: Mes parties massives en chantier
+my_massives_published: Mes parties massives publiées

@@ -10,4 +10,23 @@ namespace MagicWordBundle\Repository;
  */
 class RoundRepository extends \Doctrine\ORM\EntityRepository
 {
+    public function getNotPlayedYet($massive, $user)
+    {
+        $em = $this->_em;
+        $dql = 'SELECT r FROM MagicWordBundle\Entity\Round r
+                WHERE r.game = :massive
+                AND NOT EXISTS (
+                    SELECT a FROM MagicWordBundle\Entity\Activity a
+                    WHERE a.player = :user
+                    AND a.round = r
+                )
+                ORDER BY r.displayOrder ASC';
+
+        $query = $em->createQuery($dql);
+        $query->setParameter('massive', $massive)
+            ->setParameter('user', $user)
+             ->setMaxResults(1);
+
+        return $query->getOneOrNullResult();
+    }
 }

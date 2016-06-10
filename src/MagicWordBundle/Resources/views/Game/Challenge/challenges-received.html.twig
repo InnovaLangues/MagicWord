@@ -10,7 +10,7 @@
     <ul class="list-group">
     {% for challenge in challenges %}
         <li class="list-group-item">{{ 'from' | trans }} {{ challenge.author.username }} - {{ challenge.date|date("m/d/Y") }}
-            <span class="text-muted">({{ challenge.message | truncate(20, true, "...")}})</span>
+            <span class="text-muted">({{ challenge.message | truncate(50, true, "...")}})</span>
         </li>
     {% endfor %}
     </ul>

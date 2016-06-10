@@ -10,16 +10,21 @@ namespace MagicWordBundle\Repository;
  */
 class GridRepository extends \Doctrine\ORM\EntityRepository
 {
-    public function findNotPlayedForTraining($language)
+    public function findNotPlayedForTraining($user)
     {
         $em = $this->_em;
         $dql = 'SELECT g FROM MagicWordBundle\Entity\Grid g
-                    WHERE g.language = :language';
-                    // ajouter une sousrequete qui tape dans les traces et qui vérifie que c'est une grille d'entrainement
-                    // non jouée encore par le joueur
+                WHERE g.language = :language
+                AND NOT EXISTS(
+                    SELECT a FROM MagicWordBundle\Entity\Activity a
+                    LEFT JOIN a.round r
+                    WHERE r.grid = g
+                    AND a.player = :user
+                )';
 
         $query = $em->createQuery($dql);
-        $query->setParameter('language', $language)
+        $query->setParameter('user', $user)
+              ->setParameter('language', $user->getLanguage())
               ->setMaxResults(1);
 
         return $query->getOneOrNullResult();

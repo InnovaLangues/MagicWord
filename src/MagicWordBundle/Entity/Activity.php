@@ -32,7 +32,7 @@ class Activity
     private $player;
 
     /**
-     * @ORM\OneToMany(targetEntity="FoundForm", mappedBy="activity")
+     * @ORM\OneToMany(targetEntity="FoundForm", mappedBy="activity", cascade={"remove"})
      */
     private $foundForms;
 

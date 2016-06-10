@@ -41,7 +41,7 @@ class FoundForm
     private $points;
 
     /**
-     * @ORM\ManyToMany(targetEntity="MagicWordBundle\Entity\Lexicon\Inflection")
+     * @ORM\ManyToMany(targetEntity="MagicWordBundle\Entity\Lexicon\Inflection", cascade={"remove"})
      * @ORM\JoinTable(name="inflections_found")
      */
     private $inflections;
