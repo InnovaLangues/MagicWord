@@ -19,7 +19,7 @@ var words = {
 	},
 
 	addToFoundWords: function(inflection, inObjective, isCorrect){
-		var point = "";
+		var points = "";
 		this.foundWords.push(inflection);
 		inflection = inflection.toUpperCase();
 		var typedInflection = (!isCorrect) ? "<s>"+inflection+"</s>" : inflection;
