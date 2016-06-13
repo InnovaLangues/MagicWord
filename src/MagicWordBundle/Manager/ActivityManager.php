@@ -14,21 +14,18 @@ class ActivityManager
 {
     protected $em;
     protected $tokenStorage;
-    protected $foundFormManager;
     protected $currentUser;
 
     /**
      * @DI\InjectParams({
      *      "entityManager" = @DI\Inject("doctrine.orm.entity_manager"),
      *      "tokenStorage" = @DI\Inject("security.token_storage"),
-     *      "foundFormManager" = @DI\Inject("mw_manager.foundform"),
      * })
      */
-    public function __construct($entityManager, $tokenStorage, $foundFormManager)
+    public function __construct($entityManager, $tokenStorage)
     {
         $this->em = $entityManager;
         $this->tokenStorage = $tokenStorage;
-        $this->foundFormManager = $foundFormManager;
         $this->currentUser = $this->tokenStorage->getToken()->getUser();
     }
 
@@ -52,9 +49,12 @@ class ActivityManager
     public function addFoundForm(Round $round, Request $request)
     {
         $activity = $this->getActivity($round);
-        $foundForm = $this->foundFormManager->create($activity, $request);
+        $grid = $round->getGrid();
 
-        $activity->addFoundForm($foundForm);
+        $form = $request->request->get('form');
+        $foundable = $this->em->getRepository('MagicWordBundle:FoundableForm')->findOneBy(['grid' => $grid, 'form' => $form]);
+
+        $activity->addFoundForm($foundable);
 
         $this->em->persist($activity);
         $this->em->flush();
@@ -73,7 +73,18 @@ class ActivityManager
         return $activity;
     }
 
-    public function getActivity(Round $round)
+    public function endActivity(Round $round)
+    {
+        $activity = $this->getActivity($round);
+        $activity->setEndDate(new \DateTime());
+
+        $this->em->persist($activity);
+        $this->em->flush();
+
+        return $activity;
+    }
+
+    private function getActivity(Round $round)
     {
         return $activity = $this->em->getRepository('MagicWordBundle:Activity')->findOneBy(['player' => $this->currentUser, 'round' => $round]);
     }

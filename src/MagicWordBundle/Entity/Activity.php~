@@ -48,7 +48,7 @@ class Activity
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="endDate", type="datetime", nullable=true)
+     * @ORM\Column(name="endDate", type="datetime")
      */
     private $endDate;
 
@@ -187,29 +187,5 @@ class Activity
     public function removeFoundForm(\MagicWordBundle\Entity\FoundableForm $foundForm)
     {
         $this->foundForms->removeElement($foundForm);
-    }
-
-    /**
-     * Set endDate.
-     *
-     * @param \DateTime $endDate
-     *
-     * @return Activity
-     */
-    public function setEndDate($endDate)
-    {
-        $this->endDate = $endDate;
-
-        return $this;
-    }
-
-    /**
-     * Get endDate.
-     *
-     * @return \DateTime
-     */
-    public function getEndDate()
-    {
-        return $this->endDate;
     }
 }

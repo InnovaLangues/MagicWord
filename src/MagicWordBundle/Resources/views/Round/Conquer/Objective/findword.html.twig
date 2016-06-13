@@ -1,6 +1,6 @@
 <div class="panel panel-default">
     <div class="panel-heading">
-        <i class="fa fa-binoculars" aria-hidden="true"></i> {{ 'find_words' | trans }}
+        &nbsp;
         <span class="pull-right">
             <span class="btn btn-default btn-xs" onclick="addWord()" >
                 <i class="fa fa-plus" aria-hidden="true"></i>
@@ -12,13 +12,11 @@
             </button>
         </span>
     </div>
-    <div class="panel-body">
-        <ul class="list-group" id="words" data-prototype="{{ _self.findWord_prototype(form.findWords.vars.prototype)|e }}">
-        {% for findWord in form.findWords %}
-		      {{ _self.findWord_prototype(findWord) }}
-	    {% endfor %}
-        </ul>
-    </div>
+    <ul class="list-group" id="words" data-prototype="{{ _self.findWord_prototype(form.findWords.vars.prototype)|e }}">
+    {% for findWord in form.findWords %}
+	      {{ _self.findWord_prototype(findWord) }}
+    {% endfor %}
+    </ul>
 </div>
 
 
@@ -26,7 +24,6 @@
 <li class="list-group-item findWord">
     {{ form_widget(findWord.inflection) }}
     {{ form_widget(findWord.hint) }}
-
     <span class="pull-right">
         <span class="btn btn-default disabled">
             <i class="fa fa-wikipedia-w" aria-hidden="true"></i>

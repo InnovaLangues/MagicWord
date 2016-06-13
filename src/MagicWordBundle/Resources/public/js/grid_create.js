@@ -8,8 +8,7 @@ $( document ).on( "click", ".word-remove", function(){
     removeWord($(this));
 });
 
-function addWord()
-{
+function addWord(){
     var words = $('#words');
     var objective = words.data('prototype');
     var length = $(".findWord").length;
@@ -24,8 +23,7 @@ function addInflection(inflection){
     $("#round_findWords_"+ length +"_inflection").val(inflection);
 }
 
-function addCombo()
-{
+function addCombo(){
     var combos = $('#combos');
     var combo = combos.data('prototype');
     combo = combo.replace(/__name__/g, $(".combo").length);
@@ -33,13 +31,11 @@ function addCombo()
 }
 
 
-function removeWord(word)
-{
+function removeWord(word){
     word.closest('li').remove();
 }
 
-function checkExistence(input)
-{
+function checkExistence(input){
     var inflection = input.val();
     if(inflection != ""){
         var language = $('#languageId').val();
@@ -63,96 +59,103 @@ function checkExistence(input)
       }
 }
 
-function saveObjectives()
-{
-    var url = Routing.generate('save_objectives', {id: $('#conquerId').val()});
-    var data = $("#objectives").serializeArray();
+function saveObjectives(){
+    if(isFormValid("objectives")){
+        var url = Routing.generate('save_objectives', {id: $('#conquerId').val()});
+        var data = $("#objectives").serializeArray();
 
-    $.ajax({
-          type: 'POST',
-          url: url,
-          data: data,
-      })
-      .done(function(data) {
-      });
+        $.ajax({
+              type: 'POST',
+              url: url,
+              data: data,
+          })
+          .done(function(data) {
+          });
+    }
 }
 
-function getInflections()
-{
-    $("#inflections-icon").addClass("fa-spin");
-    var url = Routing.generate('get_inflections');
-    var data = $("#grid").serializeArray();
+function getInflections(){
+    if(isFormValid("grid")){
+        $("#inflections-icon").addClass("fa-spin");
+        var url = Routing.generate('get_inflections');
+        var data = $("#grid").serializeArray();
 
-    $.ajax({
-          type: 'POST',
-          url: url,
-          data: data,
-      })
-      .done(function(data) {
-          $("#inflections").html(data);
-          $("#inflections-icon").removeClass("fa-spin");
-      });
+        $.ajax({
+              type: 'POST',
+              url: url,
+              data: data,
+          })
+          .done(function(data) {
+              $("#inflections").html(data);
+              $("#inflections-icon").removeClass("fa-spin");
+          });
+    }
 }
 
-function getCombos()
-{
-    $("#combos-icon").addClass("fa-spin");
-    var url = Routing.generate('get_combos');
-    var data = $("#grid").serializeArray();
+function getCombos(){
+    if(isFormValid("grid")){
+        $("#combos-icon").addClass("fa-spin");
+        var url = Routing.generate('get_combos');
+        var data = $("#grid").serializeArray();
 
-    $.ajax({
-          type: 'POST',
-          url: url,
-          data: data,
-      })
-      .done(function(data) {
-          $("#possible-combos").html(data);
-          $("#combos-icon").removeClass("fa-spin");
-      });
+        $.ajax({
+              type: 'POST',
+              url: url,
+              data: data,
+          })
+          .done(function(data) {
+              $("#possible-combos").html(data);
+              $("#combos-icon").removeClass("fa-spin");
+          });
+    }
 }
 
+function isFormValid(formId){
 
-function generate()
-{
-    var word_list = [];
-    $(".findWord").each(function( index ) {
-        var inflection = $(this).find(inflectionSelector).val();
-        if (inflection.indexOf("?") == -1) {
-            word_list.push(inflection);
-        }
-    });
+    return document.getElementById(formId).checkValidity()
+}
 
-    var time = 1000;
-    var generator = Generator();
-    var best = new generator(4, word_list, time).run();
+function generate(){
+    if ($(".findWord").length > 0) {
+        var word_list = [];
+        $(".findWord").each(function( index ) {
+            var inflection = $(this).find(inflectionSelector).val();
+            if (inflection.indexOf("?") == -1) {
+                word_list.push(inflection);
+            }
+        });
 
-    var x = 0;
-    for (var i = best.grid.length - 1; i >= 0; i--) {
-        for (var j = best.grid[i].length - 1; j >= 0; j--) {
-            $("#square-"+x).val(best.grid[i][j]);
-            x++;
+        var time = 1000;
+        var generator = Generator();
+        var best = new generator(4, word_list, time).run();
+
+        var x = 0;
+        for (var i = best.grid.length - 1; i >= 0; i--) {
+            for (var j = best.grid[i].length - 1; j >= 0; j--) {
+                $("#square-"+x).val(best.grid[i][j]);
+                x++;
+            };
         };
-    };
-    checkInsertedWords(best.insertedWords);
-
-    return;
+        checkInsertedWords(best.insertedWords);
+    }
 }
 
 function save(){
-    var data = $("#grid").serializeArray();
-    var url = Routing.generate('conquer_save_grid', {id: $('#conquerId').val()});
-    $.ajax({
-          type: 'POST',
-          url: url,
-          data: data,
-     })
-     .done(function(data) {
-         $("#inflections").html(data);
-     });
+    if(isFormValid("grid")){
+        var data = $("#grid").serializeArray();
+        var url = Routing.generate('conquer_save_grid', {id: $('#conquerId').val()});
+        $.ajax({
+              type: 'POST',
+              url: url,
+              data: data,
+         })
+         .done(function(data) {
+             $("#inflections").html(data);
+         });
+     }
 }
 
-function checkInsertedWords(insertedWords)
-{
+function checkInsertedWords(insertedWords){
     reiniatilize()
     $(".findWord").each(function( index ) {
         var inflection = $(this).find(inflectionSelector).val();
@@ -164,7 +167,6 @@ function checkInsertedWords(insertedWords)
      });
 }
 
-function reiniatilize()
-{
+function reiniatilize(){
     $(".findWord").removeClass("list-group-item-danger list-group-item-success");
 }

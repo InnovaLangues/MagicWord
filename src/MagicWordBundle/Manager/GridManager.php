@@ -15,22 +15,25 @@ class GridManager
     protected $em;
     protected $letterLangManager;
     protected $squareManager;
+    protected $foundableFormManager;
     protected $tokenStorage;
     protected $currentUser;
     protected $currentLanguage;
 
     /**
      * @DI\InjectParams({
-     *      "entityManager" = @DI\Inject("doctrine.orm.entity_manager"),
-     *      "letterLangManager" = @DI\Inject("mw_manager.letter_language"),
-     *      "squareManager" = @DI\Inject("mw_manager.square"),
-     *      "tokenStorage" = @DI\Inject("security.token_storage"),
+     *      "entityManager"         = @DI\Inject("doctrine.orm.entity_manager"),
+     *      "letterLangManager"     = @DI\Inject("mw_manager.letter_language"),
+     *      "foundableFormManager"  = @DI\Inject("mw_manager.foundableForm"),
+     *      "squareManager"         = @DI\Inject("mw_manager.square"),
+     *      "tokenStorage"          = @DI\Inject("security.token_storage"),
      * })
      */
-    public function __construct($entityManager, $letterLangManager, $squareManager, $tokenStorage)
+    public function __construct($entityManager, $letterLangManager, $foundableFormManager, $squareManager, $tokenStorage)
     {
         $this->em = $entityManager;
         $this->letterLangManager = $letterLangManager;
+        $this->foundableFormManager = $foundableFormManager;
         $this->squareManager = $squareManager;
         $this->tokenStorage = $tokenStorage;
         $this->currentUser = $this->tokenStorage->getToken()->getUser();
@@ -103,6 +106,8 @@ class GridManager
     public function saveInflections(Grid $grid)
     {
         $inflections = $this->findInflections($grid);
+
+        $this->foundableFormManager->populateFoundables($inflections, $grid);
 
         $grid->addInflections($inflections);
 

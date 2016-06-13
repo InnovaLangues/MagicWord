@@ -36,6 +36,12 @@ class Grid implements \JsonSerializable
     private $width = 4;
 
     /**
+     * @ORM\OneToMany(targetEntity="FoundableForm", mappedBy="grid")
+     * @ORM\OrderBy({"points" = "DESC"})
+     */
+    private $foundableForms;
+
+    /**
      * @ORM\ManyToMany(targetEntity="MagicWordBundle\Entity\Lexicon\Inflection", inversedBy="grids")
      * @ORM\JoinTable(name="inflections_grids")
      */
@@ -239,5 +245,39 @@ class Grid implements \JsonSerializable
         }
 
         return $jsonArray;
+    }
+
+    /**
+     * Add foundableForm.
+     *
+     * @param \MagicWordBundle\Entity\FoundableForm $foundableForm
+     *
+     * @return Grid
+     */
+    public function addFoundableForm(\MagicWordBundle\Entity\FoundableForm $foundableForm)
+    {
+        $this->foundableForms[] = $foundableForm;
+
+        return $this;
+    }
+
+    /**
+     * Remove foundableForm.
+     *
+     * @param \MagicWordBundle\Entity\FoundableForm $foundableForm
+     */
+    public function removeFoundableForm(\MagicWordBundle\Entity\FoundableForm $foundableForm)
+    {
+        $this->foundableForms->removeElement($foundableForm);
+    }
+
+    /**
+     * Get foundableForms.
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getFoundableForms()
+    {
+        return $this->foundableForms;
     }
 }

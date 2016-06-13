@@ -5,12 +5,12 @@ namespace MagicWordBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Found Form.
+ * Activity.
  *
- * @ORM\Table(name="found_form")
+ * @ORM\Table(name="foundable_form")
  * @ORM\Entity()
  */
-class FoundForm
+class FoundableForm
 {
     /**
      * @var int
@@ -20,11 +20,6 @@ class FoundForm
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
-
-    /**
-     * @ORM\ManyToOne(targetEntity="Activity", inversedBy="foundForms")
-     */
-    private $activity;
 
     /**
      * @var string
@@ -41,11 +36,15 @@ class FoundForm
     private $points;
 
     /**
-     * @ORM\ManyToMany(targetEntity="MagicWordBundle\Entity\Lexicon\Inflection", cascade={"remove"})
-     * @ORM\JoinTable(name="inflections_found")
+     * @ORM\ManyToMany(targetEntity="MagicWordBundle\Entity\Lexicon\Inflection")
+     * @ORM\JoinTable(name="inflections_foundable")
      */
     private $inflections;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="Grid", inversedBy="foundableForms")
+     */
+    private $grid;
     /**
      * Constructor.
      */
@@ -69,7 +68,7 @@ class FoundForm
      *
      * @param string $form
      *
-     * @return FoundForm
+     * @return FoundableForm
      */
     public function setForm($form)
     {
@@ -89,27 +88,27 @@ class FoundForm
     }
 
     /**
-     * Set activity.
+     * Set points.
      *
-     * @param \MagicWordBundle\Entity\Activity $activity
+     * @param int $points
      *
-     * @return FoundForm
+     * @return FoundableForm
      */
-    public function setActivity(\MagicWordBundle\Entity\Activity $activity = null)
+    public function setPoints($points)
     {
-        $this->activity = $activity;
+        $this->points = $points;
 
         return $this;
     }
 
     /**
-     * Get activity.
+     * Get points.
      *
-     * @return \MagicWordBundle\Entity\Activity
+     * @return int
      */
-    public function getActivity()
+    public function getPoints()
     {
-        return $this->activity;
+        return $this->points;
     }
 
     /**
@@ -117,7 +116,7 @@ class FoundForm
      *
      * @param \MagicWordBundle\Entity\Lexicon\Inflection $inflection
      *
-     * @return FoundForm
+     * @return FoundableForm
      */
     public function addInflection(\MagicWordBundle\Entity\Lexicon\Inflection $inflection)
     {
@@ -147,26 +146,26 @@ class FoundForm
     }
 
     /**
-     * Set points.
+     * Set grid.
      *
-     * @param int $points
+     * @param \MagicWordBundle\Entity\Grid $grid
      *
-     * @return FoundForm
+     * @return FoundableForm
      */
-    public function setPoints($points)
+    public function setGrid(\MagicWordBundle\Entity\Grid $grid = null)
     {
-        $this->points = $points;
+        $this->grid = $grid;
 
         return $this;
     }
 
     /**
-     * Get points.
+     * Get grid.
      *
-     * @return int
+     * @return \MagicWordBundle\Entity\Grid
      */
-    public function getPoints()
+    public function getGrid()
     {
-        return $this->points;
+        return $this->grid;
     }
 }

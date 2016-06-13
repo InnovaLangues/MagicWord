@@ -1,6 +1,6 @@
 <div class="panel panel-default">
     <div class="panel-heading">
-        <i class="fa fa-tachometer" aria-hidden="true"></i> {{ 'combos' | trans }}
+        &nbsp;
         <span class="pull-right">
             <span class="btn btn-default btn-xs" onclick="addCombo()" >
                 <i class="fa fa-plus" aria-hidden="true"></i>
@@ -12,14 +12,12 @@
             </button>
         </span>
     </div>
-    <div class="panel-body">
-            <ul class="list-group" id="combos" data-prototype="{{ _self.combos_prototype(form.combos.vars.prototype)|e }}">
-            {% for combo in form.combos %}
-    		      {{ _self.combos_prototype(combo) }}
-    	    {% endfor %}
-            </ul>
-        <span class='btn btn-primary pull-right' onclick="saveObjectives()">{{ 'save_objectives' | trans }}</span>
-    </div>
+
+    <ul class="list-group" id="combos" data-prototype="{{ _self.combos_prototype(form.combos.vars.prototype)|e }}">
+    {% for combo in form.combos %}
+	      {{ _self.combos_prototype(combo) }}
+    {% endfor %}
+    </ul>
 </div>
 
 {% macro wordToFind(word, hint) %}

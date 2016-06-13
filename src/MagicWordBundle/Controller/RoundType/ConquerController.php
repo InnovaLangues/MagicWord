@@ -37,7 +37,7 @@ class ConquerController extends Controller
     {
         $this->get('mw_manager.round')->saveConquerGrid($conquer, $request);
         $inflections = $this->get('mw_manager.grid')->getInflections($request);
-        $template = $this->get('templating')->render('MagicWordBundle:Round/Conquer:Objective:possible-inflections.html.twig', array('inflections' => $inflections));
+        $template = $this->get('templating')->render('MagicWordBundle:Round/Conquer/Objective:possible-inflections.html.twig', array('inflections' => $inflections));
 
         return new Response($template);
     }
