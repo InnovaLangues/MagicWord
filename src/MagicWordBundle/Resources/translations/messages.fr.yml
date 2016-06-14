@@ -81,3 +81,7 @@ train: 'S''entrainer'
 training: Partie d'entrainement
 update: 'Mettre à jour'
 wordbox: Wordbox
+word_length: Longueur du mot
+bonus_points: Points bonus
+wordlengthpoints: Points bonus longueur de mot
+letterlanguagepoints: Points par lettre et par langue

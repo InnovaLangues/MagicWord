@@ -72,6 +72,11 @@
                 <li class="list-group-item">
                     <a href="{{ path('games_ended') }}">{{ 'games_ended' | trans }} ({{ app.user.endedGames|length }})</a>
                 </li>
+                {% if is_granted('ROLE_ADMIN') %}
+                <li class="list-group-item">
+                    <a href="{{ path('admin_index') }}">Administration</a>
+                </li>
+                {% endif %}
             </ul>
         </div>
 

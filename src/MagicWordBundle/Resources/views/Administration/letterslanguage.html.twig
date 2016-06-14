@@ -1,0 +1,25 @@
+{% extends '::base.html.twig' %}
+
+{% block body -%}
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h4>
+            {{ "letterlanguagepoints" | trans }}
+        </h4>
+    </div>
+    <ul class="list-group">
+    {% for letterlanguage in letterslanguage %}
+        <li class="list-group-item">
+            {{ letterlanguage.language.name | trans }} -  {{ letterlanguage.letter.value | upper }} - {{ letterlanguage.point }}pts
+            <span class="pull-right">
+                <a href="{{ path('letterlanguage_edit', {"id":  letterlanguage.id}) }}" class="btn btn-default btn-xs">
+                    <i class="fa fa-pencil" aria-hidden="true"></i> Editer
+                </a>
+            </span>
+        </li>
+    {% endfor %}
+    </ul>
+</div>
+
+{% endblock %}

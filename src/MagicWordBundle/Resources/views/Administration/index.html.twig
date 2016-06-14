@@ -1,0 +1,25 @@
+{% extends '::base.html.twig' %}
+
+{% block body -%}
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h4>
+            Administration
+        </h4>
+    </div>
+    <ul class="list-group">
+        <li class="list-group-item">
+            <a href="{{ path('letterslanguage') }}">
+                {{ "letterlanguagepoints" | trans }}
+            </a>
+        </li>
+        <li class="list-group-item">
+            <a href="{{ path('wordlengthpoints') }}">
+                {{ "wordlengthpoints" | trans }}
+            </a>
+        </li>
+    </ul>
+</div>
+
+{% endblock %}

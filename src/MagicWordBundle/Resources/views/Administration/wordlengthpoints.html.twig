@@ -1,0 +1,25 @@
+{% extends '::base.html.twig' %}
+
+{% block body -%}
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h4>
+            {{ "wordlengthpoints" | trans }}
+        </h4>
+    </div>
+    <ul class="list-group">
+    {% for wordlengthpoint in wordlengthpoints %}
+        <li class="list-group-item">
+            {{ wordlengthpoint.length }} lettres - {{ wordlengthpoint.points }}pts
+            <span class="pull-right">
+                <a href="{{ path('wordlengthpoint_edit', {"id":  wordlengthpoint.id}) }}" class="btn btn-default btn-xs">
+                    <i class="fa fa-pencil" aria-hidden="true"></i> Editer
+                </a>
+            </span>
+        </li>
+    {% endfor %}
+    </ul>
+</div>
+
+{% endblock %}

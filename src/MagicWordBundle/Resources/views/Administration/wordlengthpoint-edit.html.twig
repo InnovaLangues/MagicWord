@@ -1,0 +1,14 @@
+{% extends '::base.html.twig' %}
+
+{% block title %}{{ 'wordlengthpoints' | trans }}{% endblock %}
+
+{% block body -%}
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h4>{{ "wordlengthpoints" | trans }} -  {{ wordlengthpoint.length }}</h4>
+    </div>
+    <div class="panel-body">
+    {{ form(form) }}
+    </div>
+</div>
+{% endblock %}
