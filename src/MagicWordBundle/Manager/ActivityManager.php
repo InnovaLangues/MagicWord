@@ -14,18 +14,21 @@ class ActivityManager
 {
     protected $em;
     protected $tokenStorage;
+    protected $scoreManager;
     protected $currentUser;
 
     /**
      * @DI\InjectParams({
      *      "entityManager" = @DI\Inject("doctrine.orm.entity_manager"),
      *      "tokenStorage" = @DI\Inject("security.token_storage"),
+     *      "scoreManager" = @DI\Inject("mw_manager.score"),
      * })
      */
-    public function __construct($entityManager, $tokenStorage)
+    public function __construct($entityManager, $tokenStorage, $scoreManager)
     {
         $this->em = $entityManager;
         $this->tokenStorage = $tokenStorage;
+        $this->scoreManager = $scoreManager;
         $this->currentUser = $this->tokenStorage->getToken()->getUser();
     }
 
@@ -76,10 +79,14 @@ class ActivityManager
     public function endActivity(Round $round)
     {
         $activity = $this->getActivity($round);
-        $activity->setEndDate(new \DateTime());
+        if (!$activity->getEndDate()) {
+            $activity->setEndDate(new \DateTime());
+            $points = $this->scoreManager->countActivityPoints($activity);
+            $activity->setPoints($points);
 
-        $this->em->persist($activity);
-        $this->em->flush();
+            $this->em->persist($activity);
+            $this->em->flush();
+        }
 
         return $activity;
     }

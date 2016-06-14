@@ -53,6 +53,13 @@ class Activity
     private $endDate;
 
     /**
+     * @var int
+     *
+     * @ORM\Column(name="points", type="integer")
+     */
+    private $points = 0;
+
+    /**
      * Get id.
      *
      * @return int
@@ -211,5 +218,29 @@ class Activity
     public function getEndDate()
     {
         return $this->endDate;
+    }
+
+    /**
+     * Set points.
+     *
+     * @param int $points
+     *
+     * @return Activity
+     */
+    public function setPoints($points)
+    {
+        $this->points = $points;
+
+        return $this;
+    }
+
+    /**
+     * Get points.
+     *
+     * @return int
+     */
+    public function getPoints()
+    {
+        return $this->points;
     }
 }

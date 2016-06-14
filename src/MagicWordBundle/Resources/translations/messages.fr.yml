@@ -6,6 +6,7 @@ add_to_friends: 'Ajouter aux amis'
 add_to_wordbox: 'Ajouter à ma wordbox'
 add: Ajouter
 back_to_editor: 'Retour à l''éditeur de partie'
+back_to_home: Retour à l'accueil
 category: Catégorie
 challenge_received: 'Défis reçus'
 challenge_sent: 'Défis envoyés'
@@ -19,6 +20,7 @@ combo_number: 'Nombre de combos'
 combos__with_length: 'combo(s) de longueur'
 combos: Combos
 conquer: Conquer
+continue: Continuer
 create: Créer
 description: Description
 edit_game: 'Editer partie'
@@ -28,6 +30,7 @@ existing_forms: 'Formes présentes'
 find_words: FindWord
 form: Forme
 forms_found: 'Formes trouvées'
+foundables: Mots trouvés
 french: Français
 from: 'De la part de'
 game_language: 'Langue du jeu'
@@ -41,12 +44,15 @@ language_ui: 'Langue de l''interface'
 language: Langue
 lemma_info: 'Infos sur le lemme'
 lemma: Lemme
+massive_end: 'Récapitulatif partie massive'
 massive: 'Partie massive'
 massives: 'Parties massives'
 me: Moi
 message: Message
 mood: Mode
 my_friends: 'Mes amis'
+my_massives_published: 'Mes parties massives publiées'
+my_massives_under_construction: 'Mes parties massives en chantier'
 my_massives: 'Mes parties massives'
 name: Nom
 new_massive: 'Nouvelle partie massive'
@@ -68,13 +74,8 @@ see_grid: 'Voir la grille'
 subcategory: Subcatégorie
 tense: Temps
 to: à
+total: Total
 train: 'S''entrainer'
+training: Partie d'entrainement
 update: 'Mettre à jour'
 wordbox: Wordbox
-my_massives_under_construction: 'Mes parties massives en chantier'
-my_massives_published: 'Mes parties massives publiées'
-massive_end: 'Récapitulatif partie massive'
-training: Partie d'entrainement
-back_to_home: Retour à l'accueil
-foundables: Mots trouvés
-continue: Continuer

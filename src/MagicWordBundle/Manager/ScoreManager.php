@@ -5,6 +5,7 @@ namespace  MagicWordBundle\Manager;
 use JMS\DiExtraBundle\Annotation as DI;
 use MagicWordBundle\Entity\Lexicon\Inflection;
 use MagicWordBundle\Entity\Language;
+use MagicWordBundle\Entity\Activity;
 
 /**
  * @DI\Service("mw_manager.score")
@@ -54,6 +55,31 @@ class ScoreManager
             $points += ($letterLanguage)
                 ? $letterLanguage->getPoint()
                 : 1;
+        }
+
+        return $points;
+    }
+
+    public function countActivityPoints(Activity $activity)
+    {
+        $points = 0;
+        $round = $activity->getRound();
+        $discr = $round->getDiscr();
+
+        switch ($discr) {
+            case 'rush':
+                $points += $this->getPointForFoundables($activity->getFoundForms());
+                break;
+        }
+
+        return $points;
+    }
+
+    public function getPointForFoundables($foundForms)
+    {
+        $points = 0;
+        foreach ($foundForms as $foundForm) {
+            $points += $foundForm->getPoints();
         }
 
         return $points;

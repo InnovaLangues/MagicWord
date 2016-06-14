@@ -48,9 +48,16 @@ class Activity
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="endDate", type="datetime")
+     * @ORM\Column(name="endDate", type="datetime", nullable=true)
      */
     private $endDate;
+
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="points", type="integer")
+     */
+    private $points;
 
     /**
      * Get id.
@@ -187,5 +194,29 @@ class Activity
     public function removeFoundForm(\MagicWordBundle\Entity\FoundableForm $foundForm)
     {
         $this->foundForms->removeElement($foundForm);
+    }
+
+    /**
+     * Set endDate.
+     *
+     * @param \DateTime $endDate
+     *
+     * @return Activity
+     */
+    public function setEndDate($endDate)
+    {
+        $this->endDate = $endDate;
+
+        return $this;
+    }
+
+    /**
+     * Get endDate.
+     *
+     * @return \DateTime
+     */
+    public function getEndDate()
+    {
+        return $this->endDate;
     }
 }

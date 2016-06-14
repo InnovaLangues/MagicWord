@@ -6,7 +6,7 @@
     <div class="panel panel-default">
         <div class="panel-heading">
             <h4>
-                {{ 'massive_end' | trans }}
+                {{ 'massive_end' | trans }} <strong>{{ massive.name }}</strong>
                 <span class="pull-right">
                     <a href="{{ path('home') }}" class="btn btn-default">
                         <i class="fa fa-home" aria-hidden="true"></i>
@@ -17,13 +17,15 @@
         </div>
         <div class="panel-body">
             <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+            {% set total = 0 %}
             {% for round in massive.rounds %}
                 {% set activity = getActivity(round, app.user) %}
+                {% set total = total + activity.points %}
                 <div class="panel panel-default">
                     <div class="panel-heading" role="tab" id="headingOne">
                         <h4 class="panel-title">
                              <a role="button" data-toggle="collapse" data-parent="#accordion" href="#{{ round.id }}" aria-expanded="true" aria-controls="{{ round.id }}">
-                                 {{ "round" |trans }} {{ round.displayOrder + 1}}
+                                 {{ "round" |trans }} {{ round.displayOrder + 1}} ({{ activity.points }}pts)
                             </a>
                         </h4>
                     </div>
@@ -33,12 +35,20 @@
                                 {{ "foundables"|trans}} : {{ activity.foundForms |length }} / {{ round.grid.foundableForms | length}}
                             </li>
                             <li class="list-group-item">
-                                Points :
+                                Points : {{ activity.points }}
                             </li>
                         </ul>
                     </div>
+                </div>
             {% endfor %}
-            </div>
+
+                <div class="panel panel-default">
+                    <div class="panel-heading" role="tab" id="headingOne">
+                        <h4 class="panel-title">
+                            {{ "total" | trans}} : {{ total }}pts
+                        </h4>
+                    </div>
+                </div>
         </div>
     </div>
 {% endblock %}
