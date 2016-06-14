@@ -50,6 +50,18 @@ class Player extends BaseUser
     private $languageUI;
 
     /**
+     * @ORM\ManyToMany(targetEntity="Game")
+     * @ORM\JoinTable(name="player_startedgame")
+     */
+    private $startedGames;
+
+    /**
+     * @ORM\ManyToMany(targetEntity="Game")
+     * @ORM\JoinTable(name="player_endedgame")
+     */
+    private $endedGames;
+
+    /**
      * Set wordbox.
      *
      * @param \MagicWordBundle\Entity\Wordbox $wordbox
@@ -156,7 +168,7 @@ class Player extends BaseUser
     }
 
     /**
-     * Set languageUI
+     * Set languageUI.
      *
      * @param \MagicWordBundle\Entity\LanguageUI $languageUI
      *
@@ -170,12 +182,80 @@ class Player extends BaseUser
     }
 
     /**
-     * Get languageUI
+     * Get languageUI.
      *
      * @return \MagicWordBundle\Entity\LanguageUI
      */
     public function getLanguageUI()
     {
         return $this->languageUI;
+    }
+
+    /**
+     * Add startedGame
+     *
+     * @param \MagicWordBundle\Entity\Game $startedGame
+     *
+     * @return Player
+     */
+    public function addStartedGame(\MagicWordBundle\Entity\Game $startedGame)
+    {
+        $this->startedGames[] = $startedGame;
+
+        return $this;
+    }
+
+    /**
+     * Remove startedGame
+     *
+     * @param \MagicWordBundle\Entity\Game $startedGame
+     */
+    public function removeStartedGame(\MagicWordBundle\Entity\Game $startedGame)
+    {
+        $this->startedGames->removeElement($startedGame);
+    }
+
+    /**
+     * Get startedGames
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getStartedGames()
+    {
+        return $this->startedGames;
+    }
+
+    /**
+     * Add endedGame
+     *
+     * @param \MagicWordBundle\Entity\Game $endedGame
+     *
+     * @return Player
+     */
+    public function addEndedGame(\MagicWordBundle\Entity\Game $endedGame)
+    {
+        $this->endedGames[] = $endedGame;
+
+        return $this;
+    }
+
+    /**
+     * Remove endedGame
+     *
+     * @param \MagicWordBundle\Entity\Game $endedGame
+     */
+    public function removeEndedGame(\MagicWordBundle\Entity\Game $endedGame)
+    {
+        $this->endedGames->removeElement($endedGame);
+    }
+
+    /**
+     * Get endedGames
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getEndedGames()
+    {
+        return $this->endedGames;
     }
 }

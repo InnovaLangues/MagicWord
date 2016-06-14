@@ -32,9 +32,11 @@
             <div role="tabpanel" class="tab-pane fade in active" id="foundables">
                 {% include "MagicWordBundle:Round/End:foundable.html.twig" %}
             </div>
+            {% if round.getObjectives() is defined %}
             <div role="tabpanel" class="tab-pane fade" id="objectives">
                 {% include "MagicWordBundle:Round/End:objectives.html.twig" %}
             </div>
+            {% endif %}
         </div>
     </div>
 </div>

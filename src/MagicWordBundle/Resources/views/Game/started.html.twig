@@ -1,0 +1,32 @@
+{% extends '::base.html.twig' %}
+
+{% block title %}{{ 'games_started' | trans }}{% endblock %}
+
+{% block body -%}
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h4>{{ 'games_started' | trans }}</h4>
+        </div>
+        <ul class="list-group">
+            {% for game in games %}
+            {{ _self.game_play_link(game) }}
+            {% endfor %}
+        </ul>
+    </div>
+{% endblock %}
+
+{% macro game_play_link(game) %}
+<li class="list-group-item">
+    {% if game.discr == "training" %}
+        <span class="label label-default">{{ "training" | trans }}</span>
+        <a href="{{ path('round_play', {"id": game.rounds|first.id}) }}">
+            {{ "training" | trans }}
+        </a>
+    {% elseif game.discr == "massive" %}
+        <span class="label label-primary">{{ "massive" | trans }}</span>
+        <a href="{{ path('massive_play', {"id": game.id}) }}">
+            {{ game.name }} <span class="text-muted">({{ game.description }})</span>
+        </a>
+    {% endif %}
+</li>
+{% endmacro %}

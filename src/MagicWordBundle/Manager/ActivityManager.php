@@ -15,6 +15,7 @@ class ActivityManager
     protected $em;
     protected $tokenStorage;
     protected $scoreManager;
+    protected $userManager;
     protected $currentUser;
 
     /**
@@ -22,13 +23,15 @@ class ActivityManager
      *      "entityManager" = @DI\Inject("doctrine.orm.entity_manager"),
      *      "tokenStorage" = @DI\Inject("security.token_storage"),
      *      "scoreManager" = @DI\Inject("mw_manager.score"),
+     *      "userManager" = @DI\Inject("mw_manager.user"),
      * })
      */
-    public function __construct($entityManager, $tokenStorage, $scoreManager)
+    public function __construct($entityManager, $tokenStorage, $scoreManager, $userManager)
     {
         $this->em = $entityManager;
         $this->tokenStorage = $tokenStorage;
         $this->scoreManager = $scoreManager;
+        $this->userManager = $userManager;
         $this->currentUser = $this->tokenStorage->getToken()->getUser();
     }
 
@@ -86,6 +89,11 @@ class ActivityManager
 
             $this->em->persist($activity);
             $this->em->flush();
+
+            $game = $round->getGame();
+            if ($game->getDiscr() == 'training') {
+                $this->userManager->endGame($game);
+            }
         }
 
         return $activity;

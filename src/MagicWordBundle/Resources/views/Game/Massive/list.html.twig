@@ -8,9 +8,9 @@
             <h4>{{ 'massives' | trans }}</h4>
         </div>
         <ul class="list-group">
-            {% for massive in massives %}
+            {% for massive in massives if massive not in app.user.endedGames %}
             <li class="list-group-item">
-                <a href="{{ path('massive_play', {"id": massive.id}) }}">{{ massive.id }} - {{ massive.name }}</a> 
+                <a href="{{ path('massive_play', {"id": massive.id}) }}">{{ massive.id }} - {{ massive.name }}</a>
             </li>
             {% endfor %}
         </ul>

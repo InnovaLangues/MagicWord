@@ -8,22 +8,22 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 class GameController extends Controller
 {
     /**
-     * @Route("/games", name="games")
+     * @Route("/games/started", name="games_started")
      */
-    public function listAction()
+    public function listStartedGamesAction()
     {
-        $games = $this->getDoctrine()->getRepository('MagicWordBundle:Game')->findAll();
+        $games = $this->get('security.token_storage')->getToken()->getUser()->getStartedGames();
 
-        return $this->render('MagicWordBundle:Game:list.html.twig', array('games' => $games));
+        return $this->render('MagicWordBundle:Game:started.html.twig', array('games' => $games));
     }
 
     /**
-     * @Route("/games/unfinished", name="unfinished_games")
+     * @Route("/games/ended", name="games_ended")
      */
-    public function UnifinishedGamesAction()
+    public function listEndedGamesAction()
     {
-        $games = $this->getDoctrine()->getRepository('MagicWordBundle:Game')->getUnfinished($this->get('security.token_storage')->getToken()->getUser());
+        $games = $this->get('security.token_storage')->getToken()->getUser()->getEndedGames();
 
-        return $this->render('MagicWordBundle:Game/Massive:list.html.twig', array('massives' => $games));
+        return $this->render('MagicWordBundle:Game:ended.html.twig', array('games' => $games));
     }
 }

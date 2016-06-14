@@ -13,6 +13,7 @@ class TrainingController extends Controller
     public function trainAction()
     {
         $round = $this->get('mw_manager.training')->generateTraining();
+        $this->get('mw_manager.user')->startGame($round->getGame());
 
         return $this->redirectToRoute('round_play', ['id' => $round->getId()]);
     }

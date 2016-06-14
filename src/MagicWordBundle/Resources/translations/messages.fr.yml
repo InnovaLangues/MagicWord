@@ -34,6 +34,8 @@ foundables: Mots trouvés
 french: Français
 from: 'De la part de'
 game_language: 'Langue du jeu'
+games_ended: Parties terminées
+games_started: Parties commencées
 gender: Genre
 generate_grid: 'Générer Grille'
 grid: Grille

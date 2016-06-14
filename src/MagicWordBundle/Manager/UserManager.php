@@ -4,6 +4,7 @@ namespace  MagicWordBundle\Manager;
 
 use JMS\DiExtraBundle\Annotation as DI;
 use MagicWordBundle\Form\Type\PlayerType;
+use MagicWordBundle\Entity\Game;
 use Symfony\Component\HttpFoundation\Request;
 
 /**
@@ -95,6 +96,31 @@ class UserManager
     {
         $currentUser = $this->tokenStorage->getToken()->getUser();
         $currentUser->removeFriend($friend);
+        $this->em->persist($currentUser);
+        $this->em->flush();
+    }
+
+    public function startGame(Game $game)
+    {
+        $currentUser = $this->tokenStorage->getToken()->getUser();
+
+        if (!$currentUser->getStartedGames()->contains($game)) {
+            $currentUser->addStartedGame($game);
+        }
+
+        $this->em->persist($currentUser);
+        $this->em->flush();
+    }
+
+    public function endGame(Game $game)
+    {
+        $currentUser = $this->tokenStorage->getToken()->getUser();
+
+        if ($currentUser->getStartedGames()->contains($game) && !$currentUser->getEndedGames()->contains($game)) {
+            $currentUser->removeStartedGame($game);
+            $currentUser->addEndedGame($game);
+        }
+
         $this->em->persist($currentUser);
         $this->em->flush();
     }

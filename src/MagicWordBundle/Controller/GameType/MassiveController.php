@@ -18,6 +18,7 @@ class MassiveController extends Controller
      */
     public function playAction(Massive $massive)
     {
+        $this->get('mw_manager.user')->startGame($massive);
         $url = $this->get('mw_manager.massive')->getNextURL($massive);
 
         return $this->redirect($url);
@@ -29,6 +30,8 @@ class MassiveController extends Controller
      */
     public function EndAction(Massive $massive)
     {
+        $this->get('mw_manager.user')->endGame($massive);
+
         return $this->render('MagicWordBundle:Game/Massive:end.html.twig', array('massive' => $massive));
     }
 
