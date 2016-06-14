@@ -34,6 +34,11 @@
                             <li class="list-group-item">
                                 {{ "foundables"|trans}} : {{ activity.foundForms |length }} / {{ round.grid.foundableForms | length}}
                             </li>
+                            {% if round.objectives is defined %}
+                            <li class="list-group-item">
+                                {{ "objectives"|trans}} : {{ activity.objectivesDone|length }} / {{ activity.round.objectives|length }}
+                            </li>
+                            {% endif %}
                             <li class="list-group-item">
                                 Points : {{ activity.points }}
                             </li>

@@ -70,17 +70,31 @@ class ScoreManager
             case 'rush':
                 $points += $this->getPointForFoundables($activity->getFoundForms());
                 break;
+            case 'conquer':
+                $points += $this->getPointForObjectives($activity);
+                break;
         }
 
         return $points;
     }
 
-    public function getPointForFoundables($foundForms)
+    private function getPointForFoundables($foundForms)
     {
         $points = 0;
         foreach ($foundForms as $foundForm) {
             $points += $foundForm->getPoints();
         }
+
+        return $points;
+    }
+
+    private function getPointForObjectives(Activity $activity)
+    {
+        $points = 0;
+        $round = $activity->getRound();
+
+        $objectiveDoneCount = count($activity->getObjectivesDone());
+        $objectivesDoableCount = count($round->getObjectives());
 
         return $points;
     }

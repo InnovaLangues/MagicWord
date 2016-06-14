@@ -39,6 +39,12 @@ class Activity
     private $foundForms;
 
     /**
+     * @ORM\ManyToMany(targetEntity="Objective")
+     * @ORM\JoinTable(name="activity_objective")
+     */
+    private $objectivesDone;
+
+    /**
      * @var \DateTime
      *
      * @ORM\Column(name="startDate", type="datetime")
@@ -242,5 +248,39 @@ class Activity
     public function getPoints()
     {
         return $this->points;
+    }
+
+    /**
+     * Add objectivesDone
+     *
+     * @param \MagicWordBundle\Entity\Objective $objectivesDone
+     *
+     * @return Activity
+     */
+    public function addObjectivesDone(\MagicWordBundle\Entity\Objective $objectivesDone)
+    {
+        $this->objectivesDone[] = $objectivesDone;
+
+        return $this;
+    }
+
+    /**
+     * Remove objectivesDone
+     *
+     * @param \MagicWordBundle\Entity\Objective $objectivesDone
+     */
+    public function removeObjectivesDone(\MagicWordBundle\Entity\Objective $objectivesDone)
+    {
+        $this->objectivesDone->removeElement($objectivesDone);
+    }
+
+    /**
+     * Get objectivesDone
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getObjectivesDone()
+    {
+        return $this->objectivesDone;
     }
 }
