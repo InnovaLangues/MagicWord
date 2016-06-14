@@ -19,6 +19,7 @@ class RoundRepository extends \Doctrine\ORM\EntityRepository
                     SELECT a FROM MagicWordBundle\Entity\Activity a
                     WHERE a.player = :user
                     AND a.round = r
+                    AND a.endDate IS NOT NULL
                 )
                 ORDER BY r.displayOrder ASC';
 

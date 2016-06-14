@@ -16,4 +16,14 @@ class GameController extends Controller
 
         return $this->render('MagicWordBundle:Game:list.html.twig', array('games' => $games));
     }
+
+    /**
+     * @Route("/games/unfinished", name="unfinished_games")
+     */
+    public function UnifinishedGamesAction()
+    {
+        $games = $this->getDoctrine()->getRepository('MagicWordBundle:Game')->getUnfinished($this->get('security.token_storage')->getToken()->getUser());
+
+        return $this->render('MagicWordBundle:Game/Massive:list.html.twig', array('massives' => $games));
+    }
 }

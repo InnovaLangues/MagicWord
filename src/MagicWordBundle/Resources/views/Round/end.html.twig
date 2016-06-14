@@ -1,38 +1,32 @@
 {% extends '::base.html.twig' %}
 
-{% block title %}PLAY ROUND{% endblock %}
+{% block title %}END ROUND{% endblock %}
 
 {% block body -%}
 
 <div class="panel panel-default">
     <div class="panel-heading">
-        <h4>{{ activity.foundForms|length}} formes trouvées sur {{round.grid.foundableForms|length}}</h4>
+        <h4>
+            Récapitulatif manche {{ round.displayOrder + 1 }} / {{ round.game.rounds|length}} - {{ round.game.discr | trans }}
+            <span class="pull-right">
+                {% include "MagicWordBundle:Round/End:next-"~round.game.discr~".html.twig" %}
+            </span>
+        </h4>
     </div>
     <div class="panel-body">
-        <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
-            {% for foundable in round.grid.foundableForms %}
-            <div class="panel panel-default">
-                <div class="panel-heading " role="tab" id="headingOne">
-                    <h4 class="panel-title {% if foundable in activity.foundForms %}bg-success{%else%}bg-danger{% endif %} ">
-                         <a role="button" data-toggle="collapse" data-parent="#accordion" href="#{{ foundable.id }}" aria-expanded="true" aria-controls="{{ foundable.id }}">
-                             {{ foundable.form |upper}} ({{ foundable.points}} pts)
-                        </a>
-                    </h4>
-                </div>
-                <div id="{{ foundable.id }}" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
-                    <div class="list-group" >
-                        {% for inflection in foundable.inflections %}
-                        <li class="list-group-item">
-                            {{ inflection.content }}
-                            ({{ inflection.lemma.content }} - <span class="text-muted">{{ inflection.lemma.category ? inflection.lemma.category.value }}</span>)
-                            <span class="btn btn-default btn-xs" onclick="addToWordbox({{ inflection.lemma.id }})">{{ "add_to_wordbox" | trans}}</a>
-                        </li>
-                        {% endfor %}
-                    </div>
-                </div>
-
+        <ul class="nav nav-tabs nav-justified" role="tablist">
+            <li role="presentation" class="active"><a href="#foundables" aria-controls="foundables" role="tab" data-toggle="tab">{{ "foundables"|trans}}</a></li>
+            {% if round.getObjectives() is defined %}
+            <li role="presentation"><a href="#objectives" aria-controls="objectives" role="tab" data-toggle="tab">{{ "objectives"|trans}}</a></li>
+            {% endif %}
+        </ul>
+        <div class="tab-content">
+            <div role="tabpanel" class="tab-pane fade in active" id="foundables">
+                {% include "MagicWordBundle:Round/End:foundable.html.twig" %}
             </div>
-            {% endfor %}
+            <div role="tabpanel" class="tab-pane fade" id="objectives">
+                {% include "MagicWordBundle:Round/End:objectives.html.twig" %}
+            </div>
         </div>
     </div>
 </div>

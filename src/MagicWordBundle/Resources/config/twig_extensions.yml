@@ -27,3 +27,10 @@ services:
             "entityManager": "@doctrine.orm.entity_manager"
         tags:
             - { name: twig.extension }
+
+    twig.extension.activity:
+        class: MagicWordBundle\Twig\RoundActivityExtension
+        arguments:
+            "entityManager": "@doctrine.orm.entity_manager"
+        tags:
+            - { name: twig.extension }
