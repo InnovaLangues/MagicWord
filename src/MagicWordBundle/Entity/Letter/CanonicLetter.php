@@ -29,11 +29,6 @@ class CanonicLetter
     private $value;
 
     /**
-     * @ORM\OneToMany(targetEntity="Letter", mappedBy="canonicLetter")
-     */
-    protected $letters;
-
-    /**
      * Get id.
      *
      * @return int
@@ -65,46 +60,5 @@ class CanonicLetter
     public function getValue()
     {
         return $this->value;
-    }
-    /**
-     * Constructor.
-     */
-    public function __construct()
-    {
-        $this->letters = new \Doctrine\Common\Collections\ArrayCollection();
-    }
-
-    /**
-     * Add letter.
-     *
-     * @param \MagicWordBundle\Entity\Letter\Letter $letter
-     *
-     * @return CanonicLetter
-     */
-    public function addLetter(\MagicWordBundle\Entity\Letter\Letter $letter)
-    {
-        $this->letters[] = $letter;
-
-        return $this;
-    }
-
-    /**
-     * Remove letter.
-     *
-     * @param \MagicWordBundle\Entity\Letter\Letter $letter
-     */
-    public function removeLetter(\MagicWordBundle\Entity\Letter\Letter $letter)
-    {
-        $this->letters->removeElement($letter);
-    }
-
-    /**
-     * Get letters.
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getLetters()
-    {
-        return $this->letters;
     }
 }

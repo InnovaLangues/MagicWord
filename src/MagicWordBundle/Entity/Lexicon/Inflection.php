@@ -28,11 +28,6 @@ class Inflection implements JsonSerializable
     private $language;
 
     /**
-     * @ORM\ManyToMany(targetEntity="MagicWordBundle\Entity\Grid", mappedBy="inflections")
-     */
-    private $grids;
-
-    /**
      * @ORM\ManyToOne(targetEntity="MagicWordBundle\Entity\Lexicon\Lemma")
      */
     private $lemma;
@@ -96,11 +91,6 @@ class Inflection implements JsonSerializable
      * @ORM\Column(name="status", type="string", length=255)
      */
     private $status;
-
-    public function __construct()
-    {
-        $this->grids = new \Doctrine\Common\Collections\ArrayCollection();
-    }
 
     /**
      * Get id.
@@ -374,40 +364,6 @@ class Inflection implements JsonSerializable
     public function getCleanedContent()
     {
         return $this->cleanedContent;
-    }
-
-    /**
-     * Add grid.
-     *
-     * @param \MagicWordBundle\Entity\Grid $grid
-     *
-     * @return Inflection
-     */
-    public function addGrid(\MagicWordBundle\Entity\Grid $grid)
-    {
-        $this->grids[] = $grid;
-
-        return $this;
-    }
-
-    /**
-     * Remove grid.
-     *
-     * @param \MagicWordBundle\Entity\Grid $grid
-     */
-    public function removeGrid(\MagicWordBundle\Entity\Grid $grid)
-    {
-        $this->grids->removeElement($grid);
-    }
-
-    /**
-     * Get grids.
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getGrids()
-    {
-        return $this->grids;
     }
 
     /**
