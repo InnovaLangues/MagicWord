@@ -1,0 +1,22 @@
+{% set scores = getScores(massive) %}
+
+<div class="panel panel-default">
+    <div class="panel-body">
+        <table class="table table-bordered table-striped">
+            <thead>
+                <th>Position</th>
+                <th>Joueur</th>
+                <th>Score</th>
+            </thead>
+            <tbody>
+                {% for i, score in scores %}
+                <tr {{ app.user == score.player ? "class='success'": ""}}>
+                    <td>{{ i }}</td>
+                    <td>{{ score.player }}</td>
+                    <td>{{ score.points }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>

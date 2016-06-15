@@ -15,21 +15,24 @@ class UserManager
     protected $em;
     protected $tokenStorage;
     protected $formFactory;
+    protected $scoreManager;
     protected $session;
 
     /**
      * @DI\InjectParams({
      *      "entityManager" = @DI\Inject("doctrine.orm.entity_manager"),
-     *      "tokenStorage" = @DI\Inject("security.token_storage"),
-     *      "formFactory" = @DI\Inject("form.factory"),
-     *      "session" = @DI\Inject("session"),
+     *      "tokenStorage"  = @DI\Inject("security.token_storage"),
+     *      "formFactory"   = @DI\Inject("form.factory"),
+     *      "scoreManager"  = @DI\Inject("mw_manager.score"),
+     *      "session"       = @DI\Inject("session"),
      * })
      */
-    public function __construct($entityManager, $tokenStorage, $formFactory, $session)
+    public function __construct($entityManager, $tokenStorage, $formFactory, $scoreManager, $session)
     {
         $this->em = $entityManager;
         $this->tokenStorage = $tokenStorage;
         $this->formFactory = $formFactory;
+        $this->scoreManager = $scoreManager;
         $this->session = $session;
     }
 
@@ -115,6 +118,8 @@ class UserManager
     public function endGame(Game $game)
     {
         $currentUser = $this->tokenStorage->getToken()->getUser();
+
+        $this->scoreManager->calculateScore($game, $currentUser);
 
         if ($currentUser->getStartedGames()->contains($game) && !$currentUser->getEndedGames()->contains($game)) {
             $currentUser->removeStartedGame($game);

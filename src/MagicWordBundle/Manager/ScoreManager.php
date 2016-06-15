@@ -4,6 +4,7 @@ namespace  MagicWordBundle\Manager;
 
 use JMS\DiExtraBundle\Annotation as DI;
 use MagicWordBundle\Entity\Lexicon\Inflection;
+use MagicWordBundle\Entity\Score;
 use MagicWordBundle\Entity\Language;
 use MagicWordBundle\Entity\Activity;
 
@@ -97,5 +98,27 @@ class ScoreManager
         $objectivesDoableCount = count($round->getObjectives());
 
         return $points;
+    }
+
+    public function calculateScore($game, $user)
+    {
+        $points = 0;
+        $rounds = $game->getRounds();
+        foreach ($rounds as $round) {
+            $activity = $this->em->getRepository('MagicWordBundle:Activity')->findOneBy(['round' => $round, 'player' => $user]);
+            $points += $activity->getPoints();
+        }
+
+        if (!$this->em->getRepository('MagicWordBundle:Score')->findOneBy(['game' => $game, 'player' => $user])) {
+            $score = new Score();
+            $score->setGame($game);
+            $score->setPoints($points);
+            $score->setPlayer($user);
+
+            $this->em->persist($score);
+            $this->em->flush();
+        }
+
+        return;
     }
 }
