@@ -40,6 +40,19 @@ class Score
     private $points = 0;
 
     /**
+     * @ORM\OneToMany(targetEntity="Activity", mappedBy="score")
+     */
+
+    /**
+     * @ORM\ManyToMany(targetEntity="Activity")
+     * @ORM\JoinTable(name="score_activities",
+     *      joinColumns={@ORM\JoinColumn(name="score_id", referencedColumnName="id")},
+     *      inverseJoinColumns={@ORM\JoinColumn(name="activity_id", referencedColumnName="id", unique=true)}
+     *      )
+     */
+    private $activities;
+
+    /**
      * Get id.
      *
      * @return int
@@ -119,5 +132,46 @@ class Score
     public function getPlayer()
     {
         return $this->player;
+    }
+    /**
+     * Constructor.
+     */
+    public function __construct()
+    {
+        $this->activities = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Add activity.
+     *
+     * @param \MagicWordBundle\Entity\Activity $activity
+     *
+     * @return Score
+     */
+    public function addActivity(\MagicWordBundle\Entity\Activity $activity)
+    {
+        $this->activities[] = $activity;
+
+        return $this;
+    }
+
+    /**
+     * Remove activity.
+     *
+     * @param \MagicWordBundle\Entity\Activity $activity
+     */
+    public function removeActivity(\MagicWordBundle\Entity\Activity $activity)
+    {
+        $this->activities->removeElement($activity);
+    }
+
+    /**
+     * Get activities.
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getActivities()
+    {
+        return $this->activities;
     }
 }

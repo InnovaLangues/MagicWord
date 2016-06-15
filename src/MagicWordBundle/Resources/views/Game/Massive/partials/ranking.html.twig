@@ -4,9 +4,12 @@
     <div class="panel-body">
         <table class="table table-bordered table-striped">
             <thead>
-                <th>Position</th>
-                <th>Joueur</th>
-                <th>Score</th>
+                <th>{{ "rank" | trans }}</th>
+                <th>{{ "player" | trans }}</th>
+                <th>{{ "score" | trans }}</th>
+                {% for i, round in massive.rounds %}
+                <th>{{ "round" | trans }} {{ i }}</th>
+                {% endfor %}
             </thead>
             <tbody>
                 {% for i, score in scores %}
@@ -14,6 +17,9 @@
                     <td>{{ i }}</td>
                     <td>{{ score.player }}</td>
                     <td>{{ score.points }}</td>
+                    {% for i, activity in score.activities %}
+                    <td>{{ activity.points }}</td>
+                    {% endfor %}
                 </tr>
                 {% endfor %}
             </tbody>

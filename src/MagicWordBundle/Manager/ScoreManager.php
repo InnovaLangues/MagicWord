@@ -102,19 +102,21 @@ class ScoreManager
 
     public function calculateScore($game, $user)
     {
-        $points = 0;
-        $rounds = $game->getRounds();
-        foreach ($rounds as $round) {
-            $activity = $this->em->getRepository('MagicWordBundle:Activity')->findOneBy(['round' => $round, 'player' => $user]);
-            $points += $activity->getPoints();
-        }
-
         if (!$this->em->getRepository('MagicWordBundle:Score')->findOneBy(['game' => $game, 'player' => $user])) {
+            $points = 0;
+            $activities = [];
+            $rounds = $game->getRounds();
+
             $score = new Score();
+            foreach ($rounds as $round) {
+                $activity = $this->em->getRepository('MagicWordBundle:Activity')->findOneBy(['round' => $round, 'player' => $user]);
+                $score->addActivity($activity);
+                $points += $activity->getPoints();
+            }
+
             $score->setGame($game);
             $score->setPoints($points);
             $score->setPlayer($user);
-
             $this->em->persist($score);
             $this->em->flush();
         }

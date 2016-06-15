@@ -4,6 +4,7 @@ namespace MagicWordBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use MagicWordBundle\Entity\Game;
 
 class GameController extends Controller
 {

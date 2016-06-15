@@ -251,7 +251,7 @@ class Activity
     }
 
     /**
-     * Add objectivesDone
+     * Add objectivesDone.
      *
      * @param \MagicWordBundle\Entity\Objective $objectivesDone
      *
@@ -265,7 +265,7 @@ class Activity
     }
 
     /**
-     * Remove objectivesDone
+     * Remove objectivesDone.
      *
      * @param \MagicWordBundle\Entity\Objective $objectivesDone
      */
@@ -275,7 +275,7 @@ class Activity
     }
 
     /**
-     * Get objectivesDone
+     * Get objectivesDone.
      *
      * @return \Doctrine\Common\Collections\Collection
      */
