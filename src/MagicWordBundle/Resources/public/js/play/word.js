@@ -34,7 +34,6 @@ var words = {
 		}
 
 		$("#inflections-found").prepend("<li class='list-group-item'>"+typedInflection+"<span class='pull-right'>"+points+"</span></li>");
-
 	},
 
 	checkWord: function(){

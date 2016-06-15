@@ -1,6 +1,6 @@
 <?php
 
-namespace  MagicWordBundle\Twig;
+namespace MagicWordBundle\Twig;
 
 class ScoreExtension extends \Twig_Extension
 {

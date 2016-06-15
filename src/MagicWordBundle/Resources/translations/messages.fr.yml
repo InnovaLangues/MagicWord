@@ -27,7 +27,7 @@ description: Description
 edit_game: 'Editer partie'
 edit_round: 'Editer la manche'
 english: Anglais
-existing_forms: 'Formes présentes'
+existing_forms: 'forme(s) présente(s)'
 find_words: FindWord
 form: Forme
 forms_found: 'forme(s) trouvée(s)'

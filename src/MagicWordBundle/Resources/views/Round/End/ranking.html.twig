@@ -1,0 +1,20 @@
+<div class="panel panel-default">
+    <div class="panel-body">
+        <table class="table table-bordered table-striped">
+            <thead>
+                <th>{{ "rank" | trans }}</th>
+                <th>{{ "player" | trans }}</th>
+                <th>{{ "score" | trans }}</th>
+            </thead>
+            <tbody>
+                {% for i, activity in activities %}
+                <tr {{ app.user == activity.player ? "class='success'": ""}}>
+                    <td>{{ i + 1 }}</td>
+                    <td>{{ activity.player }}</td>
+                    <td>{{ activity.points }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>

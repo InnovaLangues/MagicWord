@@ -21,10 +21,18 @@ class RoundActivityExtension extends \Twig_Extension
         return $activity;
     }
 
+    public function getActivities(Round $round)
+    {
+        $activities = $this->em->getRepository('MagicWordBundle:Activity')->findBy(['round' => $round], ['points' => 'DESC']);
+
+        return $activities;
+    }
+
     public function getFunctions()
     {
         return array(
             new \Twig_SimpleFunction('getActivity', array($this, 'getActivity')),
+            new \Twig_SimpleFunction('getActivities', array($this, 'getActivities')),
         );
     }
 
