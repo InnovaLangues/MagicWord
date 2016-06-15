@@ -52,6 +52,7 @@ class FoundableFormManager
             }
 
             $this->em->persist($foundable);
+            $grid->addFoundableForm($foundable);
         }
 
         $this->em->flush();

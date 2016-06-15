@@ -17,9 +17,9 @@ class GridController extends Controller
      */
     public function getInflectionAction(Request $request)
     {
-        $inflections = $this->get('mw_manager.grid')->getInflections($request);
+        $foundableForms = $this->get('mw_manager.grid')->getFoundableForms($request);
 
-        $template = $this->get('templating')->render('MagicWordBundle:Round/Conquer/Objective:possible-inflections.html.twig', array('inflections' => $inflections));
+        $template = $this->get('templating')->render('MagicWordBundle:Round/Conquer/Objective:possible-inflections.html.twig', array('foundableForms' => $foundableForms));
 
         return new Response($template);
     }

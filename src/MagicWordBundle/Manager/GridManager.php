@@ -90,7 +90,7 @@ class GridManager
     public function updateGrid(Grid $grid, Request $request)
     {
         $this->removeSquare($grid);
-        $this->removeInflections($grid);
+        $this->removeFoundables($grid);
 
         $this->em->refresh($grid);
 
@@ -106,10 +106,7 @@ class GridManager
     public function saveInflections(Grid $grid)
     {
         $inflections = $this->findInflections($grid);
-
         $this->foundableFormManager->populateFoundables($inflections, $grid);
-
-        $grid->addInflections($inflections);
 
         $this->em->persist($grid);
         $this->em->flush();
@@ -127,13 +124,12 @@ class GridManager
         $this->em->flush();
     }
 
-    private function removeInflections(Grid $grid)
+    private function removeFoundables(Grid $grid)
     {
-        $inflections = $grid->getInflections();
-        foreach ($inflections as $inflection) {
-            $grid->removeInflection($inflection);
+        $foundables = $grid->getFoundableForms();
+        foreach ($foundables as $foundable) {
+            $this->em->remove($foundable);
         }
-        $this->em->persist($grid);
 
         $this->em->flush();
     }
@@ -150,9 +146,19 @@ class GridManager
     public function getInflections($request)
     {
         $grid = $this->createGrid($request, false);
-        $inflections = $inflections = $this->findInflections($grid);
+        $inflections = $this->findInflections($grid);
 
         return $inflections;
+    }
+
+    public function getFoundableForms(Request $request)
+    {
+        $grid = $this->createGrid($request, false);
+        $inflections = $this->findInflections($grid);
+
+        $this->foundableFormManager->populateFoundables($inflections, $grid);
+
+        return $grid->getFoundableForms();
     }
 
     public function getCombos($request)

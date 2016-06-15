@@ -1,12 +1,9 @@
 <ul class="list-group" style="max-height:600px; overflow-y:scroll">
-    {% for inflection in inflections %}
+    {% for foundableForm in foundableForms %}
         <li class="list-group-item">
-            {{ inflection.content }}
+            {{ foundableForm.form }}
             <span class="text-muted">
-                {{ inflection.lemma.content }} {{ inflection.lemma.category ? "-"~inflection.lemma.category.value : "" }}
-            </span>
-            <span class="btn btn-default btn-xs pull-right" onclick="addInflection('{{ inflection.cleanedContent }}')">
-                <i class="fa fa-plus" aria-hidden="true"></i> {{ 'add' | trans }}
+                ({{ foundableForm.points }}pts)
             </span>
         </li>
     {% endfor %}

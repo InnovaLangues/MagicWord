@@ -17,8 +17,8 @@
                     <div class="col-md-12" >
                         <div class="panel panel-default">
                             <div class="panel-body" id="inflections">
-                                {% if grid.inflections is defined  %}
-                                {% include 'MagicWordBundle:Round/Conquer/Objective:possible-inflections.html.twig' with {'inflections': grid.inflections } %}
+                                {% if grid.foundableForms is defined  %}
+                                {% include 'MagicWordBundle:Round/Conquer/Objective:possible-inflections.html.twig' with {'foundableForms': grid.foundableForms } %}
                                 {% endif %}
                             </div>
                         </div>

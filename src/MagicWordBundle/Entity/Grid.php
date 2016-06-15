@@ -42,12 +42,6 @@ class Grid implements \JsonSerializable
     private $foundableForms;
 
     /**
-     * @ORM\ManyToMany(targetEntity="MagicWordBundle\Entity\Lexicon\Inflection", inversedBy="grids")
-     * @ORM\JoinTable(name="inflections_grids")
-     */
-    private $inflections;
-
-    /**
      * @ORM\OneToMany(targetEntity="Square", mappedBy="grid")
      */
     protected $squares;
@@ -59,7 +53,6 @@ class Grid implements \JsonSerializable
 
     public function __construct()
     {
-        $this->inflections = new \Doctrine\Common\Collections\ArrayCollection();
         $this->squares = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
@@ -156,49 +149,6 @@ class Grid implements \JsonSerializable
     }
 
     /**
-     * Add inflection.
-     *
-     * @param \MagicWordBundle\Entity\Lexicon\Inflection $inflection
-     *
-     * @return Grid
-     */
-    public function addInflection(\MagicWordBundle\Entity\Lexicon\Inflection $inflection)
-    {
-        $this->inflections[] = $inflection;
-
-        return $this;
-    }
-
-    public function addInflections($inflections)
-    {
-        foreach ($inflections as $inflection) {
-            $this->addInflection($inflection);
-        }
-
-        return $this;
-    }
-
-    /**
-     * Remove inflection.
-     *
-     * @param \MagicWordBundle\Entity\Lexicon\Inflection $inflection
-     */
-    public function removeInflection(\MagicWordBundle\Entity\Lexicon\Inflection $inflection)
-    {
-        $this->inflections->removeElement($inflection);
-    }
-
-    /**
-     * Get inflections.
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getInflections()
-    {
-        return $this->inflections;
-    }
-
-    /**
      * Set language.
      *
      * @param \MagicWordBundle\Entity\Language $language
@@ -228,18 +178,15 @@ class Grid implements \JsonSerializable
             'id' => $this->id,
             'inflections' => array(),
         );
+        foreach ($this->getFoundableForms() as $foundable) {
+            $form = $foundable->getForm();
+            $jsonArray['inflections'][$form] = array('ids' => [], 'lemmaIds' => []);
 
-        foreach ($this->getInflections() as $inflection) {
-            if (!isset($jsonArray['inflections'][$inflection->getCleanedContent()])) {
-                $jsonArray['inflections'][$inflection->getCleanedContent()] = array(
-                    'ids' => [$inflection->getId()],
-                    'lemmaIds' => [$inflection->getLemma()->getId()],
-                );
-            } else {
-                $jsonArray['inflections'][$inflection->getCleanedContent()]['ids'][] = $inflection->getId();
+            foreach ($foundable->getInflections() as $inflection) {
+                $jsonArray['inflections'][$form]['ids'][] = $inflection->getId();
                 $lemmaId = $inflection->getLemma()->getId();
-                if (!in_array($lemmaId, $jsonArray['inflections'][$inflection->getCleanedContent()]['lemmaIds'])) {
-                    $jsonArray['inflections'][$inflection->getCleanedContent()]['lemmaIds'][] = $inflection->getLemma()->getId();
+                if (!in_array($lemmaId, $jsonArray['inflections'][$form]['lemmaIds'])) {
+                    $jsonArray['inflections'][$form]['lemmaIds'][] = $lemmaId;
                 }
             }
         }
