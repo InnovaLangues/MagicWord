@@ -14,7 +14,7 @@
             <tbody>
                 {% for i, score in scores %}
                 <tr {{ app.user == score.player ? "class='success'": ""}}>
-                    <td>{{ i }}</td>
+                    <td>{{ i + 1 }}</td>
                     <td>{{ score.player }}</td>
                     <td>{{ score.points }}</td>
                     {% for i, activity in score.activities %}

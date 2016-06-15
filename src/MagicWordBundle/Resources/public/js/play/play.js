@@ -2,7 +2,7 @@ $(document).ready(function () {
 	activity.init(function(){
 		combo.init();
 		grid.draw();
-		localstor.init();
+		//localstor.init();
 		clock.init();
 		$("#game-container").show();
 	});

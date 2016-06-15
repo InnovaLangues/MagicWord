@@ -7,6 +7,7 @@ add_to_wordbox: 'Ajouter à ma wordbox'
 add: Ajouter
 back_to_editor: 'Retour à l''éditeur de partie'
 back_to_home: Retour à l'accueil
+bonus_points: Points bonus
 category: Catégorie
 challenge_received: 'Défis reçus'
 challenge_sent: 'Défis envoyés'
@@ -29,13 +30,13 @@ english: Anglais
 existing_forms: 'Formes présentes'
 find_words: FindWord
 form: Forme
-forms_found: 'Formes trouvées'
+forms_found: 'forme(s) trouvée(s)'
 foundables: Mots trouvés
 french: Français
 from: 'De la part de'
 game_language: 'Langue du jeu'
 games_ended: Parties terminées
-games_started: Parties commencées
+games_started: Parties en cours
 gender: Genre
 generate_grid: 'Générer Grille'
 grid: Grille
@@ -46,6 +47,7 @@ language_ui: 'Langue de l''interface'
 language: Langue
 lemma_info: 'Infos sur le lemme'
 lemma: Lemme
+letterlanguagepoints: Points par lettre et par langue
 massive_end: 'Récapitulatif partie massive'
 massive: 'Partie massive'
 massives: 'Parties massives'
@@ -64,13 +66,19 @@ parameters: Paramètres
 person: Personne
 phonetic: Phonétique
 play: Jouer
+player: Joueur
+points: Points
 profile_of: 'Profil de'
+rank: Rang
+ranking: Classement
 remove__from_friends: 'Retirer des amis'
 round: Manche
+rounds: Manches
 rush: Rush
 save_grid: 'Sauvegarder la grille'
 save_objectives: 'Sauvegarder les objectifs'
 save: Sauvegarder
+score: Score total
 see_combos: 'Voir les combos'
 see_grid: 'Voir la grille'
 subcategory: Subcatégorie
@@ -80,15 +88,7 @@ total: Total
 train: 'S''entrainer'
 training: Partie d'entrainement
 update: 'Mettre à jour'
-wordbox: Wordbox
-word_length: Longueur du mot
-bonus_points: Points bonus
-wordlengthpoints: Points bonus longueur de mot
-letterlanguagepoints: Points par lettre et par langue
 weight: Poids
-points: Points
-score: Score total
-rank: Rang
-player: Joueur
-rounds: Manches
-ranking: Classement
+word_length: Longueur du mot
+wordbox: Wordbox
+wordlengthpoints: Points bonus longueur de mot

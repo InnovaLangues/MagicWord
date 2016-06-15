@@ -1,6 +1,7 @@
 var words = {
 	word: '',
 	foundWords: [],
+	correctWords: 0,
 
 	inInflections: function(inflection){
 		var inInflections = gridJSON.inflections.hasOwnProperty(inflection.toLowerCase())
@@ -27,6 +28,8 @@ var words = {
 		if(isCorrect){
 			points = score.calculatePoints(inflection);
 			activity.sendFoundWord(inflection, points);
+			this.correctWords++;
+			$("#correctWords-found").html(this.correctWords);
 			//localstor.add(inflection);
 		}
 

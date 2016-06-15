@@ -2,9 +2,9 @@
     <div class="panel panel-default">
         <div class="panel-heading">
             <h3>
-                {{ 'forms_found' | trans }}
+                <span class="label label-default" id="correctWords-found">0</span> {{ 'forms_found' | trans }} sur {{ grid.foundableForms|length}}
                 <span class="pull-right">
-                    <span id="score-total"></span>
+                    <span class="label label-primary" id="score-total">0</span> pts
                 </span>
             </h3>
         </div>
