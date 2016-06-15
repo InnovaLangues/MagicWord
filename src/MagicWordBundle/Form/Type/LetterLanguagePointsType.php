@@ -20,6 +20,14 @@ class LetterLanguagePointsType extends AbstractType
             'label' => 'points',
         ));
 
+        $builder->add('weight', IntegerType::class,  array(
+            'attr' => [
+                'placeholder' => 'weight',
+                'translation_domain' => 'messages',
+            ],
+            'label' => 'weight',
+        ));
+
         $builder->add('save', SubmitType::class, array(
             'attr' => array('class' => 'btn btn-default'),
             'label' => 'save',
