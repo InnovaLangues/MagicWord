@@ -45,7 +45,7 @@ class FoundableFormManager
             $foundable = new FoundableForm();
             $foundable->setGrid($grid);
             $foundable->setForm($form);
-            $points = $this->scoreManager->getWordPoint($inflection, $grid->getLanguage());
+            $points = $this->scoreManager->getWordPoint($form, $grid->getLanguage());
             $foundable->setPoints($points);
             foreach ($foundableForm['inflections'] as $inflection) {
                 $foundable->addInflection($inflection);

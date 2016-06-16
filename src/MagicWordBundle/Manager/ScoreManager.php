@@ -3,7 +3,6 @@
 namespace  MagicWordBundle\Manager;
 
 use JMS\DiExtraBundle\Annotation as DI;
-use MagicWordBundle\Entity\Lexicon\Inflection;
 use MagicWordBundle\Entity\Score;
 use MagicWordBundle\Entity\Language;
 use MagicWordBundle\Entity\Activity;
@@ -25,10 +24,9 @@ class ScoreManager
         $this->em = $entityManager;
     }
 
-    public function getWordPoint(Inflection $inflection, Language $language)
+    public function getWordPoint($form, Language $language)
     {
         $points = 0;
-        $form = $inflection->getCleanedContent();
 
         $points += $this->getLengthPoints($form);
         $points += $this->getLettersPoints($form, $language);
