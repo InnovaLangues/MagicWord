@@ -16,7 +16,17 @@
         </h4>
     </div>
     <div class="panel-body">
-        {% include "MagicWordBundle:Round/End:grid.html.twig" %}
+        <div class="jumbotron">
+            <div class="row">
+                <div class="col-md-4">
+                {% include "MagicWordBundle:Round/End:grid.html.twig" %}
+                </div>
+                <div class="col-md-8">
+                {% include "MagicWordBundle:Round/End:summary.html.twig" %}
+                </div>
+            </div>
+        </div>
+
         <ul class="nav nav-tabs" role="tablist">
             <li role="presentation" class="active">
                 <a href="#foundables" aria-controls="foundables" role="tab" data-toggle="tab">

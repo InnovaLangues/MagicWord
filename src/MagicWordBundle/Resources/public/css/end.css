@@ -1,0 +1,29 @@
+table#end-grid{
+	border:1px;
+	text-align:center;
+    border-collapse:separate;
+    border-spacing:2px;
+}
+
+table#end-grid td {
+	color:white;
+	background-color:#04346C;
+  	border: solid 1px black;
+  	width:50px;
+  	height:50px;
+}
+
+.columns {
+	-webkit-columns: 3;
+	-moz-columns: 3;
+	columns: 3;
+	-webkit-column-gap: 5px;
+    -moz-column-gap: 5px;
+    column-gap: 5px;
+}
+
+.columns > div {
+	-webkit-column-break-inside: avoid;
+	page-break-inside: avoid;
+	break-inside: avoid;
+}

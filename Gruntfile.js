@@ -20,6 +20,7 @@ module.exports = function(grunt) {
                         'src/MagicWordBundle/Resources/public/css/main.css',
                         "bower_components/FlipClock/compiled/flipclock.css",
                         'src/MagicWordBundle/Resources/public/css/play.css',
+                        'src/MagicWordBundle/Resources/public/css/end.css',
                     ]
                 }
             }

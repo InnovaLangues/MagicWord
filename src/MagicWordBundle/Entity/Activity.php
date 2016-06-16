@@ -35,6 +35,7 @@ class Activity
     /**
      * @ORM\ManyToMany(targetEntity="FoundableForm")
      * @ORM\JoinTable(name="activity_foundForm")
+     * @ORM\OrderBy({"points" = "DESC"})
      */
     private $foundForms;
 

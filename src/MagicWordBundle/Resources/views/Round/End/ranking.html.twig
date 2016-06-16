@@ -5,6 +5,7 @@
                 <th>{{ "rank" | trans }}</th>
                 <th>{{ "player" | trans }}</th>
                 <th>{{ "score" | trans }}</th>
+                <th>{{ "forms_found_count" | trans }}</th>
             </thead>
             <tbody>
                 {% for i, activity in activities %}
@@ -12,6 +13,7 @@
                     <td>{{ i + 1 }}</td>
                     <td>{{ activity.player }}</td>
                     <td>{{ activity.points }}</td>
+                    <td>{{ activity.foundForms | length }}</td>
                 </tr>
                 {% endfor %}
             </tbody>
