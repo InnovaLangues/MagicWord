@@ -180,7 +180,7 @@ class Grid implements \JsonSerializable
         );
         foreach ($this->getFoundableForms() as $foundable) {
             $form = $foundable->getForm();
-            $jsonArray['inflections'][$form] = array('ids' => [], 'lemmaIds' => []);
+            $jsonArray['inflections'][$form] = array('id' => $foundable->getId(), 'points' => $foundable->getPoints(), 'ids' => [], 'lemmaIds' => []);
 
             foreach ($foundable->getInflections() as $inflection) {
                 $jsonArray['inflections'][$form]['ids'][] = $inflection->getId();

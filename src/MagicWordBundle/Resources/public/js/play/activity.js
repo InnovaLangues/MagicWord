@@ -17,18 +17,14 @@ var activity = {
     sendFoundWord: function(inflection, points){
         var roundId = roundJSON.id;
         var inflection = inflection.toLowerCase();
-		var url = Routing.generate('add_foundForm', {id: roundId});
+		var foundableId = gridJSON.inflections[inflection].id;
+		var url = Routing.generate('add_foundForm', {roundId: roundId, foundableId: foundableId});
         var ids = gridJSON.inflections[inflection].ids;
 
 		$.ajax({
               type: 'POST',
               url: url,
               dataType: "json",
-              data: {
-                  points: points,
-                  form: inflection,
-                  inflectionIds: ids
-              }
           });
 	},
 

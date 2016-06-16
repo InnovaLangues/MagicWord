@@ -3,9 +3,9 @@
 namespace  MagicWordBundle\Manager;
 
 use JMS\DiExtraBundle\Annotation as DI;
-use Symfony\Component\HttpFoundation\Request;
 use MagicWordBundle\Entity\Round;
 use MagicWordBundle\Entity\Activity;
+use MagicWordBundle\Entity\FoundableForm;
 
 /**
  * @DI\Service("mw_manager.activity")
@@ -52,15 +52,11 @@ class ActivityManager
         return $delta;
     }
 
-    public function addFoundForm(Round $round, Request $request)
+    public function addFoundForm(Round $round, FoundableForm $foundableform)
     {
         $activity = $this->getActivity($round);
-        $grid = $round->getGrid();
 
-        $form = $request->request->get('form');
-        $foundable = $this->em->getRepository('MagicWordBundle:FoundableForm')->findOneBy(['grid' => $grid, 'form' => $form]);
-
-        $activity->addFoundForm($foundable);
+        $activity->addFoundForm($foundableform);
 
         $this->em->persist($activity);
         $this->em->flush();

@@ -3,12 +3,12 @@
 namespace MagicWordBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use MagicWordBundle\Entity\Round;
+use MagicWordBundle\Entity\FoundableForm;
 
 class ActivityController extends Controller
 {
@@ -25,13 +25,14 @@ class ActivityController extends Controller
     }
 
     /**
-     * @Route("/add-found-form/{id}", name="add_foundForm", options={"expose"=true})
-     * @ParamConverter("round", class="MagicWordBundle:Round")
+     * @Route("/add-found-form/round/{roundId}/foundable/{foundableId}", name="add_foundForm", options={"expose"=true})
+     * @ParamConverter("round", class="MagicWordBundle:Round",  options={"id" = "roundId"})
+     * @ParamConverter("foundableForm", class="MagicWordBundle:FoundableForm", options={"id" = "foundableId"})
      * @Method("POST")
      */
-    public function addFoundFormAction(Round $round, Request $request)
+    public function addFoundFormAction(Round $round, FoundableForm $foundableForm)
     {
-        $this->get('mw_manager.activity')->addFoundForm($round, $request);
+        $this->get('mw_manager.activity')->addFoundForm($round, $foundableForm);
 
         return new JsonResponse();
     }
