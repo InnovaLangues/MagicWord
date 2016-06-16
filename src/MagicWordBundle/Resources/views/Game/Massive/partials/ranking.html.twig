@@ -8,7 +8,7 @@
                 <th>{{ "player" | trans }}</th>
                 <th>{{ "score" | trans }}</th>
                 {% for i, round in massive.rounds %}
-                <th>{{ "round" | trans }} {{ i }}</th>
+                <th>{{ "round" | trans }} {{ i + 1 }}</th>
                 {% endfor %}
             </thead>
             <tbody>
