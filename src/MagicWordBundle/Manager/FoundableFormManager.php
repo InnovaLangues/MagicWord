@@ -28,24 +28,23 @@ class FoundableFormManager
 
     public function populateFoundables($inflections, Grid $grid)
     {
-        $foundableForms = array();
+        $foundableForms = [];
 
         foreach ($inflections as $inflection) {
             if (!isset($foundableForms[$inflection->getCleanedContent()])) {
-                $points = 0;
-                $foundableForms[$inflection->getCleanedContent()] = array(
-                    'inflections' => [$inflection],
-                );
+                $foundableForms[$inflection->getCleanedContent()] = ['inflections' => [$inflection]];
             } else {
                 $foundableForms[$inflection->getCleanedContent()]['inflections'][] = $inflection;
             }
         }
 
+        $letterPoints = $this->scoreManager->getLettersPointsArray($grid->getLanguage());
+
         foreach ($foundableForms as $form => $foundableForm) {
             $foundable = new FoundableForm();
             $foundable->setGrid($grid);
             $foundable->setForm($form);
-            $points = $this->scoreManager->getWordPoint($form, $grid->getLanguage());
+            $points = $this->scoreManager->getWordPoint($form, $letterPoints);
             $foundable->setPoints($points);
             foreach ($foundableForm['inflections'] as $inflection) {
                 $foundable->addInflection($inflection);

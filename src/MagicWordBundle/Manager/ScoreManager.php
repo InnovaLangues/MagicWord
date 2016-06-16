@@ -4,7 +4,6 @@ namespace  MagicWordBundle\Manager;
 
 use JMS\DiExtraBundle\Annotation as DI;
 use MagicWordBundle\Entity\Score;
-use MagicWordBundle\Entity\Language;
 use MagicWordBundle\Entity\Activity;
 
 /**
@@ -24,12 +23,12 @@ class ScoreManager
         $this->em = $entityManager;
     }
 
-    public function getWordPoint($form, Language $language)
+    public function getWordPoint($form, $letterPoints)
     {
         $points = 0;
 
         $points += $this->getLengthPoints($form);
-        $points += $this->getLettersPoints($form, $language);
+        $points += $this->getLettersPoints($form, $letterPoints);
 
         return $points;
     }
@@ -45,15 +44,12 @@ class ScoreManager
         return $points;
     }
 
-    public function getLettersPoints($form, $language)
+    public function getLettersPoints($form, $letterPoints)
     {
         $points = 0;
         $letters = str_split($form);
         foreach ($letters as $letter) {
-            $letterLanguage = $this->em->getRepository("MagicWordBundle:Letter\LetterLanguage")->findOneBy(['letter' => $letter, 'language' => $language]);
-            $points += ($letterLanguage)
-                ? $letterLanguage->getPoint()
-                : 1;
+            $points += (array_key_exists($letter, $letterPoints)) ? $letterPoints[$letter] : 1;
         }
 
         return $points;
@@ -120,5 +116,17 @@ class ScoreManager
         }
 
         return;
+    }
+
+    public function getLettersPointsArray($language)
+    {
+        $letters = $this->em->getRepository("MagicWordBundle:Letter\LetterLanguage")->findByLanguage($language);
+
+        $letterPoints = array();
+        foreach ($letters as $letter) {
+            $letterPoints[$letter->getLetter()->getValue()] = $letter->getPoint();
+        }
+
+        return $letterPoints;
     }
 }
