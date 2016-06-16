@@ -10,7 +10,7 @@
                     </div>
                     <div class="columns">
                     {% for foundable in activity.foundForms %}
-                    {{ _self.foundable(foundable, activity, activities, "found") }}
+                    {{ _self.foundable(foundable, activity, activities, "found", roundType) }}
                     {% endfor %}
                     </div>
                 </div>
@@ -24,7 +24,7 @@
                     </div>
                     <div class="columns">
                     {% for foundable in round.grid.foundableForms %}
-                    {{ _self.foundable(foundable, activity, activities, "foundable") }}
+                    {{ _self.foundable(foundable, activity, activities, "foundable", roundType) }}
                     {% endfor %}
                     </div>
                 </div>
@@ -43,15 +43,17 @@
     {{ (found / activities|length) * 100 }}%
 {% endmacro %}
 
-{% macro foundable(foundable, activity, activities, type) %}
+{% macro foundable(foundable, activity, activities, type, roundType) %}
 <div class="panel panel-default">
     <div class="panel-heading " role="tab">
         <h4 class="panel-title {% if foundable in activity.foundForms and type == "foundable" %}bg-success{% endif %} ">
              <a role="button" data-toggle="collapse" data-parent="#accordion" href="#{{ foundable.id ~ type}}" aria-expanded="true" aria-controls="{{ foundable.id }}">
                  {{ foundable.form | upper }} <span class="text-muted">({{ foundable.points}})</span>
+                 {% if roundType != "training" %}
                  <span class="pull-right">
                     <span class="label label-default">{{ _self.percent(foundable, activities) }}</span>
                  </span>
+                 {% endif %}
             </a>
         </h4>
     </div>

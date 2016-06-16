@@ -5,13 +5,14 @@
 {% block body -%}
 
 {% set activities = getActivities(round) %}
+{% set roundType = round.game.discr %}
 
 <div class="panel panel-default">
     <div class="panel-heading">
         <h4>
-            Récapitulatif manche {{ round.displayOrder + 1 }} / {{ round.game.rounds|length}} - {{ round.game.discr | trans }}
+            Récapitulatif manche {{ round.displayOrder + 1 }} / {{ round.game.rounds|length}} - {{ roundType | trans }}
             <span class="pull-right">
-                {% include "MagicWordBundle:Round/End:next-"~round.game.discr~".html.twig" %}
+                {% include "MagicWordBundle:Round/End:next-"~roundType~".html.twig" %}
             </span>
         </h4>
     </div>
@@ -40,11 +41,13 @@
                 </a>
             </li>
             {% endif %}
+            {% if roundType != "training" %}
             <li role="presentation">
                 <a href="#ranking" aria-controls="ranking" role="tab" data-toggle="tab">
                 {{ "ranking"|trans }}
                 </a>
             </li>
+            {% endif %}
         </ul>
         <div class="tab-content">
             <div role="tabpanel" class="tab-pane fade in active" id="foundables">
