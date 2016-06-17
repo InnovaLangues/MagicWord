@@ -1,5 +1,4 @@
 var activity = {
-
 	init: function(callback){
         var roundId = roundJSON.id;
         var url = Routing.generate('init_activity', {id: roundId});
@@ -21,6 +20,20 @@ var activity = {
 		for (var i = 0; i < infos.foundForms.length; i++) {
 			var found = JSON.parse(infos.foundForms[i]);
 			words.addToFoundWords(found.form, true, false);
+		}
+
+		for (var i = 0; i < infos.objectivesDone.length; i++) {
+			var objective = JSON.parse(infos.objectivesDone[i]);
+			switch (objective.type) {
+				case "findword":
+					findword.appendWord(objective.id, objective.content.inflection);
+					break;
+				case "combo":
+					break;
+				default:
+
+			}
+			objectives.considerAsDone(objective.id);
 		}
 	},
 

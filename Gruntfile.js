@@ -54,6 +54,7 @@ module.exports = function(grunt) {
                         "src/MagicWordBundle/Resources/public/js/play/localstorage.js",
                         "src/MagicWordBundle/Resources/public/js/play/play.js",
                         "src/MagicWordBundle/Resources/public/js/play/score.js",
+                        "src/MagicWordBundle/Resources/public/js/play/objectives.js",
                     ]
                 }
             }

@@ -1,13 +1,19 @@
 var findword = {
     inWordsToFound: function(inflection){
         if (roundJSON.findWords.hasOwnProperty(inflection.toLowerCase())){
-            var findWordId = roundJSON.findWords[inflection.toLowerCase()].id;
-            $("#objective-findword-"+findWordId).addClass("list-group-item-success").append(' ('+ inflection +')');
+            var objectiveId = roundJSON.findWords[inflection.toLowerCase()].id;
 
-            activity.sendObjectiveDone(findWordId);
+            objectives.considerAsDone(objectiveId);
+            this.appendWord(objectiveId, inflection);
+            activity.sendObjectiveDone(objectiveId);
             return true;
         }
 
         return false;
     },
+
+    appendWord: function(objectiveId, inflection){
+        var str = ' ('+ inflection +')';
+        $(".objective-"+objectiveId).append(str.toUpperCase());
+    }
 }

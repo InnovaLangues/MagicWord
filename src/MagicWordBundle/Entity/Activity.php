@@ -290,11 +290,15 @@ class Activity implements \JsonSerializable
         $jsonArray = array(
             'id' => $this->id,
             'foundForms' => [],
-            'objectivesDone' => [$this->objectivesDone],
+            'objectivesDone' => [],
         );
 
         foreach ($this->foundForms as $foundForm) {
             $jsonArray['foundForms'][] = json_encode($foundForm);
+        }
+
+        foreach ($this->objectivesDone as $objectivesDone) {
+            $jsonArray['objectivesDone'][] = json_encode($objectivesDone);
         }
 
         return $jsonArray;

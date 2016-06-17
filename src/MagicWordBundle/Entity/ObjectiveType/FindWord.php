@@ -32,7 +32,7 @@ class FindWord extends Objective
      *
      * @ORM\Column(name="inflection", type="text", nullable=false)
      */
-    private $inflection;
+    protected $inflection;
 
     /**
      * Set hint.

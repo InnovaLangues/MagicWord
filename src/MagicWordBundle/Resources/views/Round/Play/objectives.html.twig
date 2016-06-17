@@ -11,7 +11,7 @@
                 {{ 'find_words' | trans }}
             </li>
             {% for findWord in round.findWords %}
-            <li id="objective-findword-{{ findWord.id }}" class="list-group-item">
+            <li id="objective-findword-{{ findWord.id }}" class="list-group-item objective-{{ findWord.id }}">
                 {{ findWord.hint }}
             </li>
             {% endfor %}
@@ -25,7 +25,7 @@
                 {{ 'combos' | trans }}
             </li>
             {% for combo in round.combos %}
-            <li id="objective-combo-{{ combo.id }}" class="list-group-item">
+            <li id="objective-combo-{{ combo.id }}" class="list-group-item objective-{{ findWord.id }}">
                 <b>{{ combo.number }}</b> {{ 'combos__with_length' | trans }} <b>{{ combo.lenght }}</b>
             </li>
             {% endfor %}

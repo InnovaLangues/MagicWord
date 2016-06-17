@@ -14,7 +14,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\DiscriminatorMap({"objective"="Objective", "findword"="MagicWordBundle\Entity\ObjectiveType\FindWord", "combo"="MagicWordBundle\Entity\ObjectiveType\Combo"})
  * @ORM\HasLifecycleCallbacks()
  */
-class Objective
+class Objective implements \JsonSerializable
 {
     /**
      * @var int
@@ -62,5 +62,20 @@ class Objective
     public function getConquer()
     {
         return $this->conquer;
+    }
+
+    public function jsonSerialize()
+    {
+        $jsonArray = [
+            'id' => $this->id,
+            'type' => $this->getDiscr(),
+            'content' => [],
+        ];
+
+        if ($this->getDiscr() == 'findword') {
+            $jsonArray['content']['inflection'] = $this->inflection;
+        }
+
+        return $jsonArray;
     }
 }
