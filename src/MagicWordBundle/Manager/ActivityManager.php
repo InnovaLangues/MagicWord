@@ -5,6 +5,7 @@ namespace  MagicWordBundle\Manager;
 use JMS\DiExtraBundle\Annotation as DI;
 use MagicWordBundle\Entity\Round;
 use MagicWordBundle\Entity\Activity;
+use MagicWordBundle\Entity\Objective;
 use MagicWordBundle\Entity\FoundableForm;
 
 /**
@@ -37,19 +38,21 @@ class ActivityManager
 
     public function init(Round $round)
     {
+        $activityInfo = [];
         $activity = $this->getActivity($round);
         if (!$activity) {
             $this->create($round);
-            $delta = 0;
+            $activityInfo['delta'] = 0;
         } else {
             $start = strtotime($activity->getStartDate()->format('Y-m-d H:i:s'));
             $now = new \DateTime();
             $now = strtotime($now->format('Y-m-d H:i:s'));
 
-            $delta = $now - $start;
+            $activityInfo['delta'] = $now - $start;
+            $activityInfo['infos'] = $activity;
         }
 
-        return $delta;
+        return $activityInfo;
     }
 
     public function addFoundForm(Round $round, FoundableForm $foundableform)
@@ -57,7 +60,15 @@ class ActivityManager
         $activity = $this->getActivity($round);
 
         $activity->addFoundForm($foundableform);
+        $this->em->persist($activity);
+        $this->em->flush();
+    }
 
+    public function addObjectiveDone(Round $round, Objective $objective)
+    {
+        $activity = $this->getActivity($round);
+
+        $activity->addObjectivesDone($objective);
         $this->em->persist($activity);
         $this->em->flush();
     }

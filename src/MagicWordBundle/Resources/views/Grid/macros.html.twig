@@ -1,0 +1,22 @@
+{% macro display_grid(grid, editable) %}
+<div class="col-md-5">
+    {% set x = 0 %}
+    <ul id="squares">
+    {% for i in range(0,3) %}
+        {% for j in range(0, 3) %}
+                {% set value = grid.squares[x] is defined  ? grid.squares[x].letter.value|upper : "_" %}
+                <li id="li-square-{{ i }}-{{ j }}">
+                    <p data-value="{{value}}" id="square-{{ i }}-{{ j }}" class="{{ editable == false ? "read-only": "read-write"}}">
+                        {% if editable %}
+                        <input required id="square-{{ x }}" type="text" name="squares[]" size="1" maxlength="1" value="{{ grid.squares[x] is defined ? grid.squares[x].letter.value : "_" }}" pattern="[A-Za-z]"/>
+                        {% else %}
+                        {{ value }}
+                    {% endif %}
+                    </p>
+                </li>
+                {% set x = x + 1 %}
+        {% endfor %}
+    {% endfor %}
+    </ul>
+</div>
+{% endmacro %}

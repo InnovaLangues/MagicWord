@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
  * Game.
  *
  * @ORM\Table(name="objective")
- * @ORM\Entity(repositoryClass="MagicWordBundle\Repository\ObjectiveRepository")
+ * @ORM\Entity()
  * @ORM\InheritanceType("JOINED")
  * @ORM\DiscriminatorColumn(name="discr", type="string")
  * @ORM\DiscriminatorMap({"objective"="Objective", "findword"="MagicWordBundle\Entity\ObjectiveType\FindWord", "combo"="MagicWordBundle\Entity\ObjectiveType\Combo"})

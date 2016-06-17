@@ -10,7 +10,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Table(name="activity")
  * @ORM\Entity()
  */
-class Activity
+class Activity implements \JsonSerializable
 {
     /**
      * @var int
@@ -283,5 +283,20 @@ class Activity
     public function getObjectivesDone()
     {
         return $this->objectivesDone;
+    }
+
+    public function jsonSerialize()
+    {
+        $jsonArray = array(
+            'id' => $this->id,
+            'foundForms' => [],
+            'objectivesDone' => [$this->objectivesDone],
+        );
+
+        foreach ($this->foundForms as $foundForm) {
+            $jsonArray['foundForms'][] = json_encode($foundForm);
+        }
+
+        return $jsonArray;
     }
 }

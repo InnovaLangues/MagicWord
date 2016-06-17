@@ -10,8 +10,18 @@ var activity = {
           })
           .done(function(data) {
               clock.delta = data.delta;
+			  if (data.delta != 0) {
+			  	activity.populate(data.infos);
+			  }
 			  callback();
           });
+	},
+
+	populate: function(infos){
+		for (var i = 0; i < infos.foundForms.length; i++) {
+			var found = JSON.parse(infos.foundForms[i]);
+			words.addToFoundWords(found.form, true, false);
+		}
 	},
 
     sendFoundWord: function(inflection, points){
@@ -19,7 +29,17 @@ var activity = {
         var inflection = inflection.toLowerCase();
 		var foundableId = gridJSON.inflections[inflection].id;
 		var url = Routing.generate('add_foundForm', {roundId: roundId, foundableId: foundableId});
-        var ids = gridJSON.inflections[inflection].ids;
+
+		$.ajax({
+              type: 'POST',
+              url: url,
+              dataType: "json",
+          });
+	},
+
+	sendObjectiveDone: function(objectiveId){
+        var roundId = roundJSON.id;
+		var url = Routing.generate('add_objectiveDone', {roundId: roundId, objectiveId: objectiveId});
 
 		$.ajax({
               type: 'POST',

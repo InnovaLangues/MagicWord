@@ -10,7 +10,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Table(name="foundable_form")
  * @ORM\Entity()
  */
-class FoundableForm
+class FoundableForm implements \JsonSerializable
 {
     /**
      * @var int
@@ -167,5 +167,15 @@ class FoundableForm
     public function getGrid()
     {
         return $this->grid;
+    }
+
+    public function jsonSerialize()
+    {
+        $jsonArray = array(
+            'id' => $this->id,
+            'form' => $this->form,
+        );
+
+        return $jsonArray;
     }
 }

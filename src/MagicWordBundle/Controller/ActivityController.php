@@ -8,6 +8,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use MagicWordBundle\Entity\Round;
+use MagicWordBundle\Entity\Objective;
 use MagicWordBundle\Entity\FoundableForm;
 
 class ActivityController extends Controller
@@ -19,9 +20,9 @@ class ActivityController extends Controller
      */
     public function initActivityAction(Round $round)
     {
-        $delta = $this->get('mw_manager.activity')->init($round);
+        $activityInfo = $this->get('mw_manager.activity')->init($round);
 
-        return new JsonResponse(['delta' => $delta]);
+        return new JsonResponse($activityInfo);
     }
 
     /**
@@ -33,6 +34,19 @@ class ActivityController extends Controller
     public function addFoundFormAction(Round $round, FoundableForm $foundableForm)
     {
         $this->get('mw_manager.activity')->addFoundForm($round, $foundableForm);
+
+        return new JsonResponse();
+    }
+
+    /**
+     * @Route("/add-objective-done/round/{roundId}/objective/{objectiveId}", name="add_objectiveDone", options={"expose"=true})
+     * @ParamConverter("round", class="MagicWordBundle:Round",  options={"id" = "roundId"})
+     * @ParamConverter("objective", class="MagicWordBundle:Objective", options={"id" = "objectiveId"})
+     * @Method("POST")
+     */
+    public function addObjectiveDoneAction(Round $round, Objective $objective)
+    {
+        $this->get('mw_manager.activity')->addObjectiveDone($round, $objective);
 
         return new JsonResponse();
     }

@@ -19,7 +19,7 @@ var words = {
 		return found;
 	},
 
-	addToFoundWords: function(inflection, inObjective, isCorrect){
+	addToFoundWords: function(inflection, isCorrect, saveIt){
 		var points = "";
 		this.foundWords.push(inflection);
 		inflection = inflection.toUpperCase();
@@ -27,7 +27,9 @@ var words = {
 
 		if(isCorrect){
 			points = score.calculatePoints(inflection);
-			activity.sendFoundWord(inflection, points);
+			if (saveIt) {
+				activity.sendFoundWord(inflection, points);
+			}
 			this.correctWords++;
 			$("#correctWords-found").html(this.correctWords);
 			//localstor.add(inflection);
@@ -42,10 +44,10 @@ var words = {
 		if (!this.alreadyFound(inflection)) {
 			if (this.inInflections(inflection)){
 				var inWordsToFound = findword.inWordsToFound(inflection);
-				this.addToFoundWords(inflection.toLowerCase(), inWordsToFound, true);
+				this.addToFoundWords(inflection.toLowerCase(), true, true);
 				combo.handleNewInflection(inflection);
 			} else {
-				this.addToFoundWords(inflection.toLowerCase(), false);
+				this.addToFoundWords(inflection.toLowerCase(), false, true);
 			}
 		}
 	},

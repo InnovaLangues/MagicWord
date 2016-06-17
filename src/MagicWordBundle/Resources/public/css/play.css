@@ -25,7 +25,7 @@ ul#squares li {
     border: none;
 }
 
-ul#squares li p {
+ul#squares li p{
     padding: 0;
     white-space: normal;
     text-align: left;
@@ -38,6 +38,21 @@ ul#squares li p {
 	width: 70px;
 	height: 55px;
 }
+
+ul#squares li p.read-write{
+    padding: 0;
+    white-space: normal;
+    text-align: left;
+    border: none;
+	cursor: pointer;
+	color: black;
+	padding: 10px;
+	font-size: 2em;
+	text-align: center;
+	width: 70px;
+	height: 55px;
+}
+
 
 ul#squares li p span {
 	margin-top: -10px;

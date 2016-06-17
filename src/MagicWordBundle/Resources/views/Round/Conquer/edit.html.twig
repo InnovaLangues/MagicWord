@@ -15,14 +15,12 @@
 
         <div class="panel panel-default">
             <div class="panel-heading">
-                <h4>
-                    {{ 'objectives' | trans }}
-                    <span class="pull-right">
-                        <span class='btn btn-primary' onclick="saveObjectives()">
-                            {{ 'save_objectives' | trans }}
-                        </span>
+                {{ 'objectives' | trans }}
+                <span class="pull-right">
+                    <span class='btn btn-primary btn-xs' onclick="saveObjectives()">
+                        {{ 'save_objectives' | trans }}
                     </span>
-                </h4>
+                </span>
             </div>
             <div class="panel-body">
                 <ul class="nav nav-tabs nav-justified" role="tablist">
@@ -53,21 +51,19 @@
 
         {# GRID + INFLECTIONS #}
         <div class="row">
-            <div class="col-md-12">
+            <div class="col-md-5">
                 <div class="panel panel-default">
                     <div class="panel-heading">
-                        <h4>
                             {{ 'grid' | trans }}
                             <span class="pull-right">
-                                <span class="btn btn-default" onclick="generate()">
+                                <span class="btn btn-default btn-xs" onclick="generate()">
                                     <i class="fa fa-cogs" aria-hidden="true"></i>
                                     {{ 'generate_grid' | trans }}
                                 </span>
-                                <span class='btn btn-primary' onclick="save()">
+                                <span class='btn btn-primary btn-xs' onclick="save()">
                                     {{ 'save_grid' | trans }}
                                 </span>
                             </span>
-                        </h4>
                     </div>
                     <div class="panel-body">
                         <form id="grid" method="POST">

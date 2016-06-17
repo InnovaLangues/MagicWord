@@ -1,12 +1,12 @@
-<div class="col-md-{{ hasObj ? 3 : 7 }}" >
+<div class="col-md-{{ hasObj ? 4 : 7 }}" >
     <div class="panel panel-default">
-        <div class="panel-heading">
-            <h3>
+        <div class="panel-heading" style="background-color:#FF9C00">
+            <h4>
                 <span class="label label-default" id="correctWords-found">0</span> {{ 'forms_found' | trans }} sur {{ grid.foundableForms|length}}
                 <span class="pull-right">
                     <span class="label label-primary" id="score-total">0</span> pts
                 </span>
-            </h3>
+            </h4>
         </div>
         <ul class="list-group" id="inflections-found"></ul>
     </div>

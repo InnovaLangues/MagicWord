@@ -1,37 +1,36 @@
 {% if hasObj %}
-<div class="col-md-4">
+<div class="col-md-3">
     <div class="panel panel-default">
-        <div class="panel-heading">
-            <h3>{{ 'objectives' | trans }}</h3>
+        <div class="panel-heading" style="background-color:#FF9C00">
+            <h4>{{ 'objectives' | trans }}</h4>
         </div>
-            {% if round.findWords is not empty %}
-            <ul class="list-group">
-                <li href="#" class="list-group-item disabled">
-                    <i class="fa fa-binoculars" aria-hidden="true"></i>
-                    {{ 'find_words' | trans }}
-                </li>
-                {% for findWord in round.findWords %}
-                <li id="objective-findword-{{ findWord.id }}" class="list-group-item">
-                    {{ findWord.hint }}
-                </li>
-                {% endfor %}
-            </ul>
-            {% endif %}
+        {% if round.findWords is not empty %}
+        <ul class="list-group">
+            <li href="#" class="list-group-item disabled">
+                <i class="fa fa-binoculars" aria-hidden="true"></i>
+                {{ 'find_words' | trans }}
+            </li>
+            {% for findWord in round.findWords %}
+            <li id="objective-findword-{{ findWord.id }}" class="list-group-item">
+                {{ findWord.hint }}
+            </li>
+            {% endfor %}
+        </ul>
+        {% endif %}
 
-            {% if round.combos is not empty %}
-            <ul class="list-group">
-                <li href="#" class="list-group-item disabled">
-                    <i class="fa fa-tachometer" aria-hidden="true"></i>
-                    {{ 'combos' | trans }}
-                </li>
-                {% for combo in round.combos %}
-                <li id="objective-combo-{{ combo.id }}" class="list-group-item">
-                    <b>{{ combo.number }}</b> {{ 'combos__with_length' | trans }} <b>{{ combo.lenght }}</b>
-                </li>
-                {% endfor %}
-            </ul>
-            {% endif %}
-
+        {% if round.combos is not empty %}
+        <ul class="list-group">
+            <li href="#" class="list-group-item disabled">
+                <i class="fa fa-tachometer" aria-hidden="true"></i>
+                {{ 'combos' | trans }}
+            </li>
+            {% for combo in round.combos %}
+            <li id="objective-combo-{{ combo.id }}" class="list-group-item">
+                <b>{{ combo.number }}</b> {{ 'combos__with_length' | trans }} <b>{{ combo.lenght }}</b>
+            </li>
+            {% endfor %}
+        </ul>
+        {% endif %}
     </div>
 </div>
 {% endif %}

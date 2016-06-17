@@ -2,9 +2,7 @@ var score = {
     totalSelector: "#score-total",
     total : 0,
     calculatePoints: function(inflection){
-
         var points = gridJSON.inflections[inflection.toLowerCase()].points;
-
         this.updateTotal(points);
 
 		return points;

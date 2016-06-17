@@ -1,13 +1,3 @@
-<table class='table table-bordered'>
-    {% set x = 0 %}
-    {% for i in range(0,3) %}
-    <tr>
-        {% for j in range(0, 3) %}
-            <td align="center">
-                <input required id="square-{{ x }}" type="text" name="squares[]" size="1" maxlength="1" value="{{ grid.squares[x] is defined  ? grid.squares[x].letter.value : "_" }}" pattern="[A-Za-z]"/>
-                {% set x = x + 1 %}
-            </td>
-        {% endfor %}
-    </tr>
-    {% endfor %}
-</table>
+{% import "MagicWordBundle:Grid:macros.html.twig" as macros %}
+
+{{ macros.display_grid(grid, true ) }}
