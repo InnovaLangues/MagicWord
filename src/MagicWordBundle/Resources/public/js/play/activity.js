@@ -62,7 +62,10 @@ var activity = {
 	},
 
 	end: function(time){
-		var url = Routing.generate('round_end', {id: roundJSON.id});
-		location.href= url;
+		wait.start("Fin de la manche");
+		setTimeout(function(){
+			var url = Routing.generate('round_end', {id: roundJSON.id});
+			location.href= url;
+		}, 1000);
 	}
 }

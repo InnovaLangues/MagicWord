@@ -36,8 +36,9 @@ module.exports = function(grunt) {
                         "bower_components/jquery/dist/jquery.min.js",
                         "bower_components/bootstrap/dist/js/bootstrap.min.js",
                         'web/bundles/fosjsrouting/js/router.js',
-                        'src/MagicWordBundle/Resources/public/js/main.js',
                         'src/MagicWordBundle/Resources/public/js/wordbox.js',
+                        'src/MagicWordBundle/Resources/public/js/wait.js',
+                        'src/MagicWordBundle/Resources/public/js/main.js',
                     ],
                     'web/js/grid_creation.js': [
                         "src/MagicWordBundle/Resources/public/js/bologne.js",

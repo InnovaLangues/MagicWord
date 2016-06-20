@@ -61,6 +61,7 @@ function checkExistence(input){
 
 function saveObjectives(){
     if(isFormValid("objectives")){
+        wait.start("Sauvegarde des objectifs");
         var url = Routing.generate('save_objectives', {id: $('#conquerId').val()});
         var data = $("#objectives").serializeArray();
 
@@ -70,13 +71,14 @@ function saveObjectives(){
               data: data,
           })
           .done(function(data) {
+              wait.stop();
           });
     }
 }
 
 function getInflections(){
     if(isFormValid("grid")){
-        $("#inflections-icon").addClass("fa-spin");
+        wait.start("Récupération des formes");
         var url = Routing.generate('get_inflections');
         var data = $("#grid").serializeArray();
 
@@ -86,15 +88,15 @@ function getInflections(){
               data: data,
           })
           .done(function(data) {
+              wait.stop();
               $("#inflections").html(data);
-              $("#inflections-icon").removeClass("fa-spin");
           });
     }
 }
 
 function getCombos(){
     if(isFormValid("grid")){
-        $("#combos-icon").addClass("fa-spin");
+        wait.start("Récupération des combos");
         var url = Routing.generate('get_combos');
         var data = $("#grid").serializeArray();
 
@@ -105,7 +107,7 @@ function getCombos(){
           })
           .done(function(data) {
               $("#possible-combos").html(data);
-              $("#combos-icon").removeClass("fa-spin");
+              wait.stop();
           });
     }
 }
@@ -117,6 +119,7 @@ function isFormValid(formId){
 
 function generate(){
     if ($(".findWord").length > 0) {
+        wait.start("Génération de la grille");
         var word_list = [];
         $(".findWord").each(function( index ) {
             var inflection = $(this).find(inflectionSelector).val();
@@ -137,11 +140,13 @@ function generate(){
             };
         };
         checkInsertedWords(best.insertedWords);
+        wait.stop();
     }
 }
 
 function save(){
     if(isFormValid("grid")){
+        wait.start("Sauvegarde de la grille");
         var data = $("#grid").serializeArray();
         var url = Routing.generate('conquer_save_grid', {id: $('#conquerId').val()});
         $.ajax({
@@ -151,6 +156,7 @@ function save(){
          })
          .done(function(data) {
              $("#inflections").html(data);
+             wait.stop();
          });
      }
 }

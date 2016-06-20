@@ -46,6 +46,19 @@
 
             {% block body %}{% endblock %}
         </div>
+
+        <div class="modal fade" data-keyboard="false" data-backdrop="static" id="please-wait" tabindex="-1" role="dialog" aria-labelledby="please-wait">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-body noselect">
+                        <img src="{{ asset('/img/squares.gif')}}"/>
+                        <h3 id="please-wait-message">
+                        </h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <script type="text/javascript" src="{{ asset('/js/main.js')}}"></script>
         <script src="{{ path('fos_js_routing_js', { callback: 'fos.Router.setData' }) }}"></script>
         {% block javascripts %}{% endblock %}
