@@ -37,7 +37,7 @@ var activity = {
 		}
 	},
 
-    sendFoundWord: function(inflection, points){
+    sendFoundWord: function(inflection){
         var roundId = roundJSON.id;
         var inflection = inflection.toLowerCase();
 		var foundableId = gridJSON.inflections[inflection].id;

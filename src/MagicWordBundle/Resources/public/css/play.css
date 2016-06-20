@@ -87,3 +87,13 @@ ul#squares li.wrongWord {
 .flip-clock-dot.top {top:10px;}
 .flip-clock-divider{height:60px;}
 .flip-clock-label{display:none;}
+
+#woot {
+    background-color:#FF9C00;
+    color: white;
+    text-transform: uppercase;
+    padding:10px;
+    border-radius:5px;
+    font-weight: bold;
+    font-size:2em;
+}

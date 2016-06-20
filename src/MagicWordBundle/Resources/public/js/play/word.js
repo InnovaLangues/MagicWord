@@ -19,22 +19,24 @@ var words = {
 		return found;
 	},
 
-	addToFoundWords: function(inflection, isCorrect, saveIt){
+	addToFoundWords: function(inflection, isCorrect, saveIt, woot){
 		var points = "";
 		this.foundWords.push(inflection);
 		inflection = inflection.toUpperCase();
-		var typedInflection = (!isCorrect) ? "<s>"+inflection+"</s>" : inflection;
 
 		if(isCorrect){
-			points = score.calculatePoints(inflection);
+			if (woot) {
+				$("#woot").hide().html(inflection).show(200).delay(500).hide(200);
+			}
 			if (saveIt) {
-				activity.sendFoundWord(inflection, points);
+				activity.sendFoundWord(inflection);
 			}
 			this.correctWords++;
 			$("#correctWords-found").html(this.correctWords);
-			//localstor.add(inflection);
+			points = score.calculatePoints(inflection);
 		}
 
+		var typedInflection = (!isCorrect) ? "<s>"+inflection+"</s>" : inflection;
 		$("#inflections-found").prepend("<li class='list-group-item'>"+typedInflection+"<span class='pull-right'>"+points+"</span></li>");
 	},
 
@@ -44,10 +46,10 @@ var words = {
 		if (!this.alreadyFound(inflection)) {
 			if (this.inInflections(inflection)){
 				var inWordsToFound = findword.inWordsToFound(inflection);
-				this.addToFoundWords(inflection.toLowerCase(), true, true);
+				this.addToFoundWords(inflection.toLowerCase(), true, true, true);
 				combo.handleNewInflection(inflection);
 			} else {
-				this.addToFoundWords(inflection.toLowerCase(), false, true);
+				this.addToFoundWords(inflection.toLowerCase(), false, true, true);
 			}
 		}
 	},
