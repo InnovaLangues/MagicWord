@@ -12,3 +12,10 @@ services:
                 "tokenStorage": "@security.token_storage"
         tags:
             - { name: kernel.event_subscriber }
+
+    app.user_registration_listener:
+        class: MagicWordBundle\Listener\RegistrationListener
+        arguments:
+            "entityManager": "@doctrine.orm.entity_manager"
+        tags:
+            - { name: kernel.event_listener, event: fos_user.registration.success, method: onRegistration }
