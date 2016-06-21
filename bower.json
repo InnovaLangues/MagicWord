@@ -10,6 +10,8 @@
   "dependencies": {
     "bootstrap": "3.3.*",
     "font-awesome": "^4.6.3",
-    "FlipClock": "*"
+    "FlipClock": "*",
+    "jquery-ui": "*",
+    "animate.css": "^3.5.2"
   }
 }

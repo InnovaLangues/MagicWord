@@ -21,6 +21,7 @@ module.exports = function(grunt) {
                         "bower_components/FlipClock/compiled/flipclock.css",
                         'src/MagicWordBundle/Resources/public/css/play.css',
                         'src/MagicWordBundle/Resources/public/css/end.css',
+                        "bower_components/animate.css/animate.min.css"
                     ]
                 }
             }
@@ -45,12 +46,14 @@ module.exports = function(grunt) {
                         "src/MagicWordBundle/Resources/public/js/grid_create.js"
                     ],
                     'web/js/play.js': [
+                        "bower_components/jquery-ui/jquery-ui.min.js",
                         "bower_components/FlipClock/compiled/flipclock.min.js",
                         "src/MagicWordBundle/Resources/public/js/play/activity.js",
                         "src/MagicWordBundle/Resources/public/js/play/clock.js",
                         "src/MagicWordBundle/Resources/public/js/play/objective-combo.js",
                         "src/MagicWordBundle/Resources/public/js/play/objective-findword.js",
                         "src/MagicWordBundle/Resources/public/js/play/word.js",
+                        "src/MagicWordBundle/Resources/public/js/play/combo.js",
                         "src/MagicWordBundle/Resources/public/js/play/grid.js",
                         "src/MagicWordBundle/Resources/public/js/play/localstorage.js",
                         "src/MagicWordBundle/Resources/public/js/play/play.js",

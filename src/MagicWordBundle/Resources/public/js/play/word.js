@@ -26,7 +26,7 @@ var words = {
 
 		if(isCorrect){
 			if (woot) {
-				$("#woot").hide().html(inflection).show(200).delay(500).hide(200);
+				$("#woot").hide().html(inflection).show(100).delay(1000).hide(100);
 			}
 			if (saveIt) {
 				activity.sendFoundWord(inflection);
