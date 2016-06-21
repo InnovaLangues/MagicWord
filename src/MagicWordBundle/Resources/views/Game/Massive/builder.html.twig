@@ -27,10 +27,10 @@
                 </button>
                 <ul class="dropdown-menu">
                     <li>
-                        <a class="please-wait" href="{{ path('massive_add_rush', {"id":  massive.id}) }}">{{ 'rush' | trans }}</a>
+                        <a data-message="Génération d'une grille rush" class="please-wait" href="{{ path('massive_add_rush', {"id":  massive.id}) }}">{{ 'rush' | trans }}</a>
                     </li>
                     <li>
-                        <a class="please-wait" href="{{ path('massive_add_conquer', {"id":  massive.id}) }}">{{ 'conquer' | trans }}</a>
+                        <a data-message="Ajout d'une partie conquer" class="please-wait" href="{{ path('massive_add_conquer', {"id":  massive.id}) }}">{{ 'conquer' | trans }}</a>
                     </li>
                 </ul>
             </div>
