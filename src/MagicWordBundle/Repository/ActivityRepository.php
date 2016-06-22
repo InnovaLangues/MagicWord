@@ -16,7 +16,7 @@ class ActivityRepository extends \Doctrine\ORM\EntityRepository
         $dql = 'SELECT a FROM MagicWordBundle\Entity\Activity a
                 WHERE a.round = :round
                 AND a.endDate IS NOT NULL
-                ORDER BY a.points DESC, a.duration ASC';
+                ORDER BY a.points DESC, a.duration DESC';
 
         $query = $em->createQuery($dql);
         $query->setParameter('round', $round);
