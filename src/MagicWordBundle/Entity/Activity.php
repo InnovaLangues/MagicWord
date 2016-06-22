@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
  * Activity.
  *
  * @ORM\Table(name="activity")
- * @ORM\Entity()
+ * @ORM\Entity(repositoryClass="MagicWordBundle\Repository\ActivityRepository")
  */
 class Activity implements \JsonSerializable
 {
