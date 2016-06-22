@@ -36,6 +36,15 @@ class MassiveController extends Controller
     }
 
     /**
+     * @Route("/massive/{id}/ranking", name="massive_ranking")
+     * @ParamConverter("massive", class="MagicWordBundle:GameType\Massive")
+     */
+    public function rankingAction(Massive $massive)
+    {
+        return $this->render('MagicWordBundle:Game/Massive:ranking.html.twig', array('massive' => $massive));
+    }
+
+    /**
      * @Route("/massive/{id}/publish", name="massive_publish")
      * @ParamConverter("massive", class="MagicWordBundle:GameType\Massive")
      */

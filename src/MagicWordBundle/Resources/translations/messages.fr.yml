@@ -2,7 +2,7 @@ add_combo: 'Ajouter un combo'
 add_existing_form: 'Ajouter une forme existante'
 add_form: 'Ajouter une forme'
 add_round: 'Ajouter une manche'
-add_to_friends: 'Ajouter aux amis'
+add_to_friends: 'Ajouter aux contacts'
 add_to_wordbox: 'Ajouter à ma wordbox'
 add: Ajouter
 back_to_editor: 'Retour à l''éditeur de partie'
@@ -55,7 +55,7 @@ massives: 'Parties massives'
 me: Moi
 message: Message
 mood: Mode
-my_friends: 'Mes amis'
+my_friends: 'Mes contacts'
 my_massives_published: 'Mes parties massives publiées'
 my_massives_under_construction: 'Mes parties massives en chantier'
 my_massives: 'Mes parties massives'
@@ -72,7 +72,7 @@ points: Points
 profile_of: 'Profil de'
 rank: Rang
 ranking: Classement
-remove__from_friends: 'Retirer des amis'
+remove__from_friends: 'Retirer des contacts'
 round: Manche
 rounds: Manches
 rush: Rush

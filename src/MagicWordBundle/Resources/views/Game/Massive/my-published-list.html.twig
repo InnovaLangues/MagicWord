@@ -10,7 +10,9 @@
         <ul class="list-group">
             {% for massive in massives %}
             <li class="list-group-item">
-                {{ massive.id }} - {{ massive.name }}
+                <a href="{{ path('massive_ranking', {"id": massive.id}) }}">
+                    {{ massive.name }} <span class="text-muted">({{ massive.description }})</span>
+                </a>
             </li>
             {% endfor %}
         </ul>
