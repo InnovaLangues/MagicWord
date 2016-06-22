@@ -12,7 +12,6 @@ var combo = {
 				this.currentComboLemmas.push(this.newIds[i]);
 			}
 			this.currentComboLength = 1;
-			$("#combo-count").html(this.currentComboLength);
 			increment = true;
 		} else {
 			// suppression dans current combos des lemmes qui ne font pas partie des nouveaux lemmes.
@@ -22,7 +21,6 @@ var combo = {
 				} else if (!increment) {
 					increment = true;
 					this.currentComboLength++;
-					$("#combo-count").html(this.currentComboLength);
 				}
 			}
 		}
@@ -30,11 +28,10 @@ var combo = {
 		if(!increment){
 			// combo terminé
 			if (this.currentComboLength > 1) {
-				$("#combo-count").hide("explode", {pieces: 16 }, 300);
+				$("#combo").hide("explode", {pieces: 16 }, 300);
 				objectiveCombo.checkObjectives(this.currentComboLength);
 			}
 
-			$("#combo-count").show("explode").html(0);
 			this.currentComboLength = 0;
 
 			//ptete un nouveau combo est commencé
@@ -42,7 +39,6 @@ var combo = {
 				if ($.inArray(this.previousIds[i],this.newIds) != -1) {
 					increment = true;
 					this.currentComboLength = 2;
-					$("#combo-count").show().html(this.currentComboLength);
 				}
 			}
 		}
@@ -53,44 +49,11 @@ var combo = {
 				this.currentComboLemmas.push(this.newIds[i]);
 				if (!increment) {
 					this.currentComboLength = 1;
-					$("#combo-count").show().html(this.currentComboLength);
 				}
 			}
 		}
 
-		$("#combo-count").show().html(this.currentComboLength);
-		/*
-
-	checkObjectives: function(){
-		var combos = this.currentCombos.slice();
-		var comboSaved = this.savedCombos.slice();
-
-		for (var i = 0; i < roundJSON.combos.length; i++) {
-            var objective = roundJSON.combos[i];
-			var effectiveCount = 0;
-
-			for (var j = 0; j < combos.length; j++) {
-				var currentCombo = combos[j];
-				if (currentCombo.count >= objective.length) {
-					currentCombo.used = true;
-					effectiveCount++;
-				}
-			}
-
-			for (var j = 0; j < comboSaved.length; j++) {
-				var currentCombo = comboSaved[j];
-				if (currentCombo.count >= objective.length && !currentCombo.used) {
-					effectiveCount++;
-					currentCombo.used = true;
-				}
-			}
-
-			if (effectiveCount >= objective.number){
-				$("#objective-combo-"+objective.id).addClass("list-group-item-success");
-				$("#objective-combo-"+objective.id).append(" +");
-			}
-		}
-		*/
+		this.showCombo();
 	},
 
 	handleNewInflection: function(inflection){
@@ -99,5 +62,16 @@ var combo = {
 		this.handleNewIds();
 
 		return;
+	},
+
+	showCombo: function(){
+		if (this.currentComboLength > 1) {
+			$("#combo").show();
+			$("#combo-count").html(this.currentComboLength).show();
+		} else {
+			$("#combo").hide();
+		}
 	}
+
+
 }
