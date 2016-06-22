@@ -106,7 +106,7 @@ class ActivityManager
         return $activity;
     }
 
-    private function getActivity(Round $round)
+    public function getActivity(Round $round)
     {
         return $activity = $this->em->getRepository('MagicWordBundle:Activity')->findOneBy(['player' => $this->currentUser, 'round' => $round]);
     }

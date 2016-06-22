@@ -15,6 +15,12 @@ class RoundController extends Controller
      */
     public function playAction(Round $round)
     {
+        $activity = $this->get('mw_manager.activity')->getActivity($round);
+
+        if ($activity && $activity->getEndDate() != null) {
+            return $this->redirectToRoute('round_end', ['id' => $round->getId()]);
+        }
+
         return $this->render('MagicWordBundle:Round:play.html.twig', ['round' => $round]);
     }
 
@@ -26,6 +32,6 @@ class RoundController extends Controller
     {
         $activity = $this->get('mw_manager.activity')->endActivity($round);
 
-        return $this->render('MagicWordBundle:Round:end.html.twig', array('round' => $round, 'activity' => $activity));
+        return $this->render('MagicWordBundle:Round:end.html.twig', ['round' => $round, 'activity' => $activity]);
     }
 }

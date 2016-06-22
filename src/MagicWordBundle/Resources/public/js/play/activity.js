@@ -66,6 +66,6 @@ var activity = {
 		setTimeout(function(){
 			var url = Routing.generate('round_end', {id: roundJSON.id});
 			location.href= url;
-		}, 1000);
+		}, 1500);
 	}
 }
