@@ -32,6 +32,7 @@ services:
         class: MagicWordBundle\Twig\RoundActivityExtension
         arguments:
             "entityManager": "@doctrine.orm.entity_manager"
+            "timeManager": "@mw_manager.time"
         tags:
             - { name: twig.extension }
 

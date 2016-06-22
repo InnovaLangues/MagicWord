@@ -1,4 +1,5 @@
-<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
-    {% for objective in round.objectives %}
-    {% endfor %}
+<div class="panel panel-default">
+    <div class="panel-body">
+         {{ activity.objectivesDone|length }} sur {{ activity.round.objectives|length }} en {{ getTimeSpent(activity) }}.
+    </div>
 </div>

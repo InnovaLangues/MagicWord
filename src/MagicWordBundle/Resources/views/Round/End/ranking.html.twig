@@ -5,6 +5,9 @@
                 <th>{{ "rank" | trans }}</th>
                 <th>{{ "player" | trans }}</th>
                 <th>{{ "score" | trans }}</th>
+                {% if round.discr == "conquer" %}
+                <th>{{ "time" | trans }}</th>
+                {% endif %}
                 <th>{{ "forms_found_count" | trans }}</th>
             </thead>
             <tbody>
@@ -13,6 +16,9 @@
                     <td>{{ i + 1 }}</td>
                     <td>{{ activity.player }}</td>
                     <td>{{ activity.points }}</td>
+                    {% if round.discr == "conquer" %}
+                    <td>{{ getTimeSpent(activity) }}</td>
+                    {% endif %}
                     <td>{{ activity.foundForms | length }}</td>
                 </tr>
                 {% endfor %}

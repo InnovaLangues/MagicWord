@@ -17,6 +17,7 @@ class ActivityManager
     protected $tokenStorage;
     protected $scoreManager;
     protected $userManager;
+    protected $timeManager;
     protected $currentUser;
 
     /**
@@ -25,14 +26,16 @@ class ActivityManager
      *      "tokenStorage" = @DI\Inject("security.token_storage"),
      *      "scoreManager" = @DI\Inject("mw_manager.score"),
      *      "userManager" = @DI\Inject("mw_manager.user"),
+     *      "timeManager" = @DI\Inject("mw_manager.time"),
      * })
      */
-    public function __construct($entityManager, $tokenStorage, $scoreManager, $userManager)
+    public function __construct($entityManager, $tokenStorage, $scoreManager, $userManager, $timeManager)
     {
         $this->em = $entityManager;
         $this->tokenStorage = $tokenStorage;
         $this->scoreManager = $scoreManager;
         $this->userManager = $userManager;
+        $this->timeManager = $timeManager;
         $this->currentUser = $this->tokenStorage->getToken()->getUser();
     }
 
@@ -44,11 +47,7 @@ class ActivityManager
             $this->create($round);
             $activityInfo['delta'] = 0;
         } else {
-            $start = strtotime($activity->getStartDate()->format('Y-m-d H:i:s'));
-            $now = new \DateTime();
-            $now = strtotime($now->format('Y-m-d H:i:s'));
-
-            $activityInfo['delta'] = $now - $start;
+            $activityInfo['delta'] = $this->timeManager->getDiffInSeconds($activity->getStartDate(), new \DateTime());
             $activityInfo['infos'] = $activity;
         }
 

@@ -91,6 +91,8 @@ class ScoreManager
         $objectiveDoneCount = count($activity->getObjectivesDone());
         $objectivesDoableCount = count($round->getObjectives());
 
+        $points = (500 / $objectivesDoableCount) * $objectiveDoneCount;
+
         return $points;
     }
 
