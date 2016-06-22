@@ -93,6 +93,10 @@ class ScoreManager
 
         $points = (500 / $objectivesDoableCount) * $objectiveDoneCount;
 
+        if ($objectiveDoneCount === $objectivesDoableCount) {
+            $points += (1 - log($activity->getDuration()) / 10) * 100;
+        }
+
         return $points;
     }
 
