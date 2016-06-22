@@ -31,6 +31,15 @@
             {% endfor %}
         </ul>
         {% endif %}
+
+        <ul class="list-group">
+            <li class="list-group-item list-group-item-danger">
+                <a href="{{ path('round_end', {"id": round.id} )}}">
+                    <i class="fa fa-exclamation-triangle" aria-hidden="true"></i>
+                    {{ 'give_up' | trans }}
+                </a>
+            </li>
+        </ul>
     </div>
 </div>
 {% endif %}

@@ -18,7 +18,7 @@
                 </li>
                 {% if round.objectives is defined %}
                 <li class="list-group-item">
-                    {{ "objectives"|trans}} : {{ activity.objectivesDone|length }} / {{ activity.round.objectives|length }}
+                    {{ "objectives"|trans}} : {{ activity.objectivesDone|length }} / {{ activity.round.objectives|length }} en {{ getTimeSpent(activity) }}
                 </li>
                 {% endif %}
                 <li class="list-group-item">

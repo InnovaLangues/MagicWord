@@ -9,6 +9,18 @@ use JMS\DiExtraBundle\Annotation as DI;
  */
 class TimeManager
 {
+    protected $translator;
+
+    /**
+     * @DI\InjectParams({
+     *      "translator" = @DI\Inject("translator"),
+     * })
+     */
+    public function __construct($translator)
+    {
+        $this->translator = $translator;
+    }
+
     public function getDiffInSeconds($start, $end)
     {
         $start = strtotime($start->format('Y-m-d H:i:s'));
@@ -19,7 +31,10 @@ class TimeManager
 
     public function pluralize($count, $text)
     {
-        return $count.(($count == 1) ? (" $text") : (" ${text}s"));
+        $str = $count.(($count == 1) ? (" $text") : (" ${text}s"));
+        $translation = $this->translator->trans($str);
+
+        return $translation;
     }
 
     public function getDiff($start, $end)
