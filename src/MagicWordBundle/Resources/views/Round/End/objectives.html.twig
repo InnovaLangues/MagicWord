@@ -1,5 +1,5 @@
 <div class="panel panel-default">
     <div class="panel-body">
-         {{ activity.objectivesDone|length }} sur {{ activity.round.objectives|length }} en {{ getTimeSpent(activity) }}.
+         {{ activity.objectivesDone|length }} sur {{ activity.round.objectives|length }} en {{ getTimeSpent(activity) | trans }}.
     </div>
 </div>

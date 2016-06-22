@@ -90,6 +90,7 @@ class ActivityManager
         $activity = $this->getActivity($round);
         if (!$activity->getEndDate()) {
             $activity->setEndDate(new \DateTime());
+            $activity->setDuration($this->timeManager->getDiffInSeconds($activity->getStartDate(), $activity->getEndDate()));
             $points = $this->scoreManager->countActivityPoints($activity);
             $activity->setPoints($points);
 

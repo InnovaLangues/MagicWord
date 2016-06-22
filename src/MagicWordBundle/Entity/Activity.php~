@@ -64,7 +64,7 @@ class Activity implements \JsonSerializable
      *
      * @ORM\Column(name="duration", type="integer")
      */
-    private $duration = 0;
+    private $duration;
 
     /**
      * @var int
@@ -309,29 +309,5 @@ class Activity implements \JsonSerializable
         }
 
         return $jsonArray;
-    }
-
-    /**
-     * Set duration.
-     *
-     * @param int $duration
-     *
-     * @return Activity
-     */
-    public function setDuration($duration)
-    {
-        $this->duration = $duration;
-
-        return $this;
-    }
-
-    /**
-     * Get duration.
-     *
-     * @return int
-     */
-    public function getDuration()
-    {
-        return $this->duration;
     }
 }

@@ -31,10 +31,10 @@ class TimeManager
 
     public function pluralize($count, $text)
     {
-        $str = $count.(($count == 1) ? (" $text") : (" ${text}s"));
+        $str = ($count == 1) ? ("$text") : ("${text}s");
         $translation = $this->translator->trans($str);
 
-        return $translation;
+        return $count.' '.$translation;
     }
 
     public function getDiff($start, $end)
