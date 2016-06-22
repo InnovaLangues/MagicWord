@@ -3,5 +3,12 @@
 {% block title %}Massive ranking{% endblock %}
 
 {% block body -%}
-{% include "MagicWordBundle:Game/Massive/partials:ranking.html.twig" %}
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h4>Classement partie massive <strong>{{ massive.name }}</strong></h4>
+    </div>
+    <div class="panel-body">
+    {% include "MagicWordBundle:Game/Massive/partials:ranking.html.twig" %}
+    </div>
+</div>
 {% endblock %}

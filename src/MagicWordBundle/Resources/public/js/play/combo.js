@@ -3,6 +3,7 @@ var combo = {
 	previousIds: [],
 	currentComboLength: 0,
 	currentComboLemmas: [],
+	comboSelector: $("#combo"),
 
 	handleNewIds: function(callback){
 		var increment = false;
@@ -27,10 +28,7 @@ var combo = {
 
 		if(!increment){
 			// combo terminé
-			if (this.currentComboLength > 1) {
-				$("#combo").hide("explode", {pieces: 16 }, 300);
-				objectiveCombo.checkObjectives(this.currentComboLength);
-			}
+			this.endCombo();
 
 			this.currentComboLength = 0;
 
@@ -66,12 +64,25 @@ var combo = {
 
 	showCombo: function(){
 		if (this.currentComboLength > 1) {
-			$("#combo").show();
+			this.comboSelector.show();
 			$("#combo-count").html(this.currentComboLength).show();
 		} else {
-			$("#combo").hide();
+			this.comboSelector.hide();
+		}
+	},
+
+	reset: function(){
+		this.endCombo();
+		this.newIds = [];
+		this.previousIds = [];
+		this.currentComboLength = 0;
+		this.currentComboLemmas = [];
+	},
+
+	endCombo: function(){
+		if (this.currentComboLength > 1) {
+			this.comboSelector.hide("explode", {pieces: 16 }, 300);
+			objectiveCombo.checkObjectives(this.currentComboLength);
 		}
 	}
-
-
 }

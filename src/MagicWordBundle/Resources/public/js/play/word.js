@@ -50,6 +50,7 @@ var words = {
 				combo.handleNewInflection(inflection);
 			} else {
 				this.addToFoundWords(inflection.toLowerCase(), false, true, true);
+				combo.reset();
 			}
 		}
 	},
