@@ -83,9 +83,12 @@ class MassiveManager
         return $form;
     }
 
-    public function handleMassiveForm(Request $request)
+    public function handleMassiveForm(Request $request, $massive = null)
     {
-        $massive = new Massive();
+        if (!$massive) {
+            $massive = new Massive();
+        }
+
         $form = $this->formFactory->createBuilder(MassiveType::class, $massive)->getForm();
         $form->handleRequest($request);
 

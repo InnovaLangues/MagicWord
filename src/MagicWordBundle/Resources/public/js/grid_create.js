@@ -114,7 +114,7 @@ function getCombos(){
 
 function isFormValid(formId){
 
-    return document.getElementById(formId).checkValidity()
+    return document.getElementById(formId).checkValidity();
 }
 
 function generate(){

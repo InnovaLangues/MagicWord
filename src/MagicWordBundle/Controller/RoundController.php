@@ -8,7 +8,6 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Response;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use MagicWordBundle\Entity\Round;
-use MagicWordBundle\Form\Type\RoundType;
 
 class RoundController extends Controller
 {
@@ -34,7 +33,7 @@ class RoundController extends Controller
     public function editAction(Round $round)
     {
         $miscForm = $this->get('mw_manager.round')->getMiscForm($round);
-        $form = $this->createForm(RoundType::class, $round)->createView();
+        $form = $this->get('mw_manager.round')->getForm($round);
 
         return $this->render('MagicWordBundle:Round:edit.html.twig', ['round' => $round, 'miscForm' => $miscForm, 'form' => $form]);
     }

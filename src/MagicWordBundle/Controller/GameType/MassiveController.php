@@ -9,6 +9,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use MagicWordBundle\Entity\GameType\Massive;
 use MagicWordBundle\Entity\Round;
+use MagicWordBundle\Form\Type\MassiveType;
 
 class MassiveController extends Controller
 {
@@ -115,10 +116,25 @@ class MassiveController extends Controller
     /**
      * @Route("/massive/builder/{id}", name="massive_builder")
      * @ParamConverter("massive", class="MagicWordBundle:GameType\Massive")
+     * @Method("GET")
      */
     public function displayBuilderAction(Massive $massive)
     {
-        return $this->render('MagicWordBundle:Game/Massive:builder.html.twig', array('massive' => $massive));
+        $form = $this->get('form.factory')->createBuilder(MassiveType::class, $massive)->getForm()->createView();
+
+        return $this->render('MagicWordBundle:Game/Massive:builder.html.twig', array('massive' => $massive, 'form' => $form));
+    }
+
+    /**
+     * @Route("/massive/builder/{id}", name="massive_saveinfo")
+     * @ParamConverter("massive", class="MagicWordBundle:GameType\Massive")
+     * @Method("POST")
+     */
+    public function saveInfosAction(Massive $massive, Request $request)
+    {
+        $massive = $this->get('mw_manager.massive')->handleMassiveForm($request, $massive);
+
+        return $this->redirectToRoute('massive_builder', array('id' => $massive->getId()));
     }
 
     /**

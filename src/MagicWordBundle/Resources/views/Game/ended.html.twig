@@ -8,7 +8,7 @@
             <h4>{{ 'games_ended' | trans }}</h4>
         </div>
         <ul class="list-group">
-            {% for game in games %}
+            {% for game in games if game.discr == "massive"%}
             {{ _self.game_end_link(game) }}
             {% endfor %}
         </ul>
@@ -17,12 +17,7 @@
 
 {% macro game_end_link(game) %}
 <li class="list-group-item">
-    {% if game.discr == "training" %}
-        <span class="label label-default">{{ "training" | trans }}</span>
-        <a href="{{ path('round_end', {"id": game.rounds|first.id}) }}">
-            {{ "training" | trans }}
-        </a>
-    {% elseif game.discr == "massive" %}
+    {% if game.discr == "massive" %}
         <span class="label label-primary">{{ "massive" | trans }}</span>
         <a href="{{ path('massive_end', {"id": game.id}) }}">
             {{ game.name }} <span class="text-muted">({{ game.description }})</span>

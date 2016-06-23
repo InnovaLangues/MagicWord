@@ -10,6 +10,7 @@ use MagicWordBundle\Entity\Round;
 use MagicWordBundle\Entity\RoundType\Rush;
 use MagicWordBundle\Entity\RoundType\Conquer;
 use MagicWordBundle\Form\Type\RoundMiscType;
+use MagicWordBundle\Form\Type\RoundType;
 
 /**
  * @DI\Service("mw_manager.round")
@@ -103,5 +104,12 @@ class RoundManager
         }
 
         return;
+    }
+
+    public function getForm(Round $round)
+    {
+        return $form = ($round->getDiscr() == 'conquer')
+            ? $this->formFactory->createBuilder(RoundType::class, $round)->getForm()->createView()
+            : null;
     }
 }

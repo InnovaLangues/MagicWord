@@ -6,7 +6,7 @@
 <div class="panel panel-default">
     <div class="panel-heading">
         <h4>
-            {{ 'massive' | trans }} {{ massive.id }} - {{ massive.name }}
+            {{ 'massive' | trans }} <strong>{{ massive.name }}</strong> ({{ massive.description }})
             <span class="pull-right">
                 <a class="btn btn-default" href="{{ path('massive_publish', {"id":  massive.id}) }}">
                     <i class="fa fa-caret-square-o-right" aria-hidden="true"></i>
@@ -16,53 +16,64 @@
         </h4>
     </div>
     <div class="panel-body">
-        <h4>{{ 'language' | trans }}</h4>
-        {{ massive.language.name }}
+        <ul class="nav nav-tabs" role="tablist">
+           <li role="presentation" class="active"><a href="#rounds" aria-controls="rounds" role="tab" data-toggle="tab">{{ "rounds" | trans }}</a></li>
+           <li role="presentation"><a href="#misc" aria-controls="misc" role="tab" data-toggle="tab">Divers</a></li>
+         </ul>
 
-        <h4>{{ 'round' | trans }} ({{ massive.rounds|length }})
-            <div class="btn-group">
-                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <i class="fa fa-plus" aria-hidden="true"></i> {{ 'add_round' | trans }}
-                    <span class="caret"></span>
-                </button>
-                <ul class="dropdown-menu">
-                    <li>
-                        <a data-message="Génération d'une grille rush" class="please-wait" href="{{ path('massive_add_rush', {"id":  massive.id}) }}">{{ 'rush' | trans }}</a>
-                    </li>
-                    <li>
-                        <a data-message="Ajout d'une partie conquer" class="please-wait" href="{{ path('massive_add_conquer', {"id":  massive.id}) }}">{{ 'conquer' | trans }}</a>
-                    </li>
+        <div class="tab-content">
+            <div role="tabpanel" class="tab-pane active" id="rounds">
+                <h4>{{ 'round' | trans }} ({{ massive.rounds|length }})
+                    <div class="btn-group">
+                        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <i class="fa fa-plus" aria-hidden="true"></i> {{ 'add_round' | trans }}
+                            <span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a data-message="Génération d'une grille rush" class="please-wait" href="{{ path('massive_add_rush', {"id":  massive.id}) }}">{{ 'rush' | trans }}</a>
+                            </li>
+                            <li>
+                                <a data-message="Ajout d'une partie conquer" class="please-wait" href="{{ path('massive_add_conquer', {"id":  massive.id}) }}">{{ 'conquer' | trans }}</a>
+                            </li>
+                        </ul>
+                    </div>
+                </h4>
+
+                <ul class="list-group">
+                    {% for round in massive.rounds %}
+                        <li class="list-group-item">
+                            <span class="label label-default">{{ round.discr }}</span>
+                            {% if round.title %}{{ round.title }}{% endif %}
+                            {% if round.description %}<span class="text-muted">({{ round.description }})</span>{% endif %}
+
+                            <span class="pull-right">
+                            {% if round.discr == "rush" %}
+                                <a class="btn btn-default btn-xs" href="{{ path('round_edit', {"id": round.id }) }}">
+                                    <i class="fa fa-pencil" aria-hidden="true"></i>
+                                    {{ 'edit_round' | trans }}
+                                </a>
+                            {% else %}
+                                <a class="btn btn-default btn-xs" href="{{ path('round_edit', {"id": round.id }) }}">
+                                    <i class="fa fa-pencil" aria-hidden="true"></i>
+                                    {{ 'edit_round' | trans }}
+                                </a>
+                            {% endif %}
+
+                            <a class="btn btn-default btn-xs btn-danger" href="{{ path('massive_remove_round', {"massiveId": massive.id, "roundId": round.id }) }}">
+                                <i class="fa fa-times" aria-hidden="true"></i>
+                            </a>
+                            </span>
+                        </li>
+                    {% endfor %}
                 </ul>
             </div>
-        </h4>
 
-        <ul class="list-group">
-            {% for round in massive.rounds %}
-                <li class="list-group-item">
-                    <span class="label label-default">{{ round.discr }}</span>
-                    {% if round.title %}{{ round.title }}{% endif %}
-                    {% if round.description %}<span class="text-muted">({{ round.description }})</span>{% endif %}
+            <div role="tabpanel" class="tab-pane" id="misc">
+                {{ form(form) }}
+            </div>
+        </div>
 
-                    <span class="pull-right">
-                    {% if round.discr == "rush" %}
-                        <a class="btn btn-default btn-xs" href="{{ path('round_edit', {"id": round.id }) }}">
-                            <i class="fa fa-pencil" aria-hidden="true"></i>
-                            {{ 'edit_round' | trans }}
-                        </a>
-                    {% else %}
-                        <a class="btn btn-default btn-xs" href="{{ path('round_edit', {"id": round.id }) }}">
-                            <i class="fa fa-pencil" aria-hidden="true"></i>
-                            {{ 'edit_round' | trans }}
-                        </a>
-                    {% endif %}
-
-                    <a class="btn btn-default btn-xs btn-danger" href="{{ path('massive_remove_round', {"massiveId": massive.id, "roundId": round.id }) }}">
-                        <i class="fa fa-times" aria-hidden="true"></i>
-                    </a>
-                    </span>
-                </li>
-            {% endfor %}
-        </ul>
     </div>
 </div>
 {% endblock %}
