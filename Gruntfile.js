@@ -45,6 +45,9 @@ module.exports = function(grunt) {
                         "src/MagicWordBundle/Resources/public/js/bologne.js",
                         "src/MagicWordBundle/Resources/public/js/grid_create.js"
                     ],
+                    'web/js/round.js': [
+                        "src/MagicWordBundle/Resources/public/js/round.js",
+                    ],
                     'web/js/play.js': [
                         "bower_components/jquery-ui/jquery-ui.min.js",
                         "bower_components/FlipClock/compiled/flipclock.min.js",

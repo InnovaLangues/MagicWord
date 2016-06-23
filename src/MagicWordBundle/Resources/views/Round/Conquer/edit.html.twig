@@ -1,81 +1,66 @@
-{% extends '::base.html.twig' %}
-
-{% block title %}Conquer Builder{% endblock %}
-
-{% block body -%}
 {% set hasObj =  conquer.objectives|length > 0 ? true : false %}
 
 <div class="panel panel-default">
+    <div class="panel-heading">
+        {{ 'objectives' | trans }}
+        <span class="pull-right">
+            <span class='btn btn-primary btn-xs' onclick="saveObjectives()">
+                {{ 'save_objectives' | trans }}
+            </span>
+        </span>
+    </div>
     <div class="panel-body">
-        <a href="{{ path('massive_builder', {"id": conquer.game.id}) }}" class="btn btn-default btn">
-            <i class="fa fa-chevron-left" aria-hidden="true"></i>
-            {{ 'back_to_editor' | trans }}
-        </a>
-        <hr/>
+        <ul class="nav nav-tabs nav-justified" role="tablist">
+            <li role="presentation" class="active">
+                <a href="#find-words-tab" aria-controls="find-words-tab" role="tab" data-toggle="tab">
+                    <i class="fa fa-binoculars" aria-hidden="true"></i> {{ 'find_words' | trans }}
+                </a>
+            </li>
+            <li role="presentation">
+                <a href="#combos-tab" aria-controls="combos-tab" role="tab" data-toggle="tab">
+                    <i class="fa fa-tachometer" aria-hidden="true"></i> {{ 'combos' | trans }}
+                </a>
+            </li>
+        </ul>
+        <form id="objectives">
+            <div class="tab-content">
+                <div role="tabpanel" class="tab-pane active in fade" id="find-words-tab">
+                    {% include "MagicWordBundle:Round/Conquer/Objective:findword.html.twig" %}
+                </div>
+                <div role="tabpanel" class="tab-pane fade" id="combos-tab">
+                    {% include "MagicWordBundle:Round/Conquer/Objective:combo.html.twig" %}
+                </div>
+            </div>
+            {{ form_widget(form._token) }}
+        </form>
+    </div>
+</div>
 
+{# GRID + INFLECTIONS #}
+<div class="row">
+    <div class="col-md-5">
         <div class="panel panel-default">
             <div class="panel-heading">
-                {{ 'objectives' | trans }}
+                {{ 'grid' | trans }}
                 <span class="pull-right">
-                    <span class='btn btn-primary btn-xs' onclick="saveObjectives()">
-                        {{ 'save_objectives' | trans }}
+                    <span class="btn btn-default btn-xs" onclick="generate()">
+                        <i class="fa fa-cogs" aria-hidden="true"></i>
+                        {{ 'generate_grid' | trans }}
+                    </span>
+                    <span class='btn btn-primary btn-xs' onclick="save()">
+                        {{ 'save_grid' | trans }}
                     </span>
                 </span>
             </div>
             <div class="panel-body">
-                <ul class="nav nav-tabs nav-justified" role="tablist">
-                    <li role="presentation" class="active">
-                        <a href="#find-words-tab" aria-controls="find-words-tab" role="tab" data-toggle="tab">
-                            <i class="fa fa-binoculars" aria-hidden="true"></i> {{ 'find_words' | trans }}
-                        </a>
-                    </li>
-                    <li role="presentation">
-                        <a href="#combos-tab" aria-controls="combos-tab" role="tab" data-toggle="tab">
-                            <i class="fa fa-tachometer" aria-hidden="true"></i> {{ 'combos' | trans }}
-                        </a>
-                    </li>
-                </ul>
-                <form id="objectives">
-                    <div class="tab-content">
-                        <div role="tabpanel" class="tab-pane active in fade" id="find-words-tab">
-                            {% include "MagicWordBundle:Round/Conquer/Objective:findword.html.twig" %}
-                        </div>
-                        <div role="tabpanel" class="tab-pane fade" id="combos-tab">
-                            {% include "MagicWordBundle:Round/Conquer/Objective:combo.html.twig" %}
-                        </div>
+                <form id="grid" method="POST">
+                    <div id="result">
+                        {% set grid = conquer.grid %}
+                        {% include "MagicWordBundle:Round/Conquer:grid.html.twig" %}
                     </div>
-                    {{ form_widget(form._token) }}
+                    <input id="conquerId" type="hidden" name="conquerId" value="{{ conquer.id }}"/>
+                    <input id="languageId" type="hidden" name="language" value="{{ conquer.game.language.id }}">
                 </form>
-            </div>
-        </div>
-
-        {# GRID + INFLECTIONS #}
-        <div class="row">
-            <div class="col-md-5">
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                            {{ 'grid' | trans }}
-                            <span class="pull-right">
-                                <span class="btn btn-default btn-xs" onclick="generate()">
-                                    <i class="fa fa-cogs" aria-hidden="true"></i>
-                                    {{ 'generate_grid' | trans }}
-                                </span>
-                                <span class='btn btn-primary btn-xs' onclick="save()">
-                                    {{ 'save_grid' | trans }}
-                                </span>
-                            </span>
-                    </div>
-                    <div class="panel-body">
-                        <form id="grid" method="POST">
-                            <div id="result">
-                                {% set grid = conquer.grid %}
-                                {% include "MagicWordBundle:Round/Conquer:grid.html.twig" %}
-                            </div>
-                            <input id="conquerId" type="hidden" name="conquerId" value="{{ conquer.id }}"/>
-                            <input id="languageId" type="hidden" name="language" value="{{ conquer.game.language.id }}">
-                        </form>
-                    </div>
-                </div>
             </div>
         </div>
     </div>
@@ -83,9 +68,3 @@
 
 {% include "MagicWordBundle:Round/Conquer/Objective:helper-inflections.html.twig" %}
 {% include "MagicWordBundle:Round/Conquer/Objective:helper-combos.html.twig" %}
-
-{% endblock %}
-
-{% block javascripts -%}
-    <script type="text/javascript" src="{{ asset('/js/grid_creation.js') }}"></script>
-{% endblock %}

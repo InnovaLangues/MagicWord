@@ -3,9 +3,12 @@
 namespace MagicWordBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\Request;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Component\HttpFoundation\Response;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use MagicWordBundle\Entity\Round;
+use MagicWordBundle\Form\Type\RoundType;
 
 class RoundController extends Controller
 {
@@ -25,6 +28,18 @@ class RoundController extends Controller
     }
 
     /**
+     * @Route("/round/{id}/edit", name="round_edit")
+     * @ParamConverter("round", class="MagicWordBundle:Round")
+     */
+    public function editAction(Round $round)
+    {
+        $miscForm = $this->get('mw_manager.round')->getMiscForm($round);
+        $form = $this->createForm(RoundType::class, $round)->createView();
+
+        return $this->render('MagicWordBundle:Round:edit.html.twig', ['round' => $round, 'miscForm' => $miscForm, 'form' => $form]);
+    }
+
+    /**
      * @Route("/round/{id}/end", name="round_end", options={"expose"=true})
      * @ParamConverter("round", class="MagicWordBundle:Round")
      */
@@ -33,5 +48,16 @@ class RoundController extends Controller
         $activity = $this->get('mw_manager.activity')->endActivity($round);
 
         return $this->render('MagicWordBundle:Round:end.html.twig', ['round' => $round, 'activity' => $activity]);
+    }
+
+    /**
+     * @Route("/round/{id}/save-misc", name="save_misc" , options={"expose"=true})
+     * @ParamConverter("round", class="MagicWordBundle:Round")
+     */
+    public function saveMiscAction(Round $round, Request $request)
+    {
+        $this->get('mw_manager.round')->handleMiscForm($round, $request);
+
+        return new Response();
     }
 }

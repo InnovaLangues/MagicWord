@@ -1,0 +1,55 @@
+{% extends '::base.html.twig' %}
+
+{% block title %}EDIT ROUND{% endblock %}
+
+{% block body -%}
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h4>
+            Edition manche
+            {% if round.title %}<strong>{{ round.title }}</strong>{% endif %}
+            {% if round.description %}<span class="text-muted">({{ round.description }})</span>{% endif %}
+            <span class="pull-right">
+                <a href="{{ path('massive_builder', {"id": round.game.id}) }}" class="btn btn-default">
+                    <i class="fa fa-chevron-left" aria-hidden="true"></i>
+                    {{ 'back_to_editor' | trans }}
+                </a>
+            </span>
+        </h4>
+    </div>
+    <div class="panel-body">
+        <ul class="nav nav-tabs" role="tablist">
+           <li role="presentation" class="active"><a href="#grid" aria-controls="grid" role="tab" data-toggle="tab">Grille {{ round.discr == "conquer" ? "& objectifs" : ""}}</a></li>
+           <li role="presentation"><a href="#misc" aria-controls="misc" role="tab" data-toggle="tab">Divers</a></li>
+         </ul>
+         <div class="tab-content">
+            <div role="tabpanel" class="tab-pane active" id="grid">
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                    {% if round.discr == "rush" %}
+                        {% set rush = round %}
+                        {% include "MagicWordBundle:Round/Rush:edit.html.twig" %}
+                    {% else %}
+                        {% set conquer = round %}
+                        {% include "MagicWordBundle:Round/Conquer:edit.html.twig" %}
+                    {% endif %}
+                    </div>
+                </div>
+            </div>
+            <div role="tabpanel" class="tab-pane" id="misc">
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <input id="roundId" type="hidden" name="roundId" value="{{ round.id }}"/>
+                        {% include "MagicWordBundle:Round:misc.html.twig" %}
+                    </div>
+                </div>
+            </div>
+         </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block javascripts -%}
+<script type="text/javascript" src="{{ asset('/js/round.js') }}"></script>
+<script type="text/javascript" src="{{ asset('/js/grid_creation.js') }}"></script>
+{% endblock %}

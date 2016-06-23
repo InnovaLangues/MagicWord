@@ -1,5 +1,16 @@
 <div class="panel panel-default">
-    <div class="panel-body">
-         {{ activity.objectivesDone|length }} sur {{ activity.round.objectives|length }} en {{ getTimeSpent(activity) | trans }}.
+    <div class="panel-heading">
+        {{ activity.objectivesDone|length }} sur {{ activity.round.objectives|length }} en {{ getTimeSpent(activity) | trans }}.
     </div>
+    <ul class="list-group">
+        {% for objective in activity.round.objectives %}
+            <li class="list-group-item {{ objective in activity.objectivesDone ? "list-group-item-success" : "list-group-item-danger" }}">
+                {% if objective.discr == "findword" %}
+                    <span class="label label-default">findWord</span> {{ objective.hint }} : {{ objective.inflection | upper }}
+                {% else %}
+                    <span class="label label-default">Combo</span> {{ objective.number }} combo(s) de puissance {{ objective.lenght }}
+                {% endif %}
+            </li>
+        {% endfor %}
+    </ul>
 </div>

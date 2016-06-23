@@ -39,26 +39,21 @@
         <ul class="list-group">
             {% for round in massive.rounds %}
                 <li class="list-group-item">
-                    {{ round.displayOrder + 1 }} - {{ round.discr }}
+                    <span class="label label-default">{{ round.discr }}</span>
+                    {% if round.title %}{{ round.title }}{% endif %}
+                    {% if round.description %}<span class="text-muted">({{ round.description }})</span>{% endif %}
 
                     <span class="pull-right">
-                    {% if round.discr == "rush" and round.grid %}
-                        <a class="btn btn-default btn-xs" href="{{ path('rush', {"id": round.id }) }}">
-                            <i class="fa fa-eye" aria-hidden="true"></i>
-                            {{ 'see_grid' | trans }}
-                        </a>
-                    {% else %}
-                        <a class="btn btn-default btn-xs" href="{{ path('conquer', {"id": round.id }) }}">
+                    {% if round.discr == "rush" %}
+                        <a class="btn btn-default btn-xs" href="{{ path('round_edit', {"id": round.id }) }}">
                             <i class="fa fa-pencil" aria-hidden="true"></i>
                             {{ 'edit_round' | trans }}
                         </a>
-                    {% endif %}
-
-                    {% if round.grid %}
-                    <a class="btn btn-default btn-xs" href="{{ path('round_play', {"id": round.id }) }}">
-                        <i class="fa fa-gamepad" aria-hidden="true"></i>
-                        {{ 'play' | trans }}
-                    </a>
+                    {% else %}
+                        <a class="btn btn-default btn-xs" href="{{ path('round_edit', {"id": round.id }) }}">
+                            <i class="fa fa-pencil" aria-hidden="true"></i>
+                            {{ 'edit_round' | trans }}
+                        </a>
                     {% endif %}
 
                     <a class="btn btn-default btn-xs btn-danger" href="{{ path('massive_remove_round', {"massiveId": massive.id, "roundId": round.id }) }}">

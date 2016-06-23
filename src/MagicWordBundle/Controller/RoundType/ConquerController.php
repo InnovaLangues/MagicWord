@@ -19,7 +19,6 @@ class ConquerController extends Controller
     public function displayConquerAction(Conquer $conquer)
     {
         $form = $this->createForm(RoundType::class, $conquer)->createView();
-        //$comboForm = $this->createForm(CombosType::class, $conquer)->createView();
 
         return $this->render('MagicWordBundle:Round/Conquer:edit.html.twig',
             [

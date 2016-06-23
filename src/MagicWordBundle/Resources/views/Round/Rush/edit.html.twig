@@ -1,41 +1,15 @@
-{% extends '::base.html.twig' %}
-
-{% block title %}Rush Builder{% endblock %}
-
-{% block body -%}
-<div class="panel">
-    <div class="panel-body">
-        <a href="{{ path('massive_builder', {"id": rush.game.id}) }}" class="btn btn-default btn">
-            <i class="fa fa-chevron-left" aria-hidden="true"></i>
-            {{ 'back_to_editor' | trans }}
-        </a>
-        <hr/>
-        <div class="row">
-            <div class="col-md-12">
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                        {{ 'rush' | trans }}
-                    </div>
-                    <div class="panel-body">
-                        <div class="row">
-                            <div class="col-md-6">
-                            {% set grid = rush.grid %}
-                            {% include "MagicWordBundle:Round/Conquer:grid.html.twig" %}
-                            </div>
-                            <div class="col-md-6">
-                                <ul class="list-group" style="max-height:500px; overflow-y:scroll">
-                                {% for form in grid.foundableForms %}
-                                <li class="list-group-item">
-                                    {{form.form | upper}}
-                                    <span class="pull-right text-muted">{{form.points}}pts</span>
-                                </li>
-                                {% endfor %}
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+<div class="row">
+    <div class="col-md-6">
+    {% set grid = rush.grid %}
+    {% include "MagicWordBundle:Round/Conquer:grid.html.twig" %}
+    </div>
+    <div class="col-md-6">
+        <ul class="list-group" style="max-height:500px; overflow-y:scroll">
+        {% for form in grid.foundableForms %}
+        <li class="list-group-item">
+            {{form.form | upper}}
+            <span class="pull-right text-muted">{{form.points}}pts</span>
+        </li>
+        {% endfor %}
     </div>
 </div>
-{% endblock %}
