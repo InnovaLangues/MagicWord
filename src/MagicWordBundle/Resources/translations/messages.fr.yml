@@ -1,8 +1,9 @@
-add_combo: 'Ajouter un combo'
+add_combo: 'Ajouter un objectif combo'
 add_existing_form: 'Ajouter une forme existante'
 add_form: 'Ajouter une forme'
 add_round: 'Ajouter une manche'
 add_to_friends: 'Ajouter aux contacts'
+add_to_wordbox_short: wordbox
 add_to_wordbox: 'Ajouter à ma wordbox'
 add: Ajouter
 back_to_editor: 'Retour à l''éditeur de partie'
@@ -20,9 +21,13 @@ combo_length: 'Longueur des combos'
 combo_number: 'Nombre de combos'
 combos__with_length: 'combo(s) de longueur'
 combos: Combos
+conquer_rules: Remplissez les objectifs le plus rapidement possible.
 conquer: Conquer
 continue: Continuer
-create: Créer
+create: Créer des parties massives
+current_combo: Combo en cours
+day: jour
+days: jours
 description: Description
 edit_game: 'Editer partie'
 edit_round: 'Editer la manche'
@@ -32,7 +37,7 @@ find_words: FindWord
 form: Forme
 forms_found_count: Nombre de formes trouvées
 forms_found: 'forme(s) trouvée(s)'
-foundables: Mots trouvés
+foundables: Formes trouvées
 french: Français
 from: 'De la part de'
 game_language: 'Langue du jeu'
@@ -40,9 +45,12 @@ games_ended: Parties terminées
 games_started: Parties en cours
 gender: Genre
 generate_grid: 'Générer Grille'
+give_up: Abandonner
 grid: Grille
 hidden: 'Masquer sa présence'
 hint: Indice
+hour: heure
+hours: heures
 inflexion_info: 'Infos sur la flexion'
 language_ui: 'Langue de l''interface'
 language: Langue
@@ -54,13 +62,15 @@ massive: 'Partie massive'
 massives: 'Parties massives'
 me: Moi
 message: Message
+minute: minute
+minutes: minutes
 mood: Mode
 my_friends: 'Mes contacts'
-my_massives_published: 'Mes parties massives publiées'
-my_massives_under_construction: 'Mes parties massives en chantier'
+my_massives_published: 'Parties finalisées'
+my_massives_under_construction: 'Parties en chantier'
 my_massives: 'Mes parties massives'
 name: Nom
-new_massive: 'Nouvelle partie massive'
+new_massive: 'Nouvelle partie'
 objectives: Objectifs
 online: 'En ligne'
 parameters: Paramètres
@@ -75,31 +85,25 @@ ranking: Classement
 remove__from_friends: 'Retirer des contacts'
 round: Manche
 rounds: Manches
+rush_rules: Trouvez des mots dans la grille.
 rush: Rush
 save_grid: 'Sauvegarder la grille'
 save_objectives: 'Sauvegarder les objectifs'
 save: Sauvegarder
 score: Score total
-see_combos: 'Voir les combos'
+second: seconde
+seconds: secondes
+see_combos: 'Voir les combos possibles'
 see_grid: 'Voir la grille'
 subcategory: Subcatégorie
 tense: Temps
+time: Temps
 to: à
 total: Total
 train: 'S''entrainer'
 training: Partie d'entrainement
 update: 'Mettre à jour'
 weight: Poids
-word_length: Longueur du mot
-wordbox: Wordbox
-wordlengthpoints: Points bonus longueur de mot
-time: Temps
-give_up: Abandonner
-hour: heure
-hours: heures
-minute: minute
-minutes: minutes
-second: seconde
-seconds: secondes
-day: jour
-days: jours
+word_length: Longueur de la forme
+wordbox: Ma wordbox
+wordlengthpoints: Points bonus longueur de forme

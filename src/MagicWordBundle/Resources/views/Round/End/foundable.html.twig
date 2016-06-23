@@ -40,7 +40,7 @@
             {% set found = found + 1 %}
         {% endif %}
     {% endfor %}
-    {{ (found / activities|length) * 100 }}%
+    {{ ((found / activities|length) * 100)| round }}%
 {% endmacro %}
 
 {% macro foundable(foundable, activity, activities, type, roundType) %}
@@ -51,7 +51,7 @@
                  {{ foundable.form | upper }} <span class="text-muted">({{ foundable.points}})</span>
                  {% if roundType != "training" %}
                  <span class="pull-right">
-                    <span class="label label-default">{{ _self.percent(foundable, activities) }}</span>
+                    <span class="label label-default">{{ _self.percent(foundable, activities)  }}</span>
                  </span>
                  {% endif %}
             </a>
@@ -66,7 +66,7 @@
                 <span class="pull-right">
                     <span class="btn btn-default btn-xs" onclick="addToWordbox({{ inflection.lemma.id }})">
                         <i class="fa fa-plus" aria-hidden="true"></i>
-                        {{ "wordbox" | trans}}
+                        {{ "add_to_wordbox_short" | trans}}
                     </span>
                 </span>
             </li>

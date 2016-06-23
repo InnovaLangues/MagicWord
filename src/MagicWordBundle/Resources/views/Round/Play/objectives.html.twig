@@ -1,14 +1,13 @@
 {% if hasObj %}
-<div class="col-md-3">
+<div class="col-md-4">
     <div class="panel panel-default">
         <div class="panel-heading" style="background-color:#FF9C00">
-            <h4>
+            <h5>
                 {{ 'objectives' | trans }}
-                <span class="pull-right btn btn-xs btn-danger" onclick="activity.end()">
-                    <i class="fa fa-exclamation-triangle" aria-hidden="true"></i>
-                    {{ 'give_up' | trans }}
+                <span class="pull-right">
+                     <span class="label label-default" id="obj-score">0</span> pts sur <span class="label label-primary">300</span>
                 </span>
-            </h4>
+            </h5>
         </div>
         {% if round.findWords is not empty %}
         <ul class="list-group">
@@ -38,5 +37,16 @@
         </ul>
         {% endif %}
     </div>
+    <div class="panel panel-default">
+        <ul class="list-group">
+            <li class="list-group-item list-group-item-danger" onclick="activity.end()">
+                    <i class="fa fa-exclamation-triangle" aria-hidden="true"></i>
+                    {{ 'give_up' | trans }}
+                </span>
+            </li>
+        </ul>
+    </div>
 </div>
+
+
 {% endif %}

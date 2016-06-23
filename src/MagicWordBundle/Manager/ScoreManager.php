@@ -70,7 +70,7 @@ class ScoreManager
                 break;
         }
 
-        return $points;
+        return floor($points);
     }
 
     private function getPointForFoundables($foundForms)
@@ -91,10 +91,10 @@ class ScoreManager
         $objectiveDoneCount = count($activity->getObjectivesDone());
         $objectivesDoableCount = count($round->getObjectives());
 
-        $points = (500 / $objectivesDoableCount) * $objectiveDoneCount;
+        $points += (300 / $objectivesDoableCount) * $objectiveDoneCount;
 
         if ($objectiveDoneCount === $objectivesDoableCount) {
-            $points += (1 - log($activity->getDuration()) / 10) * 100;
+            $points += (1 / $activity->getDuration()) * 2000;
         }
 
         return $points;
