@@ -112,4 +112,13 @@ class RoundManager
             ? $this->formFactory->createBuilder(RoundType::class, $round)->getForm()->createView()
             : null;
     }
+
+    public function isValid(Round $round)
+    {
+        $errors = [];
+        if ($round->getDiscr() == 'conquer') {
+        }
+
+        return $errors;
+    }
 }

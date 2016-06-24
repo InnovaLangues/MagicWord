@@ -61,11 +61,20 @@ class MassiveManager
 
     public function publish(Massive $massive)
     {
+        $isValid = true;
+        $errors = [];
+
+        foreach ($massive->getRounds() as $round) {
+            $errors = array_merge($errors, $this->roundManager->isValid($round));
+        }
+
+        //if (empty($errors)) {
         $massive->setPublished(true);
         $this->em->persist($massive);
         $this->em->flush();
+        //}
 
-        return;
+        return $errors;
     }
 
     public function getMyMassives($published)
