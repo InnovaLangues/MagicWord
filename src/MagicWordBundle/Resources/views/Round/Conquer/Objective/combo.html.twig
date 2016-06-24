@@ -37,9 +37,7 @@
 
 {% macro combos_prototype(combo) %}
 <li class="list-group-item combo">
-    {{ form_widget(combo.number) }}
-    {{ form_widget(combo.lenght) }}
-
+    {{ form_label(combo.number) }} : {{ form_widget(combo.number) }} - {{ form_label(combo.lenght) }} : {{ form_widget(combo.lenght) }}
     <span class="pull-right">
         <span class="btn btn-danger word-remove">
             <i class="fa fa-times" aria-hidden="true"></i>

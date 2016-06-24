@@ -17,7 +17,7 @@ challenge: Défier
 challenged: 'Joueur défié'
 cleaned_content: 'Flexion "nettoyée"'
 close: Fermer
-combo_length: 'Longueur des combos'
+combo_length: 'Puissance des combos'
 combo_number: 'Nombre de combos'
 combos__with_length: 'combo(s) de longueur'
 combos: Combos
