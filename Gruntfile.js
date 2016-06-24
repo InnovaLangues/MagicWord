@@ -39,6 +39,7 @@ module.exports = function(grunt) {
                         'web/bundles/fosjsrouting/js/router.js',
                         'src/MagicWordBundle/Resources/public/js/wordbox.js',
                         'src/MagicWordBundle/Resources/public/js/wait.js',
+                        'src/MagicWordBundle/Resources/public/js/info.js',
                         'src/MagicWordBundle/Resources/public/js/main.js',
                     ],
                     'web/js/grid_creation.js': [

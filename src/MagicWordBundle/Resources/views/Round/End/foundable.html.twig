@@ -64,7 +64,7 @@
                 {{ inflection.content }}
                 ({{ inflection.lemma.content }} - <span class="text-muted">{{ inflection.lemma.category ? inflection.lemma.category.value }}</span>)
                 <span class="pull-right">
-                    <span class="btn btn-default btn-xs" onclick="addToWordbox({{ inflection.lemma.id }})">
+                    <span class="btn btn-default btn-xs" onclick="addToWordbox({{ inflection.lemma.id }}, this);">
                         <i class="fa fa-plus" aria-hidden="true"></i>
                         {{ "add_to_wordbox_short" | trans}}
                     </span>

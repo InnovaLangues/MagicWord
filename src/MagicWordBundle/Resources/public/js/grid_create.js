@@ -73,6 +73,8 @@ function saveObjectives(){
           .done(function(data) {
               wait.stop();
           });
+    } else {
+        info.display("Un ou plusieurs objectifs ne sont correctement remplis");
     }
 }
 
@@ -91,6 +93,8 @@ function getInflections(){
               wait.stop();
               $("#inflections").html(data);
           });
+    } else {
+        info.display("La grille doit être entièrement remplie.");
     }
 }
 
@@ -109,6 +113,8 @@ function getCombos(){
               $("#possible-combos").html(data);
               wait.stop();
           });
+    } else {
+        info.display("La grille doit être entièrement remplie.");
     }
 }
 
@@ -141,6 +147,8 @@ function generate(){
         };
         checkInsertedWords(best.insertedWords);
         wait.stop();
+    } else {
+        info.display("Au moins une forme doit être renseignée afin de générer la grille.");
     }
 }
 

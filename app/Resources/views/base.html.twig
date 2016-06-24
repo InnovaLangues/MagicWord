@@ -48,12 +48,25 @@
         </div>
 
         <div class="modal fade" data-keyboard="false" data-backdrop="static" id="please-wait" tabindex="-1" role="dialog" aria-labelledby="please-wait">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-body noselect">
-                        <img src="{{ asset('/img/squares.gif')}}"/>
-                        <h3 id="please-wait-message">
-                        </h3>
+            <div class="vertical-alignment-helper">
+                <div class="modal-dialog vertical-align-center" role="document">
+                    <div class="modal-content">
+                        <div class="modal-body noselect">
+                            <img src="{{ asset('/img/squares.gif')}}"/>
+                            <h3 id="please-wait-message"></h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal fade" id="info-modal" tabindex="-1" role="dialog" aria-labelledby="info-modal">
+            <div class="vertical-alignment-helper">
+                <div class="modal-dialog vertical-align-center" role="document">
+                    <div class="modal-content">
+                        <div class="modal-body noselect">
+                            <h3 id="info-modal-message"></h3>
+                        </div>
                     </div>
                 </div>
             </div>
