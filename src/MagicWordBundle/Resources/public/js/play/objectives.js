@@ -17,7 +17,7 @@ var objectives = {
     },
 
     updateScore: function(){
-        this.score += 300 / this.doable;
+        this.score += Math.round(300 / this.doable);
         $("#obj-score").html(this.score);
     }
 }
