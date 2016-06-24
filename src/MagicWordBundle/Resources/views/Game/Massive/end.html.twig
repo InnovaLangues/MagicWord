@@ -8,10 +8,7 @@
             <h4>
                 {{ 'massive_end' | trans }} <strong>{{ massive.name }}</strong>
                 <span class="pull-right">
-                    <a href="{{ path('home') }}" class="btn btn-default">
-                        <i class="fa fa-home" aria-hidden="true"></i>
-                        {{ "back_to_home"|trans}}
-                    </a>
+                    {% include "MagicWordBundle:Common:backtohome.html.twig" %}
                 </span>
             </h4>
         </div>

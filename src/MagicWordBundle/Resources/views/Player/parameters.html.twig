@@ -3,7 +3,12 @@
 {% block body -%}
 <div class="panel panel-default">
     <div class="panel-heading">
-        <h4>{{ 'parameters' | trans }}</h4>
+        <h4>
+            {{ 'parameters' | trans }}
+            <span class="pull-right">
+                {% include "MagicWordBundle:Common:backtohome.html.twig" %}
+            </span>
+        </h4>
     </div>
     <div class="panel-body">
         {{ form(form) }}

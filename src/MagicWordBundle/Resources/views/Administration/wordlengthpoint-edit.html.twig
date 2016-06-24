@@ -5,7 +5,12 @@
 {% block body -%}
 <div class="panel panel-default">
     <div class="panel-heading">
-        <h4>{{ "wordlengthpoints" | trans }} -  {{ wordlengthpoint.length }}</h4>
+        <h4>
+            {{ "wordlengthpoints" | trans }} -  {{ wordlengthpoint.length }}
+            <span class="pull-right">
+                {% include "MagicWordBundle:Common:backtohome.html.twig" %}
+            </span>
+        </h4>
     </div>
     <div class="panel-body">
     {{ form(form) }}

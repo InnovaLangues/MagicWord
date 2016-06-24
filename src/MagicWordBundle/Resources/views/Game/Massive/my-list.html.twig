@@ -5,7 +5,12 @@
 {% block body -%}
     <div class="panel panel-default">
         <div class="panel-heading">
-            <h4>{{ 'my_massives_under_construction' | trans }}</h4>
+            <h4>
+                {{ 'my_massives_under_construction' | trans }}
+                <span class="pull-right">
+                    {% include "MagicWordBundle:Common:backtohome.html.twig" %}
+                </span>
+            </h4>
         </div>
         <ul class="list-group">
             {% for massive in massives %}

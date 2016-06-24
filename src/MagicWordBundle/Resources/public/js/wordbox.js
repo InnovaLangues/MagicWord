@@ -7,6 +7,6 @@ function addToWordbox(lemmaId, btn)
         type: 'POST',
         url: url,
      }).done(function(data) {
-         wait.stop();
+         setTimeout(function(){wait.stop();}, 400);
      });;
 }

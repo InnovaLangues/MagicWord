@@ -11,6 +11,7 @@
                 {% else %}
                     <a class="btn btn-default" href="{{ path('add_friend', {"id":  player.id}) }}">{{ 'add_to_friends' | trans }}</a>
                 {% endif %}
+                {% include "MagicWordBundle:Common:backtohome.html.twig" %}
             </span>
         </h4>
     </div>
