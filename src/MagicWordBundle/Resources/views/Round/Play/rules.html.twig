@@ -1,6 +1,6 @@
 <div class="col-md-12" >
-    <h3 style="border-radius:3px; color:#FF9C00">
+    <h3>
         {% set str = round.discr~"_rules" %}
-        {{ "round" | trans }} {{ round.discr | trans }} : {{ str | trans }}
+        <span id="rules">{{ "round" | trans }} <strong>{{ round.discr | trans }}</strong> : {{ str | trans }}</span>
     </h3>
 </div>
