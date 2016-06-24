@@ -23,6 +23,7 @@ class FindWordType extends AbstractType
 
         $builder->add('hint', TextType::class, array(
             'attr' => [
+                'size' => '50',
                 'data-field' => 'hint',
                 'placeholder' => 'hint',
                 'translation_domain' => 'messages',
