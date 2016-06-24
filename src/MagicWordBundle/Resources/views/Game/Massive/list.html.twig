@@ -10,7 +10,14 @@
         <ul class="list-group">
             {% for massive in massives if massive not in app.user.endedGames and massive.author != app.user %}
             <li class="list-group-item">
-                <a href="{{ path('massive_play', {"id": massive.id}) }}">{{ massive.name }} <span class="text-muted">({{ massive.description }})</span></a>
+                <a href="{{ path('massive_play', {"id": massive.id}) }}">
+                    {{ massive.name }} <span class="text-muted">({{ massive.description }})</span>
+                </a>
+                <span class="pull-right">
+                    {% for round in massive.rounds %}
+                        <span class="text-muted">{{ round.displayOrder + 1 }}.{{round.discr }} </span>
+                    {% endfor %}
+                </span>
             </li>
             {% endfor %}
         </ul>
