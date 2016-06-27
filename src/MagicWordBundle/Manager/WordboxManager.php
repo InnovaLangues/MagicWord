@@ -27,8 +27,6 @@ class WordboxManager
         $this->em = $entityManager;
         $this->tokenStorage = $tokenStorage;
         $this->acquisitionManager = $acquisitionManager;
-
-        $this->checkWordbox();
     }
 
     public function getWordbox()
@@ -48,6 +46,17 @@ class WordboxManager
         }
 
         return;
+    }
+
+    public function isInWordbox(Lemma $lemma)
+    {
+        $wordbox = $this->getWordbox();
+
+        if ($this->em->getRepository("MagicWordBundle:Wordbox\Acquisition")->findOneBy(['wordbox' => $wordbox, 'lemma' => $lemma])) {
+            return true;
+        }
+
+        return false;
     }
 
     public function checkWordbox()

@@ -84,10 +84,12 @@
                     <span class="btn btn-default btn-xs" onClick="wiktionnary.getDef('{{ inflection.lemma.content }}')">
                         <i class="fa fa-wikipedia-w" aria-hidden="true"></i>
                     </span>
-                    <span class="btn btn-default btn-xs" onclick="addToWordbox({{ inflection.lemma.id }}, this);">
+                    {% if isInWordbox(inflection.lemma) == false %}
+                    <span class="btn btn-default btn-xs"onclick="addToWordbox({{ inflection.lemma.id }}, this);">
                         <i class="fa fa-plus" aria-hidden="true"></i>
                         {{ "add_to_wordbox_short" | trans}}
                     </span>
+                    {% endif %}
                 </span>
             </li>
             {% endfor %}

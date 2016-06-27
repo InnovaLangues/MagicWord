@@ -6,7 +6,9 @@
         <h4>
             {{ "lemma_info" | trans}} <strong>{{ lemma.content }}</strong>
             <span class="pull-right">
-                <a class="btn btn-default" href="{{ path('add-to-wordbox', {"id":  lemma.id }) }}">{{ "add_to_wordbox" | trans}}</a>
+                {% if isInWordbox(lemma) == false %}
+                <a class="btn btn-default" href="{{ path('add-to-wordbox', {"id":  lemma.id }) }}">{{ "add_to_wordbox" | trans}}</a>   
+                {% endif %}
                 {% include "MagicWordBundle:Common:backtohome.html.twig" %}
             </span>
         </h4>

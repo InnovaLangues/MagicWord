@@ -42,3 +42,11 @@ services:
             "entityManager": "@doctrine.orm.entity_manager"
         tags:
             - { name: twig.extension }
+
+    twig.extension.wordbox:
+        class: MagicWordBundle\Twig\WordboxExtension
+        arguments:
+            "entityManager": "@doctrine.orm.entity_manager"
+            "wordboxManager": "@mw_manager.wordbox"
+        tags:
+            - { name: twig.extension }

@@ -17,6 +17,7 @@ challenge_sent: 'Défis envoyés'
 challenge_someone: 'Défier quelqu''un'
 challenge: Défier
 challenged: 'Joueur défié'
+challenges: Duels
 cleaned_content: 'Flexion "nettoyée"'
 close: Fermer
 combo_length: 'Puissance des combos'
@@ -33,6 +34,7 @@ create: Créer des parties massives
 current_combo: Combo en cours
 day: jour
 days: jours
+definition: Définition de
 description: Description
 determiner: déterminant
 edit_game: 'Editer partie'
@@ -102,6 +104,7 @@ profile_of: 'Profil de'
 pronoun: pronom
 rank: Rang
 ranking: Classement
+rankings_and_stats: Classements et statistiques
 remove__from_friends: 'Retirer des contacts'
 round: Manche
 rounds: Manches
@@ -117,6 +120,7 @@ seconds: secondes
 see_combos: 'Voir les combos possibles'
 see_grid: 'Voir la grille'
 singular: singulier
+stats: Statistiques
 subcategory: Subcatégorie
 subjunctive: subjonctif
 tense: Temps
@@ -132,7 +136,3 @@ weight: Poids
 word_length: Longueur de la forme
 wordbox: Ma wordbox
 wordlengthpoints: Points bonus longueur de forme
-definition: Définition de
-rankings_and_stats: Classements et statistiques
-challenges: Duels
-stats: Statistiques
