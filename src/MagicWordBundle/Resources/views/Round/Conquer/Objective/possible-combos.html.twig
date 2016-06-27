@@ -6,7 +6,7 @@
                 <a role="button" data-toggle="collapse" data-parent="#accordion" href="#{{ combo.lemma.id }}" aria-expanded="true" aria-controls="{{ combo.lemma.id }}">
                     {{ combo.lemma.content }}
                     <span class="text-muted">
-                        {{ combo.lemma.category ? "(" ~ combo.lemma.category.value ~ ")" : "" }}
+                        {{ combo.lemma.category ? "(" ~ combo.lemma.category.value | trans ~ ")" : "" }}
                     </span>
                     - {{combo.inflections|length}}
                 </a>

@@ -16,13 +16,13 @@
         {{ lemma.phonetic1 }} - {{ lemma.phonetic2 }}
 
         <h3>{{ "gender" | trans}}</h3>
-        {{ lemma.gender ? lemma.gender.value : "-" }}
+        {{ lemma.gender ? lemma.gender.value | trans : "-" }}
 
         <h3>{{ "category" | trans}}</h3>
-        {{ lemma.category ? lemma.category.value : "-" }}
+        {{ lemma.category ? lemma.category.value | trans : "-" }}
 
         <h3>{{ "subcategory" | trans}}</h3>
-        {{ lemma.subcategory ? lemma.subcategory.value : "-" }}
+        {{ lemma.subcategory ? lemma.subcategory.value | trans : "-" }}
     </div>
 </div>
 {% endblock %}

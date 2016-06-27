@@ -6,6 +6,8 @@ add_to_friends: 'Ajouter aux contacts'
 add_to_wordbox_short: wordbox
 add_to_wordbox: 'Ajouter à ma wordbox'
 add: Ajouter
+adjective: adjectif
+adverb: adverbe
 back_to_editor: 'Retour à l''éditeur de partie'
 back_to_home: Retour à l'accueil
 bonus_points: Points bonus
@@ -21,6 +23,9 @@ combo_length: 'Puissance des combos'
 combo_number: 'Nombre de combos'
 combos__with_length: 'combo(s) de puissance'
 combos: Combos
+commonNoun: nom commun
+conditionnal: conditionnel
+conjunction: conjonction
 conquer_rules: Remplissez les objectifs le plus rapidement possible.
 conquer: Conquer
 continue: Continuer
@@ -29,11 +34,14 @@ current_combo: Combo en cours
 day: jour
 days: jours
 description: Description
+determiner: déterminant
 edit_game: 'Editer partie'
 edit_round: 'Editer la manche'
 english: Anglais
 existing_forms: 'forme(s) présente(s)'
+feminine: féminin
 find_words: FindWord
+firstPerson: 1ère personne
 form: Forme
 forms_found_count: Nombre de formes trouvées
 forms_found: 'forme(s) trouvée(s)'
@@ -51,12 +59,18 @@ hidden: 'Masquer sa présence'
 hint: Indice
 hour: heure
 hours: heures
+imperative: impératif
+indicative: indicatif
+infinitive: infinitif
 inflexion_info: 'Infos sur la flexion'
+interjection: interjection
+invariable: invariable
 language_ui: 'Langue de l''interface'
 language: Langue
 lemma_info: 'Infos sur le lemme'
 lemma: Lemme
 letterlanguagepoints: Points par lettre et par langue
+masculine: masculin
 massive_end: 'Récapitulatif partie massive'
 massive: 'Partie massive'
 massives: 'Parties massives'
@@ -70,16 +84,22 @@ my_massives_published: 'Parties finalisées'
 my_massives_under_construction: 'Parties en chantier'
 my_massives: 'Mes parties massives'
 name: Nom
+neuter: neutre
 new_massive: 'Nouvelle partie'
+numeral: numéral
 objectives: Objectifs
 online: 'En ligne'
 parameters: Paramètres
+participle: participe
 person: Personne
 phonetic: Phonétique
 play: Jouer
 player: Joueur
+plural: pluriel
 points: Points
+preposition: préposition
 profile_of: 'Profil de'
+pronoun: pronom
 rank: Rang
 ranking: Classement
 remove__from_friends: 'Retirer des contacts'
@@ -92,17 +112,22 @@ save_objectives: 'Sauvegarder les objectifs'
 save: Sauvegarder
 score: Score total
 second: seconde
+secondPerson: 2ème personne
 seconds: secondes
 see_combos: 'Voir les combos possibles'
 see_grid: 'Voir la grille'
+singular: singulier
 subcategory: Subcatégorie
+subjunctive: subjonctif
 tense: Temps
+thirdPerson: 3ème personne
 time: Temps
 to: à
 total: Total
 train: 'S''entrainer'
 training: Partie d'entrainement
 update: 'Mettre à jour'
+verb: verbe
 weight: Poids
 word_length: Longueur de la forme
 wordbox: Ma wordbox
