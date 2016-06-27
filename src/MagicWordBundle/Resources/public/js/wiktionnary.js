@@ -1,26 +1,22 @@
 var wiktionnary = {
-    currentLemma: "",
     getDef: function(lemma){
-        this.currentLemma = lemma;
-        var def = "";
-        var language = "fr";
-        var url = Routing.generate('wiktionnary', {lemma: lemma});
-
+        var language = $("#language").val();
+        var url = Routing.generate('wiktionnary', {lemma: lemma, language: language});
+        $('#wiktionnary-body').empty();
+        $('#wiktionnary-title').html(lemma);
         $.ajax({
             type: "GET",
             url: url,
             success: function (html) {
+                var def = "";
                 if (language == "fr") {
                     if(html.match(/<span[\s\S]+?id="fr"[\s\S]*?(<ol>[\s\S]*?<\/ol>)/)) {
-                        page = RegExp.$1;
+                        def = RegExp.$1;
+                    } else {
+                        def = "Oups...";
                     }
-                } else {
-                    if(html.match(/(<ol>[\s\S]*?<\/ol>)/)){
-                        page = RegExp.$1;
-                    }
-                }
-                $('#wiktionnary-title').html(wiktionnary.currentLemma);
-                $('#wiktionnary-body').html(page);
+                } 
+                $('#wiktionnary-body').html(def);
                 $('#wiktionnary').modal('show');
             }
         });

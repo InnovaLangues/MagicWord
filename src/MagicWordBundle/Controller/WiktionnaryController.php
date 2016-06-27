@@ -10,14 +10,24 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 class WiktionnaryController extends Controller
 {
     /**
-     * @Route("/wiktionnary/{lemma}", name="wiktionnary", options={"expose"=true})
+     * @Route("/wiktionnary/{lemma}/{language}", name="wiktionnary", options={"expose"=true})
      * @Method("GET")
      */
-    public function getWiktionnaryDefAction($lemma)
+    public function getWiktionnaryDefAction($lemma, $language)
     {
-        $url = 'https://fr.wiktionary.org/wiki/'.$lemma;
-        $lemma = file_get_contents($url);
+        $url = 'https://'.$language.'.wiktionary.org/wiki/'.$lemma;
+        //$lemma = file_get_contents($url);
 
-        return new Response($lemma);
+        $handle = @fopen($url, 'r');
+        if ($handle) {
+            while (!feof($handle)) {
+                $def = stream_get_contents($handle);
+            }
+            fclose($handle);
+        } else {
+            $def = 'Oups...';
+        }
+
+        return new Response($def);
     }
 }
