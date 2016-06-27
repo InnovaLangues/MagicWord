@@ -64,15 +64,19 @@ class MassiveManager
         $isValid = true;
         $errors = [];
 
-        foreach ($massive->getRounds() as $round) {
-            $errors = array_merge($errors, $this->roundManager->isValid($round));
+        if (count($massive->getRounds()) == 0) {
+            $errors[] = 'no round...';
+        } else {
+            foreach ($massive->getRounds() as $round) {
+                $errors = array_merge($errors, $this->roundManager->isValid($round));
+            }
         }
 
-        //if (empty($errors)) {
-        $massive->setPublished(true);
-        $this->em->persist($massive);
-        $this->em->flush();
-        //}
+        if (empty($errors)) {
+            $massive->setPublished(true);
+            $this->em->persist($massive);
+            $this->em->flush();
+        }
 
         return $errors;
     }

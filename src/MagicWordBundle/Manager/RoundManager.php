@@ -116,7 +116,13 @@ class RoundManager
     public function isValid(Round $round)
     {
         $errors = [];
-        if ($round->getDiscr() == 'conquer') {
+        $roundName = $round->getDisplayOrder() + 1;
+        if (!$round->getGrid()) {
+            $errors[] = 'missing grid for round '.$roundName;
+        }
+
+        if ($round->getDiscr() == 'conquer' && count($round->getObjectives()) == 0) {
+            $errors[] = 'missing objectives for round '.$roundName;
         }
 
         return $errors;

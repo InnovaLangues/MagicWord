@@ -51,10 +51,17 @@ class MassiveController extends Controller
      */
     public function publishAction(Massive $massive)
     {
-        $this->get('mw_manager.massive')->publish($massive);
-        $this->get('session')->getFlashBag()->add('success', 'Partie massive publiée');
+        $errors = $this->get('mw_manager.massive')->publish($massive);
 
-        return $this->redirectToRoute('home');
+        if (empty($errors)) {
+            $this->get('session')->getFlashBag()->add('success', 'Partie massive publiée');
+            $response = $this->redirectToRoute('home');
+        } else {
+            $this->get('session')->getFlashBag()->add('warning', 'Erreur de publication ('.implode(' | ', $errors).')');
+            $response = $this->redirectToRoute('massive_builder', array('id' => $massive->getId()));
+        }
+
+        return $response;
     }
 
     /**
