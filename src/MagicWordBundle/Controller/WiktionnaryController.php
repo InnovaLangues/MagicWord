@@ -16,16 +16,14 @@ class WiktionnaryController extends Controller
     public function getWiktionnaryDefAction($lemma, $language)
     {
         $url = 'https://'.$language.'.wiktionary.org/wiki/'.$lemma;
-        //$lemma = file_get_contents($url);
-
         $handle = @fopen($url, 'r');
+        $def = 'Oups...';
+
         if ($handle) {
             while (!feof($handle)) {
                 $def = stream_get_contents($handle);
             }
             fclose($handle);
-        } else {
-            $def = 'Oups...';
         }
 
         return new Response($def);
