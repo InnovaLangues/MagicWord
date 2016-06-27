@@ -1,22 +1,41 @@
 {% extends '::base.html.twig' %}
 
-{% block title %}{{ 'games_ended' | trans }}{% endblock %}
+{% block title %}{{ 'rankings_and_stats' | trans }}{% endblock %}
 
 {% block body -%}
     <div class="panel panel-default">
         <div class="panel-heading">
             <h4>
-                {{ 'games_ended' | trans }}
+                {{ 'rankings_and_stats' | trans }}
                 <span class="pull-right">
                     {% include "MagicWordBundle:Common:backtohome.html.twig" %}
                 </span>
             </h4>
         </div>
-        <ul class="list-group">
-            {% for game in games if game.discr == "massive"%}
-            {{ _self.game_end_link(game) }}
-            {% endfor %}
+
+
+        <!-- Nav tabs -->
+        <ul class="nav nav-tabs  nav-justified" role="tablist">
+            <li role="presentation" class="active"><a href="#massives" aria-controls="massives" role="tab" data-toggle="tab">{{ "massives" | trans }}</a></li>
+            <li role="presentation"><a href="#challenges" aria-controls="challenges" role="tab" data-toggle="tab">{{"challenges" | trans }}</a></li>
+            <li role="presentation"><a href="#ranking" aria-controls="ranking" role="tab" data-toggle="tab">{{ "ranking" | trans}}</a></li>
+            <li role="presentation"><a href="#stats" aria-controls="stats" role="tab" data-toggle="tab">{{ "stats" | trans }}</a></li>
         </ul>
+
+         <!-- Tab panes -->
+        <div class="tab-content">
+            <div role="tabpanel" class="tab-pane active" id="massives">
+                <ul class="list-group">
+                    {% for game in games if game.discr == "massive"%}
+                    {{ _self.game_end_link(game) }}
+                    {% endfor %}
+                </ul>
+            </div>
+            <div role="tabpanel" class="tab-pane" id="challenges">...</div>
+            <div role="tabpanel" class="tab-pane" id="ranking">...</div>
+            <div role="tabpanel" class="tab-pane" id="stats">...</div>
+        </div>
+
     </div>
 {% endblock %}
 
