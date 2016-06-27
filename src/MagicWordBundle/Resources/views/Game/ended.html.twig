@@ -42,10 +42,10 @@
 {% macro game_end_link(game) %}
 <li class="list-group-item">
     {% if game.discr == "massive" %}
-        <span class="label label-primary">{{ "massive" | trans }}</span>
         <a href="{{ path('massive_end', {"id": game.id}) }}">
             {{ game.name }} <span class="text-muted">({{ game.description }})</span>
         </a>
+         par <a href="{{ path('profile', {"id":  game.author.id}) }}">{{ game.author }}</a>
     {% endif %}
 </li>
 {% endmacro %}

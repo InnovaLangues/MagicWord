@@ -6,7 +6,7 @@
 <div class="panel panel-default">
     <div class="panel-heading">
         <h4>
-            {{ 'massive' | trans }} <strong>{{ massive.name }}</strong> ({{ massive.description }})
+            {{ 'massive' | trans }} <strong>{{ massive.name }}</strong> {% if massive.description %}({{ massive.description }}){% endif %}
             <span class="pull-right">
                 <a class="btn btn-default" href="{{ path('massive_publish', {"id":  massive.id}) }}">
                     <i class="fa fa-caret-square-o-right" aria-hidden="true"></i>

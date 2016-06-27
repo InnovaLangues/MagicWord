@@ -12,19 +12,35 @@
                 </span>
             </h4>
         </div>
-        <ul class="list-group">
+        <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
             {% for massive in massives if massive not in app.user.endedGames and massive.author != app.user %}
-            <li class="list-group-item">
-                <a href="{{ path('massive_play', {"id": massive.id}) }}">
-                    {{ massive.name }} <span class="text-muted">({{ massive.description }})</span>
-                </a>
-                <span class="pull-right">
-                    {% for round in massive.rounds %}
-                        <span class="text-muted">{{ round.displayOrder + 1 }}.{{round.discr }} </span>
-                    {% endfor %}
-                </span>
-            </li>
-            {% endfor %}
-        </ul>
-    </div>
+                <div class="panel panel-default">
+                    <div class="panel-heading" role="tab" id="headingOne">
+                        <h4 class="panel-title">
+                            {{ massive.name }} <span class="text-muted">({{ massive.description }})</span>
+                            par <a href="{{ path('profile', {"id":  massive.author.id}) }}">{{ massive.author }}</a>
+                            <span class="pull-right">
+                                <a class="btn btn-default btn-xs" role="button" data-toggle="collapse" data-parent="#accordion" href="#{{ massive.id }}" aria-expanded="true" aria-controls="{{ massive.id }}">
+                                    <i class="fa fa-info" aria-hidden="true"></i> Infos
+                                </a>
+                                <a class="btn btn-default btn-xs" href="{{ path('massive_play', {"id": massive.id}) }}"><i class="fa fa-gamepad" aria-hidden="true"></i> Jouer</a>
+                            </span>
+                        </h4>
+                    </div>
+                    <div id="{{ massive.id }}" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+                        <ul class="list-group" >
+                            {% for i, round in massive.rounds %}
+                            <li class="list-group-item">
+                                <span class="label label-default">{{ round.discr | trans }}</span>
+                            {% set order = i + 1 %}
+                            {{ round.title ? round.title : "round" | trans  ~ " " ~ order }}
+                            {% if round.description %}<span class="text-muted">({{ round.description }})</span>{% endif %}
+                            </li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
 {% endblock %}

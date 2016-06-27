@@ -22,6 +22,7 @@ class MassiveType extends AbstractType
             'attr' => array('class' => 'form-control'),
             'label' => 'description',
             'translation_domain' => 'messages',
+            'required' => false,
         ));
 
         $builder->add('language', EntityType::class, array(

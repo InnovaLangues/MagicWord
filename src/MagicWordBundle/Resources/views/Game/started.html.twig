@@ -3,35 +3,57 @@
 {% block title %}{{ 'games_started' | trans }}{% endblock %}
 
 {% block body -%}
-    <div class="panel panel-default">
-        <div class="panel-heading">
-            <h4>
-                {{ 'games_started' | trans }}
-                <span class="pull-right">
-                    {% include "MagicWordBundle:Common:backtohome.html.twig" %}
-                </span>
-            </h4>
-        </div>
-        <ul class="list-group">
-            {% for game in games %}
-            {{ _self.game_play_link(game) }}
-            {% endfor %}
-        </ul>
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h4>
+            {{ 'games_started' | trans }}
+            <span class="pull-right">
+                {% include "MagicWordBundle:Common:backtohome.html.twig" %}
+            </span>
+        </h4>
     </div>
+    <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+        {% for game in games %}
+        <div class="panel panel-default">
+            <div class="panel-heading" role="tab" id="headingOne">
+                <h4 class="panel-title">
+                    {% if game.discr == "training" %}
+                    <span class="label label-default">{{ "training" | trans }}</span>
+                    {% else %}
+                    <span class="label label-primary">{{ "massive" | trans }}</span>
+                    {% endif %}
+                    {{ game.name }} <span class="text-muted">({{ game.description }})</span>
+                    par <a href="{{ path('profile', {"id":  game.author.id}) }}">{{ game.author }}</a>
+                    <span class="pull-right">
+                        <a class="btn btn-default btn-xs" role="button" data-toggle="collapse" data-parent="#accordion" href="#{{ game.id }}" aria-expanded="true" aria-controls="{{ game.id }}">
+                            <i class="fa fa-info" aria-hidden="true"></i> Infos
+                        </a>
+                        {{ _self.game_play_link(game) }}
+                    </span>
+                </h4>
+            </div>
+            <div id="{{ game.id }}" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+                <ul class="list-group" >
+                    <li class="list-group-item"></li>
+                    {% for i, round in game.rounds %}
+                    <li class="list-group-item">
+                        <span class="label label-default">{{ round.discr | trans }}</span>
+                    {% set order = i + 1 %}
+                    {{ round.title ? round.title : "round" | trans  ~ " " ~ order }}
+                    {% if round.description %}<span class="text-muted">({{ round.description }})</span>{% endif %}
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
 {% endblock %}
 
 {% macro game_play_link(game) %}
-<li class="list-group-item">
-    {% if game.discr == "training" %}
-        <span class="label label-default">{{ "training" | trans }}</span>
-        <a href="{{ path('round_play', {"id": game.rounds|first.id}) }}">
-            {{ "training" | trans }}
-        </a>
-    {% elseif game.discr == "massive" %}
-        <span class="label label-primary">{{ "massive" | trans }}</span>
-        <a href="{{ path('massive_play', {"id": game.id}) }}">
-            {{ game.name }} <span class="text-muted">({{ game.description }})</span>
-        </a>
-    {% endif %}
+    {% set url =  game.discr == "training" ? path('round_play', {"id": game.rounds|first.id}) :  path('massive_play', {"id": game.id}) %}
+    <a class="btn btn-default btn-xs" href="{{ url }}"><i class="fa fa-gamepad" aria-hidden="true"></i> Jouer</a>
 </li>
 {% endmacro %}
