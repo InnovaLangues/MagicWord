@@ -16,7 +16,6 @@ class ComboType extends AbstractType
             'label' => 'combo_length',
             'attr' => [
                 'data-field' => 'lenght',
-                'placeholder' => 'combo_length',
             ],
         ));
 
@@ -25,7 +24,6 @@ class ComboType extends AbstractType
             'translation_domain' => 'messages',
             'attr' => [
                 'data-field' => 'number',
-                'placeholder' => 'combo_number',
             ],
         ));
     }
