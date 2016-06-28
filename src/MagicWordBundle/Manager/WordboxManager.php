@@ -68,7 +68,7 @@ class WordboxManager
         }
     }
 
-    private function createWordbox($user)
+    public function createWordbox($user)
     {
         $wordbox = new Wordbox();
         $user->setWordbox($wordbox);

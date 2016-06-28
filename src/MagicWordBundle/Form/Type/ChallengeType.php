@@ -25,9 +25,27 @@ class ChallengeType extends AbstractType
            'translation_domain' => 'messages',
        ));
 
+        $builder->add('firstRoundType', EntityType::class, array(
+          'class' => 'MagicWordBundle:RoundType\RoundType',
+          'choice_label' => 'name',
+          'attr' => array('class' => 'form-control'),
+          'label' => 'round_type',
+          'translation_domain' => 'messages',
+          'choice_translation_domain' => 'messages',
+      ));
+
+        $builder->add('language', EntityType::class, array(
+        'class' => 'MagicWordBundle:Language',
+        'choice_label' => 'name',
+        'attr' => array('class' => 'form-control'),
+        'label' => 'language',
+        'translation_domain' => 'messages',
+        'choice_translation_domain' => 'messages',
+    ));
+
         $builder->add('save', SubmitType::class, array(
-            'attr' => array('class' => 'btn btn-default'),
-            'label' => 'save',
+            'attr' => array('class' => 'btn btn-default please-wait', 'data-message' => 'Génération du duel'),
+            'label' => 'challenge!',
             'translation_domain' => 'messages',
         ));
     }

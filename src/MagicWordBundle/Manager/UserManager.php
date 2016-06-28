@@ -103,15 +103,17 @@ class UserManager
         $this->em->flush();
     }
 
-    public function startGame(Game $game)
+    public function startGame(Game $game, $user = null)
     {
-        $currentUser = $this->tokenStorage->getToken()->getUser();
-
-        if (!$currentUser->getStartedGames()->contains($game)) {
-            $currentUser->addStartedGame($game);
+        if (!$user) {
+            $user = $this->tokenStorage->getToken()->getUser();
         }
 
-        $this->em->persist($currentUser);
+        if (!$user->getStartedGames()->contains($game)) {
+            $user->addStartedGame($game);
+        }
+
+        $this->em->persist($user);
         $this->em->flush();
     }
 

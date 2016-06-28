@@ -33,6 +33,16 @@ class Challenge extends Game
     protected $challenged;
 
     /**
+     * @ORM\ManyToOne(targetEntity="MagicWordBundle\Entity\RoundType\RoundType")
+     */
+    protected $firstRoundType;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="MagicWordBundle\Entity\RoundType\RoundType")
+     */
+    protected $secondRoundType;
+
+    /**
      * Set message.
      *
      * @param string $message
@@ -78,5 +88,53 @@ class Challenge extends Game
     public function getChallenged()
     {
         return $this->challenged;
+    }
+
+    /**
+     * Set firstRoundType.
+     *
+     * @param \MagicWordBundle\Entity\RoundType\RoundType $firstRoundType
+     *
+     * @return Challenge
+     */
+    public function setFirstRoundType(\MagicWordBundle\Entity\RoundType\RoundType $firstRoundType = null)
+    {
+        $this->firstRoundType = $firstRoundType;
+
+        return $this;
+    }
+
+    /**
+     * Get firstRoundType.
+     *
+     * @return \MagicWordBundle\Entity\RoundType\RoundType
+     */
+    public function getFirstRoundType()
+    {
+        return $this->firstRoundType;
+    }
+
+    /**
+     * Set secondRoundType.
+     *
+     * @param \MagicWordBundle\Entity\RoundType\RoundType $secondRoundType
+     *
+     * @return Challenge
+     */
+    public function setSecondRoundType(\MagicWordBundle\Entity\RoundType\RoundType $secondRoundType = null)
+    {
+        $this->secondRoundType = $secondRoundType;
+
+        return $this;
+    }
+
+    /**
+     * Get secondRoundType.
+     *
+     * @return \MagicWordBundle\Entity\RoundType\RoundType
+     */
+    public function getSecondRoundType()
+    {
+        return $this->secondRoundType;
     }
 }

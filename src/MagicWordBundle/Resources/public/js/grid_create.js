@@ -100,6 +100,7 @@ function getInflections(){
 
 function getCombos(){
     if(isFormValid("grid")){
+        $('#helper-combos').modal('hide');
         wait.start("Récupération des combos");
         var url = Routing.generate('get_combos');
         var data = $("#grid").serializeArray();
@@ -112,6 +113,7 @@ function getCombos(){
           .done(function(data) {
               $("#possible-combos").html(data);
               wait.stop();
+              $('#helper-combos').modal('show');
           });
     } else {
         info.display("La grille doit être entièrement remplie.");

@@ -47,6 +47,7 @@ class Round implements \JsonSerializable
 
     /**
      * @ORM\ManyToOne(targetEntity="Game", inversedBy="rounds", cascade={"persist"})
+     * @ORM\joinColumn(onDelete="SET NULL")
      */
     private $game;
 

@@ -1,0 +1,19 @@
+{% extends '::base.html.twig' %}
+
+{% block title %}{{ 'challenge_sent' | trans }}{% endblock %}
+
+{% block body -%}
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h4>
+            {{ 'wait!' | trans }}
+            <span class="pull-right">
+                {% include "MagicWordBundle:Common:backtohome.html.twig" %}
+            </span>
+        </h4>
+    </div>
+    <div class="panel-body">
+        WAIT ! Attendre que l'adversaire choisisse le type de manche.
+    </div>
+</div>
+{% endblock %}

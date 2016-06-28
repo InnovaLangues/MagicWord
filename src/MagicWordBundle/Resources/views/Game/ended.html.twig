@@ -31,7 +31,13 @@
                     {% endfor %}
                 </ul>
             </div>
-            <div role="tabpanel" class="tab-pane" id="challenges">...</div>
+            <div role="tabpanel" class="tab-pane" id="challenges">
+                <ul class="list-group">
+                    {% for game in games if game.discr == "challenge"%}
+                    {{ _self.game_end_link(game) }}
+                    {% endfor %}
+                </ul>
+            </div>
             <div role="tabpanel" class="tab-pane" id="ranking">...</div>
             <div role="tabpanel" class="tab-pane" id="stats">...</div>
         </div>
@@ -46,6 +52,10 @@
             {{ game.name }} <span class="text-muted">({{ game.description }})</span>
         </a>
          par <a href="{{ path('profile', {"id":  game.author.id}) }}">{{ game.author }}</a>
+    {% elseif game.discr == "challenge" %}
+         {% set user = (game.challenged == app.user) ? game.author : game.challenged %}
+         <a href="{{ path('challenge_end', {"id": game.id}) }}">{{"challenge"|trans}}</a>
+         avec <a href="{{ path('profile', {"id":  user.id}) }}">{{ user }}</a>
     {% endif %}
 </li>
 {% endmacro %}

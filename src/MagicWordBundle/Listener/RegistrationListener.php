@@ -24,9 +24,6 @@ class RegistrationListener
         $user = $event->getForm()->getData();
         $language = $this->entityManager->getRepository('MagicWordBundle:Language')->findOneByName('french');
         $user->setLanguage($language);
-
-        $user = $this->tokenStorage->getToken()->getUser();
-
         $this->wordboxManager->createWordbox($user);
     }
 }

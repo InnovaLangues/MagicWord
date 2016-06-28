@@ -10,11 +10,11 @@ namespace MagicWordBundle\Repository;
  */
 class RoundRepository extends \Doctrine\ORM\EntityRepository
 {
-    public function getNotPlayedYet($massive, $user)
+    public function getNotPlayedYet($game, $user)
     {
         $em = $this->_em;
         $dql = 'SELECT r FROM MagicWordBundle\Entity\Round r
-                WHERE r.game = :massive
+                WHERE r.game = :game
                 AND NOT EXISTS (
                     SELECT a FROM MagicWordBundle\Entity\Activity a
                     WHERE a.player = :user
@@ -24,7 +24,7 @@ class RoundRepository extends \Doctrine\ORM\EntityRepository
                 ORDER BY r.displayOrder ASC';
 
         $query = $em->createQuery($dql);
-        $query->setParameter('massive', $massive)
+        $query->setParameter('game', $game)
             ->setParameter('user', $user)
              ->setMaxResults(1);
 

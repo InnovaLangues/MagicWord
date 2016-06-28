@@ -15,7 +15,7 @@ category: Catégorie
 challenge_received: 'Défis reçus'
 challenge_sent: 'Défis envoyés'
 challenge_someone: 'Défier quelqu''un'
-challenge: Défier
+challenge: Défi
 challenged: 'Joueur défié'
 challenges: Duels
 cleaned_content: 'Flexion "nettoyée"'
@@ -136,3 +136,8 @@ weight: Poids
 word_length: Longueur de la forme
 wordbox: Ma wordbox
 wordlengthpoints: Points bonus longueur de forme
+round_type: Type de manche que vous voulez jouer (1ère manche)
+round_type2: Type de manche que vous voulez jouer (2ème manche)
+challenge!: Défier
+accept_challenge: Accepter le défi
+game_end: Récapitulatif de la partie

@@ -33,7 +33,7 @@ class MassiveController extends Controller
     {
         $this->get('mw_manager.user')->endGame($massive);
 
-        return $this->render('MagicWordBundle:Game/Massive:end.html.twig', array('massive' => $massive));
+        return $this->render('MagicWordBundle:Game:end.html.twig', array('massive' => $massive));
     }
 
     /**
