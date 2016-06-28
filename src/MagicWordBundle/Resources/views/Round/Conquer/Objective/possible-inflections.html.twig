@@ -5,6 +5,9 @@
             <span class="text-muted">
                 ({{ foundableForm.points }}pts)
             </span>
+            <span class="btn btn-default btn-xs pull-right" onclick="addInflection('{{ foundableForm.form }}')">
+                <i class="fa fa-plus" aria-hidden="true"></i> {{ 'add' | trans }}
+            </span>
         </li>
     {% endfor %}
 </ul>
