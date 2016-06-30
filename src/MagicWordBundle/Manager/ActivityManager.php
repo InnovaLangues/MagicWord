@@ -7,6 +7,7 @@ use MagicWordBundle\Entity\Round;
 use MagicWordBundle\Entity\Activity;
 use MagicWordBundle\Entity\Objective;
 use MagicWordBundle\Entity\FoundableForm;
+use MagicWordBundle\Entity\Rules\ComboPoints;
 
 /**
  * @DI\Service("mw_manager.activity")
@@ -68,6 +69,15 @@ class ActivityManager
         $activity = $this->getActivity($round);
 
         $activity->addObjectivesDone($objective);
+        $this->em->persist($activity);
+        $this->em->flush();
+    }
+
+    public function addComboPoints(Round $round, ComboPoints $comboPoints)
+    {
+        $activity = $this->getActivity($round);
+
+        $activity->setComboPoints($activity->getComboPoints() + $comboPoints->getPoints());
         $this->em->persist($activity);
         $this->em->flush();
     }

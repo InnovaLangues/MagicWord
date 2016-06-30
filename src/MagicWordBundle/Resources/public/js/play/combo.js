@@ -83,6 +83,9 @@ var combo = {
 		if (this.currentComboLength > 1) {
 			this.comboSelector.hide("explode", {pieces: 16 }, 300);
 			objectiveCombo.checkObjectives(this.currentComboLength);
+			if (roundJSON.type == "rush") {
+				activity.sendComboPoints(this.currentComboLength);
+			}
 		}
 	}
 }

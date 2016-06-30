@@ -1,3 +1,8 @@
 <div class="alert alert-success text-center" role="alert">
     <h1>Votre score est de {{ activity.points }} points !</h1>
+    {% if round.discr == "rush" and activity.comboPoints != 0 %}
+    dont {{ activity.comboPoints }} points de bonus de combo
+    {% elseif activity.timePoints != 0 %}
+    dont {{ activity.timePoints }} points de bonus de temps
+    {% endif %}
 </div>

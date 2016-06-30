@@ -10,6 +10,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use MagicWordBundle\Entity\Round;
 use MagicWordBundle\Entity\Objective;
 use MagicWordBundle\Entity\FoundableForm;
+use MagicWordBundle\Entity\Rules\ComboPoints;
 
 class ActivityController extends Controller
 {
@@ -49,5 +50,18 @@ class ActivityController extends Controller
         $this->get('mw_manager.activity')->addObjectiveDone($round, $objective);
 
         return new JsonResponse();
+    }
+
+    /**
+     * @Route("/add-combo-points/round/{roundId}/length/{length}", name="add_combopoints", options={"expose"=true})
+     * @ParamConverter("round", class="MagicWordBundle:Round",  options={"id" = "roundId"})
+     * @ParamConverter("comboPoints", class="MagicWordBundle:Rules\ComboPoints", options={"length" = "length"})
+     * @Method("POST")
+     */
+    public function addComboPoints(Round $round, ComboPoints $comboPoints)
+    {
+        $this->get('mw_manager.activity')->addComboPoints($round, $comboPoints);
+
+        return new JsonResponse(['points' => $comboPoints->getPoints()]);
     }
 }

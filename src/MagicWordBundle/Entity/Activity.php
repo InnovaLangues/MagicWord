@@ -46,6 +46,20 @@ class Activity implements \JsonSerializable
     private $objectivesDone;
 
     /**
+     * @var int
+     *
+     * @ORM\Column(name="comboPoints", type="integer")
+     */
+    private $comboPoints = 0;
+
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="timePoints", type="integer")
+     */
+    private $timePoints = 0;
+
+    /**
      * @var \DateTime
      *
      * @ORM\Column(name="startDate", type="datetime")
@@ -333,5 +347,53 @@ class Activity implements \JsonSerializable
     public function getDuration()
     {
         return $this->duration;
+    }
+
+    /**
+     * Set comboPoints.
+     *
+     * @param int $comboPoints
+     *
+     * @return Activity
+     */
+    public function setComboPoints($comboPoints)
+    {
+        $this->comboPoints = $comboPoints;
+
+        return $this;
+    }
+
+    /**
+     * Get comboPoints.
+     *
+     * @return int
+     */
+    public function getComboPoints()
+    {
+        return $this->comboPoints;
+    }
+
+    /**
+     * Set timePoints
+     *
+     * @param integer $timePoints
+     *
+     * @return Activity
+     */
+    public function setTimePoints($timePoints)
+    {
+        $this->timePoints = $timePoints;
+
+        return $this;
+    }
+
+    /**
+     * Get timePoints
+     *
+     * @return integer
+     */
+    public function getTimePoints()
+    {
+        return $this->timePoints;
     }
 }

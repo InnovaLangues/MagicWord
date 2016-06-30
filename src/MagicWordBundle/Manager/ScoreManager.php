@@ -64,6 +64,7 @@ class ScoreManager
         switch ($discr) {
             case 'rush':
                 $points += $this->getPointForFoundables($activity->getFoundForms());
+                $points += $activity->getComboPoints();
                 break;
             case 'conquer':
                 $points += $this->getPointForObjectives($activity);
@@ -94,7 +95,12 @@ class ScoreManager
         $points += round(300 / $objectivesDoableCount) * $objectiveDoneCount;
 
         if ($objectiveDoneCount === $objectivesDoableCount) {
-            $points += (1 / $activity->getDuration()) * 2000;
+            $timePoints = (1 / $activity->getDuration()) * 3000;
+            $activity->setTimePoints($timePoints);
+            $this->em->persist($activity);
+            $this->em->flush();
+
+            $points += $timePoints;
         }
 
         return $points;

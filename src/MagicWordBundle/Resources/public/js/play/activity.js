@@ -61,6 +61,20 @@ var activity = {
           });
 	},
 
+	sendComboPoints: function(length){
+        var roundId = roundJSON.id;
+		var url = Routing.generate('add_combopoints', {roundId: roundId, length: length});
+
+		$.ajax({
+              type: 'POST',
+              url: url,
+              dataType: "json",
+          })
+		  .done(function(data) {
+             score.updateTotal(data.points);
+          });
+	},
+
 	end: function(time){
 		objectiveCombo.checkObjectives(combo.currentComboLength);
 		wait.start("Fin de la manche");
