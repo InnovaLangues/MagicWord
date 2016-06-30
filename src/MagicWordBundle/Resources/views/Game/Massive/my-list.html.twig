@@ -16,8 +16,7 @@
             {% for massive in massives %}
             <li class="list-group-item">
                 <a href="{{ path('massive_builder', {"id": massive.id}) }}">
-                    {{ massive.name }} <span class="text-muted">({{ massive.description }})</span>
-                    {% if massive.description %}<span class="text-muted">({{ massive.description}})</span>{% endif %}
+                    {{ massive.name }} {% if massive.description %}<span class="text-muted">({{ massive.description}})</span>{% endif %}
                 </a>
             </li>
             {% endfor %}

@@ -17,7 +17,7 @@
                 <div class="panel panel-default">
                     <div class="panel-heading" role="tab" id="headingOne">
                         <h4 class="panel-title">
-                            {{ massive.name }} {% if massive.description %}<span class="text-muted">({{ massive.description}})</span>{% endif %}
+                            "{{ massive.name }}" {% if massive.description %}<span class="text-muted">({{ massive.description}})</span>{% endif %}
                             par <a href="{{ path('profile', {"id":  massive.author.id}) }}">{{ massive.author }}</a>
                             <span class="pull-right">
                                 <a class="btn btn-default btn-xs" role="button" data-toggle="collapse" data-parent="#accordion" href="#{{ massive.id }}" aria-expanded="true" aria-controls="{{ massive.id }}">
