@@ -95,7 +95,7 @@ class ScoreManager
         $points += round(300 / $objectivesDoableCount) * $objectiveDoneCount;
 
         if ($objectiveDoneCount === $objectivesDoableCount) {
-            $timePoints = (1 / $activity->getDuration()) * 3000;
+            $timePoints = floor((1 / $activity->getDuration()) * 3000);
             $activity->setTimePoints($timePoints);
             $this->em->persist($activity);
             $this->em->flush();
