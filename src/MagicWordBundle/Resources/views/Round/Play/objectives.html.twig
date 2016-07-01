@@ -32,6 +32,7 @@
             {% for combo in round.combos %}
             <li id="objective-combo-{{ combo.id }}" class="list-group-item objective-{{ combo.id }}">
                 <b>{{ combo.number }}</b> {{ 'combos__with_length' | trans }} <b>{{ combo.lenght }}</b>
+                <span class="combo-progress pull-right"></span>
             </li>
             {% endfor %}
         </ul>

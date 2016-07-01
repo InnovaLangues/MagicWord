@@ -7,7 +7,7 @@ var objectiveCombo = {
 			var objective = this.combosToDo[i];
 			if (length >= objective.length) {
 				this.combosRealized.push(objective.id);
-				$(".objective-"+objective.id).append("+");
+				$(".objective-"+objective.id).find(".combo-progress").append("*");
 				if (last == true) {
 					combo.newIds = [];
 					combo.previousIds = [];
