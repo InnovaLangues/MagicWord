@@ -7,6 +7,7 @@ var combo = {
 
 	handleNewIds: function(callback){
 		var increment = false;
+		var comboEnded = false;
 		if (this.currentComboLemmas.length === 0) {
 			//ajout des nouveaux lemmes dans currentcombos
 			for (var i = this.newIds.length; i--;) {
@@ -27,9 +28,8 @@ var combo = {
 		}
 
 		if(!increment){
-			// combo terminé
+			comboEnded = true;
 			this.endCombo();
-
 			this.currentComboLength = 0;
 
 			//ptete un nouveau combo est commencé
@@ -39,6 +39,11 @@ var combo = {
 					this.currentComboLength = 2;
 				}
 			}
+		}
+
+		if (comboEnded === false) {
+			// faudrait prendre en compte le possible incrément précédent avant de tout effacer.
+			callback();
 		}
 
 		// ajout des nouveaux lemmes dans currentcombos
@@ -57,7 +62,7 @@ var combo = {
 	handleNewInflection: function(inflection){
 		this.previousIds = this.newIds;
 		this.newIds = gridJSON.inflections[inflection.toLowerCase()].lemmaIds;
-		this.handleNewIds();
+		this.handleNewIds(objectiveCombo.checkLastObjective);
 
 		return;
 	},
@@ -82,7 +87,7 @@ var combo = {
 	endCombo: function(){
 		if (this.currentComboLength > 1) {
 			this.comboSelector.hide("explode", {pieces: 16 }, 300);
-			objectiveCombo.checkObjectives(this.currentComboLength);
+			objectiveCombo.checkObjectives(this.currentComboLength, false);
 			if (roundJSON.type == "rush") {
 				activity.sendComboPoints(this.currentComboLength);
 			}

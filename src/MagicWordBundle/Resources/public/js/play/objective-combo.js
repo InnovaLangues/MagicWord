@@ -2,11 +2,19 @@ var objectiveCombo = {
 	combosToDo: roundJSON.combos.sort(this.compare),
 	combosRealized: [],
 
-	checkObjectives: function(length){
+	checkObjectives: function(length, last){
 		for (var i = this.combosToDo.length; i--;) {
 			var objective = this.combosToDo[i];
 			if (length >= objective.length) {
 				this.combosRealized.push(objective.id);
+				$(".objective-"+objective.id).append("+");
+				if (last == true) {
+					combo.newIds = [];
+					combo.previousIds = [];
+					combo.currentComboLength = 0;
+					combo.currentComboLemmas = [];
+				}
+
 				if (this.countByObjective(objective.id) == objective.number) {
 					objectives.considerAsDone(objective.id);
 					this.combosToDo.splice(i, 1);
@@ -14,6 +22,12 @@ var objectiveCombo = {
 					break;
 				}
 			}
+		}
+	},
+
+	checkLastObjective: function(){
+		if (objectiveCombo.combosToDo.length == 1) {
+			objectiveCombo.checkObjectives(combo.currentComboLength, true);
 		}
 	},
 

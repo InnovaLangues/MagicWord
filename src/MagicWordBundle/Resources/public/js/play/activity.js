@@ -76,7 +76,7 @@ var activity = {
 	},
 
 	end: function(time){
-		objectiveCombo.checkObjectives(combo.currentComboLength);
+		combo.endCombo();
 		wait.start("Fin de la manche");
 		setTimeout(function(){
 			var url = Routing.generate('round_end', {id: roundJSON.id});
