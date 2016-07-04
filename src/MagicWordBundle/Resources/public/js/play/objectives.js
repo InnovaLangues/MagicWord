@@ -1,6 +1,6 @@
 var objectives = {
     done: 0,
-    doable: Object.keys(roundJSON.findWords).length + Object.keys(roundJSON.combos).length,
+    doable: Object.keys(roundJSON.findWords).length + Object.keys(roundJSON.combos).length + Object.keys(roundJSON.constraints).length,
     score:0,
 
     considerAsDone: function(objectiveId){

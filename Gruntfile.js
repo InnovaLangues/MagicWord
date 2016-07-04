@@ -57,6 +57,7 @@ module.exports = function(grunt) {
                         "src/MagicWordBundle/Resources/public/js/play/clock.js",
                         "src/MagicWordBundle/Resources/public/js/play/objective-combo.js",
                         "src/MagicWordBundle/Resources/public/js/play/objective-findword.js",
+                        "src/MagicWordBundle/Resources/public/js/play/objective-constraint.js",
                         "src/MagicWordBundle/Resources/public/js/play/word.js",
                         "src/MagicWordBundle/Resources/public/js/play/combo.js",
                         "src/MagicWordBundle/Resources/public/js/play/grid.js",

@@ -89,6 +89,18 @@ class Conquer extends Round
         return $combos;
     }
 
+    public function getConstraints()
+    {
+        $constraints = array();
+        foreach ($this->objectives as $objective) {
+            if ($objective->getDiscr() == 'constraint') {
+                $constraints[] = $objective;
+            }
+        }
+
+        return $constraints;
+    }
+
     public function addCombo(\MagicWordBundle\Entity\Objective $objective)
     {
         $this->objectives[] = $objective;
@@ -96,9 +108,11 @@ class Conquer extends Round
         return $this;
     }
 
-    public function removeCombo(\MagicWordBundle\Entity\Objective $objective)
+    public function addConstraint(\MagicWordBundle\Entity\Objective $objective)
     {
-        $this->objectives->removeElement($objective);
+        $this->objectives[] = $objective;
+
+        return $this;
     }
 
     public function addFindWord(\MagicWordBundle\Entity\Objective $objective)
@@ -106,6 +120,16 @@ class Conquer extends Round
         $this->objectives[] = $objective;
 
         return $this;
+    }
+
+    public function removeConstraint(\MagicWordBundle\Entity\Objective $objective)
+    {
+        $this->objectives->removeElement($objective);
+    }
+
+    public function removeCombo(\MagicWordBundle\Entity\Objective $objective)
+    {
+        $this->objectives->removeElement($objective);
     }
 
     public function removeFindWord(\MagicWordBundle\Entity\Objective $objective)

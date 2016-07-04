@@ -186,3 +186,12 @@ function checkInsertedWords(insertedWords){
 function reiniatilize(){
     $(".findWord").removeClass("list-group-item-danger list-group-item-success");
 }
+
+var constraints = {
+    add: function(){
+        var constraints = $('#constraints');
+        var constraint = constraints.data('prototype');
+        constraint = constraint.replace(/__name__/g, $(".constraint").length);
+        constraints.append(constraint);
+    }
+}

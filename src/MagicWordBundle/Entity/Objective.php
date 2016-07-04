@@ -11,7 +11,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Entity()
  * @ORM\InheritanceType("JOINED")
  * @ORM\DiscriminatorColumn(name="discr", type="string")
- * @ORM\DiscriminatorMap({"objective"="Objective", "findword"="MagicWordBundle\Entity\ObjectiveType\FindWord", "combo"="MagicWordBundle\Entity\ObjectiveType\Combo"})
+ * @ORM\DiscriminatorMap({"objective"="Objective", "findword"="MagicWordBundle\Entity\ObjectiveType\FindWord", "combo"="MagicWordBundle\Entity\ObjectiveType\Combo", "constraint"="MagicWordBundle\Entity\ObjectiveType\Constraint"})
  * @ORM\HasLifecycleCallbacks()
  */
 class Objective implements \JsonSerializable

@@ -23,7 +23,7 @@ close: Fermer
 combo_length: 'Puissance des combos'
 combo_number: 'Nombre de combos'
 combos__with_length: 'combo(s) de puissance'
-combos: Combos
+combos: Combo
 commonNoun: nom commun
 conditionnal: conditionnel
 conjunction: conjonction
@@ -141,3 +141,7 @@ round_type2: Type de manche que vous voulez jouer (2ème manche)
 challenge!: Défier
 accept_challenge: Accepter le défi
 game_end: Récapitulatif de la partie
+constraint: Contrainte
+add_constraint: Ajouter un objectif contrainte
+see_constraints: Voir les contraintes possibles
+constraint_number: Nombre 

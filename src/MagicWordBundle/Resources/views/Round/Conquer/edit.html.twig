@@ -21,14 +21,22 @@
                     <i class="fa fa-tachometer" aria-hidden="true"></i> {{ 'combos' | trans }}
                 </a>
             </li>
+            <li role="presentation">
+                <a href="#constraints-tab" aria-controls="constraints-tab" role="tab" data-toggle="tab">
+                    <i class="fa fa-map-o" aria-hidden="true"></i> {{ 'constraint' | trans }}
+                </a>
+            </li>
         </ul>
-        <form id="objectives">
+        <form class="form-inline" id="objectives">
             <div class="tab-content">
                 <div role="tabpanel" class="tab-pane active in fade" id="find-words-tab">
                     {% include "MagicWordBundle:Round/Conquer/Objective:findword.html.twig" %}
                 </div>
                 <div role="tabpanel" class="tab-pane fade" id="combos-tab">
                     {% include "MagicWordBundle:Round/Conquer/Objective:combo.html.twig" %}
+                </div>
+                <div role="tabpanel" class="tab-pane fade" id="constraints-tab">
+                    {% include "MagicWordBundle:Round/Conquer/Objective:constraint.html.twig" %}
                 </div>
             </div>
             {{ form_widget(form._token) }}

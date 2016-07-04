@@ -37,13 +37,27 @@
             {% endfor %}
         </ul>
         {% endif %}
+
+        {% if round.constraints is not empty %}
+        <ul class="list-group">
+            <li href="#" class="list-group-item disabled">
+                <i class="fa fa-map-o" aria-hidden="true"></i>
+                {{ 'constraints' | trans }}
+            </li>
+            {% for constraint in round.constraints %}
+            <li id="objective-constraint-{{ constraint.id }}" class="list-group-item objective-{{ constraint.id }}">
+                {{ constraint.number }} {{ constraint.category.value | trans }}(s)
+                <span class="constraint-progress pull-right"></span>
+            </li>
+            {% endfor %}
+        </ul>
+        {% endif %}
     </div>
     <div class="panel panel-default">
         <ul class="list-group">
             <li class="list-group-item list-group-item-danger" onclick="activity.end()">
-                    <i class="fa fa-exclamation-triangle" aria-hidden="true"></i>
-                    {{ 'give_up' | trans }}
-                </span>
+                <i class="fa fa-exclamation-triangle" aria-hidden="true"></i>
+                {{ 'give_up' | trans }}
             </li>
         </ul>
     </div>

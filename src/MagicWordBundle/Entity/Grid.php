@@ -180,11 +180,21 @@ class Grid implements \JsonSerializable
         );
         foreach ($this->getFoundableForms() as $foundable) {
             $form = $foundable->getForm();
-            $jsonArray['inflections'][$form] = array('id' => $foundable->getId(), 'points' => $foundable->getPoints(), 'ids' => [], 'lemmaIds' => []);
+            $jsonArray['inflections'][$form] = ['id' => $foundable->getId(), 'points' => $foundable->getPoints(), 'infos' => [], 'ids' => [], 'lemmaIds' => []];
 
             foreach ($foundable->getInflections() as $inflection) {
+                $lemma = $inflection->getLemma();
+                $jsonArray['inflections'][$form]['infos'][] =
+                    [
+                        'category' => !$lemma->getCategory() ? null : $lemma->getCategory()->getId(),
+                        'number' => !$inflection->getNumber() ? null : $inflection->getNumber()->getId(),
+                        'gender' => !$inflection->getGender() ? null : $inflection->getGender()->getId(),
+                        'person' => !$inflection->getPerson() ? null : $inflection->getPerson()->getId(),
+                        'mood' => !$inflection->getMood() ? null : $inflection->getMood()->getId(),
+                        'tense' => !$inflection->getTense() ? null : $inflection->getTense()->getId(),
+                    ];
                 $jsonArray['inflections'][$form]['ids'][] = $inflection->getId();
-                $lemmaId = $inflection->getLemma()->getId();
+                $lemmaId = $lemma->getId();
                 if (!in_array($lemmaId, $jsonArray['inflections'][$form]['lemmaIds'])) {
                     $jsonArray['inflections'][$form]['lemmaIds'][] = $lemmaId;
                 }

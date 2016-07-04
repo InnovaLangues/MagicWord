@@ -48,6 +48,10 @@ var words = {
 				var inWordsToFound = findword.inWordsToFound(inflection);
 				this.addToFoundWords(inflection.toLowerCase(), true, true, true);
 				combo.handleNewInflection(inflection);
+				if (roundJSON.type == "conquer") {
+					objectiveConstraint.add(inflection);
+				}
+
 			} else {
 				this.addToFoundWords(inflection.toLowerCase(), false, true, true);
 				combo.reset();

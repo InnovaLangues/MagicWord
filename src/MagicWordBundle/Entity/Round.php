@@ -223,6 +223,7 @@ class Round implements \JsonSerializable
             'id' => $this->id,
             'findWords' => array(),
             'combos' => array(),
+            'constraints' => array(),
             'type' => $this->discr,
         );
 
@@ -237,6 +238,15 @@ class Round implements \JsonSerializable
                         'id' => $combo->getId(),
                         'length' => $combo->getLenght(),
                         'number' => $combo->getNumber(),
+                    ];
+            }
+
+            foreach ($this->getConstraints() as $constraint) {
+                $jsonArray['constraints'][] =
+                    [
+                        'id' => $constraint->getId(),
+                        'number' => $constraint->getNumber(),
+                        'category' => $constraint->getCategory()->getId(),
                     ];
             }
         }

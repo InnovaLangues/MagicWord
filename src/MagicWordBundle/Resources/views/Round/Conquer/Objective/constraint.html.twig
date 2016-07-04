@@ -1,0 +1,34 @@
+<div class="panel panel-default">
+    <div class="panel-heading">
+        &nbsp;
+        <span class="pull-right">
+            <span class="btn btn-default btn-xs" onclick="constraints.add()" >
+                <i class="fa fa-plus" aria-hidden="true"></i>
+                {{ 'add_constraint' | trans }}
+            </span>
+            {#
+            <button type="button" class="btn btn-default  btn-xs" data-toggle="modal" data-target="#helper-constraint">
+                <i class="fa fa-eye" aria-hidden="true"></i>
+                {{ 'see_constraints' | trans }}
+            </button>
+            #}
+        </span>
+    </div>
+
+    <ul class="list-group" id="constraints" data-prototype="{{ _self.constraints_prototype(form.constraints.vars.prototype)|e }}">
+    {% for constraint in form.constraints %}
+	      {{ _self.constraints_prototype(constraint) }}
+    {% endfor %}
+    </ul>
+</div>
+
+{% macro constraints_prototype(constraint) %}
+<li class="list-group-item constraint">
+    {{ form_label(constraint.number) }} : {{ form_widget(constraint.number) }} - {{ form_label(constraint.category) }} : {{ form_widget(constraint.category) }}
+    <span class="pull-right">
+        <span class="btn btn-danger word-remove">
+            <i class="fa fa-times" aria-hidden="true"></i>
+        </span>
+    </span>
+</li>
+{% endmacro %}

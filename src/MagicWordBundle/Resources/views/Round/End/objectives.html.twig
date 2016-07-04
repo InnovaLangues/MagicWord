@@ -7,7 +7,7 @@
             <li class="list-group-item {{ objective in activity.objectivesDone ? "list-group-item-success" : "list-group-item-danger" }}">
                 {% if objective.discr == "findword" %}
                     <span class="label label-default">findWord</span> {{ objective.hint }} : {{ objective.inflection | upper }}
-                {% else %}
+                {% elseif  objective.discr == "combo" %}
                     <span class="label label-default">Combo</span> {{ objective.number }} combo(s) de puissance {{ objective.lenght }}
                 {% endif %}
             </li>
