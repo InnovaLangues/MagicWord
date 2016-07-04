@@ -245,8 +245,13 @@ class Round implements \JsonSerializable
                 $jsonArray['constraints'][] =
                     [
                         'id' => $constraint->getId(),
-                        'number' => $constraint->getNumber(),
-                        'category' => $constraint->getCategory()->getId(),
+                        'numberToFind' => $constraint->getNumberToFind(),
+                        'category' => $constraint->getCategory() ? $constraint->getCategory()->getId() : null,
+                        'gender' => $constraint->getGender() ? $constraint->getGender()->getId() : null,
+                        'number' => $constraint->getNumber() ? $constraint->getNumber()->getId() : null,
+                        'tense' => $constraint->getTense() ? $constraint->getTense()->getId() : null,
+                        'mood' => $constraint->getMood() ? $constraint->getMood()->getId() : null,
+                        'person' => $constraint->getPerson() ? $constraint->getPerson()->getId() : null,
                     ];
             }
         }

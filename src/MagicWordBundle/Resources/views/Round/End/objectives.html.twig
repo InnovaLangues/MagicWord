@@ -9,6 +9,8 @@
                     <span class="label label-default">findWord</span> {{ objective.hint }} : {{ objective.inflection | upper }}
                 {% elseif  objective.discr == "combo" %}
                     <span class="label label-default">Combo</span> {{ objective.number }} combo(s) de puissance {{ objective.lenght }}
+                {% elseif  objective.discr == "constraint" %}
+                <span class="label label-default">Constraint</span> {{ objective.number }} {{ objective.category.value | trans }}(s)
                 {% endif %}
             </li>
         {% endfor %}

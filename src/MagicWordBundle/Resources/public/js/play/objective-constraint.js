@@ -2,12 +2,17 @@ var objectiveConstraint = {
     constraintRealized: [],
     add: function(inflection){
         var infos = gridJSON.inflections[inflection.toLowerCase()].infos;
+        var incrementedObjs = [];
         for (var i = 0; i < infos.length; i++) {
             currentInflectionInfos = infos[i];
             for (var j = 0; j < roundJSON.constraints.length; j++) {
                 var objective = roundJSON.constraints[j];
                 if(this.isPertinent(objective, currentInflectionInfos)){
-                    this.constraintRealized.push(objective.id);
+                    if ($.inArray(objective.id, incrementedObjs) == -1) {
+                        this.constraintRealized.push(objective.id);
+                        incrementedObjs.push(objective.id);
+                    }
+
                     if(this.checkCompletion(objective)){
                         objectives.considerAsDone(objective.id);
                         activity.sendObjectiveDone(objective.id);
@@ -37,7 +42,7 @@ var objectiveConstraint = {
     },
 
     checkCompletion: function(objective){
-        if(this.countByObjective(objective.id) == objective.number){
+        if(this.countByObjective(objective.id) == objective.numberToFind){
             return true;
         }
 

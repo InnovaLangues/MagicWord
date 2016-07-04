@@ -46,7 +46,7 @@
             </li>
             {% for constraint in round.constraints %}
             <li id="objective-constraint-{{ constraint.id }}" class="list-group-item objective-{{ constraint.id }}">
-                {{ constraint.number }} {{ constraint.category.value | trans }}(s)
+                {{ constraint.numberToFind }} {{ constraint.category.value | trans }}(s)
                 <span class="constraint-progress pull-right"></span>
             </li>
             {% endfor %}

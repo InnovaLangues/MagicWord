@@ -144,4 +144,5 @@ game_end: Récapitulatif de la partie
 constraint: Contrainte
 add_constraint: Ajouter un objectif contrainte
 see_constraints: Voir les contraintes possibles
-constraint_number: Nombre 
+constraint_number: Nombre
+constraints: Contraintes
