@@ -195,3 +195,26 @@ var constraints = {
         constraints.append(constraint);
     }
 }
+
+var gridHandler = {
+    autofill: function(){
+        wait.start("Remplissage automatique de la grille");
+        var language = $('#languageId').val();
+        var url = Routing.generate('get_letters', {
+            id: language
+        });
+        $.ajax({
+              type: 'POST',
+              url: url,
+         })
+         .done(function(data) {
+             var data = data;
+             $("input[name='squares[]']").each(function( index ) {
+                 if ($(this).val() == "-" || $(this).val() == "_") {
+                     $(this).val(data[index]);
+                 }
+             });
+             wait.stop();
+         });
+    }
+}

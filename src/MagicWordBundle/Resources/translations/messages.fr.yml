@@ -159,3 +159,4 @@ conditional: conditionnel
 '- person -': -- Personne --
 '- tense -': -- Temps --
 '- mood -': -- Mode --
+autofill_grid: Autofill

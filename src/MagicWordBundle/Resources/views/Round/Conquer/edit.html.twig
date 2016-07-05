@@ -5,6 +5,7 @@
         {{ 'objectives' | trans }}
         <span class="pull-right">
             <span class='btn btn-primary btn-xs' onclick="saveObjectives()">
+                <i class="fa fa-floppy-o" aria-hidden="true"></i>
                 {{ 'save_objectives' | trans }}
             </span>
         </span>
@@ -51,11 +52,16 @@
             <div class="panel-heading">
                 {{ 'grid' | trans }}
                 <span class="pull-right">
+                    <span class="btn btn-default btn-xs" onclick="gridHandler.autofill()">
+                        <i class="fa fa-magic" aria-hidden="true"></i>
+                        {{ 'autofill_grid' | trans }}
+                    </span>
                     <span class="btn btn-default btn-xs" onclick="generate()">
                         <i class="fa fa-cogs" aria-hidden="true"></i>
                         {{ 'generate_grid' | trans }}
                     </span>
                     <span class='btn btn-primary btn-xs' onclick="save()">
+                        <i class="fa fa-floppy-o" aria-hidden="true"></i>
                         {{ 'save_grid' | trans }}
                     </span>
                 </span>
