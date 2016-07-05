@@ -1,4 +1,5 @@
 var objectiveConstraint = {
+    properties: ["category", "number", "gender", "person", "mood", "tense"],
     constraintRealized: [],
     add: function(inflection){
         var infos = gridJSON.inflections[inflection.toLowerCase()].infos;
@@ -8,6 +9,7 @@ var objectiveConstraint = {
             for (var j = 0; j < roundJSON.constraints.length; j++) {
                 var objective = roundJSON.constraints[j];
                 if(this.isPertinent(objective, currentInflectionInfos)){
+                    objectives.updateProgress(objective.id);
                     if ($.inArray(objective.id, incrementedObjs) == -1) {
                         this.constraintRealized.push(objective.id);
                         incrementedObjs.push(objective.id);
@@ -34,11 +36,15 @@ var objectiveConstraint = {
 	},
 
     isPertinent: function(objective, infos){
-        if(objective.category == infos.category){
-            return true;
+        for (var i = 0; i < this.properties.length; i++) {
+            var property = this.properties[i];
+            if (objective[property] != null && objective[property] != infos[property]) {
+                return false;
+            };
+
         }
 
-        return false;
+        return true;
     },
 
     checkCompletion: function(objective){

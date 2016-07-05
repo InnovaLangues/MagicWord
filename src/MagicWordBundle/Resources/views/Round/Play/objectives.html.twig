@@ -32,7 +32,7 @@
             {% for combo in round.combos %}
             <li id="objective-combo-{{ combo.id }}" class="list-group-item objective-{{ combo.id }}">
                 <b>{{ combo.number }}</b> {{ 'combos__with_length' | trans }} <b>{{ combo.lenght }}</b>
-                <span class="combo-progress pull-right"></span>
+                <span class="objective-progress pull-right"></span>
             </li>
             {% endfor %}
         </ul>
@@ -46,8 +46,14 @@
             </li>
             {% for constraint in round.constraints %}
             <li id="objective-constraint-{{ constraint.id }}" class="list-group-item objective-{{ constraint.id }}">
-                {{ constraint.numberToFind }} {{ constraint.category.value | trans }}(s)
-                <span class="constraint-progress pull-right"></span>
+                {{ constraint.numberToFind }}
+                {{ constraint.category ? constraint.category.value | trans }}
+                {{ constraint.person ? constraint.person.value | trans }}
+                {{ constraint.gender ? constraint.gender.value | trans }}
+                {{ constraint.number ? constraint.number.value | trans }}
+                {{ constraint.tense ? constraint.tense.value | trans }}
+                {{ constraint.mood ? constraint.mood.value | trans }}
+                <span class="objective-progress pull-right"></span>
             </li>
             {% endfor %}
         </ul>

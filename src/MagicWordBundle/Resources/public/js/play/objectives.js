@@ -19,5 +19,9 @@ var objectives = {
     updateScore: function(){
         this.score += Math.round(300 / this.doable);
         $("#obj-score").html(this.score);
+    },
+
+    updateProgress: function(objectiveId){
+        $(".objective-"+objectiveId).find(".objective-progress").append("*");
     }
 }
