@@ -16,7 +16,9 @@ class ConstraintType extends AbstractType
             'label' => 'constraint_number',
             'translation_domain' => 'messages',
             'attr' => [
+                'class' => 'form-control',
                 'data-field' => 'number',
+                'maxlength' => '3',
             ],
         ));
 
@@ -62,7 +64,7 @@ class ConstraintType extends AbstractType
           'required' => false,
           'empty_data' => null,
           'choice_label' => 'value',
-          'attr' => array('class' => 'form-control'),
+          'attr' => array('class' => 'form-control verb'),
           'label' => 'tense',
           'translation_domain' => 'messages',
           'choice_translation_domain' => 'messages',
@@ -74,7 +76,7 @@ class ConstraintType extends AbstractType
           'required' => false,
           'empty_data' => null,
           'choice_label' => 'value',
-          'attr' => array('class' => 'form-control'),
+          'attr' => array('class' => 'form-control verb'),
           'label' => 'person',
           'translation_domain' => 'messages',
           'choice_translation_domain' => 'messages',
@@ -86,7 +88,7 @@ class ConstraintType extends AbstractType
           'required' => false,
           'empty_data' => null,
           'choice_label' => 'value',
-          'attr' => array('class' => 'form-control'),
+          'attr' => array('class' => 'form-control verb'),
           'label' => 'mood',
           'translation_domain' => 'messages',
           'choice_translation_domain' => 'messages',
