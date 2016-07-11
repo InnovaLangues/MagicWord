@@ -23,11 +23,20 @@ var words = {
 		var points = "";
 		this.foundWords.push(inflection);
 		inflection = inflection.toUpperCase();
+		var typedInflection = inflection;
+
+		if (!isCorrect){
+			typedInflection = "<s>"+inflection+"</s>";
+			$("#woot").removeClass("right-form").addClass("wrong-form");
+		} else {
+			$("#woot").removeClass("wrong-form").addClass("right-form");
+		}
+
+		if (woot) {
+			$("#woot").hide().html(inflection).show(100).delay(1000).hide(100);
+		}
 
 		if(isCorrect){
-			if (woot) {
-				$("#woot").hide().html(inflection).show(100).delay(1000).hide(100);
-			}
 			if (saveIt) {
 				activity.sendFoundWord(inflection);
 			}
@@ -36,7 +45,6 @@ var words = {
 			points = score.calculatePoints(inflection);
 		}
 
-		var typedInflection = (!isCorrect) ? "<s>"+inflection+"</s>" : inflection;
 		$("#inflections-found").prepend("<li class='list-group-item'>"+typedInflection+"<span class='pull-right'>"+points+"</span></li>");
 	},
 

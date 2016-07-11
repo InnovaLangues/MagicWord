@@ -87,15 +87,21 @@ ul#squares li.wrongWord {
 .flip-clock-dot.top {top:10px;}
 .flip-clock-divider{height:60px;}
 .flip-clock-label{display:none;}
+.flip-clock-wrapper{text-align:right;}
 
 #woot {
-    background-color:#FF9C00;
-    color: white;
+    font-size:2.5em;
     text-transform: uppercase;
-    padding:10px;
-    border-radius:5px;
-    font-weight: bold;
-    font-size:1.5em;
+    text-shadow: 1px 1px 2px black, 0 0 1em white, 0 0 0.2em white;
+}
+
+.right-form{
+    color:green;
+}
+
+.wrong-form{
+    color: red;
+    text-decoration-line: line-through;
 }
 
 #combo {
