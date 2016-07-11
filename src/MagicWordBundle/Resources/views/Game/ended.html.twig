@@ -49,7 +49,7 @@
 <li class="list-group-item">
     {% if game.discr == "massive" %}
         <a href="{{ path('massive_end', {"id": game.id}) }}">
-            {{ game.name }} <span class="text-muted">({{ game.description }})</span>
+            {{ game.name }} {% if game.description %}<span class="text-muted">({{ game.description }})</span>{% endif %}
         </a>
          par <a href="{{ path('profile', {"id":  game.author.id}) }}">{{ game.author }}</a>
     {% elseif game.discr == "challenge" %}
