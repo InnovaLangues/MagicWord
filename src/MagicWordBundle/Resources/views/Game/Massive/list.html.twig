@@ -13,7 +13,7 @@
             </h4>
         </div>
         <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
-            {% for massive in massives if massive not in app.user.endedGames and massive.author != app.user %}
+            {% for massive in massives if massive not in app.user.endedGames and massive not in app.user.startedGames and massive.author != app.user %}
                 <div class="panel panel-default">
                     <div class="panel-heading" role="tab" id="headingOne">
                         <h4 class="panel-title">

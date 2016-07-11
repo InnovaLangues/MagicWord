@@ -47,6 +47,7 @@ class ChallengeManager
     {
         $user = $this->tokenStorage->getToken()->getUser();
         if ($user === $challenge->getChallenged()) {
+            $this->removeFromStarted($challenge);
             $this->remove($challenge);
         }
 
@@ -57,8 +58,17 @@ class ChallengeManager
     {
         $user = $this->tokenStorage->getToken()->getUser();
         if ($user === $challenge->getAuthor()) {
+            $this->removeFromStarted($challenge);
             $this->remove($challenge);
         }
+
+        return;
+    }
+
+    private function removeFromStarted(Challenge $challenge)
+    {
+        $this->userManager->removeFromStarted($challenge, $challenge->getAuthor());
+        $this->userManager->removeFromStarted($challenge, $challenge->getChallenged());
 
         return;
     }
@@ -98,8 +108,6 @@ class ChallengeManager
         $roundType = $challenge->getSecondRoundType()->getName();
         $round = $this->generateRound($roundType, $challenge);
 
-        $this->userManager->startGame($challenge, $challenge->getAuthor());
-
         return $round;
     }
 
@@ -117,6 +125,8 @@ class ChallengeManager
 
         $roundType = $challenge->getFirstRoundType()->getName();
         $this->generateRound($roundType, $challenge);
+        $this->userManager->startGame($challenge, $challenge->getAuthor());
+        $this->userManager->startGame($challenge, $challenge->getChallenged());
 
         return $challenge;
     }

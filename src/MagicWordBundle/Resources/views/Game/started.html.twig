@@ -70,10 +70,10 @@
     {% endif %}
     {% if url is defined %}
         <a class="btn btn-default btn-xs" href="{{ url }}">
-            <i class="fa fa-gamepad" aria-hidden="true"></i> Jouer
+            <i class="fa fa-gamepad" aria-hidden="true"></i> {{ "play" | trans }}
         </a>
         <a class="btn btn-default btn-xs" href="{{ path('game_forfeit', {"id": game.id})}}">
-            <i class="fa fa-times-circle" aria-hidden="true"></i> Abandonner
+            <i class="fa fa-times-circle" aria-hidden="true"></i> {{ "forfeit" | trans }}
         </a>
     {% endif %}
 </li>

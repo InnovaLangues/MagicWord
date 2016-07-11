@@ -71,7 +71,7 @@ games_ended: Parties terminées
 games_started: Parties en cours
 gender: Genre
 generate_grid: 'Générer Grille'
-give_up: Abandonner
+give_up: Abandonner cette manche
 grid: Grille
 hidden: 'Masquer sa présence'
 hint: Indice
@@ -160,3 +160,6 @@ weight: Poids
 word_length: Longueur de la forme
 wordbox: Ma wordbox
 wordlengthpoints: Points bonus longueur de forme
+forfeit: Abandonner la partie
+decline_challenge: Refuser le défi
+cancel: Annuler le défi

@@ -113,12 +113,12 @@ class ScoreManager
             $points = 0;
             $score = new Score();
 
-            if (!$forfeit) {
-                $rounds = $game->getRounds();
+            $rounds = $game->getRounds();
 
-                foreach ($rounds as $round) {
-                    $activity = $this->em->getRepository('MagicWordBundle:Activity')->findOneBy(['round' => $round, 'player' => $user]);
-                    $score->addActivity($activity);
+            foreach ($rounds as $round) {
+                $activity = $this->em->getRepository('MagicWordBundle:Activity')->findOneBy(['round' => $round, 'player' => $user]);
+                $score->addActivity($activity);
+                if (!$forfeit) {
                     $points += $activity->getPoints();
                 }
             }

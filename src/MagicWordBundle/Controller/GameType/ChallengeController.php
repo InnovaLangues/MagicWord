@@ -30,7 +30,7 @@ class ChallengeController extends Controller
         $this->get('session')->getFlashBag()->add('success', 'Défi envoyé');
         $this->get('mw_manager.challenge')->handleChallengeForm($request);
 
-        return $this->redirectToRoute('challenges_sent');
+        return $this->redirectToRoute('games_started');
     }
 
     /**
@@ -109,17 +109,17 @@ class ChallengeController extends Controller
         $this->get('session')->getFlashBag()->add('success', 'Défi refusé');
         $this->get('mw_manager.challenge')->decline($challenge);
 
-        return $this->redirectToRoute('challenges_received');
+        return $this->redirectToRoute('games_started');
     }
 
     /**
-     * @Route("/challenge/{id}/decline", name="challenge_cancel")
+     * @Route("/challenge/{id}/cancel", name="challenge_cancel")
      */
     public function cancelAction(Challenge $challenge)
     {
         $this->get('session')->getFlashBag()->add('success', 'Défi annulé');
         $this->get('mw_manager.challenge')->cancel($challenge);
 
-        return $this->redirectToRoute('challenges_sent');
+        return $this->redirectToRoute('games_started');
     }
 }

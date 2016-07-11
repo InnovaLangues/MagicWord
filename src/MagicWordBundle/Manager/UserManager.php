@@ -122,13 +122,28 @@ class UserManager
         $currentUser = $this->tokenStorage->getToken()->getUser();
 
         $this->scoreManager->calculateScore($game, $currentUser, $forfeit);
+        $this->startToEndGame($game, $currentUser);
 
-        if ($currentUser->getStartedGames()->contains($game) && !$currentUser->getEndedGames()->contains($game)) {
-            $currentUser->removeStartedGame($game);
-            $currentUser->addEndedGame($game);
+        return;
+    }
+
+    public function startToEndGame(Game $game, $user)
+    {
+        $this->removeFromStarted($game, $user);
+
+        if (!$user->getEndedGames()->contains($game)) {
+            $user->addEndedGame($game);
         }
 
-        $this->em->persist($currentUser);
+        $this->em->persist($user);
+        $this->em->flush();
+    }
+
+    public function removeFromStarted(Game $game, $user)
+    {
+        $user->removeStartedGame($game);
+
+        $this->em->persist($user);
         $this->em->flush();
     }
 }
