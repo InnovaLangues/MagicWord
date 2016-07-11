@@ -51,9 +51,31 @@
     {% elseif  game.discr == "massive" %}
         {% set url = path('massive_play', {"id": game.id}) %}
     {% else %}
-        {% set url = path('challenge_continue', {"id": game.id}) %}
+        {% if game.rounds|length == 1 %}
+            {% if game.author == app.user %}
+            <a class="btn btn-default btn-xs" href="{{ path('challenge_cancel', {"id":  game.id}) }}">
+                <i class="fa fa-ban" aria-hidden="true"></i> {{ "cancel" | trans}}
+            </a>
+            {% else %}
+                <a class="btn btn-default btn-xs" href="{{ path('challenge_reply', {"id":  game.id}) }}">
+                    <i class="fa fa-thumbs-up" aria-hidden="true"></i> {{ "accept_challenge" | trans}}
+                </a>
+                <a class="btn btn-default btn-xs" href="{{ path('challenge_decline', {"id":  game.id}) }}">
+                    <i class="fa fa-thumbs-down" aria-hidden="true"></i> {{ "decline_challenge" | trans}}
+                </a>
+            {% endif %}
+        {% else %}
+            {% set url = path('challenge_continue', {"id": game.id}) %}
+        {% endif %}
     {% endif %}
-    <a class="btn btn-default btn-xs" href="{{ url }}"><i class="fa fa-gamepad" aria-hidden="true"></i> Jouer</a>
+    {% if url is defined %}
+        <a class="btn btn-default btn-xs" href="{{ url }}">
+            <i class="fa fa-gamepad" aria-hidden="true"></i> Jouer
+        </a>
+        <a class="btn btn-default btn-xs" href="{{ path('game_forfeit', {"id": game.id})}}">
+            <i class="fa fa-times-circle" aria-hidden="true"></i> Abandonner
+        </a>
+    {% endif %}
 </li>
 {% endmacro %}
 
@@ -64,7 +86,7 @@
         <span class="label label-primary">{{ "massive" | trans }}</span>
         {{ game.name }} {% if game.description %}<span class="text-muted">({{ game.description }})</span>{% endif %}
         par <a href="{{ path('profile', {"id":  game.author.id}) }}">{{ game.author }}</a>
-    {% else %}
+    {% elseif game.discr == "challenge" %}
         {% set user = (game.challenged == app.user) ? game.author : game.challenged %}
         <span class="label label-success">{{ "challenge" | trans }}</span>
         avec <a href="{{ path('profile', {"id":  user.id}) }}">{{ user }}</a>

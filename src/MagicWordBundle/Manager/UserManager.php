@@ -117,11 +117,11 @@ class UserManager
         $this->em->flush();
     }
 
-    public function endGame(Game $game)
+    public function endGame(Game $game, $forfeit = false)
     {
         $currentUser = $this->tokenStorage->getToken()->getUser();
 
-        $this->scoreManager->calculateScore($game, $currentUser);
+        $this->scoreManager->calculateScore($game, $currentUser, $forfeit);
 
         if ($currentUser->getStartedGames()->contains($game) && !$currentUser->getEndedGames()->contains($game)) {
             $currentUser->removeStartedGame($game);

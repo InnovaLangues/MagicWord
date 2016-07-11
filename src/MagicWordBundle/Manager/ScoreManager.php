@@ -4,6 +4,7 @@ namespace  MagicWordBundle\Manager;
 
 use JMS\DiExtraBundle\Annotation as DI;
 use MagicWordBundle\Entity\Score;
+use MagicWordBundle\Entity\Player;
 use MagicWordBundle\Entity\Activity;
 
 /**
@@ -106,25 +107,23 @@ class ScoreManager
         return $points;
     }
 
-    public function calculateScore($game, $user)
+    public function calculateScore($game, $user, $forfeit = false)
     {
         if (!$this->em->getRepository('MagicWordBundle:Score')->findOneBy(['game' => $game, 'player' => $user])) {
             $points = 0;
-            $activities = [];
-            $rounds = $game->getRounds();
-
             $score = new Score();
-            foreach ($rounds as $round) {
-                $activity = $this->em->getRepository('MagicWordBundle:Activity')->findOneBy(['round' => $round, 'player' => $user]);
-                $score->addActivity($activity);
-                $points += $activity->getPoints();
+
+            if (!$forfeit) {
+                $rounds = $game->getRounds();
+
+                foreach ($rounds as $round) {
+                    $activity = $this->em->getRepository('MagicWordBundle:Activity')->findOneBy(['round' => $round, 'player' => $user]);
+                    $score->addActivity($activity);
+                    $points += $activity->getPoints();
+                }
             }
 
-            $score->setGame($game);
-            $score->setPoints($points);
-            $score->setPlayer($user);
-            $this->em->persist($score);
-            $this->em->flush();
+            $this->createScore($score, $game, $user, $points);
         }
 
         return;
@@ -140,5 +139,17 @@ class ScoreManager
         }
 
         return $letterPoints;
+    }
+
+    public function createScore(Score $score, $game, Player $player, $points)
+    {
+        $score->setGame($game);
+        $score->setPoints($points);
+        $score->setPlayer($player);
+
+        $this->em->persist($score);
+        $this->em->flush();
+
+        return;
     }
 }

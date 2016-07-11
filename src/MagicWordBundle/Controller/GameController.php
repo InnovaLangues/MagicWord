@@ -27,4 +27,14 @@ class GameController extends Controller
 
         return $this->render('MagicWordBundle:Game:ended.html.twig', array('games' => $games));
     }
+
+    /**
+     * @Route("/game/{id}/forfeit", name="game_forfeit")
+     */
+    public function forfeitGameAction(Game $game)
+    {
+        $this->get('mw_manager.game')->forfeit($game);
+
+        return $this->redirectToRoute('games_started');
+    }
 }

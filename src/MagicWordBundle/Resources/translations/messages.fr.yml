@@ -1,4 +1,12 @@
+'- category -': -- Catégorie --
+'- gender -': -- Genre --
+'- mood -': -- Mode --
+'- number -': -- Nombre --
+'- person -': -- Personne --
+'- tense -': -- Temps --
+accept_challenge: Accepter le défi
 add_combo: 'Ajouter un objectif combo'
+add_constraint: Ajouter un objectif contrainte
 add_existing_form: 'Ajouter une forme existante'
 add_form: 'Ajouter une forme'
 add_round: 'Ajouter une manche'
@@ -8,6 +16,7 @@ add_to_wordbox: 'Ajouter à ma wordbox'
 add: Ajouter
 adjective: adjectif
 adverb: adverbe
+autofill_grid: Autofill
 back_to_editor: 'Retour à l''éditeur de partie'
 back_to_home: Retour à l'accueil
 bonus_points: Points bonus
@@ -16,6 +25,7 @@ challenge_received: 'Défis reçus'
 challenge_sent: 'Défis envoyés'
 challenge_someone: 'Défier quelqu''un'
 challenge: Défi
+challenge!: Défier
 challenged: 'Joueur défié'
 challenges: Duels
 cleaned_content: 'Flexion "nettoyée"'
@@ -25,10 +35,14 @@ combo_number: 'Nombre de combos'
 combos__with_length: 'combo(s) de puissance'
 combos: Combo
 commonNoun: nom commun
+conditional: conditionnel
 conditionnal: conditionnel
 conjunction: conjonction
 conquer_rules: Remplissez les objectifs le plus rapidement possible.
 conquer: Conquer
+constraint_number: Nombre
+constraint: Contrainte
+constraints: Contraintes
 continue: Continuer
 create: Créer des parties massives
 current_combo: Combo en cours
@@ -50,6 +64,8 @@ forms_found: 'forme(s) trouvée(s)'
 foundables: Formes trouvées
 french: Français
 from: 'De la part de'
+future: futur
+game_end: Récapitulatif de la partie
 game_language: 'Langue du jeu'
 games_ended: Parties terminées
 games_started: Parties en cours
@@ -62,6 +78,7 @@ hint: Indice
 hour: heure
 hours: heures
 imperative: impératif
+imperfect: imparfait
 indicative: indicatif
 infinitive: infinitif
 inflexion_info: 'Infos sur la flexion'
@@ -88,11 +105,13 @@ my_massives: 'Mes parties massives'
 name: Nom
 neuter: neutre
 new_massive: 'Nouvelle partie'
+number: Nombre
 numeral: numéral
 objectives: Objectifs
 online: 'En ligne'
 parameters: Paramètres
 participle: participe
+past: passé
 person: Personne
 phonetic: Phonétique
 play: Jouer
@@ -100,12 +119,15 @@ player: Joueur
 plural: pluriel
 points: Points
 preposition: préposition
+present: présent
 profile_of: 'Profil de'
 pronoun: pronom
 rank: Rang
 ranking: Classement
 rankings_and_stats: Classements et statistiques
 remove__from_friends: 'Retirer des contacts'
+round_type: Type de manche que vous voulez jouer (1ère manche)
+round_type2: Type de manche que vous voulez jouer (2ème manche)
 round: Manche
 rounds: Manches
 rush_rules: Trouvez des mots dans la grille.
@@ -118,7 +140,9 @@ second: seconde
 secondPerson: 2ème personne
 seconds: secondes
 see_combos: 'Voir les combos possibles'
+see_constraints: Voir les contraintes possibles
 see_grid: 'Voir la grille'
+simplePast: passé simple
 singular: singulier
 stats: Statistiques
 subcategory: Subcatégorie
@@ -136,27 +160,3 @@ weight: Poids
 word_length: Longueur de la forme
 wordbox: Ma wordbox
 wordlengthpoints: Points bonus longueur de forme
-round_type: Type de manche que vous voulez jouer (1ère manche)
-round_type2: Type de manche que vous voulez jouer (2ème manche)
-challenge!: Défier
-accept_challenge: Accepter le défi
-game_end: Récapitulatif de la partie
-constraint: Contrainte
-add_constraint: Ajouter un objectif contrainte
-see_constraints: Voir les contraintes possibles
-constraint_number: Nombre
-constraints: Contraintes
-number: Nombre
-simplePast: passé simple
-imperfect: imparfait
-present: présent
-future: futur
-past: passé
-conditional: conditionnel
-'- category -': -- Catégorie --
-'- number -': -- Nombre --
-'- gender -': -- Genre --
-'- person -': -- Personne --
-'- tense -': -- Temps --
-'- mood -': -- Mode --
-autofill_grid: Autofill
