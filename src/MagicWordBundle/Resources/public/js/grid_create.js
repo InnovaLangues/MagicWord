@@ -165,7 +165,7 @@ function save(){
               data: data,
          })
          .done(function(data) {
-             $("#inflections").html(data);
+             $("#foundables").html(data);
              wait.stop();
          });
      }

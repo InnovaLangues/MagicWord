@@ -35,8 +35,8 @@ class ConquerController extends Controller
     public function saveConquerGridAction(Conquer $conquer, Request $request)
     {
         $this->get('mw_manager.round')->saveConquerGrid($conquer, $request);
-        $foundableForms = $this->get('mw_manager.grid')->getFoundableForms($request);
-        $template = $this->get('templating')->render('MagicWordBundle:Round/Conquer/Objective:possible-inflections.html.twig', array('foundableForms' => $foundableForms));
+        $foundableForms = $conquer->getGrid()->getFoundableForms();
+        $template = $this->get('templating')->render('MagicWordBundle:Round/Conquer/Objective:possible-inflections.html.twig', ['foundableForms' => $foundableForms]);
 
         return new Response($template);
     }

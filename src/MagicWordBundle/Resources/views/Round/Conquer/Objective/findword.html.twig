@@ -4,12 +4,8 @@
         <span class="pull-right">
             <span class="btn btn-default btn-xs" onclick="addWord()" >
                 <i class="fa fa-plus" aria-hidden="true"></i>
-                {{ 'add_form' | trans }}
+                {{ 'add_findword' | trans }}
             </span>
-            <button type="button" class="btn btn-default  btn-xs" data-toggle="modal" data-target="#helper-inflections">
-                <i class="fa fa-plus" aria-hidden="true"></i>
-                 {{ 'add_existing_form' | trans }}
-            </button>
         </span>
     </div>
     <ul class="list-group" id="words" data-prototype="{{ _self.findWord_prototype(form.findWords.vars.prototype)|e }}">
@@ -18,7 +14,6 @@
     {% endfor %}
     </ul>
 </div>
-
 
 {% macro findWord_prototype(findWord) %}
 <li class="list-group-item findWord">

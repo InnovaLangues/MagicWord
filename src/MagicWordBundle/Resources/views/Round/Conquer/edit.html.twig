@@ -78,7 +78,11 @@
             </div>
         </div>
     </div>
+    <div id="foundables" class="col-md-7">
+    {% if grid.foundableForms is defined  %}
+    {% include 'MagicWordBundle:Round/Conquer/Objective:possible-inflections.html.twig' with {'foundableForms': grid.foundableForms } %}
+    {% endif %}
+    </div>
 </div>
 
-{% include "MagicWordBundle:Round/Conquer/Objective:helper-inflections.html.twig" %}
 {% include "MagicWordBundle:Round/Conquer/Objective:helper-combos.html.twig" %}

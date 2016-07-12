@@ -7,9 +7,11 @@
 accept_challenge: Accepter le défi
 add_combo: 'Ajouter un objectif combo'
 add_constraint: Ajouter un objectif contrainte
+add_findword: Ajouter un objectif findword
 add_existing_form: 'Ajouter une forme existante'
 add_form: 'Ajouter une forme'
 add_round: 'Ajouter une manche'
+add_to_findwords: Ajouter aux objectifs findword
 add_to_friends: 'Ajouter aux contacts'
 add_to_wordbox_short: wordbox
 add_to_wordbox: 'Ajouter à ma wordbox'
@@ -20,6 +22,7 @@ autofill_grid: Autofill
 back_to_editor: 'Retour à l''éditeur de partie'
 back_to_home: Retour à l'accueil
 bonus_points: Points bonus
+cancel: Annuler le défi
 category: Catégorie
 challenge_received: 'Défis reçus'
 challenge_sent: 'Défis envoyés'
@@ -48,6 +51,7 @@ create: Créer des parties massives
 current_combo: Combo en cours
 day: jour
 days: jours
+decline_challenge: Refuser le défi
 definition: Définition de
 description: Description
 determiner: déterminant
@@ -58,6 +62,7 @@ existing_forms: 'forme(s) présente(s)'
 feminine: féminin
 find_words: FindWord
 firstPerson: 1ère personne
+forfeit: Abandonner la partie
 form: Forme
 forms_found_count: Nombre de formes trouvées
 forms_found: 'forme(s) trouvée(s)'
@@ -68,7 +73,7 @@ future: futur
 game_end: Récapitulatif de la partie
 game_language: 'Langue du jeu'
 games_ended: Parties terminées
-games_started: Parties en cours
+games_started: Mes parties en cours
 gender: Genre
 generate_grid: 'Générer Grille'
 give_up: Abandonner cette manche
@@ -160,6 +165,3 @@ weight: Poids
 word_length: Longueur de la forme
 wordbox: Ma wordbox
 wordlengthpoints: Points bonus longueur de forme
-forfeit: Abandonner la partie
-decline_challenge: Refuser le défi
-cancel: Annuler le défi
