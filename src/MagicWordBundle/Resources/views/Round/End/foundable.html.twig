@@ -8,7 +8,7 @@
                              {{ activity.foundForms|length}} {{ "forms_found" | trans }}
                         </div>
                     </div>
-                    <div class="columns">
+                    <div class="row">
                     {% for foundable in activity.foundForms %}
                     {{ _self.foundable(foundable, activity, activities, "found", roundType) }}
                     {% endfor %}
@@ -22,7 +22,7 @@
                             {{round.grid.foundableForms|length}} {{ "existing_forms" | trans }}
                         </div>
                     </div>
-                    <div class="columns">
+                    <div class="row">
                     {% for foundable in round.grid.foundableForms %}
                     {{ _self.foundable(foundable, activity, activities, "foundable", roundType) }}
                     {% endfor %}
@@ -61,38 +61,40 @@
 {% endmacro %}
 
 {% macro foundable(foundable, activity, activities, type, roundType) %}
-<div class="panel panel-default">
-    <div class="panel-heading " role="tab">
-        <h4 class="panel-title {% if foundable in activity.foundForms and type == "foundable" %}bg-success{% endif %} ">
-             <a role="button" data-toggle="collapse" data-parent="#accordion" href="#{{ foundable.id ~ type}}" aria-expanded="true" aria-controls="{{ foundable.id }}">
-                 {{ foundable.form | upper }} <span class="text-muted">({{ foundable.points}})</span>
-                 {% if roundType != "training" %}
-                 <span class="pull-right">
-                    <span class="label label-default">{{ _self.percent(foundable, activities)  }}</span>
-                 </span>
-                 {% endif %}
-            </a>
-        </h4>
-    </div>
-    <div id="{{ foundable.id  ~ type }}" class="panel-collapse collapse" role="tabpanel">
-        <div class="list-group" >
-            {% for inflection in foundable.inflections %}
-            <li class="list-group-item">
-                {{ inflection.content }}
-                ({{ inflection.lemma.content }} - <span class="text-muted">{{ inflection.lemma.category ? inflection.lemma.category.value | trans }}</span>)
-                <span class="pull-right">
-                    <span class="btn btn-default btn-xs" onClick="wiktionnary.getDef('{{ inflection.lemma.content }}')">
-                        <i class="fa fa-wikipedia-w" aria-hidden="true"></i>
+<div class="col-md-4">
+    <div class="panel panel-default">
+        <div class="panel-heading " role="tab">
+            <h4 class="panel-title {% if foundable in activity.foundForms and type == "foundable" %}bg-success{% endif %} ">
+                 <a role="button" data-toggle="collapse" data-parent="#accordion" href="#{{ foundable.id ~ type}}" aria-expanded="true" aria-controls="{{ foundable.id }}">
+                     {{ foundable.form | upper }} <span class="text-muted">({{ foundable.points}})</span>
+                     {% if roundType != "training" %}
+                     <span class="pull-right">
+                        <span class="label label-default">{{ _self.percent(foundable, activities)  }}</span>
+                     </span>
+                     {% endif %}
+                </a>
+            </h4>
+        </div>
+        <div id="{{ foundable.id  ~ type }}" class="panel-collapse collapse" role="tabpanel">
+            <div class="list-group" >
+                {% for inflection in foundable.inflections %}
+                <li class="list-group-item">
+                    {{ inflection.content }}
+                    ({{ inflection.lemma.content }} - <span class="text-muted">{{ inflection.lemma.category ? inflection.lemma.category.value | trans }}</span>)
+                    <span class="pull-right">
+                        <span class="btn btn-default btn-xs" onClick="wiktionnary.getDef('{{ inflection.lemma.content }}')">
+                            <i class="fa fa-wikipedia-w" aria-hidden="true"></i>
+                        </span>
+                        {% if isInWordbox(inflection.lemma) == false %}
+                        <span class="btn btn-default btn-xs"onclick="addToWordbox({{ inflection.lemma.id }}, this);">
+                            <i class="fa fa-plus" aria-hidden="true"></i>
+                            {{ "add_to_wordbox_short" | trans}}
+                        </span>
+                        {% endif %}
                     </span>
-                    {% if isInWordbox(inflection.lemma) == false %}
-                    <span class="btn btn-default btn-xs"onclick="addToWordbox({{ inflection.lemma.id }}, this);">
-                        <i class="fa fa-plus" aria-hidden="true"></i>
-                        {{ "add_to_wordbox_short" | trans}}
-                    </span>
-                    {% endif %}
-                </span>
-            </li>
-            {% endfor %}
+                </li>
+                {% endfor %}
+            </div>
         </div>
     </div>
 </div>
