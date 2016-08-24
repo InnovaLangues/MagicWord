@@ -63,15 +63,32 @@ class InflectionCommand extends ContainerAwareCommand
             $output->writeln('<info>... ('.$i.')</info>');
             foreach ($inflections as $inflection) {
                 $cleanedContent = $this->stripAccents($inflection->getContent());
+                $cleanedContent = addslashes($cleanedContent);
+                $this->populateStart($output, $cleanedContent, $inflection->getLanguage());
                 $inflection->setCleanedContent($cleanedContent);
                 $em->persist($inflection);
             }
             $em->flush();
             $em->clear();
-            $i = $i + 1000;
-            $inflections = $em->getRepository('MagicWordBundle:Lexicon\Inflection')->findByIdRange($i);
+            $i = $i + 20000;
 
-            $this->parseInflections($inflections, $i, $output);
+            $inflections = $em->getRepository('MagicWordBundle:Lexicon\Inflection')->findByIdRange($i);
+            $output->writeln('<info>... ('.$i.')</info>');
+            //$this->parseInflections($inflections, $i, $output);
+        }
+    }
+
+    private function populateStart($output, $cleanedContent, $language)
+    {
+        $em = $this->getContainer()->get('doctrine')->getEntityManager('default');
+        $startRepo = $em->getRepository('MagicWordBundle:Lexicon\InflectionStart');
+        $letters = preg_split('//', $cleanedContent, -1, PREG_SPLIT_NO_EMPTY);
+        $languageId = $language->getId();
+        for ($i = 0; $i < count($letters); ++$i) {
+            $substr = addslashes(substr($cleanedContent, 0, $i + 1));
+            if (strlen($substr) > 1 && !$startRepo->search($substr, $languageId)) {
+                $startRepo->insert($substr, $languageId);
+            }
         }
     }
 }

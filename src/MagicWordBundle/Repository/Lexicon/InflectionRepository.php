@@ -10,16 +10,6 @@ namespace MagicWordBundle\Repository\Lexicon;
  */
 class InflectionRepository extends \Doctrine\ORM\EntityRepository
 {
-    public function getByStartingBySubstring($substring, $languageId)
-    {
-        $sql = 'SELECT id FROM inflection_fulltext WHERE MATCH(cleaned_content) AGAINST (\'<'.$substring.'*\' IN BOOLEAN MODE) AND language_id = '.$languageId;
-        $em = $this->_em;
-        $stmt = $em->getConnection()->prepare($sql);
-        $stmt->execute();
-
-        return $stmt->fetchAll();
-    }
-
     public function getExistingWords($words, $language)
     {
         $em = $this->_em;
@@ -55,7 +45,7 @@ class InflectionRepository extends \Doctrine\ORM\EntityRepository
 
         $query = $em->createQuery($dql);
         $query->setParameter('lowlimit', $range)
-              ->setParameter('hightlimit', $range + 1000);
+              ->setParameter('hightlimit', $range + 20000);
 
         return $query->getResult();
     }

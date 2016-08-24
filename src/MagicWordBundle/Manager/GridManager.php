@@ -210,16 +210,17 @@ class GridManager
         for ($y = 0; $y < 4; ++$y) {
             for ($x = 0; $x < 4; ++$x) {
                 // ajout au tableau des mots potentiels de ceux qui commencent par la lettre en x, y
-                $words = array_merge($words, $this->nextLetter('', $simplifiedGrid, $x, $y));
+                $words = array_unique(array_merge($words, $this->nextLetter('', $simplifiedGrid, $x, $y)), SORT_STRING);
             }
         }
+
         // words contient tous les débuts de mots ayant été trouvé dans le dictionnaire
         // il faut vérifier si chaque word existe réellement dans le dictionnaire
         if ($words) {
-            $words = $this->em->getRepository("MagicWordBundle:Lexicon\Inflection")->getExistingWords($words, $this->currentLanguage);
+            $inflections = $this->em->getRepository("MagicWordBundle:Lexicon\Inflection")->getExistingWords($words, $this->currentLanguage);
         }
 
-        return $words;
+        return $inflections;
     }
 
     private function nextLetter($word, $grid, $x, $y)
@@ -230,7 +231,7 @@ class GridManager
         $grid[$y][$x] = '_';
         // vérifier en bdd s'il existe des mots qui commencent par $word à partir de 2 lettres
         if (strlen($word) > 1) {
-            $words = $this->em->getRepository("MagicWordBundle:Lexicon\Inflection")->getByStartingBySubstring($word, $this->currentLanguage->getId());
+            $words = $this->em->getRepository("MagicWordBundle:Lexicon\InflectionStart")->search($word, $this->currentLanguage->getId());
             // si pas de mot dans le dico commençant par le mot en cours, ne pas retourner le mot et arrêter la recherche
             if (!$words) {
                 return array();
