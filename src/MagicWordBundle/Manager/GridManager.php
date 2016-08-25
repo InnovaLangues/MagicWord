@@ -231,9 +231,9 @@ class GridManager
         $grid[$y][$x] = '_';
         // vérifier en bdd s'il existe des mots qui commencent par $word à partir de 2 lettres
         if (strlen($word) > 1) {
-            $words = $this->em->getRepository("MagicWordBundle:Lexicon\InflectionStart")->search($word, $this->currentLanguage->getId());
+            $startExists = $this->em->getRepository("MagicWordBundle:Lexicon\InflectionStart")->search($word, $this->currentLanguage->getId());
             // si pas de mot dans le dico commençant par le mot en cours, ne pas retourner le mot et arrêter la recherche
-            if (!$words) {
+            if (!$startExists) {
                 return array();
             }
         }
