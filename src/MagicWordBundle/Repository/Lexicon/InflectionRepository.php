@@ -13,12 +13,14 @@ class InflectionRepository extends \Doctrine\ORM\EntityRepository
     public function getExistingWords($words, $language)
     {
         $em = $this->_em;
+
         $dql = 'SELECT i FROM MagicWordBundle\Entity\Lexicon\Inflection i
                 WHERE i.language = :language
-                AND i.cleanedContent IN('.implode(', ', array_map(array($em->getConnection(), 'quote'), $words)).')';
+                AND i.cleanedContent IN (:words)';
 
         $query = $em->createQuery($dql);
         $query->setParameter('language', $language);
+        $query->setParameter('words', $words);
 
         return $query->getResult();
     }
