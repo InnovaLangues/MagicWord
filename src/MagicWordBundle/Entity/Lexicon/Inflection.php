@@ -3,12 +3,15 @@
 namespace MagicWordBundle\Entity\Lexicon;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\ORM\Mapping\Index;
 use JsonSerializable;
 
 /**
  * Inflection.
  *
- * @ORM\Table(name="inflection")
+ * @ORM\Table(name="inflection", indexes={
+ *  @Index(name="cleaned_content", columns={"cleaned_content"}),
+ * })
  * @ORM\Entity(repositoryClass="MagicWordBundle\Repository\Lexicon\InflectionRepository")
  */
 class Inflection implements JsonSerializable

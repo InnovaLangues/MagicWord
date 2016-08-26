@@ -3,9 +3,13 @@
 namespace MagicWordBundle\Entity\Lexicon;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\ORM\Mapping\Index;
 
 /**
- * @ORM\Table(name="inflection_start")
+ * @ORM\Table(name="inflection_start", indexes={
+ *  @Index(columns={"start"}, flags={"fulltext"}),
+ *  @Index(name="language_id", columns={"language"}),
+ * })
  * @ORM\Entity(repositoryClass="MagicWordBundle\Repository\Lexicon\InflectionStartRepository")
  */
 class InflectionStart
@@ -68,9 +72,9 @@ class InflectionStart
     }
 
     /**
-     * Set language
+     * Set language.
      *
-     * @param integer $language
+     * @param int $language
      *
      * @return InflectionStart
      */
@@ -82,9 +86,9 @@ class InflectionStart
     }
 
     /**
-     * Get language
+     * Get language.
      *
-     * @return integer
+     * @return int
      */
     public function getLanguage()
     {
