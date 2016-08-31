@@ -82,6 +82,9 @@ class GridManager
             $grid = $this->saveInflections($grid);
         }
 
+        $this->em->clear();
+        gc_collect_cycles();
+
         return $grid;
     }
 
@@ -103,6 +106,7 @@ class GridManager
 
     public function saveInflections(Grid $grid)
     {
+        $this->em->getConnection()->getConfiguration()->setSQLLogger(null);
         $inflections = $this->findInflections($grid);
         $this->foundableFormManager->populateFoundables($inflections, $grid);
 
@@ -188,6 +192,7 @@ class GridManager
 
     public function findInflections(Grid $grid)
     {
+        $this->em->getConnection()->getConfiguration()->setSQLLogger(null);
         $i = 0;
         $simplifiedGrid = array();
         $words = array();
@@ -223,6 +228,7 @@ class GridManager
 
     private function nextLetter($word, $grid, $x, $y)
     {
+        $this->em->getConnection()->getConfiguration()->setSQLLogger(null);
         // ajouter la lettre en x, y au mot courant
         $word .= $grid[$y][$x];
         // la détruire dans la grille

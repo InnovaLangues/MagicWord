@@ -34,7 +34,6 @@ class GenerateGridCommand extends ContainerAwareCommand
             $timeEnd = microtime(true);
             $executionTime = round($timeEnd - $timeStart, 2);
             $output->writeln('<info>A grid has been generated. Contains '.count($grid->getFoundableForms()).' forms. (in '.$executionTime.' sec.)</info>');
-            sleep(2);
         }
 
         $output->writeln('<info>Done !</info>');
