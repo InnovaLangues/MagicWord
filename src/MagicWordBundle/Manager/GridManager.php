@@ -82,9 +82,6 @@ class GridManager
             $grid = $this->saveInflections($grid);
         }
 
-        $this->em->clear();
-        gc_collect_cycles();
-
         return $grid;
     }
 
