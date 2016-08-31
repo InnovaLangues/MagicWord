@@ -26,15 +26,15 @@ class GenerateGridCommand extends ContainerAwareCommand
 
         $number = $input->getArgument('number');
         $languageName = $input->getArgument('languageName');
-        $language = $em->getRepository('MagicWordBundle:Language')->findOneByName($languageName);
 
         for ($i = 0; $i < $number; ++$i) {
+            $language = $em->getRepository('MagicWordBundle:Language')->findOneByName($languageName);
             $timeStart = microtime(true);
             $grid = $gridManager->generate($language);
             $timeEnd = microtime(true);
             $executionTime = round($timeEnd - $timeStart, 2);
             $output->writeln('<info>A grid has been generated. Contains '.count($grid->getFoundableForms()).' forms. (in '.$executionTime.' sec.)</info>');
-            sleep(2);
+            $em->clear();
         }
 
         $output->writeln('<info>Done !</info>');
