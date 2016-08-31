@@ -17,8 +17,6 @@ class GridManager
     protected $squareManager;
     protected $foundableFormManager;
     protected $tokenStorage;
-    protected $currentUser;
-    protected $currentLanguage;
 
     /**
      * @DI\InjectParams({
@@ -36,7 +34,6 @@ class GridManager
         $this->foundableFormManager = $foundableFormManager;
         $this->squareManager = $squareManager;
         $this->tokenStorage = $tokenStorage;
-        $this->currentUser = $this->tokenStorage->getToken()->getUser();
     }
 
     private function newGrid($language)
@@ -49,8 +46,9 @@ class GridManager
 
     public function seekOrGenerateForTraining()
     {
-        $language = $this->currentUser->getLanguage();
-        $grid = ($existingGrid = $this->em->getRepository('MagicWordBundle:Grid')->findNotPlayedForTraining($this->currentUser))
+        $user = $this->tokenStorage->getToken()->getUser();
+        $language = $user->getLanguage();
+        $grid = ($existingGrid = $this->em->getRepository('MagicWordBundle:Grid')->findNotPlayedForTraining($user))
             ? $existingGrid
             : $this->generate($language);
 
@@ -65,7 +63,7 @@ class GridManager
             $grid->addSquare($this->squareManager->create($letter, $grid));
         }
 
-        $words = $this->findInflections($grid);
+        $this->findInflections($grid);
         $grid = $this->saveInflections($grid);
 
         return $grid;
