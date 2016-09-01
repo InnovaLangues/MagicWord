@@ -27,28 +27,30 @@ class GenerateGridCommand extends ContainerAwareCommand
         $em = $this->getContainer()->get('doctrine')->getEntityManager('default');
         $gridManager = $this->getContainer()->get('mw_manager.grid');
         $letterManager = $this->getContainer()->get('mw_manager.letter_language');
+        $customWeightedLetters = $this->getContainer()->getParameter('custom_letters');
 
         $number = $input->getArgument('number');
         $languageName = $input->getArgument('languageName');
         $custom = $input->getOption('custom');
 
-        if ($custom) {
-            $customWeightedLetters = $this->getContainer()->getParameter('custom_letters');
-            $customLetters = $letterManager->getCustomWeigth($customWeightedLetters);
-        } else {
-            $customLetters = null;
-        }
-
+        $totalFormCount = 0;
         for ($i = 0; $i < $number; ++$i) {
+            $customLetters = ($custom)
+                ? $letterManager->getCustomWeigth($customWeightedLetters)
+                : $customLetters = null;
+
             $language = $em->getRepository('MagicWordBundle:Language')->findOneByName($languageName);
             $timeStart = microtime(true);
             $grid = $gridManager->generate($language, $customLetters);
             $timeEnd = microtime(true);
             $executionTime = round($timeEnd - $timeStart, 2);
-            $output->writeln('<info>A grid has been generated. Contains '.count($grid->getFoundableForms()).' forms. (in '.$executionTime.' sec.)</info>');
+            $formCount = count($grid->getFoundableForms());
+            $totalFormCount += $formCount;
+            $output->writeln('<info>A grid has been generated. Contains '.$formCount.' forms. (in '.$executionTime.' sec.)</info>');
             $em->clear();
         }
 
-        $output->writeln('<info>Done !</info>');
+        $average = round($totalFormCount / $number);
+        $output->writeln('<info>Done ! (average form count: '.$average.')</info>');
     }
 }
