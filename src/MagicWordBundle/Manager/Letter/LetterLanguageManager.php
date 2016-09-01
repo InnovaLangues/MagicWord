@@ -22,14 +22,37 @@ class LetterLanguageManager
         $this->em = $entityManager;
     }
 
+    public function getCustomWeigth($customLetters)
+    {
+        $letters = '';
+        foreach ($customLetters as $letter => $count) {
+            $letters = $this->repeatLetter($letters, $letter, $count);
+        }
+
+        return $this->lottery($letters, 16);
+    }
+
     public function getWeightedLettersByLanguage(Language $language)
     {
         $lettersLanguage = $this->em->getRepository("MagicWordBundle:Letter\LetterLanguage")->findByLanguage($language);
         $letters = '';
         foreach ($lettersLanguage as $letterLanguage) {
-            $letters .= str_repeat($letterLanguage->getLetter()->getValue(), $letterLanguage->getWeight());
+            $letters = $this->repeatLetter($letters, $letterLanguage->getLetter()->getValue(), $letterLanguage->getWeight());
         }
-        $letters = substr(str_shuffle($letters), 0, 16);
+
+        return $this->lottery($letters, 16);
+    }
+
+    private function repeatLetter($str, $letter, $count)
+    {
+        $str .= str_repeat($letter, $count);
+
+        return $str;
+    }
+
+    private function lottery($str, $count)
+    {
+        $letters = substr(str_shuffle($str), 0, $count);
 
         return str_split($letters);
     }

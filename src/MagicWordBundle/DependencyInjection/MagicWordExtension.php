@@ -22,5 +22,6 @@ class MagicWordExtension extends Extension
         $loader = new Loader\YamlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
         $loader->load('twig_extensions.yml');
         $loader->load('listeners.yml');
+        $loader->load('custom_letters.yml');
     }
 }

@@ -55,10 +55,13 @@ class GridManager
         return $grid;
     }
 
-    public function generate(Language $language)
+    public function generate(Language $language, $customLetters = null)
     {
         $grid = $this->newGrid($language);
-        $letters = $this->letterLangManager->getWeightedLettersByLanguage($language);
+        $letters = (!$customLetters)
+            ? $this->letterLangManager->getWeightedLettersByLanguage($language)
+            : $customLetters;
+
         foreach ($letters as $letter) {
             $grid->addSquare($this->squareManager->create($letter, $grid));
         }
