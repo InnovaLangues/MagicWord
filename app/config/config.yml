@@ -25,7 +25,8 @@ framework:
     trusted_proxies: ~
     session:
         handler_id:    session.handler.pdo
-        name: "self"
+        name: "magicword"
+        cookie_lifetime: 0
     fragments:       ~
     http_method_override: true
     assets: ~
