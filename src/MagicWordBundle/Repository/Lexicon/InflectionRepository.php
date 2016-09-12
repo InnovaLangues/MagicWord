@@ -51,4 +51,15 @@ class InflectionRepository extends \Doctrine\ORM\EntityRepository
 
         return $query->getResult();
     }
+
+    public function getEnglishForms()
+    {
+        $sql = 'SELECT * FROM dico_en';
+
+        $em = $this->_em;
+        $stmt = $em->getConnection()->prepare($sql);
+        $stmt->execute();
+
+        return $stmt->fetchAll();
+    }
 }

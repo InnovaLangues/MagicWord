@@ -60,10 +60,10 @@ class InflectionCommand extends ContainerAwareCommand
     {
         if ($inflections) {
             $em = $this->getContainer()->get('doctrine')->getEntityManager('default');
+            $inflectionManager = $this->getContainer()->get('mw_manager.inflection');
             $output->writeln('<info>... ('.$i.')</info>');
             foreach ($inflections as $inflection) {
-                $cleanedContent = $this->stripAccents($inflection->getContent());
-                $cleanedContent = addslashes($cleanedContent);
+                $cleanedContent = $inflectionManager->getCleanContent($inflection->getContent());
                 $this->populateStart($output, $cleanedContent, $inflection->getLanguage());
                 $inflection->setCleanedContent($cleanedContent);
                 $em->persist($inflection);
