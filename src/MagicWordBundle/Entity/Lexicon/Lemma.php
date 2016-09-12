@@ -56,13 +56,6 @@ class Lemma
     private $locution;
 
     /**
-     * @var bool
-     *
-     * @ORM\Column(name="processStatus", type="boolean", length=255)
-     */
-    private $processStatus;
-
-    /**
      * @var string
      *
      * @ORM\Column(name="phonetic1", type="string", length=255)
@@ -75,13 +68,6 @@ class Lemma
      * @ORM\Column(name="phonetic2", type="string", length=255)
      */
     private $phonetic2;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="status", type="string", length=255)
-     */
-    private $status;
 
     /**
      * Get id.
@@ -142,30 +128,6 @@ class Lemma
     }
 
     /**
-     * Set processStatus.
-     *
-     * @param bool $processStatus
-     *
-     * @return Lemma
-     */
-    public function setProcessStatus($processStatus)
-    {
-        $this->processStatus = $processStatus;
-
-        return $this;
-    }
-
-    /**
-     * Get processStatus.
-     *
-     * @return bool
-     */
-    public function getProcessStatus()
-    {
-        return $this->processStatus;
-    }
-
-    /**
      * Set phonetic1.
      *
      * @param string $phonetic1
@@ -211,30 +173,6 @@ class Lemma
     public function getPhonetic2()
     {
         return $this->phonetic2;
-    }
-
-    /**
-     * Set status.
-     *
-     * @param string $status
-     *
-     * @return Lemma
-     */
-    public function setStatus($status)
-    {
-        $this->status = $status;
-
-        return $this;
-    }
-
-    /**
-     * Get status.
-     *
-     * @return string
-     */
-    public function getStatus()
-    {
-        return $this->status;
     }
 
     /**
@@ -310,7 +248,7 @@ class Lemma
     }
 
     /**
-     * Set language
+     * Set language.
      *
      * @param \MagicWordBundle\Entity\Language $language
      *
@@ -324,7 +262,7 @@ class Lemma
     }
 
     /**
-     * Get language
+     * Get language.
      *
      * @return \MagicWordBundle\Entity\Language
      */

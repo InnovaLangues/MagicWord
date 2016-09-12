@@ -31,7 +31,7 @@ class Inflection implements JsonSerializable
     private $language;
 
     /**
-     * @ORM\ManyToOne(targetEntity="MagicWordBundle\Entity\Lexicon\Lemma")
+     * @ORM\ManyToOne(targetEntity="MagicWordBundle\Entity\Lexicon\Lemma", cascade={"persist"})
      */
     private $lemma;
 
@@ -87,13 +87,6 @@ class Inflection implements JsonSerializable
      * @ORM\Column(name="phonetic2", type="string", length=255)
      */
     private $phonetic2;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="status", type="string", length=255)
-     */
-    private $status;
 
     /**
      * Get id.
@@ -175,30 +168,6 @@ class Inflection implements JsonSerializable
     public function getPhonetic2()
     {
         return $this->phonetic2;
-    }
-
-    /**
-     * Set status.
-     *
-     * @param string $status
-     *
-     * @return Inflection
-     */
-    public function setStatus($status)
-    {
-        $this->status = $status;
-
-        return $this;
-    }
-
-    /**
-     * Get status.
-     *
-     * @return string
-     */
-    public function getStatus()
-    {
-        return $this->status;
     }
 
     /**
