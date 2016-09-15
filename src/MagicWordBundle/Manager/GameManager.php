@@ -41,6 +41,13 @@ class GameManager
         return;
     }
 
+    public function getStarted()
+    {
+        $games = $this->em->getRepository('MagicWordBundle:Game')->getStarted($this->currentUser);
+
+        return $games;
+    }
+
     private function closeOpenedRound(Game $game)
     {
         foreach ($game->getRounds() as $round) {

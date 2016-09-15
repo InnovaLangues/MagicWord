@@ -10,20 +10,16 @@ namespace MagicWordBundle\Repository;
  */
 class GameRepository extends \Doctrine\ORM\EntityRepository
 {
-    public function getUnfinished($user)
+    public function getStarted($user)
     {
         $em = $this->_em;
-        $dql = 'SELECT g.id FROM MagicWordBundle\Entity\Game g
-                JOIN g.rounds rounds
-                WHERE EXISTS (
-                    SELECT a FROM MagicWordBundle\Entity\Activity a
-                    WHERE a.round  = rounds
-                    AND a.player = :user
-                    AND a.endDate is null
-                )';
+        $dql = 'SELECT g FROM MagicWordBundle\Entity\Game g
+        WHERE g IN ( :started )
+        AND g.language = :language';
 
         $query = $em->createQuery($dql);
-        $query->setParameter('user', $user->getId());
+        $query->setParameter('language', $user->getLanguage());
+        $query->setParameter('started', $user->getStartedGames());
 
         return $query->getResult();
     }
