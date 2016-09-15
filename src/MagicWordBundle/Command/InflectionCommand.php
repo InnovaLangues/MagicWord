@@ -74,7 +74,7 @@ class InflectionCommand extends ContainerAwareCommand
 
             $inflections = $em->getRepository('MagicWordBundle:Lexicon\Inflection')->findByIdRange($i);
             $output->writeln('<info>... ('.$i.')</info>');
-            //$this->parseInflections($inflections, $i, $output);
+            $this->parseInflections($inflections, $i, $output);
         }
     }
 
