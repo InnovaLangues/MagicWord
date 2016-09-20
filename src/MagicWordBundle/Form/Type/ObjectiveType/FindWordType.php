@@ -5,6 +5,7 @@ namespace MagicWordBundle\Form\Type\ObjectiveType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class FindWordType extends AbstractType
@@ -28,6 +29,15 @@ class FindWordType extends AbstractType
                 'placeholder' => 'hint',
                 'translation_domain' => 'messages',
             ],
+        ));
+
+        $builder->add('lemmaEnough', ChoiceType::class, array(
+            'label' => 'Is lemma enough ?',
+            'required' => true,
+            'choices' => array(
+                    'Non' => '0',
+                    'Oui' => '1',
+                ),
         ));
     }
 

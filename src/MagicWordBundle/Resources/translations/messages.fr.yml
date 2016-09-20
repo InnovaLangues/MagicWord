@@ -1,3 +1,4 @@
+
 '- category -': -- Catégorie --
 '- gender -': -- Genre --
 '- mood -': -- Mode --
@@ -7,8 +8,8 @@
 accept_challenge: Accepter le défi
 add_combo: 'Ajouter un objectif combo'
 add_constraint: Ajouter un objectif contrainte
-add_findword: Ajouter un objectif findword
 add_existing_form: 'Ajouter une forme existante'
+add_findword: Ajouter un objectif findword
 add_form: 'Ajouter une forme'
 add_round: 'Ajouter une manche'
 add_to_findwords: Ajouter aux objectifs findword
@@ -89,6 +90,7 @@ infinitive: infinitif
 inflexion_info: 'Infos sur la flexion'
 interjection: interjection
 invariable: invariable
+Is lemma enough ?: Le lemme suffit ?
 language_ui: 'Langue de l''interface'
 language: Langue
 lemma_info: 'Infos sur le lemme'

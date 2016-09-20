@@ -1,6 +1,6 @@
 <?php
 
-namespace  MagicWordBundle\Manager;
+namespace MagicWordBundle\Manager;
 
 use JMS\DiExtraBundle\Annotation as DI;
 use Doctrine\Common\Collections\ArrayCollection;
@@ -49,6 +49,9 @@ class ObjectiveManager
             //link objectives to conquer
             foreach ($conquer->getObjectives() as $objective) {
                 $objective->setConquer($conquer);
+                if ($objective->getDiscr() == 'findword') {
+                    $this->handleFindWord($objective);
+                }
             }
 
             $this->em->persist($conquer);
@@ -56,5 +59,16 @@ class ObjectiveManager
         }
 
         return;
+    }
+
+    private function handleFindWord($objective)
+    {
+        $repo = $this->em->getRepository("MagicWordBundle:Lexicon\Lemma");
+        $objective->getLemmas()->clear();
+
+        if ($objective->getLemmaEnough()) {
+            $lemmas = $repo->getByContentAndLanguage($objective);
+            $objective->addLemmas($lemmas);
+        }
     }
 }
