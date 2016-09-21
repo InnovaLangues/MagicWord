@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
  * Lemma.
  *
  * @ORM\Table(name="lemma")
- * @ORM\Entity()
+ * @ORM\Entity(repositoryClass="MagicWordBundle\Repository\Lexicon\LemmaRepository")
  */
 class Lemma
 {

@@ -8,8 +8,8 @@ use MagicWordBundle\Entity\Objective;
 /**
  * FindWord.
  *
- * @ORM\Entity
  * @ORM\Table(name="objective_type_findword")
+ * @ORM\Entity()
  */
 class FindWord extends Objective
 {
@@ -25,7 +25,7 @@ class FindWord extends Objective
      *
      * @ORM\Column(name="hint", type="text", nullable=false)
      */
-    private $hint;
+    protected $hint;
 
     /**
      * @var string
@@ -33,6 +33,19 @@ class FindWord extends Objective
      * @ORM\Column(name="inflection", type="text", nullable=false)
      */
     protected $inflection;
+
+    /**
+     * @ORM\ManyToMany(targetEntity="MagicWordBundle\Entity\Lexicon\Lemma")
+     * @ORM\JoinTable(name="objective_findword_lemma")
+     */
+    private $lemmas;
+
+    /**
+     * @var bool
+     *
+     * @ORM\Column(type="boolean", nullable=false)
+     */
+    protected $lemmaEnough;
 
     /**
      * Set hint.
@@ -80,5 +93,86 @@ class FindWord extends Objective
     public function getInflection()
     {
         return $this->inflection;
+    }
+
+    /**
+     * Set lemmaEnough.
+     *
+     * @param bool $lemmaEnough
+     *
+     * @return FindWord
+     */
+    public function setLemmaEnough($lemmaEnough)
+    {
+        $this->lemmaEnough = $lemmaEnough;
+
+        return $this;
+    }
+
+    /**
+     * Get lemmaEnough.
+     *
+     * @return bool
+     */
+    public function getLemmaEnough()
+    {
+        return $this->lemmaEnough;
+    }
+    /**
+     * Constructor.
+     */
+    public function __construct()
+    {
+        $this->lemmas = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Add lemma.
+     *
+     * @param \MagicWordBundle\Entity\Lexicon\Lemma $lemma
+     *
+     * @return FindWord
+     */
+    public function addLemma(\MagicWordBundle\Entity\Lexicon\Lemma $lemma)
+    {
+        $this->lemmas[] = $lemma;
+
+        return $this;
+    }
+
+    /**
+     * Add lemmas.
+     *
+     * @param \MagicWordBundle\Entity\Lexicon\Lemma $lemma
+     *
+     * @return FindWord
+     */
+    public function addLemmas($lemmas)
+    {
+        foreach ($lemmas as $lemma) {
+            $this->lemmas[] = $lemma;
+        }
+
+        return $this;
+    }
+
+    /**
+     * Remove lemma.
+     *
+     * @param \MagicWordBundle\Entity\Lexicon\Lemma $lemma
+     */
+    public function removeLemma(\MagicWordBundle\Entity\Lexicon\Lemma $lemma)
+    {
+        $this->lemmas->removeElement($lemma);
+    }
+
+    /**
+     * Get lemmas.
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getLemmas()
+    {
+        return $this->lemmas;
     }
 }

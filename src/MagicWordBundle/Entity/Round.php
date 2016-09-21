@@ -47,7 +47,7 @@ class Round implements \JsonSerializable
 
     /**
      * @ORM\ManyToOne(targetEntity="Game", inversedBy="rounds", cascade={"persist"})
-     * @ORM\joinColumn(onDelete="SET NULL")
+     * @ORM\JoinColumn(onDelete="SET NULL")
      */
     private $game;
 
@@ -229,7 +229,15 @@ class Round implements \JsonSerializable
 
         if ($this->discr == 'conquer') {
             foreach ($this->getFindWords() as $findWord) {
-                $jsonArray['findWords'][$findWord->getInflection()] = array('id' => $findWord->getId());
+                $jsonArray['findWords'][$findWord->getInflection()] =
+                [
+                    'id' => $findWord->getId(),
+                    'lemmaIds' => [],
+                ];
+
+                foreach ($findWord->getLemmas() as $lemma) {
+                    $jsonArray['findWords'][$findWord->getInflection()]['lemmaIds'][] = $lemma->getId();
+                }
             }
 
             foreach ($this->getCombos() as $combo) {
