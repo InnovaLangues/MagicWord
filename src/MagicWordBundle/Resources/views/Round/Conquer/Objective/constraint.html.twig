@@ -23,15 +23,15 @@
 </div>
 
 {% macro constraints_prototype(constraint) %}
-<li class="list-group-item constraint">
+<li class="list-group-item constraint-objective">
     <p>{{ form_label(constraint.numberToFind) }} : {{ form_widget(constraint.numberToFind) }}</p>
-    {{ form_widget(constraint.category) }} &nbsp;
-    {{ form_widget(constraint.number) }} &nbsp;
-    {{ form_widget(constraint.gender) }} &nbsp;
+    <span class="constraint">{{ form_widget(constraint.category) }}</span>
+    <span class="constraint">{{ form_widget(constraint.number) }}</span>
+    <span class="constraint">{{ form_widget(constraint.gender) }}</span>
     <span class="verb-attributes">
-        {{ form_widget(constraint.person) }} &nbsp;
-        {{ form_widget(constraint.tense) }} &nbsp;
-        {{ form_widget(constraint.mood) }} &nbsp;
+        <span class="constraint">{{ form_widget(constraint.person) }}</span>
+        <span class="constraint">{{ form_widget(constraint.tense) }}</span>
+        <span class="constraint">{{ form_widget(constraint.mood) }}</span>
     </span>
     <span class="pull-right">
         <span class="btn btn-danger word-remove">

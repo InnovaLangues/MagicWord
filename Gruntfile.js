@@ -21,8 +21,9 @@ module.exports = function(grunt) {
                         "bower_components/FlipClock/compiled/flipclock.css",
                         'src/MagicWordBundle/Resources/public/css/play.css',
                         'src/MagicWordBundle/Resources/public/css/end.css',
+                        'src/MagicWordBundle/Resources/public/css/editor.css',
                         "bower_components/animate.css/animate.min.css"
-                    ]
+                    ],
                 }
             }
         },
