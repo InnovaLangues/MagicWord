@@ -1,0 +1,8 @@
+.constraint {
+    padding:15px 10px;
+    border-radius:3px;
+}
+
+.constraint.notempty{
+    background-color: #04346C;
+}
