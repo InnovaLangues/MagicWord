@@ -18,7 +18,12 @@
                     <td>{{ score.player }}</td>
                     <td>{{ score.points }}</td>
                     {% for i, activity in score.activities %}
-                    <td>{{ activity.points }}</td>
+                    <td>
+                        {{ activity.points }}
+                        <span onclick="details.get({{ activity.id }})" class="btn btn-default btn-xs">
+                            <i class="fa fa-search-plus" aria-hidden="true"></i>
+                        </span>
+                    </td>
                     {% endfor %}
                 </tr>
                 {% endfor %}
@@ -26,3 +31,9 @@
         </table>
     </div>
 </div>
+
+{% include "MagicWordBundle:Common:details-modal.html.twig" %}
+
+{% block javascripts -%}
+<script type="text/javascript" src="{{ asset('/js/round.js') }}"></script>
+{% endblock %}

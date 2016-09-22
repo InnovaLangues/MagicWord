@@ -3,6 +3,7 @@
 namespace MagicWordBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
@@ -11,6 +12,7 @@ use MagicWordBundle\Entity\Round;
 use MagicWordBundle\Entity\Objective;
 use MagicWordBundle\Entity\FoundableForm;
 use MagicWordBundle\Entity\Rules\ComboPoints;
+use MagicWordBundle\Entity\Activity;
 
 class ActivityController extends Controller
 {
@@ -63,5 +65,22 @@ class ActivityController extends Controller
         $this->get('mw_manager.activity')->addComboPoints($round, $comboPoints);
 
         return new JsonResponse(['points' => $comboPoints->getPoints()]);
+    }
+
+    /**
+     * @Route("/activity/{activityId}/display", name="activity_display", options={"expose"=true})
+     * @ParamConverter("activity", class="MagicWordBundle:Activity",  options={"id" = "activityId"})
+     * @Method("GET")
+     */
+    public function activityDisplayAction(Activity $activity)
+    {
+        $haveActivity = $this->get('mw_manager.activity')->getActivity($activity->getRound());
+        if ($haveActivity) {
+            $activity = $this->renderView('MagicWordBundle:Activity:details.html.twig', ['activity' => $activity]);
+
+            return new Response($activity);
+        }
+
+        return new Response();
     }
 }

@@ -1,0 +1,13 @@
+<div class="panel panel-default">
+    <div class="panel-body">
+        {{ activity.points }} points
+        {% if activity.comboPoints !=0 %} (dont {{ activity.comboPoints }} points bonus de combo){% endif %}
+    </div>
+    <ul class="list-group">
+        {% for foundForm in activity.foundForms|slice(0, 15)%}
+            <li class="list-group-item">
+                <span class="label label-default">{{ foundForm.points }} pts</span> {{ foundForm.form|upper }}
+            </li>
+        {% endfor %}
+    </ul>
+</div>

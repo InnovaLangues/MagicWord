@@ -7,8 +7,12 @@
                 <th>{{ "score" | trans }}</th>
                 {% if round.discr == "conquer" %}
                 <th>{{ "time" | trans }}</th>
-                {% endif %}
+                <th>{{ "bonus_points" | trans }}</th>
+                {% else %}
                 <th>{{ "forms_found_count" | trans }}</th>
+                <th>{{ "bonus_points" | trans }}</th>
+                {% endif %}
+                <th>{{ "details" | trans }}</th>
             </thead>
             <tbody>
                 {% for i, activity in activities %}
@@ -18,11 +22,21 @@
                     <td>{{ activity.points }}</td>
                     {% if round.discr == "conquer" %}
                     <td>{{ getTimeSpent(activity) }}</td>
+                    <td>{{ activity.timePoints }}</td>
+                    {% else %}
+                    <td>{{ activity.foundForms|length }}</td>
+                    <td>{{ activity.comboPoints }}</td>
                     {% endif %}
-                    <td>{{ activity.foundForms | length }}</td>
+                    <td><i onclick="details.get({{ activity.id }})" class="fa fa-search-plus" aria-hidden="true"></i></td>
                 </tr>
                 {% endfor %}
             </tbody>
         </table>
     </div>
 </div>
+
+{% include "MagicWordBundle:Common:details-modal.html.twig" %}
+
+{% block javascripts -%}
+<script type="text/javascript" src="{{ asset('/js/round.js') }}"></script>
+{% endblock %}

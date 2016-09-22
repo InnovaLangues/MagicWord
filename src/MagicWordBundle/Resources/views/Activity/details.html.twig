@@ -1,0 +1,5 @@
+{% if activity.round.discr == "conquer" %}
+    {% include 'MagicWordBundle:Round/End:objectives.html.twig' %}
+{% else %}
+    {% include 'MagicWordBundle:Round/End:found.html.twig' %}
+{% endif %}

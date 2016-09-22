@@ -1,6 +1,11 @@
 <div class="panel panel-default">
-    <div class="panel-heading">
-        {{ activity.objectivesDone|length }} sur {{ activity.round.objectives|length }} en {{ getTimeSpent(activity) | trans }}.
+    <div class="panel-body">
+        {{ activity.points }} points
+         {% if activity.timePoints != 0 %}
+            (dont {{activity.timePoints}} points bonus de temps)
+        {% endif %}
+        -
+        {{ activity.objectivesDone|length }} sur {{ activity.round.objectives|length }} en {{ getTimeSpent(activity) | trans }}
     </div>
     <ul class="list-group">
         {% for objective in activity.round.objectives %}
@@ -10,7 +15,7 @@
                 {% elseif  objective.discr == "combo" %}
                     <span class="label label-default">Combo</span> {{ objective.number }} combo(s) de puissance {{ objective.lenght }}
                 {% elseif  objective.discr == "constraint" %}
-                <span class="label label-default">Constraint</span> {{ objective.numberToFind }} 
+                <span class="label label-default">Constraint</span> {{ objective.numberToFind }}
                 {{ objective.category ? objective.category.value | trans }}
                 {{ objective.person ? objective.person.value | trans }}
                 {{ objective.gender ? objective.gender.value | trans }}

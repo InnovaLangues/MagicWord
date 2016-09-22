@@ -14,17 +14,13 @@
         </div>
         <div class="panel-body">
             <!-- Nav tabs -->
-            <ul class="nav nav-tabs nav-justified" role="tablist">
+            <ul class="nav nav-tabs " role="tablist">
                 <li role="presentation"  class="active"><a href="#ranking" aria-controls="ranking" role="tab" data-toggle="tab">{{ "ranking" | trans }}</a></li>
-                <li role="presentation"><a href="#rounds" aria-controls="rounds" role="tab" data-toggle="tab">{{ "rounds" | trans }}</a></li>
             </ul>
 
             <div class="tab-content">
                 <div role="tabpanel" class="tab-pane active" id="ranking">
                     {% include "MagicWordBundle:Game/Massive/partials:ranking.html.twig" %}
-                </div>
-                <div role="tabpanel" class="tab-pane" id="rounds">
-                    {% include "MagicWordBundle:Game/Massive/partials:rounds.html.twig" %}
                 </div>
             </div>
         </div>
