@@ -19,7 +19,11 @@
             <li role="presentation" class="active"><a href="#massives" aria-controls="massives" role="tab" data-toggle="tab">{{ "massives" | trans }}</a></li>
             <li role="presentation"><a href="#challenges" aria-controls="challenges" role="tab" data-toggle="tab">{{"challenges" | trans }}</a></li>
             <li role="presentation"><a href="#ranking" aria-controls="ranking" role="tab" data-toggle="tab">{{ "ranking" | trans}}</a></li>
-            <li role="presentation"><a href="#stats" aria-controls="stats" role="tab" data-toggle="tab">{{ "stats" | trans }}</a></li>
+            <li role="presentation">
+                <a href="#stats" aria-controls="stats" role="tab" data-toggle="tab">
+                    <i class="fa fa-bar-chart" aria-hidden="true"></i> {{ "stats" | trans }}
+                </a>
+            </li>
         </ul>
 
          <!-- Tab panes -->
@@ -39,7 +43,13 @@
                 </ul>
             </div>
             <div role="tabpanel" class="tab-pane" id="ranking">...</div>
-            <div role="tabpanel" class="tab-pane" id="stats">...</div>
+            <div role="tabpanel" class="tab-pane" id="stats">
+                <ul class="list-group">
+                    <li class="list-group-item">
+                        <strong>Max points:</strong> {{ best.points }} points avec {{ best.form|upper }}
+                    </li>
+                </ul>
+            </div>
         </div>
 
     </div>

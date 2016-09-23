@@ -7,7 +7,7 @@ use FOS\UserBundle\Model\User as BaseUser;
 
 /**
  * @ORM\Table(name="player")
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="MagicWordBundle\Repository\PlayerRepository")
  */
 class Player extends BaseUser
 {
@@ -192,7 +192,7 @@ class Player extends BaseUser
     }
 
     /**
-     * Add startedGame
+     * Add startedGame.
      *
      * @param \MagicWordBundle\Entity\Game $startedGame
      *
@@ -206,7 +206,7 @@ class Player extends BaseUser
     }
 
     /**
-     * Remove startedGame
+     * Remove startedGame.
      *
      * @param \MagicWordBundle\Entity\Game $startedGame
      */
@@ -216,7 +216,7 @@ class Player extends BaseUser
     }
 
     /**
-     * Get startedGames
+     * Get startedGames.
      *
      * @return \Doctrine\Common\Collections\Collection
      */
@@ -226,7 +226,7 @@ class Player extends BaseUser
     }
 
     /**
-     * Add endedGame
+     * Add endedGame.
      *
      * @param \MagicWordBundle\Entity\Game $endedGame
      *
@@ -240,7 +240,7 @@ class Player extends BaseUser
     }
 
     /**
-     * Remove endedGame
+     * Remove endedGame.
      *
      * @param \MagicWordBundle\Entity\Game $endedGame
      */
@@ -250,7 +250,7 @@ class Player extends BaseUser
     }
 
     /**
-     * Get endedGames
+     * Get endedGames.
      *
      * @return \Doctrine\Common\Collections\Collection
      */

@@ -65,7 +65,7 @@ class PlayerController extends Controller
     }
 
     /**
-     * @Route("/user/{id}", name="profile")
+     * @Route("/user/{id}", name="profile", requirements={"id": "\d+"})
      * @ParamConverter("player", class="MagicWordBundle:Player")
      */
     public function displayProfileAction(Player $player)

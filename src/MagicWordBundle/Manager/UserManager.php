@@ -146,4 +146,12 @@ class UserManager
         $this->em->persist($user);
         $this->em->flush();
     }
+
+    public function getBestForm()
+    {
+        $currentUser = $this->tokenStorage->getToken()->getUser();
+        $best = $this->em->getRepository('MagicWordBundle:Player')->getBestForm($currentUser);
+
+        return $best;
+    }
 }
