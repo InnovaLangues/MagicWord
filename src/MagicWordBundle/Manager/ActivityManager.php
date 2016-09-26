@@ -123,10 +123,10 @@ class ActivityManager
 
     public function canAccessScores(Activity $activity)
     {
-        $haveActivity = $this->getActivity($activity->getRound());
+        $currentUserActivity = $this->getActivity($activity->getRound());
         $gameAuthor = $activity->getRound()->getGame()->getAuthor();
 
-        return ($this->currentUser === $gameAuthor || $haveActivity)
+        return ($this->currentUser === $gameAuthor || $currentUserActivity->getEndDate())
             ? true
             : false;
     }
