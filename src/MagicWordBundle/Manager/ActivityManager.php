@@ -120,4 +120,14 @@ class ActivityManager
     {
         return $activity = $this->em->getRepository('MagicWordBundle:Activity')->findOneBy(['player' => $this->currentUser, 'round' => $round]);
     }
+
+    public function canAccessScores(Activity $activity)
+    {
+        $haveActivity = $this->getActivity($activity->getRound());
+        $gameAuthor = $activity->getRound()->getGame()->getAuthor();
+
+        return ($this->currentUser === $gameAuthor || $haveActivity)
+            ? true
+            : false;
+    }
 }

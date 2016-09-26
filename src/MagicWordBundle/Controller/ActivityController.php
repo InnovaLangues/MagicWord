@@ -74,8 +74,8 @@ class ActivityController extends Controller
      */
     public function activityDisplayAction(Activity $activity)
     {
-        $haveActivity = $this->get('mw_manager.activity')->getActivity($activity->getRound());
-        if ($haveActivity) {
+        $canAccessScores = $this->get('mw_manager.activity')->canAccessScores($activity);
+        if ($canAccessScores) {
             $activity = $this->renderView('MagicWordBundle:Activity:details.html.twig', ['activity' => $activity]);
 
             return new Response($activity);
