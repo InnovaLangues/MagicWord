@@ -46,7 +46,10 @@
             <div role="tabpanel" class="tab-pane" id="stats">
                 <ul class="list-group">
                     <li class="list-group-item">
-                        <strong>Max points:</strong> {{ best.points }} points avec {{ best.form|upper }}
+                        <strong>Max points:</strong>
+                        {% if best is not null %}
+                            {{ best.points }} points avec {{ best.form|upper }}
+                        {% endif %}
                     </li>
                 </ul>
             </div>
