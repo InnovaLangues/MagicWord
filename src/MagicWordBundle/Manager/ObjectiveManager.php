@@ -28,6 +28,36 @@ class ObjectiveManager
         $this->formFactory = $formFactory;
     }
 
+    public function checkFeasibility($objective)
+    {
+        $foundableRepo = $this->em->getRepository('MagicWordBundle:foundableForm');
+        $conquer = $objective->getConquer();
+        $grid = $conquer->getGrid();
+
+        if ($grid) {
+            switch ($objective->getDiscr()) {
+                case 'findword':
+                    $feasibility = $foundableRepo->findOneBy(['grid' => $grid, 'form' => $objective->getinflection()])
+                        ? true
+                        : false;
+
+                    break;
+
+                case 'constraint':
+                    $foundables = $foundableRepo->getByGridAndCriteria($grid, $objective);
+                    $feasibility = count($foundables) >= $objective->getNumberToFind()
+                        ? true
+                        : false;
+
+                default:
+                    # code...
+                    break;
+                }
+        }
+
+        return $feasibility;
+    }
+
     public function saveObjectives(Conquer $conquer, Request $request)
     {
         $form = $this->formFactory->createBuilder(RoundType::class, $conquer)->getForm();
@@ -52,6 +82,8 @@ class ObjectiveManager
                 if ($objective->getDiscr() == 'findword') {
                     $this->handleFindWord($objective);
                 }
+
+                $this->checkFeasibility($objective);
             }
 
             $this->em->persist($conquer);

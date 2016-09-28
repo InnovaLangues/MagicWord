@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
  * Activity.
  *
  * @ORM\Table(name="foundable_form")
- * @ORM\Entity()
+ * @ORM\Entity(repositoryClass="MagicWordBundle\Repository\FoundableRepository")
  */
 class FoundableForm implements \JsonSerializable
 {
