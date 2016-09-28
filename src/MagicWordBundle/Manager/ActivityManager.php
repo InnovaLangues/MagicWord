@@ -19,6 +19,7 @@ class ActivityManager
     protected $scoreManager;
     protected $userManager;
     protected $timeManager;
+    protected $wrongFormManager;
     protected $currentUser;
 
     /**
@@ -28,15 +29,17 @@ class ActivityManager
      *      "scoreManager" = @DI\Inject("mw_manager.score"),
      *      "userManager" = @DI\Inject("mw_manager.user"),
      *      "timeManager" = @DI\Inject("mw_manager.time"),
+     *      "wrongFormManager" = @DI\Inject("mw_manager.wrongform"),
      * })
      */
-    public function __construct($entityManager, $tokenStorage, $scoreManager, $userManager, $timeManager)
+    public function __construct($entityManager, $tokenStorage, $scoreManager, $userManager, $timeManager, $wrongFormManager)
     {
         $this->em = $entityManager;
         $this->tokenStorage = $tokenStorage;
         $this->scoreManager = $scoreManager;
         $this->userManager = $userManager;
         $this->timeManager = $timeManager;
+        $this->wrongFormManager = $wrongFormManager;
         $this->currentUser = $this->tokenStorage->getToken()->getUser();
     }
 
@@ -60,6 +63,25 @@ class ActivityManager
         $activity = $this->getActivity($round);
 
         $activity->addFoundForm($foundableform);
+        $this->em->persist($activity);
+        $this->em->flush();
+    }
+
+    public function addWrongForm(Round $round, $form)
+    {
+        $activity = $this->getActivity($round);
+        $language = $round->getGame()->getLanguage();
+
+        $wrongForm = $this->em->getRepository('MagicWordBundle:Lexicon\WrongForm')->findOneBy([
+            'language' => $language,
+            'form' => $form,
+        ]);
+
+        if (!$wrongForm) {
+            $wrongForm = $this->wrongFormManager->create($form, $language);
+        }
+
+        $activity->addWrongForm($wrongForm);
         $this->em->persist($activity);
         $this->em->flush();
     }

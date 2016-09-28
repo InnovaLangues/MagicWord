@@ -5,8 +5,6 @@ namespace MagicWordBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Activity.
- *
  * @ORM\Table(name="foundable_form")
  * @ORM\Entity()
  */

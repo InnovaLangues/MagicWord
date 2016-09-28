@@ -40,6 +40,12 @@ class Activity implements \JsonSerializable
     private $foundForms;
 
     /**
+     * @ORM\ManyToMany(targetEntity="MagicWordBundle\Entity\Lexicon\WrongForm")
+     * @ORM\JoinTable(name="activity_wrongForm")
+     */
+    private $wrongForms;
+
+    /**
      * @ORM\ManyToMany(targetEntity="Objective")
      * @ORM\JoinTable(name="activity_objective")
      */
@@ -374,9 +380,9 @@ class Activity implements \JsonSerializable
     }
 
     /**
-     * Set timePoints
+     * Set timePoints.
      *
-     * @param integer $timePoints
+     * @param int $timePoints
      *
      * @return Activity
      */
@@ -388,12 +394,46 @@ class Activity implements \JsonSerializable
     }
 
     /**
-     * Get timePoints
+     * Get timePoints.
      *
-     * @return integer
+     * @return int
      */
     public function getTimePoints()
     {
         return $this->timePoints;
+    }
+
+    /**
+     * Add wrongForm
+     *
+     * @param \MagicWordBundle\Entity\Lexicon\WrongForm $wrongForm
+     *
+     * @return Activity
+     */
+    public function addWrongForm(\MagicWordBundle\Entity\Lexicon\WrongForm $wrongForm)
+    {
+        $this->wrongForms[] = $wrongForm;
+
+        return $this;
+    }
+
+    /**
+     * Remove wrongForm
+     *
+     * @param \MagicWordBundle\Entity\Lexicon\WrongForm $wrongForm
+     */
+    public function removeWrongForm(\MagicWordBundle\Entity\Lexicon\WrongForm $wrongForm)
+    {
+        $this->wrongForms->removeElement($wrongForm);
+    }
+
+    /**
+     * Get wrongForms
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getWrongForms()
+    {
+        return $this->wrongForms;
     }
 }

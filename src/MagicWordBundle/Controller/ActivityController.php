@@ -42,6 +42,18 @@ class ActivityController extends Controller
     }
 
     /**
+     * @Route("/add-wrong-form/round/{roundId}/form/{form}", name="add_wrongForm", options={"expose"=true})
+     * @ParamConverter("round", class="MagicWordBundle:Round",  options={"id" = "roundId"})
+     * @Method("POST")
+     */
+    public function addWrongFormAction(Round $round, $form)
+    {
+        $this->get('mw_manager.activity')->addWrongForm($round, $form);
+
+        return new JsonResponse();
+    }
+
+    /**
      * @Route("/add-objective-done/round/{roundId}/objective/{objectiveId}", name="add_objectiveDone", options={"expose"=true})
      * @ParamConverter("round", class="MagicWordBundle:Round",  options={"id" = "roundId"})
      * @ParamConverter("objective", class="MagicWordBundle:Objective", options={"id" = "objectiveId"})

@@ -43,6 +43,8 @@ var words = {
 			this.correctWords++;
 			$("#correctWords-found").html(this.correctWords);
 			points = score.calculatePoints(inflection);
+		} else {
+			activity.sendWrongWord(inflection);
 		}
 
 		$("#inflections-found").prepend("<li class='list-group-item'>"+typedInflection+"<span class='pull-right'>"+points+"</span></li>");
@@ -59,7 +61,6 @@ var words = {
 				if (roundJSON.type == "conquer") {
 					objectiveConstraint.add(inflection);
 				}
-
 			} else {
 				this.addToFoundWords(inflection.toLowerCase(), false, true, true);
 				combo.reset();

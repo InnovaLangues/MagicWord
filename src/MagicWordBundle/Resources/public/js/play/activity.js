@@ -50,6 +50,17 @@ var activity = {
           });
 	},
 
+	sendWrongWord: function(inflection){
+		var roundId = roundJSON.id;
+		var form = inflection.toLowerCase();
+		var url = Routing.generate('add_wrongForm', {roundId: roundId, form: form});
+		$.ajax({
+              type: 'POST',
+              url: url,
+              dataType: "json",
+          });
+	},
+
 	sendObjectiveDone: function(objectiveId){
         var roundId = roundJSON.id;
 		var url = Routing.generate('add_objectiveDone', {roundId: roundId, objectiveId: objectiveId});
