@@ -79,6 +79,10 @@ class RoundManager
         } else {
             $this->gridManager->updateGrid($grid, $request);
         }
+
+        $this->em->refresh($grid);
+
+        return $grid;
     }
 
     private function getNextDisplayOrder(Game $game)
