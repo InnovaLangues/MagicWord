@@ -6,7 +6,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Doctrine\ORM\Mapping\Index;
 
 /**
- * @ORM\Entity()
+ * @ORM\Entity(repositoryClass="MagicWordBundle\Repository\Lexicon\WrongFormRepository")
  * @ORM\Table(name="wrongform", indexes={
  *  @Index(name="wrongform", columns={"form"}),
  * })
@@ -69,7 +69,7 @@ class WrongForm
     }
 
     /**
-     * Set form
+     * Set form.
      *
      * @param string $form
      *
@@ -83,7 +83,7 @@ class WrongForm
     }
 
     /**
-     * Get form
+     * Get form.
      *
      * @return string
      */
