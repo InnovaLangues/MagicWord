@@ -28,4 +28,22 @@ class PlayerRepository extends \Doctrine\ORM\EntityRepository
 
         return $foundable;
     }
+
+    public function countByGame($game)
+    {
+        $dql = 'SELECT DISTINCT count(p.id) FROM MagicWordBundle:Player p
+                WHERE EXISTS(
+                    SELECT a FROM MagicWordBundle:Activity a
+                    LEFT JOIN a.round ar
+                    LEFT JOIN ar.game g
+                    WHERE a.player = p
+                    AND g = :game
+                )
+        ';
+
+        $query = $this->_em->createQuery($dql);
+        $query->setParameter('game', $game);
+
+        return $query->getSingleScalarResult();
+    }
 }

@@ -20,6 +20,7 @@
                             "{{ massive.name }}" {% if massive.description %}<span class="text-muted">({{ massive.description}})</span>{% endif %}
                             par <a href="{{ path('profile', {"id":  massive.author.id}) }}">{{ massive.author }}</a>
                             <span class="pull-right">
+                                <span class="label label-info">{{ "popularity" | trans }}: {{ getActivityCount(massive) }}</span>
                                 <a class="btn btn-default btn-xs" role="button" data-toggle="collapse" data-parent="#accordion" href="#{{ massive.id }}" aria-expanded="true" aria-controls="{{ massive.id }}">
                                     <i class="fa fa-info" aria-hidden="true"></i> Infos
                                 </a>
@@ -27,6 +28,7 @@
                             </span>
                         </h4>
                     </div>
+
                     <div id="{{ massive.id }}" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
                         <ul class="list-group" >
                             {% for i, round in massive.rounds %}

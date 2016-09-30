@@ -13,12 +13,15 @@
         </h4>
     </div>
     <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
-        {% for game in games %}
+        {% for game in games if game.discr != "training" %}
         <div class="panel panel-default">
             <div class="panel-heading" role="tab" id="headingOne">
                 <h4 class="panel-title">
                     {{ _self.game_name(game) }}
                     <span class="pull-right">
+                        {% if game.discr == "massive" %}
+                        <span class="label label-info">{{ "popularity" | trans }}: {{ getActivityCount(game) }}</span>
+                        {% endif %}
                         <a class="btn btn-default btn-xs" role="button" data-toggle="collapse" data-parent="#accordion" href="#{{ game.id }}" aria-expanded="true" aria-controls="{{ game.id }}">
                             <i class="fa fa-info" aria-hidden="true"></i> Infos
                         </a>
