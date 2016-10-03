@@ -17,6 +17,7 @@ class PlayerRepository extends \Doctrine\ORM\EntityRepository
                     LEFT JOIN ar.game g
                     WHERE a.player = :user
                     AND g.language = :language
+                    AND f MEMBER OF a.foundForms
                 ) ORDER BY f.points DESC';
 
         $query = $this->_em->createQuery($dql);
