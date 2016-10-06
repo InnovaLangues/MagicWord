@@ -28,6 +28,7 @@
 <script>
 var gridJSON = {{ grid | json_encode()|raw }};
 var roundJSON = {{ round | json_encode()|raw }};
+var assetsBaseDir = "{{ asset('/') }}";
 </script>
 {% endblock %}
 

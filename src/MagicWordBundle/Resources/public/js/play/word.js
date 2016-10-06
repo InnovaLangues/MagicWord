@@ -39,6 +39,7 @@ var words = {
 		if(isCorrect){
 			if (saveIt) {
 				activity.sendFoundWord(inflection);
+				sound.rightWord.play();
 			}
 			this.correctWords++;
 			$("#correctWords-found").html(this.correctWords);
@@ -63,6 +64,7 @@ var words = {
 				}
 			} else {
 				this.addToFoundWords(inflection.toLowerCase(), false, true, true);
+				sound.wrongForm.play();
 				combo.reset();
 			}
 		}

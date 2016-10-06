@@ -12,6 +12,7 @@
     "font-awesome": "^4.6.3",
     "FlipClock": "*",
     "jquery-ui": "*",
-    "animate.css": "^3.5.2"
+    "animate.css": "^3.5.2",
+    "howler.js": "howler#^2.0.0"
   }
 }

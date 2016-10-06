@@ -1,4 +1,6 @@
 $(document).ready(function () {
+	sound.init();
+	sound.waitingStart.play();
 	wait.start("Initialisation de la partie");
 	activity.init(function(){
 		grid.draw();

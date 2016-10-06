@@ -55,6 +55,7 @@ module.exports = function(grunt) {
                     'web/js/play.js': [
                         "bower_components/jquery-ui/jquery-ui.min.js",
                         "bower_components/FlipClock/compiled/flipclock.min.js",
+                        "bower_components/howler.js/dist/howler.min.js",
                         "src/MagicWordBundle/Resources/public/js/play/activity.js",
                         "src/MagicWordBundle/Resources/public/js/play/clock.js",
                         "src/MagicWordBundle/Resources/public/js/play/objective-combo.js",
@@ -67,6 +68,7 @@ module.exports = function(grunt) {
                         "src/MagicWordBundle/Resources/public/js/play/play.js",
                         "src/MagicWordBundle/Resources/public/js/play/score.js",
                         "src/MagicWordBundle/Resources/public/js/play/objectives.js",
+                        "src/MagicWordBundle/Resources/public/js/play/sound.js",
                     ]
                 }
             }
