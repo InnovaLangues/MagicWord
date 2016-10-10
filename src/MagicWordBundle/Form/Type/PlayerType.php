@@ -18,6 +18,12 @@ class PlayerType extends AbstractType
             'translation_domain' => 'messages',
         ));
 
+        $builder->add('muteSound', CheckboxType::class, array(
+            'label' => 'mute_sounds',
+            'required' => false,
+            'translation_domain' => 'messages',
+        ));
+
         $builder->add('language', EntityType::class, array(
            'label' => 'game_language',
            'class' => 'MagicWordBundle:Language',

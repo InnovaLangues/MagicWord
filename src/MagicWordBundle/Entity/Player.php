@@ -35,9 +35,16 @@ class Player extends BaseUser
     /**
      * @var bool
      *
-     * @ORM\Column(name="hidden", type="boolean")
+     * @ORM\Column(name="hidden", type="boolean", nullable=true)
      */
     private $hidden = false;
+
+    /**
+     * @var bool
+     *
+     * @ORM\Column(name="mute_sound", type="boolean", nullable=true)
+     */
+    private $muteSound = false;
 
     /**
      * @ORM\ManyToOne(targetEntity="Language")
@@ -257,5 +264,29 @@ class Player extends BaseUser
     public function getEndedGames()
     {
         return $this->endedGames;
+    }
+
+    /**
+     * Set muteSound.
+     *
+     * @param bool $muteSound
+     *
+     * @return Player
+     */
+    public function setMuteSound($muteSound)
+    {
+        $this->muteSound = $muteSound;
+
+        return $this;
+    }
+
+    /**
+     * Get muteSound.
+     *
+     * @return bool
+     */
+    public function getMuteSound()
+    {
+        return $this->muteSound;
     }
 }

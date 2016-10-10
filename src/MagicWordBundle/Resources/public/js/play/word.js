@@ -39,7 +39,7 @@ var words = {
 		if(isCorrect){
 			if (saveIt) {
 				activity.sendFoundWord(inflection);
-				sound.rightWord.play();
+				sound.play(sound.rightWord);
 			}
 			this.correctWords++;
 			$("#correctWords-found").html(this.correctWords);

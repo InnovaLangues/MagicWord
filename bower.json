@@ -13,6 +13,7 @@
     "FlipClock": "*",
     "jquery-ui": "*",
     "animate.css": "^3.5.2",
-    "howler.js": "howler#^2.0.0"
+    "howler.js": "howler#^2.0.0",
+    "bootstrap-switch": "^3.3.2"
   }
 }

@@ -4,7 +4,7 @@ var objectives = {
     score:0,
 
     considerAsDone: function(objectiveId){
-        sound.objectiveProgress.play();
+        sound.play(sound.objectiveProgress);
         this.done++;
         $(".objective-"+objectiveId).addClass("list-group-item-success");
         this.updateScore();
