@@ -16,6 +16,7 @@ module.exports = function(grunt) {
                 files: {
                     "web/css/main.css": [
                         "bower_components/bootstrap/dist/css/bootstrap.css",
+                        "bower_components/bootstrap-switch/dist/css/bootstrap3/bootstrap-switch.min.css",
                         "bower_components/font-awesome/css/font-awesome.css",
                         'src/MagicWordBundle/Resources/public/css/main.css',
                         "bower_components/FlipClock/compiled/flipclock.css",
@@ -37,6 +38,7 @@ module.exports = function(grunt) {
                     'web/js/main.js': [
                         "bower_components/jquery/dist/jquery.min.js",
                         "bower_components/bootstrap/dist/js/bootstrap.min.js",
+                        "bower_components/bootstrap-switch/dist/js/bootstrap-switch.js",
                         'web/bundles/fosjsrouting/js/router.js',
                         'src/MagicWordBundle/Resources/public/js/wordbox.js',
                         'src/MagicWordBundle/Resources/public/js/wait.js',
@@ -55,6 +57,7 @@ module.exports = function(grunt) {
                     'web/js/play.js': [
                         "bower_components/jquery-ui/jquery-ui.min.js",
                         "bower_components/FlipClock/compiled/flipclock.min.js",
+                        "bower_components/howler.js/dist/howler.min.js",
                         "src/MagicWordBundle/Resources/public/js/play/activity.js",
                         "src/MagicWordBundle/Resources/public/js/play/clock.js",
                         "src/MagicWordBundle/Resources/public/js/play/objective-combo.js",
@@ -67,6 +70,7 @@ module.exports = function(grunt) {
                         "src/MagicWordBundle/Resources/public/js/play/play.js",
                         "src/MagicWordBundle/Resources/public/js/play/score.js",
                         "src/MagicWordBundle/Resources/public/js/play/objectives.js",
+                        "src/MagicWordBundle/Resources/public/js/play/sound.js",
                     ]
                 }
             }

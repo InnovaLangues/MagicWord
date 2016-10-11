@@ -160,6 +160,7 @@ var grid = {
 		if ( !letter ) {
 			return false;
 		}
+		sound.play(sound.addLetter);
 		this.selectedSquares.push(id);
 		this.foundWord += letter;
 		this.getAllowedSquare(id);
@@ -172,6 +173,7 @@ var grid = {
 		var lastLetter = this.foundWord.length - 1;
 		this.foundWord = this.foundWord.substring(0,lastLetter);
 		this.allowedSquares = [];
+		sound.play(sound.removeLetter);
 		if ( this.selectedSquares.length > 0 ) {
 			var prevId = this.selectedSquares[this.selectedSquares.length - 1];
 			this.getAllowedSquare(prevId);

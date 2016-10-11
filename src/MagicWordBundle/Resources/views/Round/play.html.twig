@@ -23,11 +23,16 @@
         {# INFLECTIONS FOUND #}
         {% include "MagicWordBundle:Round/Play:found.html.twig" %}
     </div>
+    <div class="row">
+        {# SOUND #}
+        {% include "MagicWordBundle:Round/Play:sound.html.twig" %}
+    </div>
 </div>
 
 <script>
 var gridJSON = {{ grid | json_encode()|raw }};
 var roundJSON = {{ round | json_encode()|raw }};
+var assetsBaseDir = "{{ asset('/') }}";
 </script>
 {% endblock %}
 

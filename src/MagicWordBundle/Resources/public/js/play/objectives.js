@@ -4,6 +4,7 @@ var objectives = {
     score:0,
 
     considerAsDone: function(objectiveId){
+        sound.play(sound.objectiveProgress);
         this.done++;
         $(".objective-"+objectiveId).addClass("list-group-item-success");
         this.updateScore();
@@ -12,6 +13,7 @@ var objectives = {
 
     checkCompletion: function(){
         if(this.done == this.doable){
+            sound.play(sound.objectiveDone);
             activity.end(0);
         }
     },
