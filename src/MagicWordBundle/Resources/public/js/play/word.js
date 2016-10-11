@@ -64,7 +64,7 @@ var words = {
 				}
 			} else {
 				this.addToFoundWords(inflection.toLowerCase(), false, true, true);
-				sound.wrongForm.play();
+				sound.play(sound.wrongForm);
 				combo.reset();
 			}
 		}

@@ -13,7 +13,7 @@ var objectives = {
 
     checkCompletion: function(){
         if(this.done == this.doable){
-            sound.objectiveDone.play();
+            sound.play(sound.objectiveDone);
             activity.end(0);
         }
     },
