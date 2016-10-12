@@ -18,7 +18,7 @@ class LemmaRepository extends \Doctrine\ORM\EntityRepository
 
         $query = $em->createQuery($dql);
         $query->setParameter('cleanedContent', $findWord->getInflection());
-        $query->setParameter('language', $findWord->getConquer()->getGame()->getLanguage());
+        $query->setParameter('language', $findWord->getConquer()->getLanguage());
 
         return $query->getResult();
     }
