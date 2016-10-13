@@ -44,10 +44,9 @@ class GridManager
         return $grid;
     }
 
-    public function seekOrGenerateForTraining()
+    public function seekOrGenerateForTraining(Language $language)
     {
         $user = $this->tokenStorage->getToken()->getUser();
-        $language = $user->getLanguage();
         $grid = ($existingGrid = $this->em->getRepository('MagicWordBundle:Grid')->findNotPlayedForTraining($user))
             ? $existingGrid
             : $this->generate($language);

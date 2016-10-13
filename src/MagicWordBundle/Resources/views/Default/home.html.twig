@@ -12,7 +12,13 @@
             </div>
             <ul class="list-group">
                 <li class="list-group-item">
-                    <a class="please-wait" data-message="Génération de la grille" href="{{ path('train') }}">{{ 'train' | trans }}</a>
+                    {{ 'train' | trans }}
+                    {% set languages = get_languages() %}
+                    {% for language in languages %}
+                    <a class="please-wait" data-message="Génération de la grille" href="{{ path('train', {id: language.id}) }}">
+                        {{ language.name | trans }}
+                    </a>
+                    {% endfor %}
                 </li>
                 <li class="list-group-item">
                     <a href="{{ path('challenge') }}">{{ 'challenge_someone' | trans }}</a>
