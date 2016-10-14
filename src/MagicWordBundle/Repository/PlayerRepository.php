@@ -13,16 +13,12 @@ class PlayerRepository extends \Doctrine\ORM\EntityRepository
         $dql = 'SELECT f FROM MagicWordBundle:FoundableForm f
                 WHERE EXISTS(
                     SELECT a FROM MagicWordBundle:Activity a
-                    LEFT JOIN a.round ar
-                    LEFT JOIN ar.game g
                     WHERE a.player = :user
-                    AND g.language = :language
                     AND f MEMBER OF a.foundForms
                 ) ORDER BY f.points DESC';
 
         $query = $this->_em->createQuery($dql);
         $query->setParameter('user', $user);
-        $query->setParameter('language', $user->getLanguage());
         $query->setMaxResults(1);
 
         $foundable = $query->getOneOrNullResult();

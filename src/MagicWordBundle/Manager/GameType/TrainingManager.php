@@ -4,6 +4,7 @@ namespace  MagicWordBundle\Manager\GameType;
 
 use JMS\DiExtraBundle\Annotation as DI;
 use MagicWordBundle\Entity\GameType\Training;
+use MagicWordBundle\Entity\Language;
 
 /**
  * @DI\Service("mw_manager.training")
@@ -34,13 +35,13 @@ class TrainingManager
         $this->tokenStorage = $tokenStorage;
     }
 
-    public function generateTraining()
+    public function generateTraining(Language $language)
     {
         $game = new Training();
 
-        $grid = $this->gridManager->seekOrGenerateForTraining();
+        $grid = $this->gridManager->seekOrGenerateForTraining($language);
         $round = $this->roundManager->generateRush($game, $grid);
-        $game->setLanguage($grid->getLanguage());
+        $game->setLanguage($language);
         $game->setAuthor($this->tokenStorage->getToken()->getUser());
         $this->em->persist($game);
         $this->em->flush();

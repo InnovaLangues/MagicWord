@@ -10,17 +10,4 @@ namespace MagicWordBundle\Repository;
  */
 class GameRepository extends \Doctrine\ORM\EntityRepository
 {
-    public function getStarted($user)
-    {
-        $em = $this->_em;
-        $dql = 'SELECT g FROM MagicWordBundle\Entity\Game g
-        WHERE g IN ( :started )
-        AND g.language = :language';
-
-        $query = $em->createQuery($dql);
-        $query->setParameter('language', $user->getLanguage());
-        $query->setParameter('started', $user->getStartedGames());
-
-        return $query->getResult();
-    }
 }
