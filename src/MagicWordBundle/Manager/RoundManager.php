@@ -51,6 +51,7 @@ class RoundManager
         $round->setGame($game);
         $round->setGrid($grid);
         $round->setDisplayOrder($this->getNextDisplayOrder($game));
+        $round->setLanguage($game->getLanguage());
         $this->em->persist($round);
         $this->em->flush();
 
@@ -63,6 +64,8 @@ class RoundManager
         $round->setGame($game);
         $round->setGrid(null);
         $round->setDisplayOrder($this->getNextDisplayOrder($game));
+        $round->setLanguage($game->getLanguage());
+
         $this->em->persist($round);
         $this->em->flush();
 

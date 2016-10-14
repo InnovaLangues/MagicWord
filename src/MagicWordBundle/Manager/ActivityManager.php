@@ -70,7 +70,7 @@ class ActivityManager
     public function addWrongForm(Round $round, $form)
     {
         $activity = $this->getActivity($round);
-        $language = $round->getGame()->getLanguage();
+        $language = $round->getLanguage();
 
         $wrongForm = $this->em->getRepository('MagicWordBundle:Lexicon\WrongForm')->findOneBy([
             'language' => $language,
