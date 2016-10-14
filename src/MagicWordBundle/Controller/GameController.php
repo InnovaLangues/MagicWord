@@ -13,7 +13,7 @@ class GameController extends Controller
      */
     public function listStartedGamesAction()
     {
-        $games = $this->get('mw_manager.game')->getStarted();
+        $games = $this->get('security.token_storage')->getToken()->getUser()->getStartedGames();
 
         return $this->render('MagicWordBundle:Game:started.html.twig', array('games' => $games));
     }

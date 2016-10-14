@@ -2,6 +2,9 @@
 
 namespace MagicWordBundle\Repository;
 
+use MagicWordBundle\Entity\Player;
+use MagicWordBundle\Entity\Language;
+
 /**
  * GridRepository.
  *
@@ -10,7 +13,7 @@ namespace MagicWordBundle\Repository;
  */
 class GridRepository extends \Doctrine\ORM\EntityRepository
 {
-    public function findNotPlayedForTraining($user)
+    public function findNotPlayedForTraining(Player $user, Language $language)
     {
         $em = $this->_em;
         $dql = "SELECT g FROM MagicWordBundle\Entity\Grid g
@@ -36,7 +39,7 @@ class GridRepository extends \Doctrine\ORM\EntityRepository
 
         $query = $em->createQuery($dql);
         $query->setParameter('user', $user)
-              ->setParameter('language', $user->getLanguage())
+              ->setParameter('language', $language)
               ->setMaxResults(1);
 
         return $query->getOneOrNullResult();
