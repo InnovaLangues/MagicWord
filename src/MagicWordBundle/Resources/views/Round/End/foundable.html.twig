@@ -6,9 +6,20 @@
                     <div class="panel panel-default">
                         <div class="panel-heading">
                              {{ activity.foundForms|length}} {{ "forms_found" | trans }}
+                             <span class="pull-right">
+                                <button type="button" class="btn btn-default btn-xs" data-order="asc" onclick="sortFoundables.sort('founded','percent', this)">
+                                    <i class="fa fa-sort" aria-hidden="true"></i> %
+                                </button>
+                                <button type="button" class="btn btn-default btn-xs" data-order="asc" onclick="sortFoundables.sort('founded','form', this)">
+                                    <i class="fa fa-sort" aria-hidden="true"></i> A-Z
+                                </button>
+                                <button type="button" class="btn btn-default btn-xs" data-order="asc" onclick="sortFoundables.sort('founded','points', this)">
+                                    <i class="fa fa-sort" aria-hidden="true"></i> Points
+                                </button>
+                             </span>
                         </div>
                     </div>
-                    <div class="row">
+                    <div id="founded" class="row">
                     {% for foundable in activity.foundForms %}
                     {{ _self.foundable(foundable, activity, activities, "found", roundType) }}
                     {% endfor %}
@@ -20,9 +31,20 @@
                     <div class="panel panel-default">
                         <div class="panel-heading">
                             {{round.grid.foundableForms|length}} {{ "existing_forms" | trans }}
+                            <span class="pull-right">
+                               <button type="button" class="btn btn-default btn-xs" data-order="asc" onclick="sortFoundables.sort('foundable','percent', this)">
+                                   <i class="fa fa-sort" aria-hidden="true"></i> %
+                               </button>
+                               <button type="button" class="btn btn-default btn-xs" data-order="asc" onclick="sortFoundables.sort('foundable','form', this)">
+                                   <i class="fa fa-sort" aria-hidden="true"></i> A-Z
+                               </button>
+                               <button type="button" class="btn btn-default btn-xs" data-order="asc" onclick="sortFoundables.sort('foundable','points', this)">
+                                   <i class="fa fa-sort" aria-hidden="true"></i> Points
+                               </button>
+                            </span>
                         </div>
                     </div>
-                    <div class="row">
+                    <div id="foundable" class="row">
                     {% for foundable in round.grid.foundableForms %}
                     {{ _self.foundable(foundable, activity, activities, "foundable", roundType) }}
                     {% endfor %}
@@ -61,7 +83,8 @@
 {% endmacro %}
 
 {% macro foundable(foundable, activity, activities, type, roundType) %}
-<div class="col-md-4">
+{% set percent = _self.percent(foundable, activities) %}
+<div class="col-md-4 foundable" data-form="{{ foundable.form }}" data-points="{{ foundable.points }}" data-percent="{{ percent }}">
     <div class="panel panel-default">
         <div class="panel-heading " role="tab">
             <h4 class="panel-title {% if foundable in activity.foundForms and type == "foundable" %}bg-success{% endif %} ">
@@ -69,7 +92,7 @@
                      {{ foundable.form | upper }} <span class="text-muted">({{ foundable.points}})</span>
                      {% if roundType != "training" %}
                      <span class="pull-right">
-                        <span class="label label-default">{{ _self.percent(foundable, activities)  }}</span>
+                        <span class="label label-default">{{ percent  }}</span>
                      </span>
                      {% endif %}
                 </a>
@@ -86,7 +109,7 @@
                             <i class="fa fa-wikipedia-w" aria-hidden="true"></i>
                         </span>
                         {% if isInWordbox(inflection.lemma) == false %}
-                        <span class="btn btn-default btn-xs"onclick="addToWordbox({{ inflection.lemma.id }}, this);">
+                        <span class="btn btn-default btn-xs" onclick="addToWordbox({{ inflection.lemma.id }}, this);">
                             <i class="fa fa-plus" aria-hidden="true"></i>
                             {{ "add_to_wordbox_short" | trans}}
                         </span>
