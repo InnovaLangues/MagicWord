@@ -48,21 +48,19 @@
                             {{ round.title ? round.title : "round" | trans  ~ " " ~ order }}
                             {% if round.description %}<span class="text-muted">({{ round.description }})</span>{% endif %}
                             <span class="pull-right">
-                            {% if round.discr == "rush" %}
+                                <a class="btn btn-default btn-xs {% if order == 1 %}disabled{% endif %}" href="{{ path('round_move_up', {"massiveId": massive.id, "roundId": round.id }) }}">
+                                    <i class="fa fa-arrow-up" aria-hidden="true"></i>
+                                </a>
+                                <a class="btn btn-default btn-xs {% if order == massive.rounds|length %}disabled{% endif %}" href="{{ path('round_move_down', {"massiveId": massive.id, "roundId": round.id }) }}">
+                                    <i class="fa fa-arrow-down" aria-hidden="true"></i>
+                                </a>
                                 <a class="btn btn-default btn-xs" href="{{ path('round_edit', {"id": round.id }) }}">
                                     <i class="fa fa-pencil" aria-hidden="true"></i>
                                     {{ 'edit_round' | trans }}
                                 </a>
-                            {% else %}
-                                <a class="btn btn-default btn-xs" href="{{ path('round_edit', {"id": round.id }) }}">
-                                    <i class="fa fa-pencil" aria-hidden="true"></i>
-                                    {{ 'edit_round' | trans }}
+                                <a class="btn btn-default btn-xs btn-danger" href="{{ path('massive_remove_round', {"massiveId": massive.id, "roundId": round.id }) }}">
+                                    <i class="fa fa-times" aria-hidden="true"></i>
                                 </a>
-                            {% endif %}
-
-                            <a class="btn btn-default btn-xs btn-danger" href="{{ path('massive_remove_round', {"massiveId": massive.id, "roundId": round.id }) }}">
-                                <i class="fa fa-times" aria-hidden="true"></i>
-                            </a>
                             </span>
                         </li>
                     {% endfor %}

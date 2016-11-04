@@ -180,4 +180,30 @@ class MassiveController extends Controller
 
         return $this->redirectToRoute('massive_builder', array('id' => $massive->getId()));
     }
+
+    /**
+     * @Route("/massive/{massiveId}/moveup/{roundId}", name="round_move_up")
+     * @ParamConverter("massive", class="MagicWordBundle:GameType\Massive", options={"id" = "massiveId"})
+     * @ParamConverter("round", class="MagicWordBundle:Round", options={"id" = "roundId"})
+     */
+    public function roundMoveUp(Massive $massive, Round $round)
+    {
+        $this->get('mw_manager.massive')->swapRound($massive, $round, -1);
+        $this->get('session')->getFlashBag()->add('success', 'Round déplacé');
+
+        return $this->redirectToRoute('massive_builder', array('id' => $massive->getId()));
+    }
+
+    /**
+     * @Route("/massive/{massiveId}/movedown/{roundId}", name="round_move_down")
+     * @ParamConverter("massive", class="MagicWordBundle:GameType\Massive", options={"id" = "massiveId"})
+     * @ParamConverter("round", class="MagicWordBundle:Round", options={"id" = "roundId"})
+     */
+    public function roundMoveDown(Massive $massive, Round $round)
+    {
+        $this->get('mw_manager.massive')->swapRound($massive, $round, 1);
+        $this->get('session')->getFlashBag()->add('success', 'Round déplacé');
+
+        return $this->redirectToRoute('massive_builder', array('id' => $massive->getId()));
+    }
 }

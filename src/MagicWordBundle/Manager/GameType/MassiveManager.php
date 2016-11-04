@@ -139,6 +139,22 @@ class MassiveManager
         return;
     }
 
+    public function swapRound(Massive $massive, Round $round, $target)
+    {
+        $formerOrder = $round->getDisplayOrder();
+        $newOrder = $formerOrder + $target;
+
+        $target = $this->em->getRepository('MagicWordBundle:Round')->findOneBy(['game' => $massive, 'displayOrder' => $newOrder]);
+        $round->setDisplayOrder($newOrder);
+        $target->setDisplayOrder($formerOrder);
+
+        $this->em->persist($round);
+        $this->em->persist($target);
+        $this->em->flush();
+
+        return;
+    }
+
     private function reorderRounds(Massive $massive)
     {
         $rounds = $massive->getRounds();
