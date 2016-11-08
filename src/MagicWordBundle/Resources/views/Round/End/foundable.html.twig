@@ -7,13 +7,13 @@
                         <div class="panel-heading">
                              {{ activity.foundForms|length}} {{ "forms_found" | trans }}
                              <span class="pull-right">
-                                <button type="button" class="btn btn-default btn-xs" data-order="asc" onclick="sortFoundables.sort('founded','percent', this)">
+                                <button type="button" class="btn btn-default btn-xs" data-order="asc" onclick="sorter.sort('percent', this, '#founded', '#founded div.foundable')">
                                     <i class="fa fa-sort" aria-hidden="true"></i> %
                                 </button>
-                                <button type="button" class="btn btn-default btn-xs" data-order="asc" onclick="sortFoundables.sort('founded','form', this)">
+                                <button type="button" class="btn btn-default btn-xs" data-order="asc" onclick="sorter.sort('form', this, '#founded', '#founded div.foundable')">
                                     <i class="fa fa-sort" aria-hidden="true"></i> A-Z
                                 </button>
-                                <button type="button" class="btn btn-default btn-xs" data-order="asc" onclick="sortFoundables.sort('founded','points', this)">
+                                <button type="button" class="btn btn-default btn-xs" data-order="asc" onclick="sorter.sort('points', this, '#founded', '#founded div.foundable')">
                                     <i class="fa fa-sort" aria-hidden="true"></i> Points
                                 </button>
                              </span>
@@ -32,13 +32,13 @@
                         <div class="panel-heading">
                             {{round.grid.foundableForms|length}} {{ "existing_forms" | trans }}
                             <span class="pull-right">
-                               <button type="button" class="btn btn-default btn-xs" data-order="asc" onclick="sortFoundables.sort('foundable','percent', this)">
+                               <button type="button" class="btn btn-default btn-xs" data-order="asc" onclick="sorter.sort('percent', this, '#foundable', '#foundable div.foundable')">
                                    <i class="fa fa-sort" aria-hidden="true"></i> %
                                </button>
-                               <button type="button" class="btn btn-default btn-xs" data-order="asc" onclick="sortFoundables.sort('foundable','form', this)">
+                               <button type="button" class="btn btn-default btn-xs" data-order="asc" onclick="sorter.sort('form', this, '#foundable', '#foundable div.foundable')">
                                    <i class="fa fa-sort" aria-hidden="true"></i> A-Z
                                </button>
-                               <button type="button" class="btn btn-default btn-xs" data-order="asc" onclick="sortFoundables.sort('foundable','points', this)">
+                               <button type="button" class="btn btn-default btn-xs" data-order="asc" onclick="sorter.sort('points', this, '#foundable', '#foundable div.foundable')">
                                    <i class="fa fa-sort" aria-hidden="true"></i> Points
                                </button>
                             </span>

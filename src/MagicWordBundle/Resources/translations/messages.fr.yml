@@ -19,6 +19,7 @@ add_to_wordbox: 'Ajouter à ma wordbox'
 add: Ajouter
 adjective: adjectif
 adverb: adverbe
+author: auteur
 autofill_grid: Autofill
 back_to_editor: 'Retour à l''éditeur de partie'
 back_to_home: Retour à l'accueil
@@ -28,7 +29,7 @@ category: Catégorie
 challenge_received: 'Défis reçus'
 challenge_sent: 'Défis envoyés'
 challenge_someone: 'Défier quelqu''un'
-challenge: Défi
+challenge: défi
 challenge!: Défier
 challenged: 'Joueur défié'
 challenges: Duels
@@ -76,6 +77,7 @@ game_end: Récapitulatif de la partie
 game_language: 'Langue du jeu'
 games_ended: Parties terminées
 games_started: Mes parties en cours
+gametype: type de partie
 gender: Genre
 generate_grid: 'Générer Grille'
 give_up: Abandonner cette manche
@@ -99,13 +101,14 @@ lemma: Lemme
 letterlanguagepoints: Points par lettre et par langue
 masculine: masculin
 massive_end: 'Récapitulatif partie massive'
-massive: 'Partie massive'
+massive: 'partie massive'
 massives: 'Parties massives'
 me: Moi
 message: Message
 minute: minute
 minutes: minutes
 mood: Mode
+mute_sounds: Désactiver les sons
 my_friends: 'Mes contacts'
 my_massives_published: 'Parties finalisées'
 my_massives_under_construction: 'Parties en chantier'
@@ -138,6 +141,7 @@ remove__from_friends: 'Retirer des contacts'
 round_type: Type de manche que vous voulez jouer (1ère manche)
 round_type2: Type de manche que vous voulez jouer (2ème manche)
 round: Manche
+roundCount: manches
 rounds: Manches
 rush_rules: Trouvez des mots dans la grille.
 rush: Rush
@@ -169,4 +173,3 @@ weight: Poids
 word_length: Longueur de la forme
 wordbox: Ma wordbox
 wordlengthpoints: Points bonus longueur de forme
-mute_sounds: Désactiver les sons
