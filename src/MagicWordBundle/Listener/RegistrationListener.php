@@ -7,12 +7,10 @@ use FOS\UserBundle\Event\FormEvent;
 
 class RegistrationListener
 {
-    private $entityManager;
     private $wordboxManager;
 
-    public function __construct($entityManager, $wordboxManager)
+    public function __construct($wordboxManager)
     {
-        $this->entityManager = $entityManager;
         $this->wordboxManager = $wordboxManager;
     }
 
@@ -22,8 +20,6 @@ class RegistrationListener
     public function onRegistration(FormEvent $event)
     {
         $user = $event->getForm()->getData();
-        $language = $this->entityManager->getRepository('MagicWordBundle:Language')->findOneByName('french');
-        $user->setLanguage($language);
         $this->wordboxManager->createWordbox($user);
     }
 }

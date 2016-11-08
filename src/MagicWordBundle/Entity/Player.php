@@ -47,11 +47,6 @@ class Player extends BaseUser
     private $muteSound = false;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Language")
-     */
-    private $language;
-
-    /**
      * @ORM\ManyToOne(targetEntity="LanguageUI")
      */
     private $languageUI;
@@ -124,30 +119,6 @@ class Player extends BaseUser
     public function getFriends()
     {
         return $this->friends;
-    }
-
-    /**
-     * Set language.
-     *
-     * @param \MagicWordBundle\Entity\Language $language
-     *
-     * @return Game
-     */
-    public function setLanguage(\MagicWordBundle\Entity\Language $language = null)
-    {
-        $this->language = $language;
-
-        return $this;
-    }
-
-    /**
-     * Get language.
-     *
-     * @return \MagicWordBundle\Entity\Language
-     */
-    public function getLanguage()
-    {
-        return $this->language;
     }
 
     /**
