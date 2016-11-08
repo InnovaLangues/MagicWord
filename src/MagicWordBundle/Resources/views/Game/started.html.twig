@@ -8,46 +8,55 @@
         <h4>
             {{ 'games_started' | trans }}
             <span class="pull-right">
+                <button type="button" class="btn btn-default btn-xs" data-order="asc" onclick="sorter.sort('gametype', this, '.games', '.game')">
+                    <i class="fa fa-sort" aria-hidden="true"></i> {{ "gametype" | trans }}
+                </button>
+                <button type="button" class="btn btn-default btn-xs" data-order="asc" onclick="sorter.sort('popularity', this, '.games', '.game')">
+                    <i class="fa fa-sort" aria-hidden="true"></i> {{ "popularity" | trans }}
+                </button>
+                <button type="button" class="btn btn-default btn-xs" data-order="asc" onclick="sorter.sort('roundCount', this, '.games', '.game')">
+                    <i class="fa fa-sort" aria-hidden="true"></i> {{ "roundCount" | trans }}
+                </button>
+                <button type="button" class="btn btn-default btn-xs" data-order="asc" onclick="sorter.sort('author', this, '.games', '.game')">
+                    <i class="fa fa-sort" aria-hidden="true"></i> {{ "author" | trans }}
+                </button>
                 {% include "MagicWordBundle:Common:backtohome.html.twig" %}
             </span>
         </h4>
     </div>
-    <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+    <div class="panel-group games" id="accordion" role="tablist" aria-multiselectable="true">
         {% for game in games if game.discr != "training" %}
-        <div class="panel panel-default">
-            <div class="panel-heading" role="tab" id="headingOne">
-                <h4 class="panel-title">
-                    {{ _self.game_name(game) }}
-                    <span class="pull-right">
-                        {% if game.discr == "massive" %}
-                        <span class="label label-info">{{ "popularity" | trans }}: {{ getActivityCount(game) }}</span>
-                        {% endif %}
-                        <a class="btn btn-default btn-xs" role="button" data-toggle="collapse" data-parent="#accordion" href="#{{ game.id }}" aria-expanded="true" aria-controls="{{ game.id }}">
-                            <i class="fa fa-info" aria-hidden="true"></i> Infos
-                        </a>
-                        {{ _self.game_play_link(game) }}
-                    </span>
-                </h4>
-            </div>
-            <div id="{{ game.id }}" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
-                <ul class="list-group">
-                    {% for i, round in game.rounds %}
-                    <li class="list-group-item">
-                        <span class="label label-default">{{ round.discr | trans }}</span>
-                        <span class="label label-default">
-                            <i class="fa fa-globe" aria-hidden="true"></i>
-                            {{ round.language.name }}
+            {% set popularity = getActivityCount(game) %}
+            {% set roundCount = game.rounds|length %}
+            <div data-gametype="{{ game.discr }}" data-roundcount="roundCount" data-popularity="{{ popularity }}" data-author="{{ game.author }}" class="panel panel-default game">
+                <div class="panel-heading" role="tab" id="headingOne">
+                    <h4 class="panel-title">
+                        {{ _self.game_name(game) }}
+                        <span class="pull-right">
+                            {% if game.discr == "massive" %}
+                            <span class="label label-info">{{ "popularity" | trans }}: {{ getActivityCount(game) }}</span>
+                            {% endif %}
+                            <a class="btn btn-default btn-xs" role="button" data-toggle="collapse" data-parent="#accordion" href="#{{ game.id }}" aria-expanded="true" aria-controls="{{ game.id }}">
+                                <i class="fa fa-info" aria-hidden="true"></i> Infos
+                            </a>
+                            {{ _self.game_play_link(game) }}
                         </span>
-                        {% set order = i + 1 %}
-                        {{ round.title ? round.title : "round" | trans  ~ " " ~ order }}
-                        <span class="text-muted">
-                            {{ round.description ? "(" ~ round.description ~ ")" }}
-                        </span>
-                    </li>
-                    {% endfor %}
-                </ul>
+                    </h4>
+                </div>
+                <div id="{{ game.id }}" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+                    <ul class="list-group">
+                        {% for i, round in game.rounds %}
+                        <li class="list-group-item">
+                            <span class="label label-default">{{ round.discr | trans }}</span>
+                            <span class="label label-default">{{ round.language.name | trans }}</span>
+                            {% set order = i + 1 %}
+                            {{ round.title ? round.title : "round" | trans  ~ " " ~ order }}
+                            <span class="text-muted">{{ round.description ? "(" ~ round.description ~ ")" }}</span>
+                        </li>
+                        {% endfor %}
+                    </ul>
+                </div>
             </div>
-        </div>
         {% endfor %}
     </div>
 </div>

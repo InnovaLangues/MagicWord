@@ -52,7 +52,6 @@ module.exports = function(grunt) {
                     ],
                     'web/js/round.js': [
                         "src/MagicWordBundle/Resources/public/js/round/details.js",
-                        "src/MagicWordBundle/Resources/public/js/round/end.js",
                         "src/MagicWordBundle/Resources/public/js/round.js",
                     ],
                     'web/js/play.js': [
