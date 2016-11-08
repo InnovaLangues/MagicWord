@@ -16,7 +16,6 @@ services:
     app.user_registration_listener:
         class: MagicWordBundle\Listener\RegistrationListener
         arguments:
-            "entityManager": "@doctrine.orm.entity_manager"
             "wordboxManager": "@mw_manager.wordbox"
         tags:
             - { name: kernel.event_listener, event: fos_user.registration.success, method: onRegistration }
