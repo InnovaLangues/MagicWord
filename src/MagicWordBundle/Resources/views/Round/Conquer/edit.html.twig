@@ -56,13 +56,16 @@
                         <i class="fa fa-magic" aria-hidden="true"></i>
                         {{ 'autofill_grid' | trans }}
                     </span>
-                    <span class='btn btn-primary btn-xs' onclick="save()">
+                    <span class='btn btn-primary btn-xs' onclick="gridHandler.save()">
                         <i class="fa fa-floppy-o" aria-hidden="true"></i>
                         {{ 'save_grid' | trans }}
                     </span>
                 </span>
             </div>
             <div class="panel-body">
+                <div id="language-inconsistency" style="display:none" class="alert alert-warning" role="alert">
+                    grid & foundables language are different from round language. Please resave your grid or change round language.
+                </div>
                 <form id="grid" method="POST">
                     <div id="result">
                         {% set grid = conquer.grid %}

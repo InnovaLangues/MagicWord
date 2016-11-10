@@ -5,6 +5,7 @@ namespace MagicWordBundle\Controller\RoundType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use MagicWordBundle\Entity\RoundType\Conquer;
@@ -38,7 +39,12 @@ class ConquerController extends Controller
         $foundableForms = $conquer->getGrid()->getFoundableForms();
         $template = $this->get('templating')->render('MagicWordBundle:Round/Conquer/Objective:possible-inflections.html.twig', ['foundableForms' => $foundableForms]);
 
-        return new Response($template);
+        $response = [
+            'foundables' => $template,
+            'gridLanguage' => $conquer->getGrid()->getLanguage()->getId(),
+        ];
+
+        return new JsonResponse($response);
     }
 
     /**

@@ -87,8 +87,9 @@ class GridManager
         return $grid;
     }
 
-    public function updateGrid(Grid $grid, Request $request)
+    public function updateGrid(Grid $grid, Request $request, $round)
     {
+        $grid->setLanguage($round->getLanguage());
         $this->removeSquare($grid);
         $this->removeFoundables($grid);
 

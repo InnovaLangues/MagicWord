@@ -4,8 +4,8 @@ namespace MagicWordBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
-use Symfony\Component\HttpFoundation\Response;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use MagicWordBundle\Entity\Round;
 
@@ -56,7 +56,12 @@ class RoundController extends Controller
     public function saveMiscAction(Round $round, Request $request)
     {
         $this->get('mw_manager.round')->handleMiscForm($round, $request);
+        $response = [
+            'language' => $round->getLanguage()->getId(),
+            'title' => $round->getTitle(),
+            'descr' => $round->getDescription(),
+        ];
 
-        return new Response();
+        return new JsonResponse($response);
     }
 }
