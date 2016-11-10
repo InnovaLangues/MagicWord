@@ -80,7 +80,7 @@ class RoundManager
             $this->em->persist($conquer);
             $this->em->flush();
         } else {
-            $this->gridManager->updateGrid($grid, $request);
+            $this->gridManager->updateGrid($grid, $request, $conquer);
         }
 
         $this->em->refresh($grid);
@@ -130,6 +130,10 @@ class RoundManager
 
         if ($round->getDiscr() == 'conquer' && count($round->getObjectives()) == 0) {
             $errors[] = 'missing objectives for round '.$roundName;
+        }
+
+        if ($round->getGrid() && $round->getLanguage() != $round->getGrid()->getLanguage()) {
+            $errors[] = 'round & grid language inconsistency for round '.$roundName;
         }
 
         return $errors;

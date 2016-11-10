@@ -154,25 +154,8 @@ function generate(){
     }
 }
 
-function save(){
-    if(isFormValid("grid")){
-        wait.start("Sauvegarde de la grille");
-        var data = $("#grid").serializeArray();
-        var url = Routing.generate('conquer_save_grid', {id: $('#conquerId').val()});
-        $.ajax({
-              type: 'POST',
-              url: url,
-              data: data,
-         })
-         .done(function(data) {
-             $("#foundables").html(data);
-             wait.stop();
-         });
-     }
-}
-
 function checkInsertedWords(insertedWords){
-    reiniatilize()
+    $(".findWord").removeClass("list-group-item-danger list-group-item-success");
     $(".findWord").each(function( index ) {
         var inflection = $(this).find(inflectionSelector).val();
         var className = jQuery.inArray(inflection, insertedWords) != -1
@@ -183,12 +166,10 @@ function checkInsertedWords(insertedWords){
      });
 }
 
-function reiniatilize(){
-    $(".findWord").removeClass("list-group-item-danger list-group-item-success");
-}
-
-
 var gridHandler = {
+    getLanguage: function(){
+        return $("#gridLanguageId").val();
+    },
     autofill: function(){
         wait.start("Remplissage automatique de la grille");
         var language = $('#languageId').val();
@@ -208,9 +189,26 @@ var gridHandler = {
              });
              wait.stop();
          });
+    },
+    save: function(){
+        if(isFormValid("grid")){
+            wait.start("Sauvegarde de la grille");
+            var data = $("#grid").serializeArray();
+            var url = Routing.generate('conquer_save_grid', {id: $('#conquerId').val()});
+            $.ajax({
+                  type: 'POST',
+                  url: url,
+                  data: data,
+             })
+             .done(function(data) {
+                 $("#foundables").html(data.foundables);
+                 $("#gridLanguageId").val(data.gridLanguage);
+                 roundHandler.checkConsistency();
+                 wait.stop();
+             });
+         }
     }
 }
-
 
 /* Constraints */
 var constraints = {

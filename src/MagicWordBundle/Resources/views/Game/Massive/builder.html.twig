@@ -43,7 +43,8 @@
                 <ul class="list-group">
                     {% for i, round in massive.rounds %}
                         <li class="list-group-item">
-                            <span class="label label-default">{{ round.discr }}</span>
+                            <span class="label label-default">{{ round.discr | trans }}</span>
+                            <span class="label label-default">{{ round.language.name | trans }}</span>
                             {% set order = i + 1 %}
                             {{ round.title ? round.title : "round" | trans  ~ " " ~ order }}
                             {% if round.description %}<span class="text-muted">({{ round.description }})</span>{% endif %}
