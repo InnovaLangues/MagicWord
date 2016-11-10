@@ -45,6 +45,7 @@ module.exports = function(grunt) {
                         'src/MagicWordBundle/Resources/public/js/info.js',
                         'src/MagicWordBundle/Resources/public/js/main.js',
                         'src/MagicWordBundle/Resources/public/js/wiktionnary.js',
+                        'src/MagicWordBundle/Resources/public/js/builder.js'
                     ],
                     'web/js/grid_creation.js': [
                         "src/MagicWordBundle/Resources/public/js/bologne.js",

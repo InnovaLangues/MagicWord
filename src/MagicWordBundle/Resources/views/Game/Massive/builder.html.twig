@@ -42,19 +42,21 @@
 
                 <ul class="list-group">
                     {% for i, round in massive.rounds %}
-                        <li class="list-group-item">
+                        <li class="list-group-item round">
                             <span class="label label-default">{{ round.discr | trans }}</span>
                             <span class="label label-default">{{ round.language.name | trans }}</span>
                             {% set order = i + 1 %}
                             {{ round.title ? round.title : "round" | trans  ~ " " ~ order }}
                             {% if round.description %}<span class="text-muted">({{ round.description }})</span>{% endif %}
-                            <span class="pull-right">
-                                <a class="btn btn-default btn-xs {% if order == 1 %}disabled{% endif %}" href="{{ path('round_move_up', {"massiveId": massive.id, "roundId": round.id }) }}">
-                                    <i class="fa fa-arrow-up" aria-hidden="true"></i>
-                                </a>
-                                <a class="btn btn-default btn-xs {% if order == massive.rounds|length %}disabled{% endif %}" href="{{ path('round_move_down', {"massiveId": massive.id, "roundId": round.id }) }}">
-                                    <i class="fa fa-arrow-down" aria-hidden="true"></i>
-                                </a>
+                            <span class="pull-right btns">
+                                <div class="btn-group">
+                                    <a onclick="builder.reorder()" class="btn btn-default btn-xs {% if order == 1 %}disabled{% endif %}" href="{{ path('round_move_up', {"massiveId": massive.id, "roundId": round.id }) }}">
+                                        <i class="fa fa-arrow-up" aria-hidden="true"></i>
+                                    </a>
+                                    <a onclick="builder.reorder()" class="btn btn-default btn-xs {% if order == massive.rounds|length %}disabled{% endif %}" href="{{ path('round_move_down', {"massiveId": massive.id, "roundId": round.id }) }}">
+                                        <i class="fa fa-arrow-down" aria-hidden="true"></i>
+                                    </a>
+                                </div>
                                 <a class="btn btn-default btn-xs" href="{{ path('round_edit', {"id": round.id }) }}">
                                     <i class="fa fa-pencil" aria-hidden="true"></i>
                                     {{ 'edit_round' | trans }}
