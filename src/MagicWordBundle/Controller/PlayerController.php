@@ -12,6 +12,16 @@ use MagicWordBundle\Entity\Player;
 class PlayerController extends Controller
 {
     /**
+     * @Route("/me", name="my_profile")
+     */
+    public function myProfileAction()
+    {
+        $user = $this->get('security.token_storage')->getToken()->getUser();
+
+        return $this->render('MagicWordBundle:Player:profile.html.twig', ['user' => $user]);
+    }
+
+    /**
      * @Route("/my-friends", name="my_friends")
      */
     public function displayFriendsAction()
@@ -70,6 +80,28 @@ class PlayerController extends Controller
      */
     public function displayProfileAction(Player $player)
     {
-        return $this->render('MagicWordBundle:Player:profile.html.twig', ['player' => $player]);
+        return $this->render('MagicWordBundle:Player:profile.html.twig', ['user' => $player]);
+    }
+
+    /**
+     * @Route("/edit-profile", name="profile_edit")
+     * @Method("GET")
+     */
+    public function editProfileAction()
+    {
+        $form = $this->get('mw_manager.user')->getProfileForm()->createView();
+
+        return $this->render('MagicWordBundle:Player:profile_edit.html.twig', ['form' => $form]);
+    }
+
+    /**
+     * @Route("/edit-profile")
+     * @Method("POST")
+     */
+    public function saveProfileAction(Request $request)
+    {
+        $this->get('mw_manager.user')->handleProfileForm($request);
+
+        return $this->redirectToRoute('my_profile');
     }
 }

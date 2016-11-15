@@ -4,6 +4,7 @@ namespace MagicWordBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use FOS\UserBundle\Model\User as BaseUser;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Table(name="player")
@@ -62,6 +63,18 @@ class Player extends BaseUser
      * @ORM\JoinTable(name="player_endedgame")
      */
     private $endedGames;
+
+    /**
+     * @ORM\Column(type="text")
+     */
+    private $profileText;
+
+    /**
+     * @ORM\Column(type="string")
+     *
+     * @Assert\File()
+     */
+    private $profilePic;
 
     /**
      * Set wordbox.
@@ -259,5 +272,53 @@ class Player extends BaseUser
     public function getMuteSound()
     {
         return $this->muteSound;
+    }
+
+    /**
+     * Set profileText
+     *
+     * @param string $profileText
+     *
+     * @return Player
+     */
+    public function setProfileText($profileText)
+    {
+        $this->profileText = $profileText;
+
+        return $this;
+    }
+
+    /**
+     * Get profileText
+     *
+     * @return string
+     */
+    public function getProfileText()
+    {
+        return $this->profileText;
+    }
+
+    /**
+     * Set profilePic
+     *
+     * @param string $profilePic
+     *
+     * @return Player
+     */
+    public function setProfilePic($profilePic)
+    {
+        $this->profilePic = $profilePic;
+
+        return $this;
+    }
+
+    /**
+     * Get profilePic
+     *
+     * @return string
+     */
+    public function getProfilePic()
+    {
+        return $this->profilePic;
     }
 }

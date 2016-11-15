@@ -17,5 +17,7 @@
 /web/fonts/
 /web/js/
 /web/css/
+/web/upload/*
+!/web/upload/.gitkeep
 /bower_components/*
 /node_modules/*

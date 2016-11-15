@@ -4,6 +4,7 @@ namespace  MagicWordBundle\Manager;
 
 use JMS\DiExtraBundle\Annotation as DI;
 use MagicWordBundle\Form\Type\PlayerType;
+use MagicWordBundle\Form\Type\ProfileType;
 use MagicWordBundle\Entity\Game;
 use Symfony\Component\HttpFoundation\Request;
 
@@ -17,6 +18,7 @@ class UserManager
     protected $formFactory;
     protected $scoreManager;
     protected $session;
+    protected $profilePicDir;
 
     /**
      * @DI\InjectParams({
@@ -25,15 +27,17 @@ class UserManager
      *      "formFactory"   = @DI\Inject("form.factory"),
      *      "scoreManager"  = @DI\Inject("mw_manager.score"),
      *      "session"       = @DI\Inject("session"),
+     *      "profilePicDir" = @DI\Inject("%profilepic_directory%")
      * })
      */
-    public function __construct($entityManager, $tokenStorage, $formFactory, $scoreManager, $session)
+    public function __construct($entityManager, $tokenStorage, $formFactory, $scoreManager, $session, $profilePicDir)
     {
         $this->em = $entityManager;
         $this->tokenStorage = $tokenStorage;
         $this->formFactory = $formFactory;
         $this->scoreManager = $scoreManager;
         $this->session = $session;
+        $this->profilePicDir = $profilePicDir;
     }
 
     public function getConnected($threshold)
@@ -68,6 +72,35 @@ class UserManager
         $form = $this->formFactory->createBuilder(PlayerType::class, $currentUser)->getForm();
 
         return $form;
+    }
+
+    public function getProfileForm()
+    {
+        $currentUser = $this->tokenStorage->getToken()->getUser();
+        $form = $this->formFactory->createBuilder(ProfileType::class, $currentUser)->getForm();
+
+        return $form;
+    }
+
+    public function handleProfileForm(Request $request)
+    {
+        $user = $this->tokenStorage->getToken()->getUser();
+        $profilePic = $user->getProfilePic();
+        $form = $this->formFactory->createBuilder(ProfileType::class, $user)->getForm();
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            if ($file = $user->getProfilePic()) {
+                $profilePic = md5(uniqid()).'.'.$file->guessExtension();
+                $file->move($this->profilePicDir, $profilePic);
+            }
+            $user->setProfilePic($profilePic);
+
+            $this->em->persist($user);
+            $this->em->flush();
+        }
+
+        return;
     }
 
     public function handleParametersForm(Request $request)
