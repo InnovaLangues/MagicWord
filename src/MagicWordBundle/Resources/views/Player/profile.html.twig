@@ -7,7 +7,10 @@
             {{ 'profile_of' | trans }} {{ user.username }}
             <span class="pull-right">
                 {% if user == app.user %}
-                    <a class="btn btn-default" href="{{ path('profile_edit') }}">{{ 'edit_profile' | trans }}</a>
+                    <a class="btn btn-default" href="{{ path('profile_edit') }}">
+                        <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                        {{ 'edit_profile' | trans }}
+                    </a>
                 {% elseif user in app.user.friends %}
                     <a class="btn btn-default" href="{{ path('remove_friend', {"id":  user.id}) }}">{{ 'remove__from_friends' | trans }}</a>
                 {% else %}

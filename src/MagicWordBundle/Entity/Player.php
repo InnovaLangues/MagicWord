@@ -72,7 +72,7 @@ class Player extends BaseUser
     /**
      * @ORM\Column(type="string")
      *
-     * @Assert\File()
+     * @Assert\Image()
      */
     private $profilePic;
 
@@ -275,7 +275,7 @@ class Player extends BaseUser
     }
 
     /**
-     * Set profileText
+     * Set profileText.
      *
      * @param string $profileText
      *
@@ -289,7 +289,7 @@ class Player extends BaseUser
     }
 
     /**
-     * Get profileText
+     * Get profileText.
      *
      * @return string
      */
@@ -299,7 +299,7 @@ class Player extends BaseUser
     }
 
     /**
-     * Set profilePic
+     * Set profilePic.
      *
      * @param string $profilePic
      *
@@ -313,7 +313,7 @@ class Player extends BaseUser
     }
 
     /**
-     * Get profilePic
+     * Get profilePic.
      *
      * @return string
      */

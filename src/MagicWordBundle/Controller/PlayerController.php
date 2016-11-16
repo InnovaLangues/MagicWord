@@ -85,23 +85,11 @@ class PlayerController extends Controller
 
     /**
      * @Route("/edit-profile", name="profile_edit")
-     * @Method("GET")
      */
-    public function editProfileAction()
+    public function editProfileAction(Request $request)
     {
-        $form = $this->get('mw_manager.user')->getProfileForm()->createView();
+        $form = $this->get('mw_manager.user')->handleProfileForm($request)->createView();
 
         return $this->render('MagicWordBundle:Player:profile_edit.html.twig', ['form' => $form]);
-    }
-
-    /**
-     * @Route("/edit-profile")
-     * @Method("POST")
-     */
-    public function saveProfileAction(Request $request)
-    {
-        $this->get('mw_manager.user')->handleProfileForm($request);
-
-        return $this->redirectToRoute('my_profile');
     }
 }

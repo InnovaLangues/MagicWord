@@ -27,7 +27,7 @@ class UserManager
      *      "formFactory"   = @DI\Inject("form.factory"),
      *      "scoreManager"  = @DI\Inject("mw_manager.score"),
      *      "session"       = @DI\Inject("session"),
-     *      "profilePicDir" = @DI\Inject("%profilepic_directory%")
+     *      "profilePicDir" = @DI\Inject("%profilepic_directory%"),
      * })
      */
     public function __construct($entityManager, $tokenStorage, $formFactory, $scoreManager, $session, $profilePicDir)
@@ -89,18 +89,23 @@ class UserManager
         $form = $this->formFactory->createBuilder(ProfileType::class, $user)->getForm();
         $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
-            if ($file = $user->getProfilePic()) {
-                $profilePic = md5(uniqid()).'.'.$file->guessExtension();
-                $file->move($this->profilePicDir, $profilePic);
-            }
-            $user->setProfilePic($profilePic);
+        if ($form->isSubmitted()) {
+            if ($form->isValid()) {
+                $this->session->getFlashBag()->add('success', 'Profil modifié avec succès.');
+                if ($file = $user->getProfilePic()) {
+                    $profilePic = md5(uniqid()).'.'.$file->guessExtension();
+                    $file->move($this->profilePicDir, $profilePic);
+                }
+                $user->setProfilePic($profilePic);
 
-            $this->em->persist($user);
-            $this->em->flush();
+                $this->em->persist($user);
+                $this->em->flush();
+            } else {
+                $this->session->getFlashBag()->add('warning', 'Erreur, profil non modifié.');
+            }
         }
 
-        return;
+        return $form;
     }
 
     public function handleParametersForm(Request $request)
