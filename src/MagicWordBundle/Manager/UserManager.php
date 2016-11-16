@@ -66,14 +66,6 @@ class UserManager
         return $connectedUsers;
     }
 
-    public function getParametersForm()
-    {
-        $currentUser = $this->tokenStorage->getToken()->getUser();
-        $form = $this->formFactory->createBuilder(PlayerType::class, $currentUser)->getForm();
-
-        return $form;
-    }
-
     public function getProfileForm()
     {
         $currentUser = $this->tokenStorage->getToken()->getUser();
@@ -85,25 +77,33 @@ class UserManager
     public function handleProfileForm(Request $request)
     {
         $user = $this->tokenStorage->getToken()->getUser();
-        $profilePic = $user->getProfilePic();
+        $profilePic = $user->getProfilePicPath();
         $form = $this->formFactory->createBuilder(ProfileType::class, $user)->getForm();
         $form->handleRequest($request);
 
         if ($form->isSubmitted()) {
             if ($form->isValid()) {
                 $this->session->getFlashBag()->add('success', 'Profil modifié avec succès.');
-                if ($file = $user->getProfilePic()) {
+                if ($file = $user->getProfilePicFile()) {
                     $profilePic = md5(uniqid()).'.'.$file->guessExtension();
                     $file->move($this->profilePicDir, $profilePic);
                 }
-                $user->setProfilePic($profilePic);
-
+                $user->setProfilePicPath($profilePic);
+                $user->setProfilePicFile(null);
                 $this->em->persist($user);
                 $this->em->flush();
             } else {
                 $this->session->getFlashBag()->add('warning', 'Erreur, profil non modifié.');
             }
         }
+
+        return $form;
+    }
+
+    public function getParametersForm()
+    {
+        $currentUser = $this->tokenStorage->getToken()->getUser();
+        $form = $this->formFactory->createBuilder(PlayerType::class, $currentUser)->getForm();
 
         return $form;
     }

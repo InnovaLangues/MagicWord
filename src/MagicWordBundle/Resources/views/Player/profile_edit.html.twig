@@ -17,14 +17,14 @@
         </div>
 
         <div class="form-group">
-            {{ form_label(form.profilePic) }}
-            {{ form_errors(form.profilePic) }}
-            {% if app.user.profilepic %}
+            {{ form_label(form.profilePicFile) }}
+            {{ form_errors(form.profilePicFile) }}
+            {% if app.user.profilepicPath %}
             <div>
-                <img height="200px" src="{{ asset('upload/profilepic/' ~ app.user.profilepic) }}"/>
+                <img height="200px" src="{{ asset('upload/profilepic/' ~ app.user.profilepicPath) }}"/>
             </div>
             {% endif %}
-            {{ form_widget(form.profilePic) }}
+            {{ form_widget(form.profilePicFile) }}
         </div>
         {{ form_end(form) }}
     </div>

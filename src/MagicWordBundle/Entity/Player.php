@@ -70,11 +70,15 @@ class Player extends BaseUser
     private $profileText;
 
     /**
-     * @ORM\Column(type="string")
-     *
+     * @ORM\Column(type="string", nullable=true)
+     */
+    private $profilePicPath;
+
+    /**
+     * @ORM\Column(type="string", nullable=true)
      * @Assert\Image()
      */
-    private $profilePic;
+    private $profilePicFile;
 
     /**
      * Set wordbox.
@@ -299,26 +303,50 @@ class Player extends BaseUser
     }
 
     /**
-     * Set profilePic.
+     * Set profilePicPath.
      *
-     * @param string $profilePic
+     * @param string $profilePicPath
      *
      * @return Player
      */
-    public function setProfilePic($profilePic)
+    public function setProfilePicPath($profilePicPath)
     {
-        $this->profilePic = $profilePic;
+        $this->profilePicPath = $profilePicPath;
 
         return $this;
     }
 
     /**
-     * Get profilePic.
+     * Get profilePicPath.
      *
      * @return string
      */
-    public function getProfilePic()
+    public function getProfilePicPath()
     {
-        return $this->profilePic;
+        return $this->profilePicPath;
+    }
+
+    /**
+     * Set profilePicFile.
+     *
+     * @param string $profilePicFile
+     *
+     * @return Player
+     */
+    public function setProfilePicFile($profilePicFile)
+    {
+        $this->profilePicFile = $profilePicFile;
+
+        return $this;
+    }
+
+    /**
+     * Get profilePicFile.
+     *
+     * @return string
+     */
+    public function getProfilePicFile()
+    {
+        return $this->profilePicFile;
     }
 }

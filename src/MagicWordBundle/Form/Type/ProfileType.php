@@ -18,7 +18,7 @@ class ProfileType extends AbstractType
             'required' => false,
         ));
 
-        $builder->add('profilePic', FileType::class, array(
+        $builder->add('profilePicFile', FileType::class, array(
             'attr' => array('class' => 'form-control'),
             'data_class' => null,
             'label' => 'profile_pic',

@@ -21,8 +21,8 @@
         </h4>
     </div>
     <div class="panel-body">
-        {% if user.profilePic %}
-            <img height="200px" src="{{ asset('upload/profilepic/' ~ app.user.profilepic) }}"/>
+        {% if user.profilepicPath %}
+            <img height="200px" src="{{ asset('upload/profilepic/' ~ app.user.profilepicPath) }}"/>
         {% endif %}
         {{ user.profileText }}
     </div>
