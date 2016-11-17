@@ -145,7 +145,7 @@ class GridManager
         return $grid;
     }
 
-    public function getInflections($request)
+    public function getInflections(Request $request)
     {
         $grid = $this->createGrid($request, false);
         $inflections = $this->findInflections($grid);
@@ -163,9 +163,8 @@ class GridManager
         return $grid->getFoundableForms();
     }
 
-    public function getCombos($request)
+    public function getCombos($inflections)
     {
-        $inflections = $this->getInflections($request);
         $combos = [];
         foreach ($inflections as $inflection) {
             $lemma = $inflection->getLemma();
@@ -173,7 +172,14 @@ class GridManager
             $lemmaId = $lemma->getId();
 
             if (!isset($combos[$lemmaId])) {
-                $combos[$lemmaId] = ['lemma' => $lemma, 'inflections' => []];
+                $combos[$lemmaId] = [
+                    'lemma' => [
+                        'id' => $lemmaId,
+                        'content' => $lemma->getContent(),
+                        'POS' => $lemma->getCategory() ? $lemma->getCategory()->getValue() : '',
+                    ],
+                    'inflections' => [],
+                ];
             }
 
             if (!in_array($form, $combos[$lemmaId]['inflections'])) {

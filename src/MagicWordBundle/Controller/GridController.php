@@ -30,7 +30,8 @@ class GridController extends Controller
      */
     public function getCombosAction(Request $request)
     {
-        $combos = $this->get('mw_manager.grid')->getCombos($request);
+        $inflections = $this->get('mw_manager.grid')->getInflections($request);
+        $combos = $this->get('mw_manager.grid')->getCombos($inflections);
 
         $template = $this->get('templating')->render('MagicWordBundle:Round/Conquer/Objective:possible-combos.html.twig', array('combos' => $combos));
 
