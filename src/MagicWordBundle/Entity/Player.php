@@ -65,7 +65,7 @@ class Player extends BaseUser
     private $endedGames;
 
     /**
-     * @ORM\Column(type="text")
+     * @ORM\Column(type="text", nullable=true)
      */
     private $profileText;
 
