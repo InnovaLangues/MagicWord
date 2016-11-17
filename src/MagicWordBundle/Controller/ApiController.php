@@ -25,7 +25,7 @@ class ApiController extends Controller
         $formsJSON = [];
         $lemmasJSON = [];
         $lemmas = [];
-        $inflection = [];
+        $inflections = [];
 
         foreach ($foundables as $foundable) {
             $inflectionsJSON = [];
