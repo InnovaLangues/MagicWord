@@ -38,11 +38,11 @@ class TrainingManager
     public function generateTraining(Language $language)
     {
         $game = new Training();
+        $game->setLanguage($language);
+        $game->setAuthor($this->tokenStorage->getToken()->getUser());
 
         $grid = $this->gridManager->seekOrGenerateForTraining($language);
         $round = $this->roundManager->generateRush($game, $grid);
-        $game->setLanguage($language);
-        $game->setAuthor($this->tokenStorage->getToken()->getUser());
         $this->em->persist($game);
         $this->em->flush();
 
