@@ -49,7 +49,7 @@
                                 <span class="label label-default">{{ round.language.name | trans }}</span>
                                 {% set order = i + 1 %}
                                 {{ round.title ? round.title : "round" | trans  ~ " " ~ order }}
-                                <span class="text-muted">{{ round.description ? "(" ~ round.description ~ ")" }}</span>
+                                <span class="text-muted">{{ round.description ? "(" ~ round.description ~ ")" }}</span>
                             </li>
                             {% endfor %}
                         </ul>
