@@ -12,7 +12,7 @@ use MagicWordBundle\Entity\Language;
 class ApiController extends Controller
 {
     /**
-     * @Route("/api/grid/{id}/{letters}", name="api_grid_from_letters")
+     * @Route("/api/grid/{id}/{letters}", name="api_grid_from_letters", requirements={"letters" = "[a-z]{16}"})
      * @ParamConverter("language", class="MagicWordBundle:Language")
      * @Method("GET")
      */
