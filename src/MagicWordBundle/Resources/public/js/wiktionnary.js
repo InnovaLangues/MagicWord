@@ -8,18 +8,9 @@ var wiktionnary = {
             type: "GET",
             url: url,
             success: function (html) {
-                var def = "";
-                if (language == "fr") {
-                    if(html.match(/<span[\s\S]+?id="fr"[\s\S]*?(<ol>[\s\S]*?<\/ol>)/)) {
-                        def = RegExp.$1;
-                    } else {
-                        def = "Oups...";
-                    }
-                } 
-                $('#wiktionnary-body').html(def);
+                $('#wiktionnary-body').html(html);
                 $('#wiktionnary').modal('show');
             }
         });
-
     }
 }

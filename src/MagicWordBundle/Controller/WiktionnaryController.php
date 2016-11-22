@@ -15,16 +15,7 @@ class WiktionnaryController extends Controller
      */
     public function getWiktionnaryDefAction($lemma, $language)
     {
-        $url = 'https://'.$language.'.wiktionary.org/wiki/'.$lemma;
-        $handle = @fopen($url, 'r');
-        $def = 'Oups...';
-
-        if ($handle) {
-            while (!feof($handle)) {
-                $def = stream_get_contents($handle);
-            }
-            fclose($handle);
-        }
+        $def = $this->get('innovalangues_wiktionary')->getDefinitions($lemma, $language);
 
         return new Response($def);
     }
