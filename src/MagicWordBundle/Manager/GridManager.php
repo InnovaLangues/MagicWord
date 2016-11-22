@@ -308,4 +308,17 @@ class GridManager
         // renvoyer les débuts de mot trouvés
         return $words;
     }
+
+    public function retrieveInflections(Grid $grid)
+    {
+        $inflections = [];
+        $foundables = $grid->getFoundableForms();
+        foreach ($foundables as $foundable) {
+            foreach ($foundable->getInflections() as $inflection) {
+                $inflections[] = $inflection;
+            }
+        }
+
+        return $inflections;
+    }
 }

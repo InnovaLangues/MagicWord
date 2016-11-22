@@ -58,11 +58,11 @@ class RoundManager
         return $round;
     }
 
-    public function generateConquer(Game $game)
+    public function generateConquer(Game $game, Grid $grid = null)
     {
         $round = new Conquer();
         $round->setGame($game);
-        $round->setGrid(null);
+        $round->setGrid($grid);
         $round->setDisplayOrder($this->getNextDisplayOrder($game));
         $round->setLanguage($game->getLanguage());
 

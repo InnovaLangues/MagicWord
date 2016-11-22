@@ -16,6 +16,7 @@ class ChallengeManager
     protected $em;
     protected $gridManager;
     protected $roundManager;
+    protected $objectiveManager;
     protected $formFactory;
     protected $tokenStorage;
     protected $router;
@@ -26,17 +27,19 @@ class ChallengeManager
      *      "entityManager" = @DI\Inject("doctrine.orm.entity_manager"),
      *      "gridManager"   = @DI\Inject("mw_manager.grid"),
      *      "roundManager"  = @DI\Inject("mw_manager.round"),
+     *      "objectiveManager"  = @DI\Inject("mw_manager.objective"),
      *      "formFactory"   = @DI\Inject("form.factory"),
      *      "tokenStorage"  = @DI\Inject("security.token_storage"),
      *      "router"        = @DI\Inject("router"),
      *      "userManager"   = @DI\Inject("mw_manager.user")
      * })
      */
-    public function __construct($entityManager, $gridManager, $roundManager, $formFactory, $tokenStorage, $router, $userManager)
+    public function __construct($entityManager, $gridManager, $roundManager, $objectiveManager, $formFactory, $tokenStorage, $router, $userManager)
     {
         $this->em = $entityManager;
         $this->gridManager = $gridManager;
         $this->roundManager = $roundManager;
+        $this->objectiveManager = $objectiveManager;
         $this->formFactory = $formFactory;
         $this->tokenStorage = $tokenStorage;
         $this->router = $router;
@@ -133,14 +136,17 @@ class ChallengeManager
 
     public function generateRound($roundType, Challenge $challenge)
     {
+        $language = $challenge->getLanguage();
+        $grid = $this->gridManager->generate($language);
         switch ($roundType) {
             case 'rush':
-                $grid = $this->gridManager->generate($challenge->getLanguage());
                 $round = $this->roundManager->generateRush($challenge, $grid);
                 break;
 
-            default:
-                # code...
+            case 'conquer':
+                $round = $this->roundManager->generateConquer($challenge, $grid);
+                $this->objectiveManager->generateObjective($round);
+
                 break;
         }
 
