@@ -1,3 +1,7 @@
+innova_wiktionary:
+    resource: "@InnovaWiktionaryBundle/Resources/config/routing.yml"
+    prefix:   /
+
 magic_word:
     resource: "@MagicWordBundle/Controller/"
     type:     annotation

@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "68afe6cbfcdee8a4dffb6e23c5f398ce",
-    "content-hash": "d13c269d9440ccd74ef057c73b618b53",
+    "hash": "72f4105951c904513c4977c3740bf9b9",
+    "content-hash": "57ddbbc13bc91501a93a2c564973184b",
     "packages": [
         {
             "name": "doctrine/annotations",
@@ -960,6 +960,48 @@
                 "parameters management"
             ],
             "time": "2015-11-10 17:04:01"
+        },
+        {
+            "name": "innovalangues/wiktionary-bundle",
+            "version": "dev-master",
+            "target-dir": "Innova/WiktionaryBundle",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/InnovaLangues/WiktionaryBundle.git",
+                "reference": "21007769a4e1e08c384cb636b65024ff84201314"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/InnovaLangues/WiktionaryBundle/zipball/21007769a4e1e08c384cb636b65024ff84201314",
+                "reference": "21007769a4e1e08c384cb636b65024ff84201314",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.4.1"
+            },
+            "type": "symfony3-bundle",
+            "autoload": {
+                "psr-0": {
+                    "Innova\\WiktionaryBundle": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Arnaud Bey",
+                    "email": "arnaud.bey@u-grenoble3.fr"
+                }
+            ],
+            "description": "wiktionary bundle",
+            "homepage": "http://github.com/InnovaLangues/WiktionaryBundle",
+            "keywords": [
+                "Innovalangues",
+                "wiktionary"
+            ],
+            "time": "2016-11-22 09:15:48"
         },
         {
             "name": "jdorn/sql-formatter",
@@ -2470,7 +2512,8 @@
     "aliases": [],
     "minimum-stability": "stable",
     "stability-flags": {
-        "friendsofsymfony/user-bundle": 20
+        "friendsofsymfony/user-bundle": 20,
+        "innovalangues/wiktionary-bundle": 20
     },
     "prefer-stable": false,
     "prefer-lowest": false,
