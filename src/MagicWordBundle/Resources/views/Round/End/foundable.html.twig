@@ -16,6 +16,9 @@
                                 <button type="button" class="btn btn-default btn-xs" data-order="asc" onclick="sorter.sort('points', this, '#founded', '#founded div.foundable')">
                                     <i class="fa fa-sort" aria-hidden="true"></i> Points
                                 </button>
+                                <button type="button" class="btn btn-default btn-xs" data-order="asc" onclick="sorter.sort('length', this, '#founded', '#founded div.foundable')">
+                                    <i class="fa fa-sort" aria-hidden="true"></i> Longueur
+                                </button>
                              </span>
                         </div>
                     </div>
@@ -40,6 +43,9 @@
                                </button>
                                <button type="button" class="btn btn-default btn-xs" data-order="asc" onclick="sorter.sort('points', this, '#foundable', '#foundable div.foundable')">
                                    <i class="fa fa-sort" aria-hidden="true"></i> Points
+                               </button>
+                               <button type="button" class="btn btn-default btn-xs" data-order="asc" onclick="sorter.sort('length', this, '#foundable', '#foundable div.foundable')">
+                                   <i class="fa fa-sort" aria-hidden="true"></i> Longueur
                                </button>
                             </span>
                         </div>
@@ -84,7 +90,7 @@
 
 {% macro foundable(foundable, activity, activities, type, roundType) %}
 {% set percent = _self.percent(foundable, activities) %}
-<div class="col-md-4 foundable" data-form="{{ foundable.form }}" data-points="{{ foundable.points }}" data-percent="{{ percent }}">
+<div class="col-md-4 foundable" data-form="{{ foundable.form }}" data-points="{{ foundable.points }}" data-percent="{{ percent }}" data-length="{{ foundable.form|length }}">
     <div class="panel panel-default">
         <div class="panel-heading " role="tab">
             <h4 class="panel-title {% if foundable in activity.foundForms and type == "foundable" %}bg-success{% endif %} ">
