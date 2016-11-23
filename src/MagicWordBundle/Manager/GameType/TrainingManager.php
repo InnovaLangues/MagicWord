@@ -37,14 +37,20 @@ class TrainingManager
 
     public function generateTraining(Language $language)
     {
-        $game = new Training();
-        $game->setLanguage($language);
-        $game->setAuthor($this->tokenStorage->getToken()->getUser());
+        $user = $this->tokenStorage->getToken()->getUser();
 
-        $grid = $this->gridManager->seekOrGenerateForTraining($language);
-        $round = $this->roundManager->generateRush($game, $grid);
-        $this->em->persist($game);
-        $this->em->flush();
+        $training = $this->em->getRepository('MagicWordBundle:Game')->findNotPlayedForTraining($user, $language);
+        if ($training) {
+            $round = $training->getRounds()[0];
+        } else {
+            $game = new Training();
+            $game->setLanguage($language);
+            $game->setAuthor($user);
+            $grid = $this->gridManager->generate($language);
+            $round = $this->roundManager->generateRush($game, $grid);
+            $this->em->persist($game);
+            $this->em->flush();
+        }
 
         return $round;
     }

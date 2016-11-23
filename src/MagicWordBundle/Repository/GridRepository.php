@@ -2,9 +2,6 @@
 
 namespace MagicWordBundle\Repository;
 
-use MagicWordBundle\Entity\Player;
-use MagicWordBundle\Entity\Language;
-
 /**
  * GridRepository.
  *
@@ -13,35 +10,4 @@ use MagicWordBundle\Entity\Language;
  */
 class GridRepository extends \Doctrine\ORM\EntityRepository
 {
-    public function findNotPlayedForTraining(Player $user, Language $language)
-    {
-        $em = $this->_em;
-        $dql = "SELECT g FROM MagicWordBundle\Entity\Grid g
-                WHERE g.language = :language
-                AND NOT EXISTS(
-                    SELECT a FROM MagicWordBundle\Entity\Activity a
-                    LEFT JOIN a.round r
-                    WHERE r.grid = g
-                    AND a.player = :user
-                ) AND NOT EXISTS(
-                    SELECT round FROM MagicWordBundle\Entity\Round round
-                    LEFT JOIN round.game game
-                    WHERE round.grid = g
-                    AND game INSTANCE OF 'MagicWordBundle\Entity\GameType\Massive'
-                ) AND NOT EXISTS(
-                    SELECT rchallenge FROM MagicWordBundle\Entity\Round rchallenge
-                    LEFT JOIN rchallenge.game challengegame
-                    LEFT JOIN 'MagicWordBundle\Entity\GameType\Challenge' challenge WITH challenge = challenge
-                    WHERE rchallenge.grid = g
-                    AND challengegame INSTANCE OF 'MagicWordBundle\Entity\GameType\Challenge'
-                    AND (challengegame.author = :user OR challenge.challenged = :user)
-                )";
-
-        $query = $em->createQuery($dql);
-        $query->setParameter('user', $user)
-              ->setParameter('language', $language)
-              ->setMaxResults(1);
-
-        return $query->getOneOrNullResult();
-    }
 }

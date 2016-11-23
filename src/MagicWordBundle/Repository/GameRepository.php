@@ -2,6 +2,9 @@
 
 namespace MagicWordBundle\Repository;
 
+use MagicWordBundle\Entity\Player;
+use MagicWordBundle\Entity\Language;
+
 /**
  * GameRepository.
  *
@@ -10,4 +13,24 @@ namespace MagicWordBundle\Repository;
  */
 class GameRepository extends \Doctrine\ORM\EntityRepository
 {
+    public function findNotPlayedForTraining(Player $user, Language $language)
+    {
+        $em = $this->_em;
+        $dql = "SELECT game FROM MagicWordBundle\Entity\Game game
+                LEFT JOIN game.rounds r
+                WHERE r.language = :language
+                AND game INSTANCE OF 'MagicWordBundle\Entity\GameType\Training'
+                AND NOT EXISTS(
+                    SELECT a FROM MagicWordBundle\Entity\Activity a
+                    WHERE a.round = r
+                    AND a.player = :user
+                )";
+
+        $query = $em->createQuery($dql);
+        $query->setParameter('user', $user)
+              ->setParameter('language', $language)
+              ->setMaxResults(1);
+
+        return $query->getOneOrNullResult();
+    }
 }
