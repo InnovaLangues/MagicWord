@@ -16,7 +16,7 @@
                 <tr {{ app.user == score.player ? "class='success'": ""}}>
                     <td>{{ i + 1 }}</td>
                     <td>{{ score.player }}</td>
-                    <td>{{ score.points }}</td>
+                    <td>{{ score.forfeit ? 'abandon'| trans : score.points }}</td>
                     {% for i, activity in score.activities %}
                     <td>
                         {{ activity.points }}

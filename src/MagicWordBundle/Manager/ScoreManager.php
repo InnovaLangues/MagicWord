@@ -116,14 +116,15 @@ class ScoreManager
             $rounds = $game->getRounds();
 
             foreach ($rounds as $round) {
-                $activity = $this->em->getRepository('MagicWordBundle:Activity')->findOneBy(['round' => $round, 'player' => $user]);
-                $score->addActivity($activity);
-                if (!$forfeit) {
-                    $points += $activity->getPoints();
-                }
+                if ($activity = $this->em->getRepository('MagicWordBundle:Activity')->findOneBy(['round' => $round, 'player' => $user])) {
+                    $score->addActivity($activity);
+                    if (!$forfeit) {
+                        $points += $activity->getPoints();
+                    }
+                };
             }
 
-            $this->createScore($score, $game, $user, $points);
+            $this->createScore($score, $game, $user, $points, $forfeit);
         }
 
         return;
@@ -141,11 +142,12 @@ class ScoreManager
         return $letterPoints;
     }
 
-    public function createScore(Score $score, $game, Player $player, $points)
+    public function createScore(Score $score, $game, Player $player, $points = 0, $forfeit = false)
     {
         $score->setGame($game);
         $score->setPoints($points);
         $score->setPlayer($player);
+        $score->setForfeit($forfeit);
 
         $this->em->persist($score);
         $this->em->flush();

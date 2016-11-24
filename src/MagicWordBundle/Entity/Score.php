@@ -40,6 +40,13 @@ class Score
     private $points = 0;
 
     /**
+     * @var bool
+     *
+     * @ORM\Column(name="forfeit", type="boolean")
+     */
+    private $forfeit;
+
+    /**
      * @ORM\OneToMany(targetEntity="Activity", mappedBy="score")
      */
 
@@ -173,5 +180,29 @@ class Score
     public function getActivities()
     {
         return $this->activities;
+    }
+
+    /**
+     * Set forfeit.
+     *
+     * @param bool $forfeit
+     *
+     * @return Score
+     */
+    public function setForfeit($forfeit)
+    {
+        $this->forfeit = $forfeit;
+
+        return $this;
+    }
+
+    /**
+     * Get forfeit.
+     *
+     * @return bool
+     */
+    public function getForfeit()
+    {
+        return $this->forfeit;
     }
 }
