@@ -14,9 +14,9 @@ class ChallengeController extends Controller
      * @Route("/challenge", name="challenge")
      * @Method("GET")
      */
-    public function challengeAction()
+    public function challengeAction(Request $request)
     {
-        $form = $round = $this->get('mw_manager.challenge')->generateChallengeForm();
+        $form = $this->get('mw_manager.challenge')->handleChallengeForm($request);
 
         return $this->render('MagicWordBundle:Game/Challenge:challenge.html.twig', array('form' => $form));
     }
@@ -27,34 +27,9 @@ class ChallengeController extends Controller
      */
     public function challengeSubmitAction(Request $request)
     {
-        $this->get('session')->getFlashBag()->add('success', 'Défi envoyé');
         $this->get('mw_manager.challenge')->handleChallengeForm($request);
 
         return $this->redirectToRoute('games_started');
-    }
-
-    /**
-     * @Route("/challenges/sent", name="challenges_sent")
-     * @Method("GET")
-     */
-    public function challengesSentAction()
-    {
-        $author = $this->get('security.token_storage')->getToken()->getUser();
-        $challenges = $this->getDoctrine()->getRepository('MagicWordBundle:GameType\Challenge')->findByAuthor($author);
-
-        return $this->render('MagicWordBundle:Game/Challenge:challenges-sent.html.twig', array('challenges' => $challenges));
-    }
-
-    /**
-     * @Route("/challenges/received", name="challenges_received")
-     * @Method("GET")
-     */
-    public function challengesReceivedAction()
-    {
-        $challenged = $this->get('security.token_storage')->getToken()->getUser();
-        $challenges = $this->getDoctrine()->getRepository('MagicWordBundle:GameType\Challenge')->findByChallenged($challenged);
-
-        return $this->render('MagicWordBundle:Game/Challenge:challenges-received.html.twig', array('challenges' => $challenges));
     }
 
     /**
@@ -86,9 +61,9 @@ class ChallengeController extends Controller
     public function replyChallengeSubmitAction(Challenge $challenge, Request $request)
     {
         $this->get('mw_manager.challenge')->handleReplyForm($challenge, $request);
-        $url = $this->get('mw_manager.challenge')->getNextURL($challenge);
+        $this->get('session')->getFlashBag()->add('success', 'Défi accepté');
 
-        return $this->redirect($url);
+        return $this->redirectToRoute('games_started');
     }
 
     /**

@@ -84,13 +84,6 @@ class ChallengeManager
         return;
     }
 
-    public function generateChallengeForm()
-    {
-        $form = $this->formFactory->createBuilder(ChallengeType::class)->getForm()->createView();
-
-        return $form;
-    }
-
     public function generateReplyForm(Challenge $challenge)
     {
         $form = $this->formFactory->createBuilder(ChallengeReplyType::class)->getForm()->createView();
@@ -116,22 +109,25 @@ class ChallengeManager
 
     public function handleChallengeForm(Request $request)
     {
+        $currentUser = $this->tokenStorage->getToken()->getUser();
         $challenge = new Challenge();
-        $form = $this->formFactory->createBuilder(ChallengeType::class, $challenge)->getForm();
-        $form->handleRequest($request);
+        $form = $this->formFactory->createBuilder(ChallengeType::class, $challenge, ['user' => $currentUser])->getForm();
 
-        if ($form->isValid()) {
-            $challenge->setAuthor($this->tokenStorage->getToken()->getUser());
-            $this->em->persist($challenge);
-            $this->em->flush();
+        $form->handleRequest($request);
+        if ($form->isSubmitted()) {
+            if ($form->isValid()) {
+                $challenge->setAuthor($currentUser);
+                $this->em->persist($challenge);
+                $this->em->flush();
+
+                $roundType = $challenge->getFirstRoundType()->getName();
+                $this->generateRound($roundType, $challenge);
+                $this->userManager->startGame($challenge, $challenge->getAuthor());
+                $this->userManager->startGame($challenge, $challenge->getChallenged());
+            }
         }
 
-        $roundType = $challenge->getFirstRoundType()->getName();
-        $this->generateRound($roundType, $challenge);
-        $this->userManager->startGame($challenge, $challenge->getAuthor());
-        $this->userManager->startGame($challenge, $challenge->getChallenged());
-
-        return $challenge;
+        return $form->createView();
     }
 
     public function generateRound($roundType, Challenge $challenge)

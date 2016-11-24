@@ -35,14 +35,15 @@
                         <span class="pull-right">
                             {% if game.discr == "massive" %}
                             <span class="label label-info">{{ "popularity" | trans }}: {{ getActivityCount(game) }}</span>
-                            {% endif %}
                             <a class="btn btn-default btn-xs" role="button" data-toggle="collapse" data-parent="#accordion" href="#{{ game.id }}" aria-expanded="true" aria-controls="{{ game.id }}">
                                 <i class="fa fa-info" aria-hidden="true"></i> Infos
                             </a>
+                            {% endif %}
                             {{ _self.game_play_link(game) }}
                         </span>
                     </h4>
                 </div>
+                {% if game.discr == "massive" %}
                 <div id="{{ game.id }}" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
                     <ul class="list-group">
                         {% for i, round in game.rounds %}
@@ -56,6 +57,7 @@
                         {% endfor %}
                     </ul>
                 </div>
+                {% endif %}
             </div>
         {% endfor %}
     </div>
@@ -63,9 +65,7 @@
 {% endblock %}
 
 {% macro game_play_link(game) %}
-    {% if game.discr == "training" %}
-         {% set url = path('round_play', {"id": game.rounds|first.id}) %}
-    {% elseif  game.discr == "massive" %}
+    {% if  game.discr == "massive" %}
         {% set url = path('massive_play', {"id": game.id}) %}
     {% else %}
         {% if game.rounds|length == 1 %}
@@ -97,9 +97,7 @@
 {% endmacro %}
 
 {% macro game_name(game) %}
-    {% if game.discr == "training" %}
-         <span class="label label-default">{{ "training" | trans }}</span>
-    {% elseif game.discr == "massive" %}
+    {% if game.discr == "massive" %}
         <span class="label label-primary">{{ "massive" | trans }}</span>
         {{ game.name }} {% if game.description %}<span class="text-muted">({{ game.description }})</span>{% endif %}
         par <a href="{{ path('profile', {"id":  game.author.id}) }}">{{ game.author }}</a>
@@ -107,6 +105,7 @@
         {% set user = (game.challenged == app.user) ? game.author : game.challenged %}
         <span class="label label-success">{{ "challenge" | trans }}</span>
         avec <a href="{{ path('profile', {"id":  user.id}) }}">{{ user }}</a>
+        {% if game.message %}<span class="text-muted">({{ game.message }})</span>{% endif %}
     {% endif %}
 </li>
 {% endmacro %}

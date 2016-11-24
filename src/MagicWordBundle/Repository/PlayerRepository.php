@@ -43,4 +43,29 @@ class PlayerRepository extends \Doctrine\ORM\EntityRepository
 
         return $query->getSingleScalarResult();
     }
+
+    public function getCandidates($currentUser)
+    {
+        $excluded = $this->getExcludedForChallenge($currentUser);
+        $qb = $this->createQueryBuilder('p');
+        $qb->where($qb->expr()->notIn('p', ':excluded'))
+            ->setParameter('excluded', $excluded);
+
+        return $qb;
+    }
+
+    public function getExcludedForChallenge($currentUser)
+    {
+        $dql = "SELECT p FROM MagicWordBundle:Player p
+                LEFT JOIN p.startedGames started
+                WHERE (
+                    started INSTANCE OF 'MagicWordBundle\Entity\GameType\Challenge'
+                    AND started.author = :currentUser
+                ) OR p = :currentUser
+        ";
+        $query = $this->_em->createQuery($dql);
+        $query->setParameter('currentUser', $currentUser);
+
+        return $query->getResult();
+    }
 }

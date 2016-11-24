@@ -7,6 +7,8 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+use Doctrine\ORM\EntityRepository;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class ChallengeType extends AbstractType
 {
@@ -20,6 +22,11 @@ class ChallengeType extends AbstractType
 
         $builder->add('challenged', EntityType::class, array(
            'class' => 'MagicWordBundle:Player',
+           'query_builder' => function (EntityRepository $er) use ($options) {
+                return $er->getCandidates($options['user']);
+            },
+            'required' => true,
+            'placeholder' => '----------',
            'attr' => array('class' => 'form-control'),
            'label' => 'challenged',
            'translation_domain' => 'messages',
@@ -44,9 +51,16 @@ class ChallengeType extends AbstractType
     ));
 
         $builder->add('save', SubmitType::class, array(
-            'attr' => array('class' => 'btn btn-default please-wait', 'data-message' => 'Génération du duel'),
+            'attr' => array('class' => 'btn btn-default'),
             'label' => 'challenge!',
             'translation_domain' => 'messages',
+        ));
+    }
+
+    public function configureOptions(OptionsResolver $resolver)
+    {
+        $resolver->setDefaults(array(
+            'user' => null,
         ));
     }
 
