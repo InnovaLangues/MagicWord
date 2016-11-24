@@ -61,7 +61,6 @@ class ChallengeController extends Controller
     public function replyChallengeSubmitAction(Challenge $challenge, Request $request)
     {
         $this->get('mw_manager.challenge')->handleReplyForm($challenge, $request);
-        $this->get('session')->getFlashBag()->add('success', 'Défi accepté');
 
         return $this->redirectToRoute('games_started');
     }
@@ -92,7 +91,6 @@ class ChallengeController extends Controller
      */
     public function cancelAction(Challenge $challenge)
     {
-        $this->get('session')->getFlashBag()->add('success', 'Défi annulé');
         $this->get('mw_manager.challenge')->cancel($challenge);
 
         return $this->redirectToRoute('games_started');

@@ -21,6 +21,7 @@ class ChallengeManager
     protected $tokenStorage;
     protected $router;
     protected $userManager;
+    protected $session;
 
     /**
      * @DI\InjectParams({
@@ -31,10 +32,11 @@ class ChallengeManager
      *      "formFactory"   = @DI\Inject("form.factory"),
      *      "tokenStorage"  = @DI\Inject("security.token_storage"),
      *      "router"        = @DI\Inject("router"),
-     *      "userManager"   = @DI\Inject("mw_manager.user")
+     *      "userManager"   = @DI\Inject("mw_manager.user"),
+     *      "session"       = @DI\Inject("session"),
      * })
      */
-    public function __construct($entityManager, $gridManager, $roundManager, $objectiveManager, $formFactory, $tokenStorage, $router, $userManager)
+    public function __construct($entityManager, $gridManager, $roundManager, $objectiveManager, $formFactory, $tokenStorage, $router, $userManager, $session)
     {
         $this->em = $entityManager;
         $this->gridManager = $gridManager;
@@ -44,6 +46,7 @@ class ChallengeManager
         $this->tokenStorage = $tokenStorage;
         $this->router = $router;
         $this->userManager = $userManager;
+        $this->session = $session;
     }
 
     public function decline(Challenge $challenge)
@@ -61,8 +64,15 @@ class ChallengeManager
     {
         $user = $this->tokenStorage->getToken()->getUser();
         if ($user === $challenge->getAuthor()) {
-            $this->removeFromStarted($challenge);
-            $this->remove($challenge);
+            if (count($challenge->getRounds()) < 2) {
+                $this->removeFromStarted($challenge);
+                $this->remove($challenge);
+                $this->session->getFlashBag()->add('success', 'Défi annulé');
+            } else {
+                $this->session->getFlashBag()->add('warning', 'Trop tard, votre adversaire a déjà accepté');
+            }
+        } else {
+            $this->session->getFlashBag()->add('warning', 'hmmm');
         }
 
         return;
@@ -97,6 +107,7 @@ class ChallengeManager
         $form->handleRequest($request);
 
         if ($form->isValid()) {
+            $this->session->getFlashBag()->add('success', 'Défi accepté');
             $this->em->persist($challenge);
             $this->em->flush();
         }
