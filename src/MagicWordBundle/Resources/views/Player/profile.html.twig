@@ -21,10 +21,15 @@
         </h4>
     </div>
     <div class="panel-body">
-        {% if user.profilepicPath %}
-            <img height="200px" src="{{ asset('upload/profilepic/' ~ app.user.profilepicPath) }}"/>
-        {% endif %}
-        {{ user.profileText }}
+    {% if user.profilepicPath %}
+        <img height="200px" src="{{ asset('upload/profilepic/' ~ user.profilepicPath) }}"/>
+        <hr/>
+    {% endif %}
+    {% if user.profileText %}
+    <i class="fa fa-quote-left" aria-hidden="true"></i>
+    {{ user.profileText }}
+    <i class="fa fa-quote-right" aria-hidden="true"></i>
+    {% endif %}
     </div>
 </div>
 {% endblock %}
