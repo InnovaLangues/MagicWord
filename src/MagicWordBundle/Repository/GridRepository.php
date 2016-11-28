@@ -10,4 +10,30 @@ namespace MagicWordBundle\Repository;
  */
 class GridRepository extends \Doctrine\ORM\EntityRepository
 {
+    public function findNotPlayedForChallenge($language, $author, $challenged)
+    {
+        $em = $this->_em;
+        $dql = "SELECT grid FROM MagicWordBundle\Entity\Grid grid
+                WHERE grid.language = :language
+                AND NOT EXISTS (
+                    SELECT round FROM MagicWordBundle\Entity\Round round
+                    INNER JOIN round.game game
+                    INNER JOIN MagicWordBundle\Entity\GameType\Challenge challenge WITH challenge.id = game.id
+                    WHERE round.grid = grid
+                    AND (
+                        challenge.challenged = :challenged
+                        OR challenge.challenged = :author
+                        OR challenge.author = :author
+                        OR challenge.author = :challenged
+                    )
+                )";
+
+        $query = $em->createQuery($dql);
+        $query->setParameter('author', $author)
+                ->setParameter('challenged', $challenged)
+                ->setParameter('language', $language)
+                ->setMaxResults(1);
+
+        return $query->getOneOrNullResult();
+    }
 }

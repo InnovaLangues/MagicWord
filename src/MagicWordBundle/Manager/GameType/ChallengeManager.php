@@ -144,7 +144,13 @@ class ChallengeManager
     public function generateRound($roundType, Challenge $challenge)
     {
         $language = $challenge->getLanguage();
-        $grid = $this->gridManager->generate($language);
+        $author = $challenge->getAuthor();
+        $challenged = $challenge->getChallenged();
+
+        $grid = ($candidate = $this->em->getRepository('MagicWordBundle:Grid')->findNotPlayedForChallenge($language, $author, $challenged))
+            ? $candidate
+            : $this->gridManager->generate($language);
+
         switch ($roundType) {
             case 'rush':
                 $round = $this->roundManager->generateRush($challenge, $grid);
