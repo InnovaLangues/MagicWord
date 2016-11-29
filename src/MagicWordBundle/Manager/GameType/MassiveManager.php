@@ -74,6 +74,7 @@ class MassiveManager
 
         if (empty($errors)) {
             $massive->setPublished(true);
+            $massive->setPublishDate(new \DateTime());
             $this->em->persist($massive);
             $this->em->flush();
         }

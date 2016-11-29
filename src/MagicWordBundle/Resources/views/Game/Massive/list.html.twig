@@ -17,6 +17,9 @@
                    <button type="button" class="btn btn-default btn-xs" data-order="asc" onclick="sorter.sort('author', this, '.games', '.game')">
                        <i class="fa fa-sort" aria-hidden="true"></i> {{ "author" | trans }}
                    </button>
+                   <button type="button" class="btn btn-default btn-xs" data-order="asc" onclick="sorter.sort('date', this, '.games', '.game')">
+                       <i class="fa fa-sort" aria-hidden="true"></i> {{ "date" | trans }}
+                   </button>
                    {% include "MagicWordBundle:Common:backtohome.html.twig" %}
                 </span>
             </h4>
@@ -25,7 +28,7 @@
             {% for massive in massives if massive not in app.user.endedGames and massive not in app.user.startedGames and massive.author != app.user %}
                 {% set popularity = getActivityCount(massive) %}
                 {% set roundCount =  massive.rounds|length %}
-                <div data-roundcount="roundCount" data-popularity="{{ popularity }}" data-author="{{ massive.author }}" class="panel panel-default game">
+                <div data-roundcount="roundCount" data-popularity="{{ popularity }}" data-author="{{ massive.author }}" data-date="{{ massive.publishDate|date('Y-m-d H:i:s') }}" class="panel panel-default game">
                     <div class="panel-heading" role="tab" id="headingOne">
                         <h4 class="panel-title">
                             "{{ massive.name }}" {% if massive.description %}<span class="text-muted">({{ massive.description}})</span>{% endif %}

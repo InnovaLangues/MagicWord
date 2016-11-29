@@ -22,6 +22,11 @@ class Massive extends Game
      */
     private $published = 0;
 
+    /**
+     * @ORM\Column(name="publish_date", type="datetime", nullable=true)
+     */
+    private $publishDate;
+
     public function getDiscr()
     {
         return $this->discr;
@@ -49,5 +54,29 @@ class Massive extends Game
     public function getPublished()
     {
         return $this->published;
+    }
+
+    /**
+     * Set publishDate
+     *
+     * @param \DateTime $publishDate
+     *
+     * @return Massive
+     */
+    public function setPublishDate($publishDate)
+    {
+        $this->publishDate = $publishDate;
+
+        return $this;
+    }
+
+    /**
+     * Get publishDate
+     *
+     * @return \DateTime
+     */
+    public function getPublishDate()
+    {
+        return $this->publishDate;
     }
 }
