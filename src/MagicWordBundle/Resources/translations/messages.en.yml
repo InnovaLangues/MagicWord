@@ -1,73 +1,180 @@
+'- category -': -- Category --
+'- gender -': -- Genre --
+'- mood -': -- Mood --
+'- number -': -- Number --
+'- person -': -- Person --
+'- tense -': -- Tense --
+abandon: Withdrawal
+accept_challenge: Acceot challenge
 add_combo: 'Add a combo'
+add_constraint: Add constraint objective
 add_existing_form: 'Add existing form'
+add_findword: Add a findWord objective
 add_form: 'Add a form'
 add_round: 'Add a round'
+add_to_findwords: Add to findword objectives
 add_to_friends: 'Add to friends'
-add_to_wordbox: Add to wordbox
+add_to_wordbox_short: wordbox
+add_to_wordbox: 'Add to wordbox'
 add: Add
+adjective: adjective
+adverb: adverbe
+author: author
+autofill_grid: autofill
 back_to_editor: 'Back to editor'
+back_to_home: Back to home
+bonus_points: Bonus points
+cancel: Cancel challenge
 category: Category
 challenge_received: 'Challenges received'
 challenge_sent: 'Challenges sent'
 challenge_someone: 'Challenge someone'
 challenge: Challenge
-challenged: Challenged player
-cleaned_content: Cleaned form
+challenge!: Challenge
+challenged: 'Challenged player'
+challenges: Challenges
+cleaned_content: 'Cleaned form'
 close: Close
-combo_length: Combo length
-combo_number: Combo count
+combo_length: 'Combo length'
+combo_number: 'Combo count'
 combos__with_length: 'combo(s) with a length of'
 combos: Combos
+commonNoun: common noun
+conditional: Conditional
+conditionnal: conditional
+conjunction: conjunction
+conquer_rules: Complete objectives as fast as you can.
 conquer: Conquer
+constraint_number: Number
+constraint: Morpho
+constraints: Constraints
+continue: Continue
 create: Create
+current_combo: Combo in progress
+day: day
+days: days
+decline_challenge: Decline challenge
+definition: Definition of
 description: Description
-edit_game: Edit games
-edit_round: Edit round
+determiner: Determiner
+done_objectives: Completed objectives
+edit_game: 'Edit games'
+edit_password: Change password
+edit_profile: Edit profile
+edit_round: 'Edit round'
 english: English
 existing_forms: 'Present forms'
+feminine: feminine
 find_words: FindWord
+firstPerson: 1rst
+forfeit: Give up game
 form: Form
+forms_found_count: Found forms count
 forms_found: 'Found forms'
+foundables: Found forms
 french: French
 from: 'From'
-game_language: Game language
+future: future
+game_end: Game summary
+game_language: 'Game language'
+games_ended: Finished games
+games_started: Game in progress
+gametype: game type
 gender: Genre
 generate_grid: 'Generate grid'
+give_up: Give up round
 grid: Grid
 hidden: 'Hide presence'
 hint: Hint
-inflexion_info: Infos about form
-language_ui: UI Language
+hour: hour
+hours: hours
+imperative: imperative
+imperfect: imperfect
+indicative: indicative
+infinitive: infinitive
+inflexion_info: 'Infos about form'
+interjection: interjection
+invariable: invariable
+Is lemma enough ?: Lemma is enough ?
+language_ui: 'UI Language'
 language: Language
-lemma_info: Infos about lemma
+lemma_info: 'Infos about lemma'
 lemma: Lemma
-massive: Massive game
+letterlanguagepoints: Language and letter points
+masculine: masculine
+massive_end: 'Massive game summary'
+massive: 'Massive game'
 massives: 'Massive games'
 me: Me
 message: Message
+minute: minute
+minutes: minutes
 mood: Mood
+mute_sounds: Turn off sounds
 my_friends: 'My friends'
+my_massives_published: 'Finished games'
+my_massives_under_construction: 'Games in construction'
 my_massives: 'My massive games'
+my_profile: My profile
 name: Name
-new_massive: New massive game
+neuter: neutral
+new_massive: 'New massive game'
+number: Number
+numeral: numeric
 objectives: Objectives
 online: 'Online'
 parameters: Parameters
+participle: participe
+past: past
 person: Person
 phonetic: Phonetic
 play: Play
+player: Player
+plural: plural
+points: Points
+popularity: popularity
+preposition: preposition
+present: present
 profile_of: 'Profil'
-remove__from_friends: Remove from friends
+profile_pic: Profile picture
+profile_text: Profile description
+pronoun: Pronoun
+rank: Rank
+ranking: Ranking
+rankings_and_stats: Rankings and statistics
+remove__from_friends: 'Remove from friends'
+round_type: Round type you want to play (1st round)
+round_type2: Round type you want to play (2nd round)
 round: Round
+roundCount: rounds
+rounds: Rounds
+rush_rules: Find words in the grid
 rush: Rush
-save_grid: Save the grid
-save_objectives: Save objectives
+save_grid: 'Save the grid'
+save_objectives: 'Save objectives'
 save: Save
-see_combos: See combos
-see_grid: See grid
+score: Total score
+second: second
+secondPerson: 2nd person
+seconds: seconds
+see_combos: 'See combos'
+see_constraints: See possible constraints
+see_grid: 'See grid'
+simplePast: past historic
+singular: singular
+stats: Statistics
 subcategory: Subcategory
+subjunctive: subjonctive
 tense: Tense
+thirdPerson: 3rd person
+time: Tense
 to: to
+total: Total
 train: 'Train'
+training: Training game
 update: 'update'
+verb: verb
+weight: Weight
+word_length: form length
 wordbox: Wordbox
+wordlengthpoints: Form length bonus points

@@ -1,10 +1,10 @@
-
 '- category -': -- Catégorie --
 '- gender -': -- Genre --
 '- mood -': -- Mode --
 '- number -': -- Nombre --
 '- person -': -- Personne --
 '- tense -': -- Temps --
+abandon: Abandon
 accept_challenge: Accepter le défi
 add_combo: 'Ajouter un objectif combo'
 add_constraint: Ajouter un objectif contrainte
@@ -59,6 +59,8 @@ description: Description
 determiner: déterminant
 done_objectives: Objectifs réalisés
 edit_game: 'Editer partie'
+edit_password: Changer de mot de passe
+edit_profile: Editer le profil
 edit_round: 'Editer la manche'
 english: Anglais
 existing_forms: 'forme(s) présente(s)'
@@ -113,6 +115,7 @@ my_friends: 'Mes contacts'
 my_massives_published: 'Parties finalisées'
 my_massives_under_construction: 'Parties en chantier'
 my_massives: 'Mes parties massives'
+my_profile: Mon profil
 name: Nom
 neuter: neutre
 new_massive: 'Nouvelle partie'
@@ -133,6 +136,8 @@ popularity: popularité
 preposition: préposition
 present: présent
 profile_of: 'Profil de'
+profile_pic: Image du profil
+profile_text: Description du profil
 pronoun: pronom
 rank: Rang
 ranking: Classement
@@ -173,9 +178,3 @@ weight: Poids
 word_length: Longueur de la forme
 wordbox: Ma wordbox
 wordlengthpoints: Points bonus longueur de forme
-edit_password: Changer de mot de passe
-profile_text: Description du profil
-profile_pic: Image du profil
-edit_profile: Editer le profil
-my_profile: Mon profil
-abandon: Abandon
