@@ -5,6 +5,8 @@ A Symfony project created on May 9, 2016, 9:02 am based on :
 * https://github.com/InnovaLangues/Magic-Word-game
 * https://github.com/giacomo-mambelli/magicword
 
+See [the wiki](https://github.com/InnovaLangues/MagicWord/wiki) for more informations
+
 Contributions to the code
 ------------
 * Arnaud Bey
