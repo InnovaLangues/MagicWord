@@ -19,19 +19,22 @@ class RoundManager
 {
     protected $em;
     protected $gridManager;
+    protected $objectiveManager;
     protected $formFactory;
 
     /**
      * @DI\InjectParams({
      *      "entityManager" = @DI\Inject("doctrine.orm.entity_manager"),
      *      "gridManager"   = @DI\Inject("mw_manager.grid"),
+     *      "objectiveManager"   = @DI\Inject("mw_manager.objective"),
      *      "formFactory"   = @DI\Inject("form.factory"),
      * })
      */
-    public function __construct($entityManager, $gridManager, $formFactory)
+    public function __construct($entityManager, $gridManager, $objectiveManager, $formFactory)
     {
         $this->em = $entityManager;
         $this->gridManager = $gridManager;
+        $this->objectiveManager = $objectiveManager;
         $this->formFactory = $formFactory;
     }
 
@@ -134,6 +137,12 @@ class RoundManager
 
         if ($round->getGrid() && $round->getLanguage() != $round->getGrid()->getLanguage()) {
             $errors[] = 'round & grid language inconsistency for round '.$roundName;
+        }
+
+        if ($round->getDiscr() == 'conquer') {
+            foreach ($round->getObjectives() as $objective) {
+                $errors = array_merge($errors, $this->objectiveManager->isValid($objective));
+            }
         }
 
         return $errors;

@@ -164,4 +164,33 @@ class ObjectiveManager
 
         return $conquer;
     }
+
+    public function isValid($objective)
+    {
+        $errors = [];
+
+        $foundableRepo = $this->em->getRepository('MagicWordBundle:FoundableForm');
+        $conquer = $objective->getConquer();
+        $grid = $conquer->getGrid();
+        $roundName = $conquer->getDisplayOrder() + 1;
+
+        if ($grid) {
+            switch ($objective->getDiscr()) {
+                case 'findword':
+                    if (!$foundableRepo->findOneBy(['grid' => $grid, 'form' => $objective->getinflection()])) {
+                        $errors[] = 'problème findword non réalisable round '.$roundName;
+                    }
+                    break;
+                case 'constraint':
+                    $foundables = $foundableRepo->getByGridAndCriteria($grid, $objective);
+                    if (count($foundables) < $objective->getNumberToFind()) {
+                        $errors[] = 'problème constraint non réalisable round '.$roundName;
+                    }
+                default:
+                    break;
+                }
+        }
+
+        return $errors;
+    }
 }

@@ -61,15 +61,12 @@ class MassiveManager
 
     public function publish(Massive $massive)
     {
-        $isValid = true;
         $errors = [];
 
-        if (count($massive->getRounds()) == 0) {
-            $errors[] = 'no round...';
-        } else {
-            foreach ($massive->getRounds() as $round) {
-                $errors = array_merge($errors, $this->roundManager->isValid($round));
-            }
+        $errors = array_merge($errors, $this->isValid($massive));
+
+        foreach ($massive->getRounds() as $round) {
+            $errors = array_merge($errors, $this->roundManager->isValid($round));
         }
 
         if (empty($errors)) {
@@ -168,5 +165,15 @@ class MassiveManager
         $this->em->flush();
 
         return;
+    }
+
+    private function isValid(Massive $massive)
+    {
+        $errors = [];
+        if (count($massive->getRounds()) == 0) {
+            $errors[] = 'no round...';
+        }
+
+        return $errors;
     }
 }
