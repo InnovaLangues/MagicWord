@@ -178,3 +178,6 @@ weight: Poids
 word_length: Longueur de la forme
 wordbox: Ma wordbox
 wordlengthpoints: Points bonus longueur de forme
+public: Visible publiquement
+link: Accès via le lien uniquement
+access_type: Type d'accès

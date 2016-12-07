@@ -84,28 +84,4 @@ class Massive extends Game
     {
         return $this->publishDate;
     }
-
-    /**
-     * Set accessType
-     *
-     * @param \MagicWordBundle\Entity\AccessType $accessType
-     *
-     * @return Massive
-     */
-    public function setAccessType(\MagicWordBundle\Entity\AccessType $accessType = null)
-    {
-        $this->accessType = $accessType;
-
-        return $this;
-    }
-
-    /**
-     * Get accessType
-     *
-     * @return \MagicWordBundle\Entity\AccessType
-     */
-    public function getAccessType()
-    {
-        return $this->accessType;
-    }
 }

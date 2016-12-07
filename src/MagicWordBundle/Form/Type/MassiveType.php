@@ -25,6 +25,15 @@ class MassiveType extends AbstractType
             'required' => false,
         ));
 
+        $builder->add('accessType', EntityType::class, array(
+           'class' => 'MagicWordBundle:AccessType',
+           'choice_label' => 'name',
+           'label' => 'access_type',
+           'translation_domain' => 'messages',
+           'choice_translation_domain' => 'messages',
+           'attr' => array('class' => 'form-control'),
+        ));
+
         $builder->add('language', EntityType::class, array(
            'class' => 'MagicWordBundle:Language',
            'choice_label' => 'name',
