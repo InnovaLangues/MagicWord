@@ -17,13 +17,18 @@ class RoundController extends Controller
      */
     public function playAction(Round $round)
     {
-        $activity = $this->get('mw_manager.activity')->getActivity($round);
+        $game = $round->getGame();
 
-        if ($activity && $activity->getEndDate() != null) {
-            return $this->redirectToRoute('round_end', ['id' => $round->getId()]);
+        if ($this->get('mw_manager.user')->canPlay($game)) {
+            $activity = $this->get('mw_manager.activity')->getActivity($round);
+            if ($activity && $activity->getEndDate() != null) {
+                return $this->redirectToRoute('round_end', ['id' => $round->getId()]);
+            }
+
+            return $this->render('MagicWordBundle:Round:play.html.twig', ['round' => $round]);
         }
 
-        return $this->render('MagicWordBundle:Round:play.html.twig', ['round' => $round]);
+        return $this->redirectToRoute('home');
     }
 
     /**

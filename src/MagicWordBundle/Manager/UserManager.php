@@ -6,6 +6,7 @@ use JMS\DiExtraBundle\Annotation as DI;
 use MagicWordBundle\Form\Type\PlayerType;
 use MagicWordBundle\Form\Type\ProfileType;
 use MagicWordBundle\Entity\Game;
+use MagicWordBundle\Entity\GameType\Massive;
 use Symfony\Component\HttpFoundation\Request;
 
 /**
@@ -191,5 +192,37 @@ class UserManager
         $best = $this->em->getRepository('MagicWordBundle:Player')->getBestForm($currentUser);
 
         return $best;
+    }
+
+    public function canPlay($game)
+    {
+        $currentUser = $this->tokenStorage->getToken()->getUser();
+        $gameType = $game->getDiscr();
+
+        if ($gameType != 'massive' && !$currentUser->getStartedGames()->contains($game)) {
+            $this->session->getFlashBag()->add('warning', 'Hmmmm....');
+
+            return false;
+        }
+
+        if ($gameType == 'massive' && $currentUser == $game->getAuthor()) {
+            $this->session->getFlashBag()->add('warning', 'Vous ne pouvez pas jouer votre propre partie');
+
+            return false;
+        }
+
+        return true;
+    }
+
+    public function isGranted(Massive $massive)
+    {
+        $currentUser = $this->tokenStorage->getToken()->getUser();
+        if ($massive->getAuthor() !== $currentUser) {
+            $this->session->getFlashBag()->add('warning', 'Seul le créateur de la partie a accès à cette page');
+
+            return false;
+        }
+
+        return true;
     }
 }

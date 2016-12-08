@@ -19,10 +19,14 @@ class MassiveController extends Controller
      */
     public function playAction(Massive $massive)
     {
-        $this->get('mw_manager.user')->startGame($massive);
-        $url = $this->get('mw_manager.massive')->getNextURL($massive);
+        if ($this->get('mw_manager.user')->canPlay($massive)) {
+            $this->get('mw_manager.user')->startGame($massive);
+            $url = $this->get('mw_manager.massive')->getNextURL($massive);
 
-        return $this->redirect($url);
+            return $this->redirect($url);
+        }
+
+        return $this->redirectToRoute('home');
     }
 
     /**
@@ -42,6 +46,10 @@ class MassiveController extends Controller
      */
     public function rankingAction(Massive $massive)
     {
+        if (!$this->get('mw_manager.user')->isGranted($massive)) {
+            return $this->redirectToRoute('home');
+        }
+
         return $this->render('MagicWordBundle:Game/Massive:ranking.html.twig', array('massive' => $massive));
     }
 
@@ -51,6 +59,10 @@ class MassiveController extends Controller
      */
     public function publishAction(Massive $massive)
     {
+        if (!$this->get('mw_manager.user')->isGranted($massive)) {
+            return $this->redirectToRoute('home');
+        }
+
         $errors = $this->get('mw_manager.massive')->publish($massive);
 
         if (empty($errors)) {
@@ -127,6 +139,10 @@ class MassiveController extends Controller
      */
     public function displayBuilderAction(Massive $massive)
     {
+        if (!$this->get('mw_manager.user')->isGranted($massive)) {
+            return $this->redirectToRoute('home');
+        }
+
         $form = $this->get('form.factory')->createBuilder(MassiveType::class, $massive)->getForm()->createView();
 
         return $this->render('MagicWordBundle:Game/Massive:builder.html.twig', array('massive' => $massive, 'form' => $form));
@@ -139,6 +155,10 @@ class MassiveController extends Controller
      */
     public function saveInfosAction(Massive $massive, Request $request)
     {
+        if (!$this->get('mw_manager.user')->isGranted($massive)) {
+            return $this->redirectToRoute('home');
+        }
+
         $massive = $this->get('mw_manager.massive')->handleMassiveForm($request, $massive);
 
         return $this->redirectToRoute('massive_builder', array('id' => $massive->getId()));
@@ -150,6 +170,10 @@ class MassiveController extends Controller
      */
     public function addRushRoundAction(Massive $massive)
     {
+        if (!$this->get('mw_manager.user')->isGranted($massive)) {
+            return $this->redirectToRoute('home');
+        }
+
         $this->get('mw_manager.massive')->addRushRound($massive);
         $this->get('session')->getFlashBag()->add('success', 'Round rush ajouté');
 
@@ -163,6 +187,10 @@ class MassiveController extends Controller
      */
     public function removeRoundAction(Massive $massive, Round $round)
     {
+        if (!$this->get('mw_manager.user')->isGranted($massive)) {
+            return $this->redirectToRoute('home');
+        }
+
         $this->get('mw_manager.massive')->removeRound($massive, $round);
         $this->get('session')->getFlashBag()->add('success', 'Round supprimé');
 
@@ -175,6 +203,10 @@ class MassiveController extends Controller
      */
     public function addConquerRoundAction(Massive $massive)
     {
+        if (!$this->get('mw_manager.user')->isGranted($massive)) {
+            return $this->redirectToRoute('home');
+        }
+
         $this->get('mw_manager.massive')->addConquerRound($massive);
         $this->get('session')->getFlashBag()->add('success', 'Round conquer ajouté');
 
@@ -188,6 +220,10 @@ class MassiveController extends Controller
      */
     public function roundMoveUp(Massive $massive, Round $round)
     {
+        if (!$this->get('mw_manager.user')->isGranted($massive)) {
+            return $this->redirectToRoute('home');
+        }
+
         $this->get('mw_manager.massive')->swapRound($massive, $round, -1);
         $this->get('session')->getFlashBag()->add('success', 'Round déplacé');
 
@@ -201,6 +237,10 @@ class MassiveController extends Controller
      */
     public function roundMoveDown(Massive $massive, Round $round)
     {
+        if (!$this->get('mw_manager.user')->isGranted($massive)) {
+            return $this->redirectToRoute('home');
+        }
+
         $this->get('mw_manager.massive')->swapRound($massive, $round, 1);
         $this->get('session')->getFlashBag()->add('success', 'Round déplacé');
 

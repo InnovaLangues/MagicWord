@@ -38,9 +38,13 @@ class ChallengeController extends Controller
      */
     public function playChallengeAction(Challenge $challenge)
     {
-        $url = $this->get('mw_manager.challenge')->getNextURL($challenge);
+        if ($this->get('mw_manager.user')->canPlay($challenge)) {
+            $url = $this->get('mw_manager.challenge')->getNextURL($challenge);
 
-        return $this->redirect($url);
+            return $this->redirect($url);
+        }
+
+        return $this->redirectToRoute('home');
     }
 
     /**
