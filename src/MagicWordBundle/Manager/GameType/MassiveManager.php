@@ -7,6 +7,7 @@ use MagicWordBundle\Entity\GameType\Massive;
 use MagicWordBundle\Entity\Round;
 use MagicWordBundle\Form\Type\MassiveType;
 use Symfony\Component\HttpFoundation\Request;
+use Ramsey\Uuid\Uuid;
 
 /**
  * @DI\Service("mw_manager.massive")
@@ -70,6 +71,8 @@ class MassiveManager
         }
 
         if (empty($errors)) {
+            $uuid = Uuid::uuid4()->toString();
+            $massive->setCode($uuid);
             $massive->setPublished(true);
             $massive->setPublishDate(new \DateTime());
             $this->em->persist($massive);
@@ -105,6 +108,7 @@ class MassiveManager
 
         if ($form->isValid()) {
             $massive->setAuthor($this->tokenStorage->getToken()->getUser());
+
             $this->em->persist($massive);
             $this->em->flush();
         }

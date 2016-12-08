@@ -14,8 +14,8 @@ use MagicWordBundle\Form\Type\MassiveType;
 class MassiveController extends Controller
 {
     /**
-     * @Route("/massive/{id}/play", name="massive_play")
-     * @ParamConverter("massive", class="MagicWordBundle:GameType\Massive")
+     * @Route("/massive/{code}/play", name="massive_play")
+     * @ParamConverter("massive", options={"mapping": {"code": "code"}})
      */
     public function playAction(Massive $massive)
     {
@@ -70,7 +70,7 @@ class MassiveController extends Controller
      */
     public function listMassivesAction()
     {
-        $massives = $this->getDoctrine()->getRepository('MagicWordBundle:GameType\Massive')->findBy(['published' => 1]);
+        $massives = $this->getDoctrine()->getRepository('MagicWordBundle:GameType\Massive')->findBy(['published' => 1, 'accessType' => 1]);
 
         return $this->render('MagicWordBundle:Game/Massive:list.html.twig', array('massives' => $massives));
     }

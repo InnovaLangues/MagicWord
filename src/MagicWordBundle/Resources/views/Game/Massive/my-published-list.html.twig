@@ -18,7 +18,16 @@
                 <a href="{{ path('massive_ranking', {"id": massive.id}) }}">
                     {{ massive.name }} {% if massive.description %}<span class="text-muted">({{ massive.description}})</span>{% endif %}
                 </a>
-                <span class="label label-info">{{ "popularity" | trans }}: {{ getActivityCount(massive) }}</span>
+                <span class="pull-right">
+                    <span class="label label-info">{{ "popularity" | trans }}: {{ getActivityCount(massive) }}</span>
+                    <span class="label label-default">
+                        {{ massive.accessType.name | trans }}
+                        <a class="btn btn-default btn-xs" data-html="true" data-trigger="click" data-toggle="popover" data-container="body" data-placement="left" title="Lien partie"
+                            data-content="<input type='text' value='{{ app.request.scheme ~'://' ~ app.request.httpHost ~ path('massive_play', {"code": massive.code})}}'/>">
+                            <i class="fa fa-link" aria-hidden="true"></i>
+                        </a>
+                    </span>
+                </span>
             </li>
             {% endfor %}
         </ul>

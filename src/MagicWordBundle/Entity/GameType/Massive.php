@@ -28,6 +28,11 @@ class Massive extends Game
     private $accessType;
 
     /**
+     * @ORM\Column(type="string", nullable=true)
+     */
+    private $code;
+
+    /**
      * @ORM\Column(name="publish_date", type="datetime", nullable=true)
      */
     private $publishDate;
@@ -86,7 +91,7 @@ class Massive extends Game
     }
 
     /**
-     * Set accessType
+     * Set accessType.
      *
      * @param \MagicWordBundle\Entity\AccessType $accessType
      *
@@ -100,12 +105,36 @@ class Massive extends Game
     }
 
     /**
-     * Get accessType
+     * Get accessType.
      *
      * @return \MagicWordBundle\Entity\AccessType
      */
     public function getAccessType()
     {
         return $this->accessType;
+    }
+
+    /**
+     * Set code.
+     *
+     * @param string $code
+     *
+     * @return Massive
+     */
+    public function setCode($code)
+    {
+        $this->code = $code;
+
+        return $this;
+    }
+
+    /**
+     * Get code.
+     *
+     * @return string
+     */
+    public function getCode()
+    {
+        return $this->code;
     }
 }
