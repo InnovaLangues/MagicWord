@@ -1,39 +1,37 @@
-<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
-{% set total = 0 %}
+{% import "MagicWordBundle:FoundableForm:macros.html.twig" as macros %}
+
 {% for round in massive.rounds %}
-    {% set activity = getActivity(round, app.user) %}
-    {% set total = total + activity.points %}
+    {% set activities = getActivities(round) %}
     <div class="panel panel-default">
-        <div class="panel-heading" role="tab" id="headingOne">
-            <h4 class="panel-title">
-                 <a role="button" data-toggle="collapse" data-parent="#accordion" href="#{{ round.id }}" aria-expanded="true" aria-controls="{{ round.id }}">
-                    {{ "round" |trans }} {{ round.displayOrder + 1}} ({{ activity.points }}pts)
-                </a>
-            </h4>
+        <div class="panel-heading">
+             {{ round.displayOrder+1 }} {{ round.title }} - {{ round.discr | trans }}
+             {% if round.discr == "rush" %}
+             <span class="pull-right">
+                <button type="button" class="btn btn-default btn-xs" data-order="asc" onclick="sorter.sort('percent', this, '#foundable-{{round.id}}', '#foundable-{{round.id}} div.foundable')">
+                    <i class="fa fa-sort" aria-hidden="true"></i> %
+                </button>
+                <button type="button" class="btn btn-default btn-xs" data-order="asc" onclick="sorter.sort('form', this, '#foundable-{{round.id}}', '#foundable-{{round.id}} div.foundable')">
+                    <i class="fa fa-sort" aria-hidden="true"></i> A-Z
+                </button>
+                <button type="button" class="btn btn-default btn-xs" data-order="asc" onclick="sorter.sort('points', this, '#foundable-{{round.id}}', '#foundable-{{round.id}} div.foundable')">
+                    <i class="fa fa-sort" aria-hidden="true"></i> Points
+                </button>
+                <button type="button" class="btn btn-default btn-xs" data-order="asc" onclick="sorter.sort('length', this, '#foundable-{{round.id}}', '#foundable-{{round.id}} div.foundable')">
+                    <i class="fa fa-sort" aria-hidden="true"></i> Longueur
+                </button>
+             </span>
+             {% endif %}
         </div>
-        <div id="{{ round.id }}" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
-            <ul class="list-group" >
-                <li class="list-group-item">
-                    {{ "foundables"|trans}} : {{ activity.foundForms |length }} / {{ round.grid.foundableForms | length}}
-                </li>
-                {% if round.objectives is defined %}
-                <li class="list-group-item">
-                    {{ "objectives"|trans}} : {{ activity.objectivesDone|length }} / {{ activity.round.objectives|length }} en {{ getTimeSpent(activity) }}
-                </li>
-                {% endif %}
-                <li class="list-group-item">
-                    Points : {{ activity.points }}
-                </li>
-            </ul>
+        <div class="panel-body" style="max-height:200px; overflow-y:auto">
+            {% if round.discr == "rush" %}
+                <div id="foundable-{{round.id}}">
+                {% for foundable in round.grid.foundableForms %}
+                    {{ macros.foundableShort(foundable, activities) }}
+                {% endfor %}
+                </div>
+            {% elseif round.discr == "conquer" %}
+                //TO DO
+            {% endif %}
         </div>
     </div>
 {% endfor %}
-
-    <div class="panel panel-default">
-        <div class="panel-heading" role="tab" id="headingOne">
-            <h4 class="panel-title">
-                {{ "total" | trans}} : {{ total }}pts
-            </h4>
-        </div>
-    </div>
-</div>

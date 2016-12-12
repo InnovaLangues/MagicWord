@@ -1,0 +1,58 @@
+{% macro percent(foundable, activities) %}
+    {% set found = 0 %}
+    {% for a in activities %}
+        {% if foundable in a.foundForms %}
+            {% set found = found + 1 %}
+        {% endif %}
+    {% endfor %}
+    {{ activities|length > 0 ? ((found / activities|length) * 100) : 0 }}%
+{% endmacro %}
+
+{% macro foundableComplete(foundable, activity, activities, type) %}
+{% set percent = _self.percent(foundable, activities) %}
+<div class="col-md-4 foundable" data-form="{{ foundable.form }}" data-points="{{ foundable.points }}" data-percent="{{ percent }}" data-length="{{ foundable.form|length }}">
+    <div class="panel panel-default">
+        <div class="panel-heading " role="tab">
+            <h4 class="panel-title {% if activity and foundable in activity.foundForms and type == "foundable" %}bg-success{% endif %} ">
+                 <a role="button" data-toggle="collapse" data-parent="#accordion" href="#{{ foundable.id ~ type}}" aria-expanded="true" aria-controls="{{ foundable.id }}">
+                     {{ foundable.form | upper }} <span class="text-muted">({{ foundable.points}})</span>
+                     <span class="pull-right">
+                        <span class="label label-default">{{ percent }}</span>
+                     </span>
+                </a>
+            </h4>
+        </div>
+        <div id="{{ foundable.id  ~ type }}" class="panel-collapse collapse" role="tabpanel">
+            <div class="list-group" >
+                {% for inflection in foundable.inflections %}
+                <li class="list-group-item">
+                    {{ inflection.content }}
+                    ({{ inflection.lemma.content }} - <span class="text-muted">{{ inflection.lemma.category ? inflection.lemma.category.value | trans }}</span>)
+                    <span class="pull-right">
+                        <span class="btn btn-default btn-xs" onClick="wiktionnary.getDef('{{ inflection.lemma.content }}')">
+                            <i class="fa fa-wikipedia-w" aria-hidden="true"></i>
+                        </span>
+                        {% if isInWordbox(inflection.lemma) == false %}
+                        <span class="btn btn-default btn-xs" onclick="addToWordbox({{ inflection.lemma.id }}, this);">
+                            <i class="fa fa-plus" aria-hidden="true"></i>
+                            {{ "add_to_wordbox_short" | trans}}
+                        </span>
+                        {% endif %}
+                    </span>
+                </li>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endmacro %}
+
+{% macro foundableShort(foundable, activities) %}
+{% set percent = _self.percent(foundable, activities) %}
+<div class="foundable" style="margin-bottom:2px" data-form="{{ foundable.form }}" data-points="{{ foundable.points }}" data-percent="{{ percent }}" data-length="{{ foundable.form|length }}">
+    <div style="float:left; width:40px">
+        <div class="label label-default">{{ percent }}</div>
+    </div>
+    {{ foundable.form | upper }} <span class="text-muted">({{ foundable.points}}pts)</span>
+</div>
+{% endmacro %}

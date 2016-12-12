@@ -15,7 +15,7 @@
         <ul class="list-group">
             {% for massive in massives %}
             <li class="list-group-item">
-                <a href="{{ path('massive_ranking', {"id": massive.id}) }}">
+                <a href="{{ path('massive_summary', {"id": massive.id}) }}">
                     {{ massive.name }} {% if massive.description %}<span class="text-muted">({{ massive.description}})</span>{% endif %}
                 </a>
                 <span class="pull-right">

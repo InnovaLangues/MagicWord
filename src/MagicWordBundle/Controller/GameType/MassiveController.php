@@ -41,16 +41,16 @@ class MassiveController extends Controller
     }
 
     /**
-     * @Route("/massive/{id}/ranking", name="massive_ranking")
+     * @Route("/massive/{id}/summary", name="massive_summary")
      * @ParamConverter("massive", class="MagicWordBundle:GameType\Massive")
      */
-    public function rankingAction(Massive $massive)
+    public function summaryAction(Massive $massive)
     {
         if (!$this->get('mw_manager.user')->isGranted($massive)) {
             return $this->redirectToRoute('home');
         }
 
-        return $this->render('MagicWordBundle:Game/Massive:ranking.html.twig', array('massive' => $massive));
+        return $this->render('MagicWordBundle:Game/Massive:summary.html.twig', array('massive' => $massive));
     }
 
     /**

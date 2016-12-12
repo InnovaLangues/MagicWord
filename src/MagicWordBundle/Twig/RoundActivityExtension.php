@@ -43,6 +43,7 @@ class RoundActivityExtension extends \Twig_Extension
             new \Twig_SimpleFunction('getActivity', array($this, 'getActivity')),
             new \Twig_SimpleFunction('getActivities', array($this, 'getActivities')),
             new \Twig_SimpleFunction('getTimeSpent', array($this, 'getTimeSpent')),
+            new \Twig_SimpleFunction('getMostFounded', array($this, 'getMostFounded')),
         );
     }
 
