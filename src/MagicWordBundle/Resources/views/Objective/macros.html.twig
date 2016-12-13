@@ -1,0 +1,31 @@
+{% macro percent(objective, activities) %}
+    {% set found = 0 %}
+    {% for a in activities %}
+        {% if objective in a.objectivesDone %}
+            {% set found = found + 1 %}
+        {% endif %}
+    {% endfor %}
+    {{ activities|length > 0 ? ((found / activities|length) * 100) : 0 }}%
+{% endmacro %}
+
+{% macro objectiveShort(objective, activities) %}
+    {% set percent = _self.percent(objective, activities) %}
+    <div class="sortable" style="margin-bottom:2px" data-percent="{{ percent }}">
+        <div style="float:left; width:40px">
+            <div class="label label-default">{{ percent }}</div>
+        </div>
+        {% if objective.discr == "findword" %}
+            <span class="label label-default">findWord</span> {{ objective.hint }} : {{ objective.inflection | upper }}
+        {% elseif  objective.discr == "combo" %}
+            <span class="label label-default">Combo</span> {{ objective.number }} combo(s) de puissance {{ objective.lenght }}
+        {% elseif  objective.discr == "constraint" %}
+            <span class="label label-default">Constraint</span> {{ objective.numberToFind }}
+            {{ objective.category ? objective.category.value | trans }}
+            {{ objective.person ? objective.person.value | trans }}
+            {{ objective.gender ? objective.gender.value | trans }}
+            {{ objective.number ? objective.number.value | trans }}
+            {{ objective.tense ? objective.tense.value | trans }}
+            {{ objective.mood ? objective.mood.value | trans }}
+        {% endif %}
+    </div>
+{% endmacro %}

@@ -1,37 +1,40 @@
-{% import "MagicWordBundle:FoundableForm:macros.html.twig" as macros %}
+{% import "MagicWordBundle:FoundableForm:macros.html.twig" as foundableMacros %}
+{% import "MagicWordBundle:Objective:macros.html.twig" as objectiveMacros %}
 
 {% for round in massive.rounds %}
     {% set activities = getActivities(round) %}
     <div class="panel panel-default">
         <div class="panel-heading">
              {{ round.displayOrder+1 }} {{ round.title }} - {{ round.discr | trans }}
-             {% if round.discr == "rush" %}
              <span class="pull-right">
-                <button type="button" class="btn btn-default btn-xs" data-order="asc" onclick="sorter.sort('percent', this, '#foundable-{{round.id}}', '#foundable-{{round.id}} div.foundable')">
+                <button type="button" class="btn btn-default btn-xs" data-order="asc" onclick="sorter.sort('percent', this, '#round-{{round.id}}', '#round-{{round.id}} div.sortable')">
                     <i class="fa fa-sort" aria-hidden="true"></i> %
                 </button>
-                <button type="button" class="btn btn-default btn-xs" data-order="asc" onclick="sorter.sort('form', this, '#foundable-{{round.id}}', '#foundable-{{round.id}} div.foundable')">
+                {% if round.discr == "rush" %}
+                <button type="button" class="btn btn-default btn-xs" data-order="asc" onclick="sorter.sort('form', this, '#round-{{round.id}}', '#round-{{round.id}} div.sortable')">
                     <i class="fa fa-sort" aria-hidden="true"></i> A-Z
                 </button>
-                <button type="button" class="btn btn-default btn-xs" data-order="asc" onclick="sorter.sort('points', this, '#foundable-{{round.id}}', '#foundable-{{round.id}} div.foundable')">
+                <button type="button" class="btn btn-default btn-xs" data-order="asc" onclick="sorter.sort('points', this, '#round-{{round.id}}', '#round-{{round.id}} div.sortable')">
                     <i class="fa fa-sort" aria-hidden="true"></i> Points
                 </button>
-                <button type="button" class="btn btn-default btn-xs" data-order="asc" onclick="sorter.sort('length', this, '#foundable-{{round.id}}', '#foundable-{{round.id}} div.foundable')">
+                <button type="button" class="btn btn-default btn-xs" data-order="asc" onclick="sorter.sort('length', this, '#round-{{round.id}}', '#round-{{round.id}} > div.sortable')">
                     <i class="fa fa-sort" aria-hidden="true"></i> Longueur
                 </button>
+                {% endif %}
              </span>
-             {% endif %}
         </div>
         <div class="panel-body" style="max-height:200px; overflow-y:auto">
-            {% if round.discr == "rush" %}
-                <div id="foundable-{{round.id}}">
-                {% for foundable in round.grid.foundableForms %}
-                    {{ macros.foundableShort(foundable, activities) }}
-                {% endfor %}
-                </div>
-            {% elseif round.discr == "conquer" %}
-                //TO DO
-            {% endif %}
+            <div id="round-{{round.id}}">
+                {% if round.discr == "rush" %}
+                    {% for foundable in round.grid.foundableForms %}
+                        {{ foundableMacros.foundableShort(foundable, activities) }}
+                    {% endfor %}
+                {% elseif round.discr == "conquer" %}
+                    {% for objective in round.objectives %}
+                        {{ objectiveMacros.objectiveShort(objective, activities) }}
+                    {% endfor %}
+                {% endif %}
+            </div>
         </div>
     </div>
 {% endfor %}

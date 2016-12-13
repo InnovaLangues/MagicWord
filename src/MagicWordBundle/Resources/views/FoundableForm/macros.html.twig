@@ -49,7 +49,7 @@
 
 {% macro foundableShort(foundable, activities) %}
 {% set percent = _self.percent(foundable, activities) %}
-<div class="foundable" style="margin-bottom:2px" data-form="{{ foundable.form }}" data-points="{{ foundable.points }}" data-percent="{{ percent }}" data-length="{{ foundable.form|length }}">
+<div class="sortable" style="margin-bottom:2px" data-form="{{ foundable.form }}" data-points="{{ foundable.points }}" data-percent="{{ percent }}" data-length="{{ foundable.form|length }}">
     <div style="float:left; width:40px">
         <div class="label label-default">{{ percent }}</div>
     </div>
