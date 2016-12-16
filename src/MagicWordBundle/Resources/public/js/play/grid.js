@@ -13,6 +13,7 @@ var grid = {
 	foundWord: '',
 	selectedSquares: [],
 	allowedSquares: [],
+	squareSelector: 'ul#squares li p',
 
 	set: function(data){
 		this.gameid = data.gameid;
@@ -33,18 +34,32 @@ var grid = {
 	},
 
 	setListener: function(){
-		$('ul#squares li p').mousedown(function(){
+
+		$('body').on("mousedown touchstart", this.squareSelector, function(e){
 			if(this.id){
 				grid.first_letter(this.id);
 			}
+			e.preventDefault();
 		});
-		$('ul#squares li p').mouseover(function(){
+
+		$('body').on("touchend mouseup", function(){
+			grid.last_letter();
+		});
+
+		$('body').on("mouseover", this.squareSelector, function(){
 			if(this.id){
 				grid.select_letter(this.id);
 			}
 		});
-		$('body').mouseup(function(){
-			grid.last_letter();
+
+		$('body').on("touchmove", this.squareSelector, function(e){
+			if(this.id){
+				var touch = e.originalEvent.touches[0];
+				if(id = grid.getHoveredObject(touch.clientX, touch.clientY)){
+					grid.select_letter(id);
+				}
+			}
+			e.preventDefault();
 		});
 	},
 
@@ -222,5 +237,23 @@ var grid = {
 			words.checkWord();
 		}
 		grid.restartGrid();
+	},
+
+	getHoveredObject: function(x, y) {
+		var id;
+
+	    $(grid.squareSelector).each(function() {
+			var square = $(this);
+	      	if (
+	          	x >= square.offset().left && x <= square.offset().left + square.outerWidth() &&
+	          	y >= square.offset().top  && y <= square.offset().top + square.outerHeight()
+	      	) {
+			id = square.attr("id");
+
+			return false;
+	      }
+	    });
+
+		return id;
 	}
 };
