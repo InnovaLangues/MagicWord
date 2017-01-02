@@ -12,6 +12,7 @@
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}"/>
     </head>
     <body>
+        {% block toHideWhilePlaying %}
         <a href="{{ path('home') }}">
             <div id="header-logo">
             </div>
@@ -35,6 +36,7 @@
         </a>
         {% endif %}
         </span>
+        {% endblock %}
 
         <div class="container">
             {% for label, flashes in app.session.flashbag.all %}

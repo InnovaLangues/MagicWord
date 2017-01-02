@@ -11,9 +11,11 @@
     "bootstrap": "3.3.*",
     "font-awesome": "~4",
     "FlipClock": "*",
+    "jquery": "~2.1.4",
     "jquery-ui": "*",
     "animate.css": "^3.5.2",
     "howler.js": "howler#^2.0.0",
-    "bootstrap-switch": "^3.3.2"
+    "bootstrap-switch": "^3.3.2",
+    "jquery-nearest": "^1.4.0"
   }
 }

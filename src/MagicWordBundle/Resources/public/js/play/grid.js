@@ -240,19 +240,8 @@ var grid = {
 	},
 
 	getHoveredObject: function(x, y) {
-		var id;
-
-	    $(grid.squareSelector).each(function() {
-			var square = $(this);
-	      	if (
-	          	x >= square.offset().left && x <= square.offset().left + square.outerWidth() &&
-	          	y >= square.offset().top  && y <= square.offset().top + square.outerHeight()
-	      	) {
-			id = square.attr("id");
-
-			return false;
-	      }
-	    });
+		var $x = $.touching({x: x, y: y}, grid.squareSelector);
+		var id = $x.attr("id");
 
 		return id;
 	}

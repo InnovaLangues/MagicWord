@@ -72,6 +72,7 @@ module.exports = function(grunt) {
                         "src/MagicWordBundle/Resources/public/js/play/score.js",
                         "src/MagicWordBundle/Resources/public/js/play/objectives.js",
                         "src/MagicWordBundle/Resources/public/js/play/sound.js",
+                        "bower_components/jquery-nearest/src/jquery.nearest.min.js"
                     ]
                 }
             }
