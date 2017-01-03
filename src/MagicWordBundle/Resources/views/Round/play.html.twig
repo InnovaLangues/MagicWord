@@ -9,12 +9,19 @@
 {% set grid =  round.grid %}
 
 <div id="game-container" style="display:none">
-    <div class="row">
-        {% include "MagicWordBundle:Round/Play:clock.html.twig" %}
+    <div id="topbar">
+        <div id="clock-container">
+            <span id="clock"></span>
+        </div>
+        <span id="combo" style="display:none">
+            <span >{{ "current_combo" | trans}}: <span id="combo-count">0</span></span>
+        </span>
     </div>
-    <div class="row" style="height:55px">
-        {% include "MagicWordBundle:Round/Play:woot.html.twig" %}
+
+    <div id="woot-container" class="row">
+        <span id="woot" style="display:none"></span>
     </div>
+
     <div class="row">
         {# GRID #}
         <div id="grid-container" class="col-xs-12 col-sm-12 col-md-6">
