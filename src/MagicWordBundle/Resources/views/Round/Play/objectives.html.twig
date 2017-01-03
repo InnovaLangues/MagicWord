@@ -1,11 +1,14 @@
 {% if hasObj %}
-<div class="col-md-4 col-xs-12 col-sm-12">
     <div class="panel panel-default">
         <div class="panel-heading" style="background-color:#FF9C00">
             <h5>
                 {{ 'objectives' | trans }}
                 <span class="pull-right">
                      <span class="label label-default" id="obj-score">0</span> pts sur <span class="label label-primary">300</span>
+                     <span class="label label-danger" onclick="activity.end()">
+                         <i class="fa fa-exclamation-triangle" aria-hidden="true"></i>
+                         {{ 'give_up' | trans }}
+                     </span>
                 </span>
             </h5>
         </div>
@@ -59,15 +62,4 @@
         </ul>
         {% endif %}
     </div>
-    <div class="panel panel-default">
-        <ul class="list-group">
-            <li class="list-group-item list-group-item-danger" onclick="activity.end()">
-                <i class="fa fa-exclamation-triangle" aria-hidden="true"></i>
-                {{ 'give_up' | trans }}
-            </li>
-        </ul>
-    </div>
-</div>
-
-
 {% endif %}

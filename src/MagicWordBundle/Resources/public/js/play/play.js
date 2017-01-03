@@ -6,5 +6,8 @@ $(document).ready(function () {
 		clock.init();
 		wait.stop();
 		$("#game-container").show();
+		grid.resize();
 	});
 });
+
+window.addEventListener("resize", function(e) { grid.resize(); });

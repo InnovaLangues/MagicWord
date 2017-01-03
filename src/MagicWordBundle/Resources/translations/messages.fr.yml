@@ -82,7 +82,7 @@ games_started: Mes parties en cours
 gametype: type de partie
 gender: Genre
 generate_grid: 'Générer Grille'
-give_up: Abandonner cette manche
+give_up: Abandonner
 grid: Grille
 hidden: 'Masquer sa présence'
 hint: Indice

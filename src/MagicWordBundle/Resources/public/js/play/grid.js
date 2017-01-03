@@ -244,5 +244,14 @@ var grid = {
 		var id = $x.attr("id");
 
 		return id;
+	},
+
+	resize: function() {
+		var width = $("#li-square-0-0").width();
+		$("ul#squares li").height(width);
+
+		$("ul#squares li").fitText(0.8);
+
+		return;
 	}
 };

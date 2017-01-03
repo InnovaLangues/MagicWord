@@ -1,15 +1,13 @@
-<div class="col-md-{{ hasObj ? 3 : 7 }} col-xs-12 col-sm-12">
-    <div class="panel panel-default">
-        <div class="panel-heading" style="background-color:#FF9C00">
-            <h5>
-                <span class="label label-default" id="correctWords-found">0</span> {{ 'forms_found' | trans }} sur {{ grid.foundableForms|length}}
-                {% if round.discr == "rush" %}
-                <span class="pull-right">
-                    <span class="label label-primary" id="score-total">0</span> pts
-                </span>
-                {% endif %}
-            </h5>
-        </div>
-        <ul class="list-group" id="inflections-found"></ul>
+<div class="panel panel-default">
+    <div class="panel-heading" style="background-color:#FF9C00">
+        <h5>
+            <span class="label label-default" id="correctWords-found">0</span> {{ 'forms_found' | trans }} sur {{ grid.foundableForms|length}}
+            {% if round.discr == "rush" %}
+            <span class="pull-right">
+                <span class="label label-primary" id="score-total">0</span> pts
+            </span>
+            {% endif %}
+        </h5>
     </div>
+    <ul class="list-group" id="inflections-found"></ul>
 </div>

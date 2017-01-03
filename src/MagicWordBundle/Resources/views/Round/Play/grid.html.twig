@@ -1,17 +1,17 @@
-<div class="col-xs-12 col-sm-12 col-md-5">
-    {% set x = 0 %}
-    <ul id="squares">
-    {% for i in range(0,3) %}
-        {% for j in range(0, 3) %}
-                {% set value = grid.squares[x] is defined  ? grid.squares[x].letter.value|upper : "_" %}
-                {% set point = grid.squares[x] is defined  ? get_point(grid.squares[x].letter, grid.language) : "1" %}
-                <li id="li-square-{{ i }}-{{ j }}">
-                    <p data-value="{{value}}" id="square-{{ i }}-{{ j }}">
-                        {{ value }} <span> {{ point }}</span>
-                    </p>
-                </li>
-                {% set x = x + 1 %}
-        {% endfor %}
+{% set x = 0 %}
+<ul id="squares">
+{% for i in range(0,3) %}
+    <div class="row">
+    {% for j in range(0, 3) %}
+            {% set value = grid.squares[x] is defined  ? grid.squares[x].letter.value|upper : "_" %}
+            {% set point = grid.squares[x] is defined  ? get_point(grid.squares[x].letter, grid.language) : "1" %}
+            <li class="col-xs-3 col-sm-3 col-md-3" id="li-square-{{ i }}-{{ j }}">
+                <p class="col-xs-12 col-sm-12 col-md-12" data-value="{{value}}" id="square-{{ i }}-{{ j }}">
+                    {{ value }} <span>{{ point }}</span>
+                </p>
+            </li>
+            {% set x = x + 1 %}
     {% endfor %}
-    </ul>
-</div>
+    </div>
+{% endfor %}
+</ul>

@@ -10,7 +10,6 @@
 
 <div id="game-container" style="display:none">
     <div class="row">
-        {% include "MagicWordBundle:Round/Play:rules.html.twig" %}
         {% include "MagicWordBundle:Round/Play:clock.html.twig" %}
     </div>
     <div class="row" style="height:55px">
@@ -18,15 +17,23 @@
     </div>
     <div class="row">
         {# GRID #}
-        {% include "MagicWordBundle:Round/Play:grid.html.twig" %}
+        <div id="grid-container" class="col-xs-12 col-sm-12 col-md-6">
+            {% include "MagicWordBundle:Round/Play:grid.html.twig" %}
+        </div>
+
+        <div class="col-xs-12 col-sm-12 col-md-6">
+        {# {% include "MagicWordBundle:Round/Play:rules.html.twig" %} #}
+
         {# OBJECTIVES #}
         {% include "MagicWordBundle:Round/Play:objectives.html.twig" %}
         {# INFLECTIONS FOUND #}
         {% include "MagicWordBundle:Round/Play:found.html.twig" %}
+        </div>
     </div>
     <div class="row">
-        {# SOUND #}
+        {# SOUND
         {% include "MagicWordBundle:Round/Play:sound.html.twig" %}
+        #}
     </div>
 </div>
 
