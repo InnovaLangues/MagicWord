@@ -5,7 +5,7 @@
             {% set found = found + 1 %}
         {% endif %}
     {% endfor %}
-    {{ activities|length > 0 ? ((found / activities|length) * 100) : 0 }}%
+    {{ activities|length > 0 ? ((found / activities|length) * 100)|round : 0 }}%
 {% endmacro %}
 
 {% macro foundableComplete(foundable, activity, activities, type) %}
@@ -35,7 +35,6 @@
                         {% if isInWordbox(inflection.lemma) == false %}
                         <span class="btn btn-default btn-xs" onclick="addToWordbox({{ inflection.lemma.id }}, this);">
                             <i class="fa fa-plus" aria-hidden="true"></i>
-                            {{ "add_to_wordbox_short" | trans}}
                         </span>
                         {% endif %}
                     </span>

@@ -22,7 +22,7 @@
         {% if logged %}
             <a href="{{ path('fos_user_security_logout') }}" class="btn btn-default">
                 <i class="fa fa-sign-out" aria-hidden="true"></i>
-                {{ 'logout' | trans }}
+                <span class="hidden-xs">{{ 'logout' | trans }}</span>
             </a>
         {% else %}
 

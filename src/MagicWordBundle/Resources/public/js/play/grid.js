@@ -247,10 +247,11 @@ var grid = {
 	},
 
 	resize: function() {
+		var squares = $("ul#squares li");
 		var width = $("#li-square-0-0").width();
-		$("ul#squares li").height(width);
-
-		$("ul#squares li").fitText(0.8);
+		
+		squares.height(width);
+		squares.fitText(0.65);
 
 		return;
 	}

@@ -29,11 +29,13 @@ ul#squares {
 }
 
 ul#squares li {
+    border-radius:8px;
 	background-color: #04346C;
 	float: left;
 	text-align: center;
-    border: 5px solid transparent;
+    border: 4px solid transparent;
     background-clip: padding-box;
+    text-shadow: 2px 2px 2px #000;
 }
 
 ul#squares li p {
@@ -49,18 +51,13 @@ ul#squares li p {
 }
 
 ul#squares li p.read-write {
-    padding: 0;
-    white-space: normal;
-    text-align: left;
-    border: none;
-	cursor: pointer;
-	color: black;
-	padding: 10px;
-	font-size: 3em;
-	text-align: center;
-	height: 55px;
+    color:black;
+	font-size: 2em;
 }
 
+ul#squares li p input {
+    width:100%;
+}
 
 ul#squares li p span {
     position:absolute;
@@ -145,4 +142,8 @@ ul#squares li.wrongWord {
 #rules {
     text-shadow: 1px 1px 2px black, 0 0 1em white, 0 0 0.2em white;
     color: #FF9C00;
+}
+
+#giveup{
+    cursor: pointer;
 }

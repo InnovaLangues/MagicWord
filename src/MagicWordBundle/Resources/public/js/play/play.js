@@ -10,4 +10,6 @@ $(document).ready(function () {
 	});
 });
 
-window.addEventListener("resize", function(e) { grid.resize(); });
+window.addEventListener("resize", function(e) {
+	grid.resize();
+});
