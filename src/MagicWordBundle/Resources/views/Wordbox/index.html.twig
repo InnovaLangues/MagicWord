@@ -3,12 +3,17 @@
 {% block body -%}
     <div class="panel panel-default">
         <div class="panel-heading">
-            <h4>{{ 'wordbox' | trans }} ({{ wordbox.acquisitions|length}})</h4>
+            <h4>
+                {{ 'wordbox' | trans }} <strong>{{ language.name | trans }}</strong> ({{ acquisitions|length }})
+                <span class="pull-right">
+                    {% include "MagicWordBundle:Common:backtohome.html.twig" %}
+                </span>
+            </h4>
         </div>
         <ul class="list-group">
-        {% for acquisition in wordbox.acquisitions %}
+        {% for acquisition in acquisitions %}
             <li class="list-group-item">
-                <a href="{{ path('lemma', {"id":  acquisition.lemma.id }) }}">{{ acquisition.lemma.content }}</a>
+                <a href="{{ path('lemma', {"id":  acquisition.lemma.id }) }}">{{ acquisition.lemma.content }}</a> ({{ acquisition.lemma.category.value | trans}})
             </li>
         {% endfor %}
         </ul>

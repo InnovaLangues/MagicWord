@@ -4,6 +4,7 @@ namespace  MagicWordBundle\Manager;
 
 use JMS\DiExtraBundle\Annotation as DI;
 use MagicWordBundle\Entity\Lexicon\Lemma;
+use MagicWordBundle\Entity\Language;
 use MagicWordBundle\Entity\Wordbox;
 
 /**
@@ -27,6 +28,15 @@ class WordboxManager
         $this->em = $entityManager;
         $this->tokenStorage = $tokenStorage;
         $this->acquisitionManager = $acquisitionManager;
+    }
+
+    public function getAcquisitionsByLanguage(Language $language)
+    {
+        $wordbox = $this->getWordbox();
+
+        $acquisitions = $this->em->getRepository("MagicWordBundle:Wordbox\Acquisition")->findOneByWordboxAndLanguage($wordbox, $language);
+
+        return $acquisitions;
     }
 
     public function getWordbox()

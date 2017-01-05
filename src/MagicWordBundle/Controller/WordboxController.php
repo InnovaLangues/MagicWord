@@ -7,17 +7,21 @@ use Symfony\Component\HttpFoundation\Response;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use MagicWordBundle\Entity\Lexicon\Lemma as Lemma;
+use MagicWordBundle\Entity\Language;
 
 class WordboxController extends Controller
 {
     /**
-     * @Route("/wordbox", name ="wordbox")
+     * @Route("/wordbox/{id}", name ="wordbox")
      */
-    public function displayWordboxAction()
+    public function displayWordboxAction(Language $language)
     {
-        $wordbox = $this->get('mw_manager.wordbox')->getWordbox();
+        $acquisitions = $this->get('mw_manager.wordbox')->getAcquisitionsByLanguage($language);
 
-        return $this->render('MagicWordBundle:Wordbox:index.html.twig', ['wordbox' => $wordbox]);
+        return $this->render('MagicWordBundle:Wordbox:index.html.twig', [
+            'acquisitions' => $acquisitions,
+            'language' => $language,
+        ]);
     }
 
     /**

@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
  * Acquisition.
  *
  * @ORM\Table(name="wordbox_acquisition")
- * @ORM\Entity()
+ * @ORM\Entity(repositoryClass="MagicWordBundle\Repository\Wordbox\AcquisitionRepository")
  */
 class Acquisition
 {

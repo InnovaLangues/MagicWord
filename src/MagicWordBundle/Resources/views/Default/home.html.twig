@@ -65,7 +65,12 @@
             </div>
             <ul class="list-group">
                 <li class="list-group-item">
-                    <a href="{{ path('wordbox') }}">{{ 'wordbox' | trans }}</a>
+                    {{ 'wordbox' | trans }}
+                    {% for language in languages %}
+                    <a href="{{ path('wordbox', {id: language.id}) }}">
+                        {{ language.name | trans }}
+                    </a>
+                    {% endfor %}
                 </li>
                 <li class="list-group-item">
                     <a href="{{ path('parameters') }}">{{ 'parameters' | trans }}</a>
