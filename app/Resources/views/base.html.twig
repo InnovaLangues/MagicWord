@@ -18,24 +18,25 @@
             </div>
         </a>
 
-        <span class="header-buttons">
-        {% if logged %}
-            <a href="{{ path('fos_user_security_logout') }}" class="btn btn-default">
-                <i class="fa fa-sign-out" aria-hidden="true"></i>
-                <span class="hidden-xs">{{ 'logout' | trans }}</span>
-            </a>
-        {% else %}
-
-        <a href="{{ path('fos_user_registration_register') }}" class="btn btn-default">
-            <i class="fa fa-user-plus" aria-hidden="true"></i>
-            {{ 'register' | trans }}
-        </a>
-        <a href="{{ path('fos_user_security_login') }}" class="btn btn-default">
-            <i class="fa fa-sign-in" aria-hidden="true"></i>
-            {{ 'login' | trans }}
-        </a>
-        {% endif %}
-        </span>
+        <div class="header-buttons">
+            <div class="btn-group-sm btn-group-vertical">
+            {% if logged %}
+                <a href="{{ path('fos_user_security_logout') }}" class="btn btn-default btn-sm">
+                    <i class="fa fa-sign-out" aria-hidden="true"></i>
+                    <span class="hidden-xs">{{ 'logout' | trans }}</span>
+                </a>
+            {% else %}
+                <a href="{{ path('fos_user_registration_register') }}" class="btn btn-default btn-sm">
+                    <i class="fa fa-user-plus" aria-hidden="true"></i>
+                    <span class="hidden-xs">{{ 'register' | trans }}</span>
+                </a>
+                <a href="{{ path('fos_user_security_login') }}" class="btn btn-default btn-sm">
+                    <i class="fa fa-sign-in" aria-hidden="true"></i>
+                    <span class="hidden-xs">{{ 'login' | trans }}</span>
+                </a>
+            {% endif %}
+        </div>
+    </div>
         {% endblock %}
 
         <div class="container">

@@ -33,16 +33,17 @@ div#header-logo {
     background-color: #005497;
     background-image: url(../img/logo.png);
     background-repeat: no-repeat;
+    background-size: contain;
     background-position: 25% 50%;
     width: 100%;
-    height: 100px;
+    height: 90px;
     border-bottom: 2px solid white;
 }
 
 .header-buttons {
     position:absolute;
-    top:55px;
-    right:10px;
+    top:15px;
+    right:5px;
 }
 
 .noselect {

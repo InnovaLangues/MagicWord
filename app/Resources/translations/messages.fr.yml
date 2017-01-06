@@ -1,6 +1,6 @@
 login: 'Se connecter'
 logout: 'Se déconnecter'
-register: 'Créer un compte'
+register: S'inscrire
 registration.password_confirmation: 'Confirmation du mot de passe'
 registration.password: 'Mot de passe'
 registration.username: 'Nom d''utilisateur'
