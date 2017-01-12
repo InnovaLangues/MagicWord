@@ -1,10 +1,41 @@
+#main{
+    margin-top:45px;
+}
+
 #clock-container {
-    display: table;
-    margin: -10px auto auto auto ;
+    margin: -10px 10px;
 }
 
 #grid-container {
     margin-bottom:15px;
+}
+
+#combo {
+    text-align:center;
+    background-color:#04346C;
+    padding:5px 5px;
+    margin:-25px auto;
+    width:40px;
+    border: 1px solid white;
+    color:white;
+    border-radius:30px;
+    font-weight: bold;
+}
+
+#woot-container {
+    padding: 3px 0px;
+    position:fixed;
+    right:10%;
+    top: 0px;
+    color: #333333;
+    text-transform: uppercase;
+    font-weight: bold;
+    border-radius:3px;
+}
+
+#woot {
+    font-size:1.8em;
+    text-transform: uppercase;
 }
 
 ul#inflections-found {
@@ -91,26 +122,14 @@ ul#squares li.wrongWord {
 .flip-clock-label{display:none;}
 .flip-clock-wrapper{text-align:right;}
 
-#woot {
-    min-height:35px;
-    height:35px;
-    text-shadow: 1px 1px 2px black, 0 0 1em white, 0 0 0.2em white;
-    font-size:2.5em;
-    text-transform: uppercase;
-}
-
-#woot-container {
-    height:55px;
-    margin:35px auto auto auto;
-    display: table;
-}
 
 .right-form {
-    color:green;
+    text-shadow: 1px 1px 2px white, 0 0 1em green, 0 0 0.2em green;
+    padding: 3px 10px;
 }
 
 .wrong-form {
-    color: red;
+    text-shadow: 1px 1px 2px white, 0 0 1em red, 0 0 0.2em red;
     text-decoration-line: line-through;
 }
 
@@ -124,20 +143,6 @@ ul#squares li.wrongWord {
     border-bottom:1px solid white;
 }
 
-
-#combo {
-    position:fixed;
-    right:1%;
-    top: 10px;
-    display:none;
-    background-color:#3C763D;
-    color: white;
-    text-transform: uppercase;
-    padding:3px;
-    font-weight: bold;
-    font-size:1em;
-    border-radius:3px;
-}
 
 #rules {
     text-shadow: 1px 1px 2px black, 0 0 1em white, 0 0 0.2em white;
