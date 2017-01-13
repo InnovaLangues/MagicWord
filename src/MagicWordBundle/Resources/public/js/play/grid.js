@@ -35,6 +35,10 @@ var grid = {
 
 	setListener: function(){
 
+		$('body').on("mousedown touchstart", "#grid-container", function(e){
+			e.preventDefault();
+		});
+
 		$('body').on("mousedown touchstart", this.squareSelector, function(e){
 			if(this.id){
 				grid.first_letter(this.id);
@@ -249,7 +253,7 @@ var grid = {
 	resize: function() {
 		var squares = $("ul#squares li");
 		var width = $("#li-square-0-0").width();
-		
+
 		squares.height(width);
 		squares.fitText(0.65);
 

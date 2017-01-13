@@ -70,7 +70,7 @@ ul#squares li {
 }
 
 ul#squares li p {
-    height:90%;
+    height:100%;
     padding: 10%;
     white-space: normal;
     text-align: left;
@@ -79,6 +79,7 @@ ul#squares li p {
 	color: white;
 	font-size: 3em;
 	text-align: center;
+    border-radius:30%;
 }
 
 ul#squares li p.read-write {
