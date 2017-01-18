@@ -33,7 +33,7 @@ var words = {
 		}
 
 		if (woot) {
-			$("#woot").hide().html(inflection).show(100).delay(1000).hide(100);
+			$("#woot").html(inflection).show();
 		}
 
 		if(isCorrect){

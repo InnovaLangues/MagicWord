@@ -10,16 +10,24 @@
 
 <div id="game-container" style="display:none">
     <div id="topbar">
-        <div id="clock-container">
-            <span id="clock"></span>
+        <div class="row">
+            <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                <div id="clock-wrapper">
+                    <span id="clock"></span>
+                </div>
+            </div>
+            <div id="woot-container"  class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                <span id="woot" style="display:none"></span>
+            </div>
         </div>
-        <div id="combo" style="display:none">
-            <span >{{ "current_combo" | trans}} <span id="combo-count">0</span></span>
-        </div>
-        <span id="woot-container">
-            <span id="woot" style="display:none"></span>
-        </span>
     </div>
+
+    <div id="combo-container">
+        <div id="combo" style="">
+            <div id="combo-count">0</div>
+        </div>
+    </div>
+
     <div id="main" class="row">
         {# GRID #}
         <div id="grid-container" class="col-xs-12 col-sm-12 col-md-6">

@@ -68,12 +68,8 @@ var combo = {
 	},
 
 	showCombo: function(){
-		if (this.currentComboLength > 1) {
-			this.comboSelector.show();
+			//this.comboSelector.show();
 			$("#combo-count").html(this.currentComboLength).show();
-		} else {
-			this.comboSelector.hide();
-		}
 	},
 
 	reset: function(){
@@ -85,12 +81,15 @@ var combo = {
 	},
 
 	endCombo: function(){
+		//this.comboSelector.hide("explode", {pieces: 16 }, 300);
+
+
 		if (this.currentComboLength > 1) {
-			this.comboSelector.hide("explode", {pieces: 16 }, 300);
 			objectiveCombo.checkObjectives(this.currentComboLength, false);
 			if (roundJSON.type == "rush") {
 				activity.sendComboPoints(this.currentComboLength);
 			}
 		}
+		this.showCombo();
 	}
 }
