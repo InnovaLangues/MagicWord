@@ -40,7 +40,7 @@ class Activity implements \JsonSerializable
     private $foundForms;
 
     /**
-     * @ORM\ManyToMany(targetEntity="MagicWordBundle\Entity\Lexicon\WrongForm")
+     * @ORM\ManyToMany(targetEntity="MagicWordBundle\Entity\WrongForm")
      * @ORM\JoinTable(name="activity_wrongForm")
      */
     private $wrongForms;
@@ -404,13 +404,13 @@ class Activity implements \JsonSerializable
     }
 
     /**
-     * Add wrongForm
+     * Add wrongForm.
      *
-     * @param \MagicWordBundle\Entity\Lexicon\WrongForm $wrongForm
+     * @param \MagicWordBundle\Entity\WrongForm $wrongForm
      *
      * @return Activity
      */
-    public function addWrongForm(\MagicWordBundle\Entity\Lexicon\WrongForm $wrongForm)
+    public function addWrongForm(\MagicWordBundle\Entity\WrongForm $wrongForm)
     {
         $this->wrongForms[] = $wrongForm;
 
@@ -418,17 +418,17 @@ class Activity implements \JsonSerializable
     }
 
     /**
-     * Remove wrongForm
+     * Remove wrongForm.
      *
-     * @param \MagicWordBundle\Entity\Lexicon\WrongForm $wrongForm
+     * @param \MagicWordBundle\Entity\WrongForm $wrongForm
      */
-    public function removeWrongForm(\MagicWordBundle\Entity\Lexicon\WrongForm $wrongForm)
+    public function removeWrongForm(\MagicWordBundle\Entity\WrongForm $wrongForm)
     {
         $this->wrongForms->removeElement($wrongForm);
     }
 
     /**
-     * Get wrongForms
+     * Get wrongForms.
      *
      * @return \Doctrine\Common\Collections\Collection
      */

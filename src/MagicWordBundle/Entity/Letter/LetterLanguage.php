@@ -41,7 +41,7 @@ class LetterLanguage
     protected $letter;
 
     /**
-     * @ORM\ManyToOne(targetEntity="MagicWordBundle\Entity\Language")
+     * @ORM\ManyToOne(targetEntity="Innova\LexiconBundle\Entity\Language")
      */
     protected $language;
 
@@ -106,11 +106,11 @@ class LetterLanguage
     /**
      * Set language.
      *
-     * @param \MagicWordBundle\Entity\Language $language
+     * @param \Innova\LexiconBundle\Entity\Language $language
      *
      * @return LetterLanguagePoint
      */
-    public function setLanguage(\MagicWordBundle\Entity\Language $language = null)
+    public function setLanguage(\Innova\LexiconBundle\Entity\Language $language = null)
     {
         $this->language = $language;
 
@@ -120,7 +120,7 @@ class LetterLanguage
     /**
      * Get language.
      *
-     * @return \MagicWordBundle\Entity\Language
+     * @return \Innova\LexiconBundle\Entity\Language
      */
     public function getLanguage()
     {

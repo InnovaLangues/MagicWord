@@ -3,7 +3,7 @@
 namespace MagicWordBundle\Manager\Lexicon;
 
 use JMS\DiExtraBundle\Annotation as DI;
-use MagicWordBundle\Entity\Language;
+use Innova\LexiconBundle\Entity\Language;
 
 /**
  * @DI\Service("mw_manager.inflection")
@@ -24,7 +24,7 @@ class InflectionManager
 
     public function checkExistence($inflection, Language $language)
     {
-        $inflection = $this->em->getRepository("MagicWordBundle:Lexicon\Inflection")->getByLanguageAndContentOrCleaned($language, $inflection);
+        $inflection = $this->em->getRepository('InnovaLexiconBundle:Inflection')->getByLanguageAndContentOrCleaned($language, $inflection);
 
         return $inflection;
     }

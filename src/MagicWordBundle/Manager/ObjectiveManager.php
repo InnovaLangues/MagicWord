@@ -94,7 +94,7 @@ class ObjectiveManager
 
     private function handleFindWord($objective)
     {
-        $repo = $this->em->getRepository("MagicWordBundle:Lexicon\Lemma");
+        $repo = $this->em->getRepository('InnovaLexiconBundle:Lemma');
         $objective->getLemmas()->clear();
 
         if ($objective->getLemmaEnough()) {

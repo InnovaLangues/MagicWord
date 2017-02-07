@@ -21,6 +21,7 @@ class AppKernel extends Kernel
             new JMS\AopBundle\JMSAopBundle(),
             new FOS\JsRoutingBundle\FOSJsRoutingBundle(),
             new Innova\WiktionaryBundle\InnovaWiktionaryBundle(),
+            new Innova\LexiconBundle\InnovaLexiconBundle(),
         ];
 
         if (in_array($this->getEnvironment(), ['dev', 'test'], true)) {

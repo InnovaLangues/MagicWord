@@ -3,7 +3,7 @@
 namespace MagicWordBundle\Repository;
 
 use MagicWordBundle\Entity\Player;
-use MagicWordBundle\Entity\Language;
+use Innova\LexiconBundle\Entity\Language;
 
 /**
  * GameRepository.

@@ -13,7 +13,7 @@ class LanguageExtension extends \Twig_Extension
 
     public function getLanguages()
     {
-        $languages = $this->em->getRepository('MagicWordBundle:Language')->findAll();
+        $languages = $this->em->getRepository('InnovaLexiconBundle:Language')->findAll();
 
         return $languages;
     }

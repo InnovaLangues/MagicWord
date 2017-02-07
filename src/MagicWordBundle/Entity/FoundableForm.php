@@ -34,7 +34,7 @@ class FoundableForm implements \JsonSerializable
     private $points;
 
     /**
-     * @ORM\ManyToMany(targetEntity="MagicWordBundle\Entity\Lexicon\Inflection")
+     * @ORM\ManyToMany(targetEntity="Innova\LexiconBundle\Entity\Inflection")
      * @ORM\JoinTable(name="inflections_foundable")
      */
     private $inflections;
@@ -116,7 +116,7 @@ class FoundableForm implements \JsonSerializable
      *
      * @return FoundableForm
      */
-    public function addInflection(\MagicWordBundle\Entity\Lexicon\Inflection $inflection)
+    public function addInflection(\Innova\LexiconBundle\Entity\Inflection $inflection)
     {
         $this->inflections[] = $inflection;
 
@@ -128,7 +128,7 @@ class FoundableForm implements \JsonSerializable
      *
      * @param \MagicWordBundle\Entity\Lexicon\Inflection $inflection
      */
-    public function removeInflection(\MagicWordBundle\Entity\Lexicon\Inflection $inflection)
+    public function removeInflection(\Innova\LexiconBundle\Entity\Inflection $inflection)
     {
         $this->inflections->removeElement($inflection);
     }

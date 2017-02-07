@@ -52,7 +52,7 @@ class Round implements \JsonSerializable
     private $game;
 
     /**
-     * @ORM\ManyToOne(targetEntity="MagicWordBundle\Entity\Language")
+     * @ORM\ManyToOne(targetEntity="Innova\LexiconBundle\Entity\Language")
      */
     private $language;
 
@@ -225,11 +225,11 @@ class Round implements \JsonSerializable
     /**
      * Set language.
      *
-     * @param \MagicWordBundle\Entity\Language $language
+     * @param \Innova\LexiconBundle\Entity\Language $language
      *
      * @return Round
      */
-    public function setLanguage(\MagicWordBundle\Entity\Language $language = null)
+    public function setLanguage(\Innova\LexiconBundle\Entity\Language $language = null)
     {
         $this->language = $language;
 
@@ -239,7 +239,7 @@ class Round implements \JsonSerializable
     /**
      * Get language.
      *
-     * @return \MagicWordBundle\Entity\Language
+     * @return \Innova\LexiconBundle\Entity\Language
      */
     public function getLanguage()
     {

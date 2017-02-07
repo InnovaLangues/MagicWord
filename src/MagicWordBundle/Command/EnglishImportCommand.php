@@ -104,7 +104,7 @@ class EnglishImportCommand extends ContainerAwareCommand
             }
         }
 
-        $language = $em->getRepository('MagicWordBundle:Language')->find(2);
+        $language = $em->getRepository('InnovaLexiconBundle:Language')->find(2);
 
         $criteria = array_filter([
             'lemma' => $lemma,
@@ -178,9 +178,9 @@ class EnglishImportCommand extends ContainerAwareCommand
 
         $lemmaCatName = $cat[$lemmaCat];
 
-        $lemmaCat = $em->getRepository('MagicWordBundle:Lexicon\Category')->findOneByValue($lemmaCatName);
+        $lemmaCat = $em->getRepository('InnovaLexiconBundle:Category')->findOneByValue($lemmaCatName);
         $lemmaSubcat = $em->getRepository('MagicWordBundle:Lexicon\Subcategory')->findOneByValue($lemmaSubcatName);
-        $language = $em->getRepository('MagicWordBundle:Language')->find(2);
+        $language = $em->getRepository('InnovaLexiconBundle:Language')->find(2);
 
         $lemma = $em->getRepository('MagicWordBundle:Lexicon\Lemma')->findOneBy([
             'language' => $language,

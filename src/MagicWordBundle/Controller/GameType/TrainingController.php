@@ -5,13 +5,13 @@ namespace MagicWordBundle\Controller\GameType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
-use MagicWordBundle\Entity\Language;
+use Innova\LexiconBundle\Entity\Language;
 
 class TrainingController extends Controller
 {
     /**
      * @Route("/train/{id}", name="train")
-     * @ParamConverter("language", class="MagicWordBundle:Language")
+     * @ParamConverter("language", class="InnovaLexiconBundle:Language")
      */
     public function trainAction(Language $language)
     {

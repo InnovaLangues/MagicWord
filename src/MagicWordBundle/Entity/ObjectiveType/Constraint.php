@@ -28,43 +28,43 @@ class Constraint extends Objective
     private $numberToFind;
 
     /**
-     * @ORM\ManyToOne(targetEntity="MagicWordBundle\Entity\Lexicon\Category")
+     * @ORM\ManyToOne(targetEntity="Innova\LexiconBundle\Entity\Category")
      */
     private $category;
 
     /**
-     * @ORM\ManyToOne(targetEntity="MagicWordBundle\Entity\Lexicon\Gender")
+     * @ORM\ManyToOne(targetEntity="Innova\LexiconBundle\Entity\Gender")
      */
     private $gender;
 
     /**
-     * @ORM\ManyToOne(targetEntity="MagicWordBundle\Entity\Lexicon\Tense")
+     * @ORM\ManyToOne(targetEntity="Innova\LexiconBundle\Entity\Tense")
      */
     private $tense;
 
     /**
-     * @ORM\ManyToOne(targetEntity="MagicWordBundle\Entity\Lexicon\Person")
+     * @ORM\ManyToOne(targetEntity="Innova\LexiconBundle\Entity\Person")
      */
     private $person;
 
     /**
-     * @ORM\ManyToOne(targetEntity="MagicWordBundle\Entity\Lexicon\Mood")
+     * @ORM\ManyToOne(targetEntity="Innova\LexiconBundle\Entity\Mood")
      */
     private $mood;
 
     /**
-     * @ORM\ManyToOne(targetEntity="MagicWordBundle\Entity\Lexicon\Number")
+     * @ORM\ManyToOne(targetEntity="Innova\LexiconBundle\Entity\Number")
      */
     private $number;
 
     /**
      * Set category.
      *
-     * @param \MagicWordBundle\Entity\Lexicon\Category $category
+     * @param \Innova\LexiconBundle\Entity\Category $category
      *
      * @return Constraint
      */
-    public function setCategory(\MagicWordBundle\Entity\Lexicon\Category $category = null)
+    public function setCategory(\Innova\LexiconBundle\Entity\Category $category = null)
     {
         $this->category = $category;
 
@@ -74,7 +74,7 @@ class Constraint extends Objective
     /**
      * Get category.
      *
-     * @return \MagicWordBundle\Entity\Lexicon\Category
+     * @return \Innova\LexiconBundle\Entity\Category
      */
     public function getCategory()
     {
@@ -82,9 +82,9 @@ class Constraint extends Objective
     }
 
     /**
-     * Set numberToFind
+     * Set numberToFind.
      *
-     * @param integer $numberToFind
+     * @param int $numberToFind
      *
      * @return Constraint
      */
@@ -96,9 +96,9 @@ class Constraint extends Objective
     }
 
     /**
-     * Get numberToFind
+     * Get numberToFind.
      *
-     * @return integer
+     * @return int
      */
     public function getNumberToFind()
     {
@@ -106,13 +106,13 @@ class Constraint extends Objective
     }
 
     /**
-     * Set gender
+     * Set gender.
      *
-     * @param \MagicWordBundle\Entity\Lexicon\Gender $gender
+     * @param \Innova\LexiconBundle\Entity\Gender $gender
      *
      * @return Constraint
      */
-    public function setGender(\MagicWordBundle\Entity\Lexicon\Gender $gender = null)
+    public function setGender(\Innova\LexiconBundle\Entity\Gender $gender = null)
     {
         $this->gender = $gender;
 
@@ -120,9 +120,9 @@ class Constraint extends Objective
     }
 
     /**
-     * Get gender
+     * Get gender.
      *
-     * @return \MagicWordBundle\Entity\Lexicon\Gender
+     * @return \Innova\LexiconBundle\Entity\Gender
      */
     public function getGender()
     {
@@ -130,13 +130,13 @@ class Constraint extends Objective
     }
 
     /**
-     * Set tense
+     * Set tense.
      *
-     * @param \MagicWordBundle\Entity\Lexicon\Tense $tense
+     * @param \Innova\LexiconBundle\Entity\Tense $tense
      *
      * @return Constraint
      */
-    public function setTense(\MagicWordBundle\Entity\Lexicon\Tense $tense = null)
+    public function setTense(\Innova\LexiconBundle\Entity\Tense $tense = null)
     {
         $this->tense = $tense;
 
@@ -144,9 +144,9 @@ class Constraint extends Objective
     }
 
     /**
-     * Get tense
+     * Get tense.
      *
-     * @return \MagicWordBundle\Entity\Lexicon\Tense
+     * @return \Innova\LexiconBundle\Entity\Tense
      */
     public function getTense()
     {
@@ -154,13 +154,13 @@ class Constraint extends Objective
     }
 
     /**
-     * Set person
+     * Set person.
      *
-     * @param \MagicWordBundle\Entity\Lexicon\Person $person
+     * @param \Innova\LexiconBundle\Entity\Person $person
      *
      * @return Constraint
      */
-    public function setPerson(\MagicWordBundle\Entity\Lexicon\Person $person = null)
+    public function setPerson(\Innova\LexiconBundle\Entity\Person $person = null)
     {
         $this->person = $person;
 
@@ -168,9 +168,9 @@ class Constraint extends Objective
     }
 
     /**
-     * Get person
+     * Get person.
      *
-     * @return \MagicWordBundle\Entity\Lexicon\Person
+     * @return \Innova\LexiconBundle\Entity\Person
      */
     public function getPerson()
     {
@@ -178,13 +178,13 @@ class Constraint extends Objective
     }
 
     /**
-     * Set mood
+     * Set mood.
      *
-     * @param \MagicWordBundle\Entity\Lexicon\Mood $mood
+     * @param \Innova\LexiconBundle\Entity\Mood $mood
      *
      * @return Constraint
      */
-    public function setMood(\MagicWordBundle\Entity\Lexicon\Mood $mood = null)
+    public function setMood(\Innova\LexiconBundle\Entity\Mood $mood = null)
     {
         $this->mood = $mood;
 
@@ -192,9 +192,9 @@ class Constraint extends Objective
     }
 
     /**
-     * Get mood
+     * Get mood.
      *
-     * @return \MagicWordBundle\Entity\Lexicon\Mood
+     * @return \Innova\LexiconBundle\Entity\Mood
      */
     public function getMood()
     {
@@ -202,13 +202,13 @@ class Constraint extends Objective
     }
 
     /**
-     * Set number
+     * Set number.
      *
-     * @param \MagicWordBundle\Entity\Lexicon\Number $number
+     * @param \Innova\LexiconBundle\Entity\Number $number
      *
      * @return Constraint
      */
-    public function setNumber(\MagicWordBundle\Entity\Lexicon\Number $number = null)
+    public function setNumber(\Innova\LexiconBundle\Entity\Number $number = null)
     {
         $this->number = $number;
 
@@ -216,9 +216,9 @@ class Constraint extends Objective
     }
 
     /**
-     * Get number
+     * Get number.
      *
-     * @return \MagicWordBundle\Entity\Lexicon\Number
+     * @return \Innova\LexiconBundle\Entity\Number
      */
     public function getNumber()
     {

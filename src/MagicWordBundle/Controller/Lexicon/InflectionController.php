@@ -9,7 +9,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use MagicWordBundle\Entity\Lexicon\Inflection;
-use MagicWordBundle\Entity\Language;
+use Innova\LexiconBundle\Entity\Language;
 
 class InflectionController extends Controller
 {
@@ -26,7 +26,7 @@ class InflectionController extends Controller
 
     /**
      * @Route("/inflection/check/{id}", name="check_existence", options={"expose"=true})
-     * @ParamConverter("language", class="MagicWordBundle:Language")
+     * @ParamConverter("language", class="InnovaLexiconBundle:Language")
      * @Method("POST")
      */
     public function checkExistenceAction(Language $language, Request $request)

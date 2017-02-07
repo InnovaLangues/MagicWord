@@ -23,7 +23,7 @@ class ConstraintType extends AbstractType
         ));
 
         $builder->add('category', EntityType::class, array(
-          'class' => 'MagicWordBundle:Lexicon\Category',
+          'class' => 'InnovaLexiconBundle:Category',
           'placeholder' => '- category -',
           'required' => false,
           'empty_data' => null,
@@ -35,7 +35,7 @@ class ConstraintType extends AbstractType
         ));
 
         $builder->add('number', EntityType::class, array(
-          'class' => 'MagicWordBundle:Lexicon\Number',
+          'class' => 'InnovaLexiconBundle:Number',
           'placeholder' => '- number -',
           'required' => false,
           'empty_data' => null,
@@ -47,7 +47,7 @@ class ConstraintType extends AbstractType
         ));
 
         $builder->add('gender', EntityType::class, array(
-          'class' => 'MagicWordBundle:Lexicon\Gender',
+          'class' => 'InnovaLexiconBundle:Gender',
           'placeholder' => '- gender -',
           'required' => false,
           'empty_data' => null,
@@ -59,7 +59,7 @@ class ConstraintType extends AbstractType
         ));
 
         $builder->add('tense', EntityType::class, array(
-          'class' => 'MagicWordBundle:Lexicon\Tense',
+          'class' => 'InnovaLexiconBundle:Tense',
           'placeholder' => '- tense -',
           'required' => false,
           'empty_data' => null,
@@ -71,7 +71,7 @@ class ConstraintType extends AbstractType
         ));
 
         $builder->add('person', EntityType::class, array(
-          'class' => 'MagicWordBundle:Lexicon\Person',
+          'class' => 'InnovaLexiconBundle:Person',
           'placeholder' => '- person -',
           'required' => false,
           'empty_data' => null,
@@ -83,7 +83,7 @@ class ConstraintType extends AbstractType
         ));
 
         $builder->add('mood', EntityType::class, array(
-          'class' => 'MagicWordBundle:Lexicon\Mood',
+          'class' => 'InnovaLexiconBundle:Mood',
           'placeholder' => '- mood -',
           'required' => false,
           'empty_data' => null,

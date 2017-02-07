@@ -1,12 +1,12 @@
 <?php
 
-namespace MagicWordBundle\Entity\Lexicon;
+namespace MagicWordBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\ORM\Mapping\Index;
 
 /**
- * @ORM\Entity(repositoryClass="MagicWordBundle\Repository\Lexicon\WrongFormRepository")
+ * @ORM\Entity(repositoryClass="MagicWordBundle\Repository\WrongFormRepository")
  * @ORM\Table(name="wrongform", indexes={
  *  @Index(name="wrongform", columns={"form"}),
  * })
@@ -23,7 +23,7 @@ class WrongForm
     private $id;
 
     /**
-     * @ORM\ManyToOne(targetEntity="MagicWordBundle\Entity\Language")
+     * @ORM\ManyToOne(targetEntity="Innova\LexiconBundle\Entity\Language")
      */
     private $language;
 
@@ -51,7 +51,7 @@ class WrongForm
      *
      * @return Game
      */
-    public function setLanguage(\MagicWordBundle\Entity\Language $language = null)
+    public function setLanguage(\Innova\LexiconBundle\Entity\Language $language = null)
     {
         $this->language = $language;
 

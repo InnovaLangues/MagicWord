@@ -39,7 +39,7 @@ class GenerateGridCommand extends ContainerAwareCommand
                 ? $letterManager->getCustomWeigth($customWeightedLetters)
                 : $customLetters = null;
 
-            $language = $em->getRepository('MagicWordBundle:Language')->findOneByName($languageName);
+            $language = $em->getRepository('InnovaLexiconBundle:Language')->findOneByName($languageName);
             $timeStart = microtime(true);
             $grid = $gridManager->generate($language, $customLetters);
             $timeEnd = microtime(true);

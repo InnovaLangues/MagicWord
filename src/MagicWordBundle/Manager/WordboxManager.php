@@ -3,8 +3,8 @@
 namespace  MagicWordBundle\Manager;
 
 use JMS\DiExtraBundle\Annotation as DI;
-use MagicWordBundle\Entity\Lexicon\Lemma;
-use MagicWordBundle\Entity\Language;
+use Innova\LexiconBundle\Entity\Lemma;
+use Innova\LexiconBundle\Entity\Language;
 use MagicWordBundle\Entity\Wordbox;
 
 /**

@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
  * Wordbox.
  *
  * @ORM\Table(name="wordbox")
- * @ORM\Entity(repositoryClass="MagicWordBundle\Repository\WordboxRepository")
+ * @ORM\Entity()
  */
 class Wordbox
 {

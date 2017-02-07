@@ -35,7 +35,7 @@ class MassiveType extends AbstractType
         ));
 
         $builder->add('language', EntityType::class, array(
-           'class' => 'MagicWordBundle:Language',
+           'class' => 'InnovaLexiconBundle:Language',
            'choice_label' => 'name',
            'label' => 'language',
            'translation_domain' => 'messages',

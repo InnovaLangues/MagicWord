@@ -47,7 +47,7 @@ class Grid implements \JsonSerializable
     protected $squares;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Language")
+     * @ORM\ManyToOne(targetEntity="Innova\LexiconBundle\Entity\Language")
      */
     private $language;
 
@@ -151,11 +151,11 @@ class Grid implements \JsonSerializable
     /**
      * Set language.
      *
-     * @param \MagicWordBundle\Entity\Language $language
+     * @param \Innova\LexiconBundle\Entity\Language $language
      *
      * @return Game
      */
-    public function setLanguage(\MagicWordBundle\Entity\Language $language = null)
+    public function setLanguage(\Innova\LexiconBundle\Entity\Language $language = null)
     {
         $this->language = $language;
 
@@ -165,7 +165,7 @@ class Grid implements \JsonSerializable
     /**
      * Get language.
      *
-     * @return \MagicWordBundle\Entity\Language
+     * @return \Innova\LexiconBundle\Entity\Language
      */
     public function getLanguage()
     {
@@ -184,6 +184,7 @@ class Grid implements \JsonSerializable
 
             foreach ($foundable->getInflections() as $inflection) {
                 $lemma = $inflection->getLemma();
+
                 $jsonArray['inflections'][$form]['infos'][] =
                     [
                         'category' => !$lemma->getCategory() ? null : $lemma->getCategory()->getId(),

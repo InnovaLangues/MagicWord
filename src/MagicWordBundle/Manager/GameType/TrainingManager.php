@@ -4,7 +4,7 @@ namespace  MagicWordBundle\Manager\GameType;
 
 use JMS\DiExtraBundle\Annotation as DI;
 use MagicWordBundle\Entity\GameType\Training;
-use MagicWordBundle\Entity\Language;
+use Innova\LexiconBundle\Entity\Language;
 
 /**
  * @DI\Service("mw_manager.training")
