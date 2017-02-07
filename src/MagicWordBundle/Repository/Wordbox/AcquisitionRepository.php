@@ -3,7 +3,7 @@
 namespace MagicWordBundle\Repository\Wordbox;
 
 use MagicWordBundle\Entity\Wordbox;
-use MagicWordBundle\Entity\Language;
+use Innova\LexiconBundle\Entity\Language;
 
 class AcquisitionRepository extends \Doctrine\ORM\EntityRepository
 {

@@ -2,7 +2,7 @@
 
 namespace  MagicWordBundle\Twig;
 
-use MagicWordBundle\Entity\Lexicon\Lemma;
+use Innova\LexiconBundle\Entity\Lemma;
 
 class WordboxExtension extends \Twig_Extension
 {

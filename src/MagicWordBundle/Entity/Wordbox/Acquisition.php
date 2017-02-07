@@ -33,7 +33,7 @@ class Acquisition
     protected $type;
 
     /**
-     * @ORM\ManyToOne(targetEntity="MagicWordBundle\Entity\Lexicon\Lemma")
+     * @ORM\ManyToOne(targetEntity="Innova\LexiconBundle\Entity\Lemma")
      */
     protected $lemma;
 
@@ -105,11 +105,11 @@ class Acquisition
     /**
      * Set lemma.
      *
-     * @param \MagicWordBundle\Entity\Lexicon\Lemma $lemma
+     * @param \Innova\LexiconBundle\Entity\Lemma $lemma
      *
      * @return Acquisition
      */
-    public function setLemma(\MagicWordBundle\Entity\Lexicon\Lemma $lemma = null)
+    public function setLemma(\Innova\LexiconBundle\Entity\Lemma $lemma = null)
     {
         $this->lemma = $lemma;
 
@@ -119,7 +119,7 @@ class Acquisition
     /**
      * Get lemma.
      *
-     * @return \MagicWordBundle\Entity\Lexicon\Lemma
+     * @return \Innova\LexiconBundle\Entity\Lemma
      */
     public function getLemma()
     {

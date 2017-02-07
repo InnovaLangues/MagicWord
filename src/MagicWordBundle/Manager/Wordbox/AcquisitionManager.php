@@ -4,9 +4,9 @@ namespace  MagicWordBundle\Manager\Wordbox;
 
 use JMS\DiExtraBundle\Annotation as DI;
 use MagicWordBundle\Entity\Wordbox;
-use MagicWordBundle\Entity\Lexicon\Lemma;
 use MagicWordBundle\Entity\Wordbox\Acquisition;
 use MagicWordBundle\Entity\Wordbox\AcquisitionType;
+use Innova\LexiconBundle\Entity\Lemma;
 
 /**
  * @DI\Service("mw_manager.acquisition")

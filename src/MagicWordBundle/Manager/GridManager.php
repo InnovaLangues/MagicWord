@@ -4,7 +4,7 @@ namespace  MagicWordBundle\Manager;
 
 use JMS\DiExtraBundle\Annotation as DI;
 use MagicWordBundle\Entity\Grid;
-use MagicWordBundle\Entity\Language;
+use Innova\LexiconBundle\Entity\Language;
 use Symfony\Component\HttpFoundation\Request;
 
 /**
@@ -64,7 +64,7 @@ class GridManager
     public function createGrid($request, $save)
     {
         $languageId = $request->request->get('language');
-        $language = $this->em->getRepository('MagicWordBundle:Language')->find($languageId);
+        $language = $this->em->getRepository('InnovaLexiconBundle:Language')->find($languageId);
 
         $grid = $this->newGrid($language);
 
@@ -216,7 +216,7 @@ class GridManager
         // words contient tous les débuts de mots ayant été trouvé dans le dictionnaire
         // il faut vérifier si chaque word existe réellement dans le dictionnaire
         if ($words) {
-            $inflections = $this->em->getRepository("MagicWordBundle:Lexicon\Inflection")->getExistingWords($words, $this->currentLanguage);
+            $inflections = $this->em->getRepository('InnovaLexiconBundle:Inflection')->getExistingWords($words, $this->currentLanguage);
         }
 
         return $inflections;
@@ -231,7 +231,7 @@ class GridManager
         $grid[$y][$x] = '_';
         // vérifier en bdd s'il existe des mots qui commencent par $word à partir de 2 lettres
         if (strlen($word) > 1) {
-            $startExists = $this->em->getRepository("MagicWordBundle:Lexicon\InflectionStart")->search($word, $this->currentLanguage->getId());
+            $startExists = $this->em->getRepository('InnovaLexiconBundle:InflectionStart')->search($word, $this->currentLanguage->getId());
             // si pas de mot dans le dico commençant par le mot en cours, ne pas retourner le mot et arrêter la recherche
             if (!$startExists) {
                 return array();

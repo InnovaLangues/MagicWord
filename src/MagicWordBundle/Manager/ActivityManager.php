@@ -72,7 +72,7 @@ class ActivityManager
         $activity = $this->getActivity($round);
         $language = $round->getLanguage();
 
-        $wrongForm = $this->em->getRepository('MagicWordBundle:Lexicon\WrongForm')->findOneBy([
+        $wrongForm = $this->em->getRepository('MagicWordBundle:WrongForm')->findOneBy([
             'language' => $language,
             'form' => $form,
         ]);

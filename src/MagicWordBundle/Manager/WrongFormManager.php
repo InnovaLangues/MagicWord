@@ -1,10 +1,10 @@
 <?php
 
-namespace MagicWordBundle\Manager\Lexicon;
+namespace MagicWordBundle\Manager;
 
 use JMS\DiExtraBundle\Annotation as DI;
-use MagicWordBundle\Entity\Language;
-use MagicWordBundle\Entity\Lexicon\WrongForm;
+use Innova\LexiconBundle\Entity\Language;
+use MagicWordBundle\Entity\WrongForm;
 
 /**
  * @DI\Service("mw_manager.wrongform")

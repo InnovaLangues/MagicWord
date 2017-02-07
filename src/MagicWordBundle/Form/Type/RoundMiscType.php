@@ -25,7 +25,7 @@ class RoundMiscType extends AbstractType
 
         $builder->add('language', EntityType::class, array(
           'label' => 'game_language',
-          'class' => 'MagicWordBundle:Language',
+          'class' => 'InnovaLexiconBundle:Language',
           'choice_label' => 'name',
           'attr' => array('class' => 'form-control'),
           'translation_domain' => 'messages',

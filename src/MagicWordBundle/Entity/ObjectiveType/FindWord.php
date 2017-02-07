@@ -35,7 +35,7 @@ class FindWord extends Objective
     protected $inflection;
 
     /**
-     * @ORM\ManyToMany(targetEntity="MagicWordBundle\Entity\Lexicon\Lemma")
+     * @ORM\ManyToMany(targetEntity="Innova\LexiconBundle\Entity\Lemma")
      * @ORM\JoinTable(name="objective_findword_lemma")
      */
     private $lemmas;
@@ -133,7 +133,7 @@ class FindWord extends Objective
      *
      * @return FindWord
      */
-    public function addLemma(\MagicWordBundle\Entity\Lexicon\Lemma $lemma)
+    public function addLemma(\Innova\LexiconBundle\Entity\Lemma $lemma)
     {
         $this->lemmas[] = $lemma;
 
@@ -161,7 +161,7 @@ class FindWord extends Objective
      *
      * @param \MagicWordBundle\Entity\Lexicon\Lemma $lemma
      */
-    public function removeLemma(\MagicWordBundle\Entity\Lexicon\Lemma $lemma)
+    public function removeLemma(\Innova\LexiconBundle\Entity\Lemma $lemma)
     {
         $this->lemmas->removeElement($lemma);
     }

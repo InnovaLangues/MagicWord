@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
  * Square.
  *
  * @ORM\Table(name="square")
- * @ORM\Entity(repositoryClass="MagicWordBundle\Repository\SquareRepository")
+ * @ORM\Entity()
  */
 class Square
 {
