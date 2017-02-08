@@ -46,7 +46,7 @@ class AdministrationController extends Controller
      */
     public function wordLengthPointSubmitAction(WordLengthPoints $wordlengthpoint, Request $request)
     {
-        $form = $this->get('mw_manager.administration')->handleWordLengthPointForm($wordlengthpoint, $request);
+        $this->get('mw_manager.administration')->handleWordLengthPointForm($wordlengthpoint, $request);
 
         return $this->redirectToRoute('wordlengthpoints');
     }
@@ -78,7 +78,7 @@ class AdministrationController extends Controller
      */
     public function languageLetterPointsSubmitAction(LetterLanguage $letterlanguage, Request $request)
     {
-        $form = $this->get('mw_manager.administration')->handleLetterLanguageForm($letterlanguage, $request);
+        $this->get('mw_manager.administration')->handleLetterLanguageForm($letterlanguage, $request);
 
         return $this->redirectToRoute('letterslanguage');
     }

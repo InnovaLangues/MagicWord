@@ -6,7 +6,6 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use MagicWordBundle\Entity\RoundType\Rush;
-use MagicWordBundle\Form\Type\RoundType;
 
 class RushController extends Controller
 {

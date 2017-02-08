@@ -33,7 +33,7 @@ class MassiveController extends Controller
      * @Route("/massive/{id}/end", name="massive_end")
      * @ParamConverter("massive", class="MagicWordBundle:GameType\Massive")
      */
-    public function EndAction(Massive $massive)
+    public function endAction(Massive $massive)
     {
         $this->get('mw_manager.user')->endGame($massive);
 
@@ -218,7 +218,7 @@ class MassiveController extends Controller
      * @ParamConverter("massive", class="MagicWordBundle:GameType\Massive", options={"id" = "massiveId"})
      * @ParamConverter("round", class="MagicWordBundle:Round", options={"id" = "roundId"})
      */
-    public function roundMoveUp(Massive $massive, Round $round)
+    public function roundMoveUpAction(Massive $massive, Round $round)
     {
         if (!$this->get('mw_manager.user')->isGranted($massive)) {
             return $this->redirectToRoute('home');
@@ -235,7 +235,7 @@ class MassiveController extends Controller
      * @ParamConverter("massive", class="MagicWordBundle:GameType\Massive", options={"id" = "massiveId"})
      * @ParamConverter("round", class="MagicWordBundle:Round", options={"id" = "roundId"})
      */
-    public function roundMoveDown(Massive $massive, Round $round)
+    public function roundMoveDownAction(Massive $massive, Round $round)
     {
         if (!$this->get('mw_manager.user')->isGranted($massive)) {
             return $this->redirectToRoute('home');

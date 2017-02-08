@@ -126,7 +126,7 @@ class MassiveManager
 
     public function addConquerRound(Massive $massive)
     {
-        $round = $this->roundManager->generateConquer($massive);
+        $this->roundManager->generateConquer($massive);
 
         return;
     }
