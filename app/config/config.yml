@@ -63,8 +63,8 @@ doctrine:
                 user:     "%database_user%"
                 password: "%database_password%"
                 charset:  UTF8
-                logging: false
-                profiling: false
+                logging: '%kernel.debug%'
+                profiling: '%kernel.debug%'
             lexicon:
                 driver:   pdo_mysql
                 host:     "%database_host2%"
@@ -73,8 +73,8 @@ doctrine:
                 user:     "%database_user2%"
                 password: "%database_password2%"
                 charset:  UTF8
-                logging: false
-                profiling: false
+                logging: '%kernel.debug%'
+                profiling: '%kernel.debug%'
 
     orm:
         auto_generate_proxy_classes: "%kernel.debug%"
