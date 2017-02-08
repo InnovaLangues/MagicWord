@@ -140,7 +140,7 @@ class ActivityManager
 
     public function getActivity(Round $round)
     {
-        return $activity = $this->em->getRepository('MagicWordBundle:Activity')->findOneBy(['player' => $this->currentUser, 'round' => $round]);
+        return $this->em->getRepository('MagicWordBundle:Activity')->findOneBy(['player' => $this->currentUser, 'round' => $round]);
     }
 
     public function canAccessScores(Activity $activity)
