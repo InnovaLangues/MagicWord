@@ -165,7 +165,7 @@ class Player extends BaseUser
     /**
      * Set languageUI.
      *
-     * @param \Innova\LexiconBundle\Entity\LanguageUI $languageUI
+     * @param \MagicWordBundle\Entity\LanguageUI $languageUI
      *
      * @return Player
      */
@@ -179,7 +179,7 @@ class Player extends BaseUser
     /**
      * Get languageUI.
      *
-     * @return \Innova\LexiconBundle\Entity\LanguageUI
+     * @return \MagicWordBundle\Entity\LanguageUI
      */
     public function getLanguageUI()
     {
