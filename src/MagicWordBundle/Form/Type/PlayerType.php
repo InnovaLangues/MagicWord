@@ -26,7 +26,7 @@ class PlayerType extends AbstractType
 
         $builder->add('languageUI', EntityType::class, array(
             'label' => 'language_ui',
-            'class' => 'InnovaLexiconBundle:LanguageUI',
+            'class' => 'MagicWordBundle:LanguageUI',
             'choice_label' => 'name',
             'attr' => array('class' => 'form-control'),
             'translation_domain' => 'messages',
