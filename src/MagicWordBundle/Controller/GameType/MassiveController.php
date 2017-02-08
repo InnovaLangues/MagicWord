@@ -33,7 +33,7 @@ class MassiveController extends Controller
      * @Route("/massive/{id}/end", name="massive_end")
      * @ParamConverter("massive", class="MagicWordBundle:GameType\Massive")
      */
-    public function EndAction(Massive $massive)
+    public function endAction(Massive $massive)
     {
         $this->get('mw_manager.user')->endGame($massive);
 
