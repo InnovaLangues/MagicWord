@@ -32,7 +32,7 @@ class InflectionController extends Controller
     public function checkExistenceAction(Language $language, Request $request)
     {
         $inflection = $request->request->get('inflection');
-        $inflection = $this->get('mw_manager.inflection')->checkExistence($inflection, $language);
+        $inflection = $this->get('innova_lexicon_inflection')->checkExistence($inflection, $language);
 
         return new JsonResponse($inflection);
     }

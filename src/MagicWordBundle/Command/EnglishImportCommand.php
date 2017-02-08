@@ -41,7 +41,7 @@ class EnglishImportCommand extends ContainerAwareCommand
     private function handleInflection($subcat, $lemma, $form, $output)
     {
         $em = $this->getContainer()->get('doctrine')->getEntityManager('default');
-        $inflectionManager = $this->getContainer()->get('mw_manager.inflection');
+        $inflectionManager = $this->getContainer()->get('innova_lexicon_inflection');
 
         $genderNames = array(
             'm' => 'masculine',
