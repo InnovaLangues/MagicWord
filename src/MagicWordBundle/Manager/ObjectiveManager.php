@@ -6,7 +6,6 @@ use JMS\DiExtraBundle\Annotation as DI;
 use Doctrine\Common\Collections\ArrayCollection;
 use MagicWordBundle\Entity\RoundType\Conquer;
 use MagicWordBundle\Form\Type\RoundType;
-use MagicWordBundle\Entity\Grid;
 use MagicWordBundle\Entity\ObjectiveType\Combo;
 use MagicWordBundle\Entity\ObjectiveType\FindWord;
 use Symfony\Component\HttpFoundation\Request;
