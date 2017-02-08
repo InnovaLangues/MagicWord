@@ -16,7 +16,7 @@ class ApiController extends Controller
      * @ParamConverter("language", class="InnovaLexiconBundle:Language")
      * @Method("GET")
      */
-    public function testGridFromLetters(Language $language, $letters)
+    public function testGridFromLettersAction(Language $language, $letters)
     {
         $time_start = microtime(true);
         $lettersArray = str_split($letters);

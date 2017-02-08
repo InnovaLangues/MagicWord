@@ -72,7 +72,7 @@ class ActivityController extends Controller
      * @ParamConverter("comboPoints", class="MagicWordBundle:Rules\ComboPoints", options={"length" = "length"})
      * @Method("POST")
      */
-    public function addComboPoints(Round $round, ComboPoints $comboPoints)
+    public function addComboPointsAction(Round $round, ComboPoints $comboPoints)
     {
         $this->get('mw_manager.activity')->addComboPoints($round, $comboPoints);
 
