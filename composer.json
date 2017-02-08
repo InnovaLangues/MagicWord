@@ -1,5 +1,6 @@
 {
-    "name": "beya/magicword",
+    "name": "innovalangues/magicword",
+    "description": "boggle-like game",
     "type": "project",
     "autoload": {
         "psr-4": {
