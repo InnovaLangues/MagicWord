@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "bfee78265641cfc2563a10dbd1da48b9",
+    "content-hash": "37adf87ae2f2dfec24bd80aeb6db896a",
     "packages": [
         {
             "name": "doctrine/annotations",
@@ -967,12 +967,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/InnovaLangues/LexiconBundle.git",
-                "reference": "a7d439e805ff4344dadf8f38587476279d2081db"
+                "reference": "15094b3cdbedb61d67786a0fac3112b524806683"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/InnovaLangues/LexiconBundle/zipball/a7d439e805ff4344dadf8f38587476279d2081db",
-                "reference": "a7d439e805ff4344dadf8f38587476279d2081db",
+                "url": "https://api.github.com/repos/InnovaLangues/LexiconBundle/zipball/15094b3cdbedb61d67786a0fac3112b524806683",
+                "reference": "15094b3cdbedb61d67786a0fac3112b524806683",
                 "shasum": ""
             },
             "require": {
@@ -1000,7 +1000,7 @@
                 "Innovalangues",
                 "Lexicon"
             ],
-            "time": "2017-02-08 09:25:20"
+            "time": "2017-02-08 13:08:43"
         },
         {
             "name": "innovalangues/wiktionary-bundle",
