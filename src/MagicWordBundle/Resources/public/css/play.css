@@ -1,3 +1,120 @@
+#objectives {
+    width: 100%;
+    height:60px;
+    border-radius:3px;
+    margin-bottom:10px;
+}
+
+
+#current-combo-container {
+    float:left;
+    width:100%;
+    background-color:white;
+    height:15px;
+}
+
+#current-combo {
+    background-color: #04346C;
+    height:15px;
+    float:left;
+    transition: width 0.3s linear;
+}
+
+.current-combo-0 {
+    width:0%;
+}
+
+.current-combo-1 {
+    width:15%;
+}
+
+.current-combo-2 {
+    width:30%;
+}
+
+.current-combo-3 {
+    width:50%;
+}
+
+.current-combo-4 {
+    width:65%;
+}
+
+.current-combo-5 {
+    width:80%;
+}
+
+.current-combo-6 {
+    width:100%;
+}
+
+.objectives{
+    display: flex;
+    text-align:center;
+    float:left;
+    width:8%;
+    height:100%;
+    cursor: pointer;
+    cursor: hand;
+    background-color:white;
+    color:black;
+}
+
+#points-container{
+    float:left;
+    width:8%;
+    background-color:white;
+    height:60px;
+    display: flex;
+    text-align:center;
+}
+
+#points{
+    margin:auto;
+}
+
+#woot{
+    margin:auto;
+}
+
+#woot-container {
+    width:91%;
+    display: flex;
+    text-align:center;
+    background-color:white;
+    height:60px;
+    margin-bottom:10px;
+}
+
+.objective-list, .objective-summary {
+    margin: auto;
+}
+
+.objectives.active{
+    width:82%;
+    //transition: width 0.1s linear;
+}
+
+#combos-container, #findwords-container, #points-container{
+    margin-right:1%;
+}
+
+.objectives.disabled {
+    background-color:lightgrey;
+}
+
+.objectives.active .objective-summary{
+    display:none;
+}
+
+.objectives .objective-list{
+    display:none;
+}
+
+.objectives.active .objective-list{
+    display:block;
+}
+
 #main{
     margin-top:5px;
 }
@@ -34,19 +151,6 @@
     height:100%;
     font-size:1.8em;
     transform: rotate(-45deg);
-}
-
-#woot-container {
-    padding-top:3px;
-    text-align:center;
-    color: #333333;
-    text-transform: uppercase;
-    font-weight: bold;
-}
-
-#woot {
-    font-size:1.8em;
-    text-transform: uppercase;
 }
 
 ul#inflections-found {
@@ -137,24 +241,12 @@ ul#squares li.wrongWord {
 
 .right-form {
     text-shadow: 1px 1px 2px white, 0 0 1em green, 0 0 0.2em green;
-    padding: 3px 10px;
 }
 
 .wrong-form {
     text-shadow: 1px 1px 2px white, 0 0 1em red, 0 0 0.2em red;
     text-decoration-line: line-through;
 }
-
-#topbar {
-    width:100%;
-    height:45px;
-    position: fixed;
-    top:0;
-    left:0;
-    background-color:#FF9C00;
-    border-bottom:1px solid white;
-}
-
 
 #rules {
     text-shadow: 1px 1px 2px black, 0 0 1em white, 0 0 0.2em white;

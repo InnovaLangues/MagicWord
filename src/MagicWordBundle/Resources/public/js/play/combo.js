@@ -70,6 +70,8 @@ var combo = {
 	showCombo: function(){
 			//this.comboSelector.show();
 			$("#combo-count").html(this.currentComboLength).show();
+			$("#current-combo").removeAttr('class');
+			$("#current-combo").addClass("current-combo-"+this.currentComboLength);
 	},
 
 	reset: function(){
