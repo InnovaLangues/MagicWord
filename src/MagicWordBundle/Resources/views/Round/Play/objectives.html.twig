@@ -16,60 +16,69 @@
     </div>
     --->
 <div class="row">
-<div class="col-md-12">
-<div id="objectives">
-    {% set isActive = false %}
-    <div id="combos-container" onclick="objectives.click(this)" class="objectives {% if round.combos is empty %} disabled {% endif %} {% if round.combos is not empty %} active{% set isActive = true %}{% endif %}">
-        {% if round.combos is not empty %}
-        <div class="objective-list">
-            {% for i, combo in round.combos %}
-            <div id="objective-combo-{{ combo.id }}" class=" objective-{{ combo.id }}" data-type="combo">
-                <b>{{ combo.number }}</b> {{ 'combos__with_length' | trans }} <b>{{ combo.lenght }}</b>
-                <span class="objective-progress pull-right"></span>
+    <div class="col-md-12">
+        <div id="objectives">
+            {% set isActive = false %}
+            <div data-type="combo" id="combos-container" onclick="objectives.click(this)" class="objectives {% if round.combos is empty %} disabled {% endif %} {% if round.combos is not empty %} active{% set isActive = true %}{% endif %}">
+                {% if round.combos is not empty %}
+                <div class="objective-list">
+                    {% for i, combo in round.combos %}
+                    <div id="objective-combo-{{ combo.id }}" class=" objective-{{ combo.id }}" data-type="combo">
+                        <b>{{ combo.number }}</b> {{ 'combos__with_length' | trans }} <b>{{ combo.lenght }}</b>
+                        <span class="objective-progress pull-right"></span>
+                    </div>
+                    {% endfor %}
+                </div>
+                {% endif %}
+                <div class="objective-summary">
+                    <div>
+                        <div class="fa fa-tachometer"></div>
+                    </div>
+                    <span id="combo-done">0</span> / <span>{{ round.combos |length}}</span>
+                </div>
             </div>
-            {% endfor %}
-        </div>
-        <div class="objective-summary">
-            <span id="combo-done">0</span> / <span>{{ round.combos |length}}</span>
-        </div>
-        {% endif %}
-    </div>
-    <div id="findwords-container" onclick="objectives.click(this)" class="objectives {% if round.findWords is empty %} disabled {% endif %} {% if round.findwords is not empty and isActive == false %} active{% set isActive = true %}{% endif %}">
-        {% if round.findWords is not empty %}
-        <div class="objective-list">
-            {% for findWord in round.findWords %}
-            <div id="objective-findword-{{ findWord.id }}" class="objective objective-{{ findWord.id }}" data-type="findword">
-                {{ findWord.hint }}
+            <div data-type="findword" id="findwords-container" onclick="objectives.click(this)" class="objectives {% if round.findWords is empty %} disabled {% endif %} {% if round.findwords is not empty and isActive == false %} active{% set isActive = true %}{% endif %}">
+                {% if round.findWords is not empty %}
+                <div class="objective-list">
+                    {% for findWord in round.findWords %}
+                    <div id="objective-findword-{{ findWord.id }}" class="objective objective-{{ findWord.id }}" data-type="findword">
+                        {{ findWord.hint }}
+                    </div>
+                    {% endfor %}
+                </div>
+                {% endif %}
+                <div class="objective-summary">
+                    <div>
+                        <span class="fa fa-binoculars"></span>
+                    </div>
+                    <span id="findword-done">0</span> / <span>{{ round.findWords |length}}</span>
+                </div>
             </div>
-            {% endfor %}
-        </div>
-        <div class="objective-summary">
-            <span id="findword-done">0</span> / <span>{{ round.findWords |length}}</span>
-        </div>
-        {% endif %}
-    </div>
-    <div id="constraints-container" onclick="objectives.click(this)" class="objectives {% if round.constraints is empty %} disabled {% endif %}{% if round.constraints is not empty and isActive == false %} active{% endif %}">
-        {% if round.constraints is not empty %}
-        <div class="objective-list">
-            {% for constraint in round.constraints %}
-            <div id="objective-constraint-{{ constraint.id }}" class="objective objective-{{ constraint.id }}" data-type="constraint">
-                {{ constraint.numberToFind }}
-                {{ constraint.category ? constraint.category.value | trans }}
-                {{ constraint.person ? constraint.person.value | trans }}
-                {{ constraint.gender ? constraint.gender.value | trans }}
-                {{ constraint.number ? constraint.number.value | trans }}
-                {{ constraint.tense ? constraint.tense.value | trans }}
-                {{ constraint.mood ? constraint.mood.value | trans }}
-                <span class="objective-progress pull-right"></span>
+            <div data-type="constraint" id="constraints-container" onclick="objectives.click(this)" class="objectives {% if round.constraints is empty %} disabled {% endif %}{% if round.constraints is not empty and isActive == false %} active{% endif %}">
+                {% if round.constraints is not empty %}
+                <div class="objective-list">
+                    {% for constraint in round.constraints %}
+                    <div id="objective-constraint-{{ constraint.id }}" class="objective objective-{{ constraint.id }}" data-type="constraint">
+                        {{ constraint.numberToFind }}
+                        {{ constraint.category ? constraint.category.value | trans }}
+                        {{ constraint.person ? constraint.person.value | trans }}
+                        {{ constraint.gender ? constraint.gender.value | trans }}
+                        {{ constraint.number ? constraint.number.value | trans }}
+                        {{ constraint.tense ? constraint.tense.value | trans }}
+                        {{ constraint.mood ? constraint.mood.value | trans }}
+                        <span class="objective-progress pull-right"></span>
+                    </div>
+                    {% endfor %}
+                </div>
+                {% endif %}
+                <div class="objective-summary">
+                    <div>
+                        <span class="fa fa-map-o"></span>
+                    </div>
+                    <span id="constraint-done">0</span> / <span>{{ round.constraints |length}}</span>
+                </div>
             </div>
-            {% endfor %}
         </div>
-        <div class="objective-summary">
-            <span id="constraint-done">0</span> / <span>{{ round.constraints |length}}</span>
-        </div>
-        {% endif %}
     </div>
-</div>
-</div>
 </div>
 {% endif %}

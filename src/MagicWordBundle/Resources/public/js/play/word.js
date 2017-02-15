@@ -33,13 +33,13 @@ var words = {
 		}
 
 		if (woot) {
-			$("#woot").html(inflection).show();
+			$("#woot").html(inflection);
 		}
 
 		if(isCorrect){
 			if (saveIt) {
 				activity.sendFoundWord(inflection);
-				sound.play(sound.rightWord);
+				//sound.play(sound.rightWord);
 			}
 			this.correctWords++;
 			$("#correctWords-found").html(this.correctWords);
@@ -56,16 +56,16 @@ var words = {
 
 		if (!this.alreadyFound(inflection)) {
 			if (this.inInflections(inflection)){
-				var inWordsToFound = findword.inWordsToFound(inflection);
 				this.addToFoundWords(inflection.toLowerCase(), true, true, true);
-				combo.handleNewInflection(inflection);
 				if (roundJSON.type == "conquer") {
+					findword.inWordsToFound(inflection);
 					objectiveConstraint.add(inflection);
 				}
+				combo.handleNewInflection(inflection);
 			} else {
-				this.addToFoundWords(inflection.toLowerCase(), false, true, true);
-				sound.play(sound.wrongForm);
 				combo.reset();
+				this.addToFoundWords(inflection.toLowerCase(), false, true, true);
+				//sound.play(sound.wrongForm);
 			}
 		}
 	},

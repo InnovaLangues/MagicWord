@@ -68,10 +68,10 @@ var combo = {
 	},
 
 	showCombo: function(){
-			//this.comboSelector.show();
-			$("#combo-count").html(this.currentComboLength).show();
-			$("#current-combo").removeAttr('class');
-			$("#current-combo").addClass("current-combo-"+this.currentComboLength);
+		$(".current-combo").removeClass("reached");
+		for (var i = 1; i <= this.currentComboLength; i++) {
+			$("#current-combo-"+i).addClass("reached");
+		}
 	},
 
 	reset: function(){
@@ -80,12 +80,10 @@ var combo = {
 		this.previousIds = [];
 		this.currentComboLength = 0;
 		this.currentComboLemmas = [];
+		this.showCombo();
 	},
 
 	endCombo: function(){
-		//this.comboSelector.hide("explode", {pieces: 16 }, 300);
-
-
 		if (this.currentComboLength > 1) {
 			objectiveCombo.checkObjectives(this.currentComboLength, false);
 			if (roundJSON.type == "rush") {

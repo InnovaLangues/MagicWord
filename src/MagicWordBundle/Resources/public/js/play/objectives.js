@@ -17,13 +17,15 @@ var objectives = {
         var objective = $(".objective-"+objectiveId);
         var type = objective.data("type");
 
-        this.updateDone(type);
-        sound.play(sound.objectiveProgress);
-        this.done++;
-        //objective.addClass("list-group-item-success");
-        objective.hide();
-        this.updateScore();
-        this.checkCompletion();
+        if (objectives.doneByType[type] < objectives.toDoByType[type]) {
+            this.updateDone(type);
+            sound.play(sound.objectiveProgress);
+            this.done++;
+            objective.hide();
+            this.updateScore();
+            this.checkCompletion();
+            this.checkTypeCompletion(type);
+        }
 	},
 
     checkCompletion: function(){
@@ -55,15 +57,31 @@ var objectives = {
         if (objectiveType.classList.contains("active")) {
             return;
         } else {
-            objectives.disableAll();
+            objectives.deactivateAll();
             objectiveType.classList.add("active");
         }
     },
 
-    disableAll: function(){
-        var objs = document.getElementsByClassName('objectives');
-        for (var i = 0; i < objs.length; ++i) {
-            objs[i].classList.remove("active");
+    checkTypeCompletion: function(type){
+        if (objectives.doneByType[type] >= objectives.toDoByType[type]) {
+            objectives.disable(type);
+            objectives.findActivable(type);
         }
     },
+
+    deactivateAll: function(){
+        $('.objectives').removeClass("active");
+    },
+
+    disable: function(type){
+        $("[data-type='"+type+"']").addClass("disabled").removeClass("active");
+    },
+
+    findActivable: function(type){
+        if (!$("[data-type='"+type+"']").hasClass("active")) {
+            $(".objectives").not(".disabled").first().addClass("active");
+        }
+
+        return;
+    }
 }
