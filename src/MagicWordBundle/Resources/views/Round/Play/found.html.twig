@@ -1,13 +1,8 @@
-<div class="panel panel-default">
-    <div class="panel-heading" style="background-color:#FF9C00">
-        <h5>
-            <span class="label label-default" id="correctWords-found">0</span> {{ 'forms_found' | trans }} sur {{ grid.foundableForms|length}}
-            {% if round.discr == "rush" %}
-            <span class="pull-right">
-                <span class="label label-primary" id="score-total">0</span> pts
-            </span>
-            {% endif %}
-        </h5>
+{% if not hasObj %}
+    <div class="row">
+        <div class="col-md-12">
+            <div id="inflections-found">
+            </div>
+        </div>
     </div>
-    <ul class="list-group" id="inflections-found"></ul>
-</div>
+{% endif %}

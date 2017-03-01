@@ -254,9 +254,7 @@ var grid = {
 
 	resize: function() {
 		var grid = $("#grid-container");
-		var game = $("#game-container");
 		var squares = $("ul#squares li");
-		var width = $("#li-square-0-0").width();
 
 		grid.height(grid.width());
 		squares.fitText(0.65);

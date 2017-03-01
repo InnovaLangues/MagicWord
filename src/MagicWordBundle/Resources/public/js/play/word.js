@@ -41,14 +41,17 @@ var words = {
 				activity.sendFoundWord(inflection);
 				//sound.play(sound.rightWord);
 			}
-			this.correctWords++;
-			$("#correctWords-found").html(this.correctWords);
+			//this.correctWords++;
+			//$("#correctWords-found").html(this.correctWords);
 			points = score.calculatePoints(inflection);
 		} else {
 			activity.sendWrongWord(inflection);
 		}
 
-		$("#inflections-found").prepend("<li class='list-group-item'>"+typedInflection+"<span class='pull-right'>"+points+"</span></li>");
+		var found = document.createElement("div");
+		found.className = 'found-word';
+		found.innerHTML = typedInflection;
+		$("#inflections-found").prepend(found);
 	},
 
 	checkWord: function(){
