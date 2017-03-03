@@ -19,10 +19,12 @@
 
 #points{
     margin:auto;
+    font-family: 'bloggersans', Arial, sans-serif;
 }
 
 #woot{
     margin:auto;
+    font-family: 'bloggersans', Arial, sans-serif;
 }
 
 #woot sup {
@@ -36,7 +38,6 @@
     background-color:white;
     height:45px;
     margin-bottom:2%;
-    font-family: 'bloggersans', Arial, sans-serif;
 }
 
 /*******
@@ -273,6 +274,7 @@ ul#squares li.wrongWord {
     height:45px;
     background-color:white;
     margin-bottom:2%;
+    padding:0 10px;
     display:flex;
 }
 
@@ -286,10 +288,20 @@ ul#squares li.wrongWord {
 
 .flip-clock-label{display:none;}
 
+.flip-clock-wrapper ul li{
+    width:10px !important;
+}
+
+.flip-clock-wrapper ul li a{
+        width:10px !important;
+}
+
 .flip-clock-wrapper ul li a div div.inn {
+    font-family: 'bloggersans', Arial, sans-serif;
     font-size:15px;
     text-shadow:none;
     height: 200%;
+    width:50%;
     color:black;
     background-color:white;
     border-radius:0;
@@ -301,11 +313,13 @@ ul#squares li.wrongWord {
 
 .flip-clock-wrapper .flip {
     box-shadow:none;
+    width:10px !important;
+    padding-left:2px;
 }
 .flip-clock-wrapper ul li {line-height: 25px;}
 
 .flip-clock-wrapper ul {
-    width: 4px;
+    width:10px !important;
     height: 20px;
     margin: 0 2px;
     background-color:white;
@@ -315,12 +329,15 @@ ul#squares li.wrongWord {
 
 .flip-clock-wrapper ul li a div{
     outline:none;
+    width:10px !important;
 }
+
 
 .flip-clock-wrapper ul.play li.flip-clock-active {
 -webkit-animation: none;
 -moz-animation: none;
 animation: none;
+    width:10px !important;
 }
 
 .flip-clock-wrapper ul.play li.flip-clock-active .down {
@@ -330,27 +347,21 @@ animation:none;
 }
 
 .flip-clock-divider {
-    width: 5px;
+    width: 10px;
     height: 15px;
 }
 
-.flip-clock-dot.top {top:5px;}
+.flip-clock-dot.top {
+    top:7px;
+    background-color:none;
+}
 
 .flip-clock-dot.bottom {bottom:0px;}
 
 .flip-clock-dot {
     background: black;
-    width: 3px;
-    height: 3px;
+    width: 2px;
+    height: 2px;
     border-radius: 50%;
+    box-shadow:none;
 }
-
-/*
-.flip-clock-wrapper ul li a div.down {border-bottom-left-radius: 3px; border-bottom-right-radius: 3px;}
-.flip-clock-wrapper ul li a div.up:after {top: 18px;height: 2px;}
-.flip-clock-dot.bottom {bottom:0px;}
-.flip-clock-dot.top {top:1px;}
-.flip-clock-divider{height:25px;}
-
-.flip-clock-wrapper{text-align:right;}
-*/
