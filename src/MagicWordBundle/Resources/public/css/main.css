@@ -20,7 +20,11 @@
     font-weight: bold;
 }
 
+.panel-heading{
+    font-family: 'bloggersans', Arial, sans-serif;
+    text-transform: uppercase;
 
+}
 
 .container{
     padding-top: 15px;

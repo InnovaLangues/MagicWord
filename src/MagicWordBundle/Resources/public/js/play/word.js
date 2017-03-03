@@ -19,21 +19,27 @@ var words = {
 		return found;
 	},
 
-	addToFoundWords: function(inflection, isCorrect, saveIt, woot){
-		var points = "";
+	addToFoundWords: function(inflection, isCorrect, saveIt, displayIt){
+		var $woot = $("#woot");
 		this.foundWords.push(inflection);
 		inflection = inflection.toUpperCase();
 		var typedInflection = inflection;
 
 		if (!isCorrect){
 			typedInflection = "<s>"+inflection+"</s>";
-			$("#woot").removeClass("right-form").addClass("wrong-form");
+			$woot.removeClass("right-form").addClass("wrong-form");
 		} else {
-			$("#woot").removeClass("wrong-form").addClass("right-form");
+			$woot.removeClass("wrong-form").addClass("right-form");
 		}
 
-		if (woot) {
-			$("#woot").html(inflection);
+		if (displayIt) {
+			if (isCorrect) {
+				var points = score.calculatePoints(inflection);
+				var pointsTag = document.createElement("sup");
+				pointsTag.innerHTML = "+"+points;
+			}
+			$woot.html(typedInflection);
+			$woot.append(pointsTag || null);
 		}
 
 		if(isCorrect){
@@ -41,17 +47,15 @@ var words = {
 				activity.sendFoundWord(inflection);
 				//sound.play(sound.rightWord);
 			}
-			//this.correctWords++;
-			//$("#correctWords-found").html(this.correctWords);
-			points = score.calculatePoints(inflection);
+
+			var found = document.createElement("div");
+			found.className = 'found-word';
+			found.innerHTML = inflection;
+			$("#inflections-found").prepend(found);
 		} else {
 			activity.sendWrongWord(inflection);
 		}
 
-		var found = document.createElement("div");
-		found.className = 'found-word';
-		found.innerHTML = typedInflection;
-		$("#inflections-found").prepend(found);
 	},
 
 	checkWord: function(){
