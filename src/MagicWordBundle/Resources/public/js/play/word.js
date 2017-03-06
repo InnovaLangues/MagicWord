@@ -28,34 +28,28 @@ var words = {
 		if (!isCorrect){
 			typedInflection = "<s>"+inflection+"</s>";
 			$woot.removeClass("right-form").addClass("wrong-form");
+			if (saveIt) {
+				activity.sendWrongWord(inflection);
+			}
 		} else {
 			$woot.removeClass("wrong-form").addClass("right-form");
-		}
-
-		if (displayIt) {
-			if (isCorrect) {
-				var points = score.calculatePoints(inflection);
-				var pointsTag = document.createElement("sup");
-				pointsTag.innerHTML = "+"+points;
-			}
-			$woot.html(typedInflection);
-			$woot.append(pointsTag || null);
-		}
-
-		if(isCorrect){
-			if (saveIt) {
-				activity.sendFoundWord(inflection);
-				//sound.play(sound.rightWord);
-			}
-
 			var found = document.createElement("div");
 			found.className = 'found-word';
 			found.innerHTML = inflection;
 			$("#inflections-found").prepend(found);
-		} else {
-			activity.sendWrongWord(inflection);
-		}
 
+			var points = score.calculatePoints(inflection);
+			if (displayIt) {
+				var pointsTag = document.createElement("sup");
+				pointsTag.innerHTML = "+"+points;
+				$woot.html(typedInflection);
+				$woot.append(pointsTag || null);
+			}
+			if (saveIt) {
+				activity.sendFoundWord(inflection);
+				//sound.play(sound.rightWord);
+			}
+		}
 	},
 
 	checkWord: function(){

@@ -19,7 +19,7 @@ var activity = {
 	populate: function(infos){
 		for (var i = 0; i < infos.foundForms.length; i++) {
 			var found = JSON.parse(infos.foundForms[i]);
-			words.addToFoundWords(found.form, true, false);
+			words.addToFoundWords(found.form, true, false, false);
 		}
 
 		for (var i = 0; i < infos.objectivesDone.length; i++) {
