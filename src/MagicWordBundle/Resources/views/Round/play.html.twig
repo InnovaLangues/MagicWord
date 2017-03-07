@@ -9,6 +9,7 @@
 {% set grid =  round.grid %}
 
 <div id="game-container" style="display:none">
+    {#
     <div id="topbar">
         <div class="row">
             <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
@@ -16,9 +17,7 @@
                     <span id="clock"></span>
                 </div>
             </div>
-            <div id="woot-container"  class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-                <span id="woot" style="display:none"></span>
-            </div>
+
         </div>
     </div>
 
@@ -27,27 +26,26 @@
             <div id="combo-count">0</div>
         </div>
     </div>
+    #}
 
-    <div id="main" class="row">
-        {# GRID #}
-        <div id="grid-container" class="col-xs-12 col-sm-12 col-md-6">
+    <div class="top-container">
+        {% include "MagicWordBundle:Round/Play:clock.html.twig" %}
+        {% include "MagicWordBundle:Round/Play:found.html.twig" %}
+        {% include "MagicWordBundle:Round/Play:objectives.html.twig" %}
+        {% include "MagicWordBundle:Round/Play:woot.html.twig" %}
+        {% include "MagicWordBundle:Round/Play:combo.html.twig" %}
+    </div>
+
+    <div class="row">
+        <div id="grid-container" class="col-md-12 col-xs-12 col-lg-12">
             {% include "MagicWordBundle:Round/Play:grid.html.twig" %}
         </div>
+    </div>
 
-        <div class="col-xs-12 col-sm-12 col-md-6">
-        {# {% include "MagicWordBundle:Round/Play:rules.html.twig" %} #}
-
-        {# OBJECTIVES #}
-        {% include "MagicWordBundle:Round/Play:objectives.html.twig" %}
-        {# INFLECTIONS FOUND #}
+    {# SOUND
         {% include "MagicWordBundle:Round/Play:found.html.twig" %}
-        </div>
-    </div>
-    <div class="row">
-        {# SOUND
         {% include "MagicWordBundle:Round/Play:sound.html.twig" %}
-        #}
-    </div>
+    #}
 </div>
 
 <script>

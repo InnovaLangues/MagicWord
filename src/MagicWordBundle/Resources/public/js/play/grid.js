@@ -91,11 +91,10 @@ var grid = {
 
 	getLetter: function(id){
 		var position = this.get_x_y(id);
-		if ( position === false )
-		{
+		if ( position === false ){
 			return false;
 		}
-		//return this.grid[position.y][position.x];
+
 		return $("#"+id).data("value");
 	},
 
@@ -182,6 +181,7 @@ var grid = {
 		sound.play(sound.addLetter);
 		this.selectedSquares.push(id);
 		this.foundWord += letter;
+		$("#woot").html(this.foundWord);
 		this.getAllowedSquare(id);
 	},
 
@@ -191,6 +191,7 @@ var grid = {
 		/* on enlève à la chaine de caractère du mot trouvé la dernière lettre et on retourne false */
 		var lastLetter = this.foundWord.length - 1;
 		this.foundWord = this.foundWord.substring(0,lastLetter);
+		$("#woot").html(this.foundWord);
 		this.allowedSquares = [];
 		sound.play(sound.removeLetter);
 		if ( this.selectedSquares.length > 0 ) {
@@ -204,6 +205,7 @@ var grid = {
 		this.lastLetterSelected = false;
 
 		this.addLetter(firstSquare);
+		$("#woot").removeClass("wrong-form").removeClass("alreadyfound-form").addClass("right-form");
 		$('#li-' + firstSquare).addClass('selected');
 	},
 
@@ -251,10 +253,10 @@ var grid = {
 	},
 
 	resize: function() {
+		var grid = $("#grid-container");
 		var squares = $("ul#squares li");
-		var width = $("#li-square-0-0").width();
 
-		squares.height(width);
+		grid.height(grid.width());
 		squares.fitText(0.65);
 
 		return;

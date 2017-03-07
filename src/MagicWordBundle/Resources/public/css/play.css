@@ -1,52 +1,182 @@
-#main{
-    margin-top:5px;
+.top-container{
+    background-image: url(../img/logo.png);
+    background-repeat: no-repeat;
+    background-size: auto 45px;
 }
 
-#clock-wrapper{
-    display:table;
-    margin: -10px auto 0 auto;
+#combos-container, #findwords-container, #points-container{
+    margin-right:2%;
 }
 
-#grid-container {
-    margin-bottom:15px;
-}
-
-#combo-container {
-    min-height:55px;
-}
-
-#combo {
-    transform: rotate(45deg);
-    color:white;
-    font-weight: bold;
-    padding:0px 5px;
-    margin:10px auto;
-    width:35px;
-    height:35px;
-    background-color:#04346C;
-    border: 1px solid white;
-    border-radius:3px;
+#points-container{
+    float:left;
+    width:11%;
+    background-color:white;
+    height:45px;
+    display: flex;
     text-align:center;
 }
 
-#combo-count {
-    width:100%;
-    height:100%;
-    font-size:1.8em;
-    transform: rotate(-45deg);
+#points{
+    margin:auto;
+    font-family: 'bloggersans', Arial, sans-serif;
+}
+
+#woot{
+    margin:auto;
+    font-family: 'bloggersans', Arial, sans-serif;
+}
+
+#woot sup {
+    font-size:50%;
 }
 
 #woot-container {
-    padding-top:3px;
+    width:87%;
+    display: flex;
     text-align:center;
-    color: #333333;
-    text-transform: uppercase;
-    font-weight: bold;
+    background-color:white;
+    height:45px;
+    margin-bottom:2%;
 }
 
-#woot {
-    font-size:1.8em;
-    text-transform: uppercase;
+/*******
+    OBJECTIVES
+********/
+
+.objective-list, .objective-summary {
+    margin: auto;
+}
+
+.objectives.active{
+    width:74%;
+}
+
+.objectives.disabled {
+    background-color:lightgrey;
+}
+
+.objectives.active .objective-summary{
+    display:none;
+}
+
+.objectives .objective-list{
+    display:none;
+}
+
+.objectives.active .objective-list{
+    display:block;
+}
+
+.objectives{
+    display: flex;
+    text-align:center;
+    float:left;
+    width:11%;
+    height:100%;
+    cursor: pointer;
+    cursor: hand;
+    background-color:white;
+    color:black;
+}
+
+#objectives {
+    width: 100%;
+    height:120px;
+    border-radius:3px;
+    margin-bottom:2%;
+}
+
+#inflections-found {
+    font-family: 'bloggersans', Arial, sans-serif;
+    display:block;
+    width: 100%;
+    height:120px;
+    max-height:120px;
+    border-radius:3px;
+    margin-bottom:2%;
+    background-color:white;
+    overflow:hidden;
+
+    -webkit-column-count:3;
+    -moz-column-count:3;
+    -ms-column-count:3;
+    -o-column-count:3;
+    column-count:3;
+    -webkit-column-gap:15px;
+    -moz-column-gap:15px;
+    -ms-column-gap:15px;
+    -o-column-gap:15px;
+    column-gap:15px;
+    columns:3;
+
+    -moz-column-fill: auto;
+    -webkit-column-fill: auto;
+    column-fill: auto;
+}
+
+.found-word:nth-child(-n+9) {
+    color:lightgrey;
+}
+
+.found-word:nth-child(-n+6) {
+    color:grey;
+}
+.found-word:nth-child(-n+3) {
+    color:black;
+}
+
+.found-word {
+    height:33%;
+    text-align:center;
+    display: flex;
+  align-items: center;
+    justify-content: center ;
+}
+
+/*******
+COMBO
+*******/
+#current-combo-container {
+    float:left;
+    width:100%;
+    height:18px;
+    margin-bottom:4%;
+}
+
+.current-combo {
+    background-color:white;
+    height:18px;
+    width:15.8%;
+    float: left;
+}
+
+#current-combo-1, #current-combo-2, #current-combo-3, #current-combo-4, #current-combo-5 {
+    margin-right:1%;
+}
+
+#current-combo-1.reached{
+    background-color:#F7941D;
+}
+
+#current-combo-2.reached{
+    background-color:#F7941D;
+}
+
+#current-combo-3.reached{
+    background-color:#F37022;
+}
+
+#current-combo-4.reached{
+    background-color:#F37022;
+}
+
+#current-combo-5.reached{
+    background-color:#F04124;
+}
+
+#current-combo-6.reached{
+    background-color:#F04124;
 }
 
 ul#inflections-found {
@@ -57,40 +187,38 @@ ul#inflections-found {
 ul#squares {
     list-style-type: none;
     list-style-position: inside;
-	padding: 0;
 	-moz-user-select: -moz-none;
     -webkit-user-select: none;
     -khtml-user-select: none;
     -o-user-select: none;
     user-select: none;
 	-ms-user-select:none;
-    min-width: 290px;
     width:100%;
-    display: table;
-    margin: 0 auto;
+    height:100%;
+    display:block;
+    padding:0;
 }
 
 ul#squares li {
-    border-radius:8px;
-	background-color: #04346C;
+    font-family: 'bloggersans', Arial, sans-serif;
+    height:25%;
+    width:25%;
+    border-radius:20%;
+	background-color: #213F2F;
 	float: left;
 	text-align: center;
     border: 4px solid transparent;
     background-clip: padding-box;
-    text-shadow: 2px 2px 2px #000;
+    display:flex;
 }
 
 ul#squares li p {
-    height:100%;
-    padding: 10%;
-    white-space: normal;
-    text-align: left;
-    border: none;
+    margin:auto;
 	cursor: pointer;
 	color: white;
 	font-size: 3em;
 	text-align: center;
-    border-radius:30%;
+    border-radius:25%;
 }
 
 ul#squares li p.read-write {
@@ -105,10 +233,8 @@ ul#squares li p input {
 ul#squares li p span {
     position:absolute;
     bottom:3%;
-    right:3%;
+    right:13%;
 	font-size: 0.3em;
-	text-align: right;
-    white-space: normal;
 }
 
 ul#squares li.selected {
@@ -123,44 +249,122 @@ ul#squares li.wrongWord {
 	background-color: red;
 }
 
-.flip-clock-wrapper ul {width: 40px;height: 25px;margin: 0 2px;}
-.flip-clock-wrapper ul li {line-height: 25px;}
-.flip-clock-wrapper ul li a div div.inn {border-radius: 3px;font-size: 20px;}
-.flip-clock-wrapper ul li a div.down {border-bottom-left-radius: 3px; border-bottom-right-radius: 3px;}
-.flip-clock-wrapper ul li a div.up:after {top: 18px;height: 2px;}
-.flip-clock-dot.bottom {bottom:0px;}
-.flip-clock-dot.top {top:1px;}
-.flip-clock-divider{height:25px;}
-.flip-clock-label{display:none;}
-.flip-clock-wrapper{text-align:right;}
 
-
-.right-form {
-    text-shadow: 1px 1px 2px white, 0 0 1em green, 0 0 0.2em green;
-    padding: 3px 10px;
+.right-form, .wrong-form {
+    font-size:2.5em;
 }
 
 .wrong-form {
-    text-shadow: 1px 1px 2px white, 0 0 1em red, 0 0 0.2em red;
+    -moz-text-decoration-line: line-through;
+    -webkit-text-decoration-line:line-through;
     text-decoration-line: line-through;
 }
 
-#topbar {
-    width:100%;
-    height:45px;
-    position: fixed;
-    top:0;
-    left:0;
-    background-color:#FF9C00;
-    border-bottom:1px solid white;
-}
-
-
-#rules {
-    text-shadow: 1px 1px 2px black, 0 0 1em white, 0 0 0.2em white;
-    color: #FF9C00;
+.alreadyfound-form {
+    color: lightgrey;
 }
 
 #giveup{
     cursor: pointer;
+}
+
+#game-container {
+    max-width: 480px;
+    margin:auto;
+}
+
+#clock-wrapper{
+    height:45px;
+    background-color:white;
+    margin-bottom:2%;
+    padding:0 10px;
+    display:flex;
+}
+
+#clock-wrapper > #clock{
+    margin:auto;
+}
+
+.flip-clock-before {
+    display:none;
+}
+
+.flip-clock-label{display:none;}
+
+.flip-clock-wrapper ul li{
+    width:10px !important;
+}
+
+.flip-clock-wrapper ul li a{
+        width:10px !important;
+}
+
+.flip-clock-wrapper ul li a div div.inn {
+    font-family: 'bloggersans', Arial, sans-serif;
+    font-size:15px;
+    text-shadow:none;
+    height: 200%;
+    width:50%;
+    color:black;
+    background-color:white;
+    border-radius:0;
+}
+
+.flip-clock-wrapper ul li a div div.shadow {
+    display:none;
+}
+
+.flip-clock-wrapper .flip {
+    box-shadow:none;
+    width:10px !important;
+    padding-left:2px;
+}
+.flip-clock-wrapper ul li {line-height: 25px;}
+
+.flip-clock-wrapper ul {
+    width:10px !important;
+    height: 20px;
+    margin: 0 2px;
+    background-color:white;
+    border-radius: none;
+    font-weight: normal;
+}
+
+.flip-clock-wrapper ul li a div{
+    outline:none;
+    width:10px !important;
+}
+
+
+.flip-clock-wrapper ul.play li.flip-clock-active {
+-webkit-animation: none;
+-moz-animation: none;
+animation: none;
+    width:10px !important;
+}
+
+.flip-clock-wrapper ul.play li.flip-clock-active .down {
+-webkit-animation:none;
+-moz-animation:none;
+animation:none;
+}
+
+.flip-clock-divider {
+    width: 10px;
+    height: 15px;
+}
+
+.flip-clock-dot.top {
+    top:7px;
+    background-color:none;
+}
+
+.flip-clock-dot.bottom {bottom:0px;}
+
+.flip-clock-dot {
+    background: black;
+    width: 2px;
+    height: 2px;
+    border-radius: 50%;
+    box-shadow:none;
 }

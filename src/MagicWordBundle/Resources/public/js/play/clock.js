@@ -17,7 +17,7 @@ var clock = {
 				language : 'french',
 				callbacks: {
 			        stop: function () {
-						sound.play(sound.notime);
+						//sound.play(sound.notime);
 				        activity.end(testClock.getTime().time);
 			        }
 				}

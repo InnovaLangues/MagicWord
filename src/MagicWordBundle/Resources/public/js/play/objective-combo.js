@@ -15,7 +15,7 @@ var objectiveCombo = {
 					combo.currentComboLemmas = [];
 				}
 
-				if (this.countByObjective(objective.id) == objective.number) {
+				if (roundJSON.type == "conquer" && this.countByObjective(objective.id) == objective.number) {
 					objectives.considerAsDone(objective.id);
 					this.combosToDo.splice(i, 1);
 					activity.sendObjectiveDone(objective.id);

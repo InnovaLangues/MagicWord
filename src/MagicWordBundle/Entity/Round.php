@@ -261,6 +261,7 @@ class Round implements \JsonSerializable
                 $jsonArray['findWords'][$findWord->getInflection()] =
                 [
                     'id' => $findWord->getId(),
+                    'hint' => $findWord->getHint(),
                     'lemmaIds' => [],
                 ];
 

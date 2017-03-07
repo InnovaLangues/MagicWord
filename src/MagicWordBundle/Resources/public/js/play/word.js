@@ -19,54 +19,63 @@ var words = {
 		return found;
 	},
 
-	addToFoundWords: function(inflection, isCorrect, saveIt, woot){
-		var points = "";
+	addToFoundWords: function(inflection, isCorrect){
 		this.foundWords.push(inflection);
-		inflection = inflection.toUpperCase();
-		var typedInflection = inflection;
 
-		if (!isCorrect){
-			typedInflection = "<s>"+inflection+"</s>";
-			$("#woot").removeClass("right-form").addClass("wrong-form");
-		} else {
-			$("#woot").removeClass("wrong-form").addClass("right-form");
+		if (isCorrect){
+			var inflections = document.getElementById("inflections-found");
+			var found = document.createElement("div");
+			found.className = 'found-word';
+			found.innerHTML = inflection.toUpperCase();
+			inflections.insertBefore(found, inflections.firstChild);
 		}
 
-		if (woot) {
-			$("#woot").html(inflection).show();
-		}
-
-		if(isCorrect){
-			if (saveIt) {
-				activity.sendFoundWord(inflection);
-				sound.play(sound.rightWord);
-			}
-			this.correctWords++;
-			$("#correctWords-found").html(this.correctWords);
-			points = score.calculatePoints(inflection);
-		} else {
-			activity.sendWrongWord(inflection);
-		}
-
-		$("#inflections-found").prepend("<li class='list-group-item'>"+typedInflection+"<span class='pull-right'>"+points+"</span></li>");
+		return;
 	},
 
 	checkWord: function(){
 		var inflection = grid.foundWord;
+		var alreadyFound = this.alreadyFound(inflection);
+		var isCorrect = this.inInflections(inflection);
+		var points = 0;
+
 
 		if (!this.alreadyFound(inflection)) {
-			if (this.inInflections(inflection)){
-				var inWordsToFound = findword.inWordsToFound(inflection);
-				this.addToFoundWords(inflection.toLowerCase(), true, true, true);
-				combo.handleNewInflection(inflection);
+			if (isCorrect){
+				sound.play(sound.rightWord);
+				points = score.calculatePoints(inflection);
+				this.addToFoundWords(inflection.toLowerCase(), true);
+				activity.sendFoundWord(inflection);
+
 				if (roundJSON.type == "conquer") {
+					findword.inWordsToFound(inflection);
 					objectiveConstraint.add(inflection);
 				}
+				combo.handleNewInflection(inflection);
 			} else {
-				this.addToFoundWords(inflection.toLowerCase(), false, true, true);
-				sound.play(sound.wrongForm);
 				combo.reset();
+				this.addToFoundWords(inflection.toLowerCase(), false);
+				activity.sendWrongWord(inflection);
+				sound.play(sound.wrongForm);
 			}
 		}
+		this.displayFound(inflection, alreadyFound, isCorrect, points);
+
+		return;
 	},
+
+	displayFound: function(inflection, alreadyFound, isCorrect, points){
+		var toDisplay = document.getElementById("woot");
+		toDisplay.innerHTML = inflection;
+		toDisplay.className = (!isCorrect) ? "wrong-form" : "right-form";
+		toDisplay.className += (alreadyFound) ? " alreadyfound-form" : "";
+
+		if (isCorrect && !alreadyFound) {
+			var pointsTag = document.createElement("sup");
+			pointsTag.innerHTML = "+"+points;
+			toDisplay.appendChild(pointsTag);
+		}
+
+		return;
+	}
 };

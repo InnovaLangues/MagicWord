@@ -1,5 +1,5 @@
 var score = {
-    totalSelector: "#score-total",
+    totalSelector: "#points",
     total : 0,
     calculatePoints: function(inflection){
         var points = gridJSON.inflections[inflection.toLowerCase()].points;

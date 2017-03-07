@@ -28,16 +28,18 @@ var sound = {
     		'labelWidth' : '10',
     	});
 
+        /*
         $(this.switchSelector).on('switchChange.bootstrapSwitch',function(event, state){
             sound.disabled = state;
         })
 
         this.play(this.waitingStart);
+        */
     },
 
     play: function(s){
-        if(this.disabled == false) {
+        //if(this.disabled == false) {
             s.play();
-        }
+        //}
     }
 };
