@@ -21,14 +21,12 @@ var words = {
 
 	addToFoundWords: function(inflection, isCorrect){
 		this.foundWords.push(inflection);
-		inflection = inflection.toUpperCase();
-
 
 		if (isCorrect){
 			var inflections = document.getElementById("inflections-found");
 			var found = document.createElement("div");
 			found.className = 'found-word';
-			found.innerHTML = inflection;
+			found.innerHTML = inflection.toUpperCase();
 			inflections.insertBefore(found, inflections.firstChild);
 		}
 
