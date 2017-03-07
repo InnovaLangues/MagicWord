@@ -44,6 +44,7 @@ var words = {
 
 		if (!this.alreadyFound(inflection)) {
 			if (isCorrect){
+				sound.play(sound.rightWord);
 				points = score.calculatePoints(inflection);
 				this.addToFoundWords(inflection.toLowerCase(), true);
 				activity.sendFoundWord(inflection);
@@ -57,7 +58,7 @@ var words = {
 				combo.reset();
 				this.addToFoundWords(inflection.toLowerCase(), false);
 				activity.sendWrongWord(inflection);
-				//sound.play(sound.wrongForm);
+				sound.play(sound.wrongForm);
 			}
 		}
 		this.displayFound(inflection, alreadyFound, isCorrect, points);
