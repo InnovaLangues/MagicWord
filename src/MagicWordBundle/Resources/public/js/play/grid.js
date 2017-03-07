@@ -205,7 +205,7 @@ var grid = {
 		this.lastLetterSelected = false;
 
 		this.addLetter(firstSquare);
-		$("#woot").removeClass("wrong-form").addClass("right-form");
+		$("#woot").removeClass("wrong-form").removeClass("alreadyfound-form").addClass("right-form");
 		$('#li-' + firstSquare).addClass('selected');
 	},
 

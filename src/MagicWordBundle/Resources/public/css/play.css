@@ -260,6 +260,9 @@ ul#squares li.wrongWord {
     text-decoration-line: line-through;
 }
 
+.alreadyfound-form {
+    color: lightgrey;
+}
 
 #giveup{
     cursor: pointer;
