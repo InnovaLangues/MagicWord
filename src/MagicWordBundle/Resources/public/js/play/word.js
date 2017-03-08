@@ -38,16 +38,19 @@ var words = {
 		var alreadyFound = this.alreadyFound(inflection);
 		var isCorrect = this.inInflections(inflection);
 		var points = 0;
-
+		var isConquer = (roundJSON.type == "conquer") ? true : false;
 
 		if (!this.alreadyFound(inflection)) {
 			if (isCorrect){
 				sound.play(sound.rightWord);
-				points = score.calculatePoints(inflection);
+				if(!isConquer){
+					points = score.calculatePoints(inflection);
+				}
+
 				this.addToFoundWords(inflection.toLowerCase(), true);
 				activity.sendFoundWord(inflection);
 
-				if (roundJSON.type == "conquer") {
+				if (isConquer) {
 					findword.inWordsToFound(inflection);
 					objectiveConstraint.add(inflection);
 				}
@@ -70,7 +73,7 @@ var words = {
 		toDisplay.className = (!isCorrect) ? "wrong-form" : "right-form";
 		toDisplay.className += (alreadyFound) ? " alreadyfound-form" : "";
 
-		if (isCorrect && !alreadyFound) {
+		if (isCorrect && !alreadyFound && roundJSON.type != "conquer") {
 			var pointsTag = document.createElement("sup");
 			pointsTag.innerHTML = "+"+points;
 			toDisplay.appendChild(pointsTag);

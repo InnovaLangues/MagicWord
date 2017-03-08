@@ -22,10 +22,11 @@ var objectives = {
             sound.play(sound.objectiveProgress);
             this.done++;
             objective.hide();
-            this.updateScore();
             this.checkCompletion();
             this.checkTypeCompletion(type);
         }
+
+        document.getElementById("points").innerHTML = this.done + "/" + this.doable;
 	},
 
     checkCompletion: function(){
@@ -38,11 +39,6 @@ var objectives = {
     updateDone:function(type){
         objectives.doneByType[type]++;
         document.getElementById(type+"-done").innerHTML = objectives.doneByType[type];
-    },
-
-    updateScore: function(){
-        this.score += Math.round(300 / this.doable);
-        $("#obj-score").html(this.score);
     },
 
     updateProgress: function(objectiveId){
