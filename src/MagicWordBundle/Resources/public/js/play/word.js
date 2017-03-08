@@ -22,7 +22,7 @@ var words = {
 	addToFoundWords: function(inflection, isCorrect){
 		this.foundWords.push(inflection);
 
-		if (isCorrect){
+		if (isCorrect && roundJSON.type == "rush"){
 			var inflections = document.getElementById("inflections-found");
 			var found = document.createElement("div");
 			found.className = 'found-word';
