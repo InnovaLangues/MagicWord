@@ -36,7 +36,7 @@ var grid = {
 	setListener: function(){
 
 		$('body').on("mousedown touchstart", "#game-container", function(e){
-			//e.preventDefault();
+			e.preventDefault();
 		});
 
 		$('body').on("mousedown touchstart", this.squareSelector, function(e){
