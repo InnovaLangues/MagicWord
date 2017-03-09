@@ -35,15 +35,15 @@ var grid = {
 
 	setListener: function(){
 
-		$('body').on("mousedown touchstart", "#grid-container", function(e){
-			e.preventDefault();
+		$('body').on("mousedown touchstart", "#game-container", function(e){
+			//e.preventDefault();
 		});
 
 		$('body').on("mousedown touchstart", this.squareSelector, function(e){
 			if(this.id){
 				grid.first_letter(this.id);
 			}
-			e.preventDefault();
+			//e.preventDefault();
 		});
 
 		$('body').on("touchend mouseup", function(){
@@ -63,7 +63,7 @@ var grid = {
 					grid.select_letter(id);
 				}
 			}
-			e.preventDefault();
+			//e.preventDefault();
 		});
 	},
 

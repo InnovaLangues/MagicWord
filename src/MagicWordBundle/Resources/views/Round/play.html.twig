@@ -9,6 +9,7 @@
 {% set grid =  round.grid %}
 
 <div id="game-container" style="display:none">
+    <div id="fullscreen" class="visible-xs fa fa-arrows-alt" aria-hidden="true"></div>
     {#
     <div id="topbar">
         <div class="row">
@@ -46,6 +47,7 @@
         {% include "MagicWordBundle:Round/Play:found.html.twig" %}
         {% include "MagicWordBundle:Round/Play:sound.html.twig" %}
     #}
+    <div id="bot"></div>
 </div>
 
 <script>

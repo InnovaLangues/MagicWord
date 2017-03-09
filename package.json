@@ -3,7 +3,8 @@
     "grunt": "~1",
     "grunt-contrib-less": "~1",
     "grunt-contrib-uglify": "~2",
-    "load-grunt-tasks": "~3"
+    "load-grunt-tasks": "~3",
+    "screenfull": "^3.0.2"
   },
   "devDependencies": {
     "grunt": "~1",
