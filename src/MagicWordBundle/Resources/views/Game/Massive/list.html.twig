@@ -34,12 +34,18 @@
                             "{{ massive.name }}" {% if massive.description %}<span class="text-muted">({{ massive.description}})</span>{% endif %}
                             par <a href="{{ path('profile', {"id":  massive.author.id}) }}">{{ massive.author }}</a>
                             <span class="pull-right">
-                                <span class="label label-info">{{ "roundCount" | trans }}: {{ roundCount }}</span>
-                                <span class="label label-info">{{ "popularity" | trans }}: {{ popularity }}</span>
+                                <span class="label label-info">
+                                    <i class="fa fa-users" aria-hidden="true"></i>
+                                    <span class="hidden-xs"> {{ "popularity" | trans }}:</span> {{ popularity }}
+                                </span> &nbsp;
                                 <a class="btn btn-default btn-xs" role="button" data-toggle="collapse" data-parent="#accordion" href="#{{ massive.id }}" aria-expanded="true" aria-controls="{{ massive.id }}">
-                                    <i class="fa fa-info" aria-hidden="true"></i> Infos
+                                    <i class="fa fa-info" aria-hidden="true"></i>
+                                    <span class="hidden-xs">Infos</span>
                                 </a>
-                                <a class="btn btn-default btn-xs" href="{{ path('massive_play', {"code": massive.code}) }}"><i class="fa fa-gamepad" aria-hidden="true"></i> Jouer</a>
+                                <a class="btn btn-default btn-xs" href="{{ path('massive_play', {"code": massive.code}) }}">
+                                    <i class="fa fa-gamepad" aria-hidden="true"></i>
+                                    <span class="hidden-xs">Jouer</span>
+                                </a>
                             </span>
                         </h4>
                     </div>

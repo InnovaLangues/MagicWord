@@ -19,7 +19,10 @@
                     {{ massive.name }} {% if massive.description %}<span class="text-muted">({{ massive.description}})</span>{% endif %}
                 </a>
                 <span class="pull-right">
-                    <span class="label label-info">{{ "popularity" | trans }}: {{ getActivityCount(massive) }}</span>
+                    <span class="label label-info">
+                        <i class="fa fa-users" aria-hidden="true"></i>
+                        <span class="hidden-xs"> {{ "popularity" | trans }}:</span> {{ getActivityCount(massive) }}
+                    </span>&nbsp;
                     <span class="label label-default">
                         {{ massive.accessType.name | trans }}
                         <a class="btn btn-default btn-xs" data-html="true" data-trigger="click" data-toggle="popover" data-container="body" data-placement="left" title="Lien partie"
