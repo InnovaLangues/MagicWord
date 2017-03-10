@@ -2,6 +2,9 @@
     background-image: url(../img/logo.png);
     background-repeat: no-repeat;
     background-size: auto 45px;
+    padding-top: 8px solid transparent;
+    background-clip: border-box;
+    background-position: 0 -5px;
 }
 
 #combos-container, #findwords-container, #points-container{
@@ -12,7 +15,7 @@
     float:left;
     width:11%;
     background-color:white;
-    height:45px;
+    height:40px;
     display: flex;
     text-align:center;
 }
@@ -36,7 +39,7 @@
     display: flex;
     text-align:center;
     background-color:white;
-    height:45px;
+    height:40px;
     margin-bottom:2%;
 }
 
@@ -129,7 +132,7 @@
     height:33%;
     text-align:center;
     display: flex;
-  align-items: center;
+    align-items: center;
     justify-content: center ;
 }
 
@@ -264,10 +267,6 @@ ul#squares li.wrongWord {
     color: lightgrey;
 }
 
-#giveup{
-    cursor: pointer;
-}
-
 #game-container {
     max-width: 480px;
     margin:auto;
@@ -279,8 +278,20 @@ ul#squares li.wrongWord {
     left:5px;
 }
 
+#giveup{
+    height:40px;
+    background-color:white;
+    margin-bottom:2%;
+    margin-right:2%;
+    padding:0 10px;
+    display:flex;
+}
+#giveup i {
+    margin:auto;
+}
+
 #clock-wrapper{
-    height:30px;
+    height:40px;
     background-color:white;
     margin-bottom:2%;
     padding:0 10px;

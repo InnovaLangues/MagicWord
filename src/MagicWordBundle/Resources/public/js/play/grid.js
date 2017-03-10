@@ -65,6 +65,17 @@ var grid = {
 			}
 			//e.preventDefault();
 		});
+
+
+		$('#fullscreen').click(function () {
+			screenfull.toggle(window[0]);
+		});
+
+
+		window.addEventListener("resize", function(e) {
+			grid.resize();
+		});
+
 	},
 
 	restartGrid: function(){

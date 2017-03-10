@@ -3,12 +3,14 @@ table#end-grid{
 	text-align:center;
     border-collapse:separate;
     border-spacing:2px;
+	font-family: 'bloggersans', Arial, sans-serif;
+	margin:0 auto 10px auto;
 }
 
 table#end-grid td {
 	color:white;
-	background-color:#04346C;
+	background-color:#213F2F;
   	border: solid 1px black;
-  	width:50px;
+  	min-width:50px;
   	height:50px;
 }

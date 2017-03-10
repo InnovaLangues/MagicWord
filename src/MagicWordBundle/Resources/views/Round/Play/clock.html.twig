@@ -3,5 +3,10 @@
         <div class="pull-right" id="clock-wrapper">
             <span id="clock"></span>
         </div>
+        {% if hasObj %}
+        <div id="giveup" class="pull-right" onclick="activity.end()">
+            <i class="fa fa-times" aria-hidden="true"></i>
+        </div>
+        {% endif %}
     </div>
 </div>
