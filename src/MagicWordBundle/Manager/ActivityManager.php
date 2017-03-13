@@ -50,9 +50,11 @@ class ActivityManager
         if (!$activity) {
             $this->create($round);
             $activityInfo['delta'] = 0;
+            $activityInfo['combopoints'] = 0;
         } else {
             $activityInfo['delta'] = $this->timeManager->getDiffInSeconds($activity->getStartDate(), new \DateTime());
             $activityInfo['infos'] = $activity;
+            $activityInfo['combopoints'] = $activity->getComboPoints();
         }
 
         return $activityInfo;

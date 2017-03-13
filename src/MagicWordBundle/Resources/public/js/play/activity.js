@@ -10,32 +10,23 @@ var activity = {
           .done(function(data) {
               clock.delta = data.delta;
 			  if (data.delta != 0) {
-			  	activity.populate(data.infos);
+			  	activity.populate(data.infos, data.combopoints);
 			  }
 			  callback();
           });
 	},
 
-	populate: function(infos){
+	populate: function(infos, combopoints){
 		for (var i = 0; i < infos.foundForms.length; i++) {
 			var found = JSON.parse(infos.foundForms[i]);
-			if(roundJSON.type != "conquer"){
-				score.calculatePoints(found.form);
-			}
+			if(roundJSON.type != "conquer") score.calculatePoints(found.form);
 			words.addToFoundWords(found.form, true);
 		}
 
+		if(combopoints != 0) score.updateTotal(combopoints);
+
 		for (var i = 0; i < infos.objectivesDone.length; i++) {
 			var objective = JSON.parse(infos.objectivesDone[i]);
-			switch (objective.type) {
-				case "findword":
-					findword.appendWord(objective.id, objective.content.inflection);
-					break;
-				case "combo":
-					break;
-				default:
-
-			}
 			objectives.considerAsDone(objective.id);
 		}
 	},

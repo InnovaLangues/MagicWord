@@ -21,14 +21,8 @@ var findword = {
         return false;
     },
 
-    appendWord: function(objectiveId, inflection){
-        var str = ' ('+ inflection +')';
-        $(".objective-"+objectiveId).append(str.toUpperCase());
-    },
-
     found: function(objective, inflection){
         objectives.considerAsDone(objective.id);
-        this.appendWord(objective.id, inflection);
         activity.sendObjectiveDone(objective.id);
     }
 }
