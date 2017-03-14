@@ -1,0 +1,9 @@
+MagicWordBundle\Entity\Player:
+    properties:
+        plainPassword:
+          - Length:
+              min: 8
+              max: 255
+              minMessage: La longueur minimale du mot de passe est de {{ limit }}
+              minMessage: La longueur maximale du mot de passe est de {{ limit }}
+              groups: [Registration,Profile]
