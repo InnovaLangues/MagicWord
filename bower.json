@@ -15,7 +15,6 @@
     "jquery-ui": "*",
     "animate.css": "^3.5.2",
     "howler.js": "howler#^2.0.0",
-    "bootstrap-switch": "^3.3.2",
     "jquery-nearest": "^1.4.0",
     "FitText.js": "jquery-fittext#^1.2.0"
   }

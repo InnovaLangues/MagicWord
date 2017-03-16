@@ -67,10 +67,9 @@ var grid = {
 		});
 
 
-		$('#fullscreen').click(function () {
+		$('body').on("click touchstart", "#fullscreen", function(e){
 			screenfull.toggle(window[0]);
 		});
-
 
 		window.addEventListener("resize", function(e) {
 			grid.resize();

@@ -1,29 +1,29 @@
 <div class="panel panel-default">
-    <div class="panel-body">
-        {{ activity.points }} points
-         {% if activity.timePoints != 0 %}
-            (dont {{activity.timePoints}} points bonus de temps)
-        {% endif %}
-        -
-        {{ activity.objectivesDone|length }} sur {{ activity.round.objectives|length }} en {{ getTimeSpent(activity) | trans }}
-    </div>
     <ul class="list-group">
+        <li class="list-group-item">
+            {{ activity.points }} points
+             {% if activity.timePoints != 0 %}
+                (dont {{activity.timePoints}} points bonus de temps)
+            {% endif %}
+            -
+            {{ activity.objectivesDone|length }} sur {{ activity.round.objectives|length }} en {{ getTimeSpent(activity) | trans }}
+        </li>
         {% for objective in activity.round.objectives %}
-            <li class="list-group-item {{ objective in activity.objectivesDone ? "list-group-item-success" : "list-group-item-danger" }}">
-                {% if objective.discr == "findword" %}
-                    <span class="label label-default">findWord</span> {{ objective.hint }} : {{ objective.inflection | upper }}
-                {% elseif  objective.discr == "combo" %}
-                    <span class="label label-default">Combo</span> {{ objective.number }} combo(s) de puissance {{ objective.lenght }}
-                {% elseif  objective.discr == "constraint" %}
-                    <span class="label label-default">Constraint</span> {{ objective.numberToFind }}
-                    {{ objective.category ? objective.category.value | trans }}
-                    {{ objective.person ? objective.person.value | trans }}
-                    {{ objective.gender ? objective.gender.value | trans }}
-                    {{ objective.number ? objective.number.value | trans }}
-                    {{ objective.tense ? objective.tense.value | trans }}
-                    {{ objective.mood ? objective.mood.value | trans }}
-                {% endif %}
-            </li>
+        <li class="list-group-item {{ objective in activity.objectivesDone ? "list-group-item-success" : "list-group-item-danger" }}">
+            {% if objective.discr == "findword" %}
+                <span class="label label-default">findWord</span> {{ objective.hint }} : {{ objective.inflection | upper }}
+            {% elseif  objective.discr == "combo" %}
+                <span class="label label-default">Combo</span> {{ objective.number }} combo(s) de puissance {{ objective.lenght }}
+            {% elseif  objective.discr == "constraint" %}
+                <span class="label label-default">Constraint</span> {{ objective.numberToFind }}
+                {{ objective.category ? objective.category.value | trans }}
+                {{ objective.person ? objective.person.value | trans }}
+                {{ objective.gender ? objective.gender.value | trans }}
+                {{ objective.number ? objective.number.value | trans }}
+                {{ objective.tense ? objective.tense.value | trans }}
+                {{ objective.mood ? objective.mood.value | trans }}
+            {% endif %}
+        </li>
         {% endfor %}
     </ul>
 </div>
