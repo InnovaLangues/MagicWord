@@ -53,16 +53,16 @@
         </ul>
         <div class="tab-content">
             {% if roundType == "rush" %}
-            <div role="tabpanel" class="tab-pane fade in active" id="foundables">
+            <div role="tabpanel" class="tab-pane fade in active" id="foundables" style="height:auto;">
                 {% include "MagicWordBundle:Round/End:foundable.html.twig" %}
             </div>
             {% else %}
-            <div role="tabpanel" class="tab-pane fade in active" id="objectives">
+            <div role="tabpanel" class="tab-pane fade in active" id="objectives" style="height:auto;">
                 {% include "MagicWordBundle:Round/End:objectives.html.twig" %}
             </div>
             {% endif %}
             {% if gameType != "training" %}
-            <div role="tabpanel" class="tab-pane fade in" id="ranking">
+            <div role="tabpanel" class="tab-pane fade" id="ranking" style="height:auto;">
                 {% include "MagicWordBundle:Round/End:ranking.html.twig" %}
             </div>
             {% endif %}
