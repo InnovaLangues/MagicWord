@@ -311,4 +311,22 @@ class GridManager
 
         return $inflections;
     }
+
+    public function export(Grid $grid = null)
+    {
+        if ($grid) {
+            $gridJSON = [
+                'language' => $grid->getLanguage()->getId(),
+                'letters' => [],
+            ];
+
+            foreach ($grid->getSquares() as $square) {
+                $gridJSON['letters'][] = $square->getLetter()->getValue();
+            }
+
+            return $gridJSON;
+        }
+
+        return;
+    }
 }

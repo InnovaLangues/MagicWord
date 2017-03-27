@@ -81,4 +81,15 @@ class Combo extends Objective
     {
         return $this->lenght;
     }
+
+    public function export()
+    {
+        $jsonArray = array(
+            'type' => $this->discr,
+            'length' => $this->lenght,
+            'number' => $this->number,
+        );
+
+        return $jsonArray;
+    }
 }

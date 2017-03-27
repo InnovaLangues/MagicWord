@@ -175,4 +175,16 @@ class FindWord extends Objective
     {
         return $this->lemmas;
     }
+
+    public function export()
+    {
+        $jsonArray = array(
+            'type' => $this->discr,
+            'inflection' => $this->inflection,
+            'hint' => $this->hint,
+            'lemmaEnough' => $this->lemmaEnough,
+        );
+
+        return $jsonArray;
+    }
 }

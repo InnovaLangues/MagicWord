@@ -224,4 +224,20 @@ class Constraint extends Objective
     {
         return $this->number;
     }
+
+    public function export()
+    {
+        $jsonArray = array(
+            'type' => $this->discr,
+            'numberToFind' => $this->numberToFind,
+            'category' => $this->category ? $this->category->getId() : null,
+            'gender' => $this->gender ? $this->gender->getId() : null,
+            'tense' => $this->tense ? $this->tense->getId() : null,
+            'person' => $this->person ? $this->person->getId() : null,
+            'mood' => $this->mood ? $this->mood->getId() : null,
+            'number' => $this->number ? $this->number->getId() : null,
+        );
+
+        return $jsonArray;
+    }
 }

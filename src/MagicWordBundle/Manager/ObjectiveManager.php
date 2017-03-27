@@ -192,4 +192,11 @@ class ObjectiveManager
 
         return $errors;
     }
+
+    public function export($objective)
+    {
+        $objectiveJSON = $objective->export();
+
+        return $objectiveJSON;
+    }
 }

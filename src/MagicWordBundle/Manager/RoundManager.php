@@ -103,6 +103,29 @@ class RoundManager
         return $form;
     }
 
+    public function export(Round $round)
+    {
+        $roundJSON = [
+            'title' => $round->getTitle(),
+            'description' => $round->getDescription(),
+            'language' => $round->getLanguage()->getId(),
+            'type' => $round->getDiscr(),
+            'displayOrder' => $round->getDisplayOrder(),
+            'grid' => null,
+            'objectives' => [],
+        ];
+
+        $roundJSON['grid'] = $this->gridManager->export($round->getGrid());
+
+        if ($roundJSON['type'] == 'conquer') {
+            foreach ($round->getObjectives() as $objective) {
+                $roundJSON['objectives'][] = $this->objectiveManager->export($objective);
+            }
+        }
+
+        return $roundJSON;
+    }
+
     public function handleMiscForm(Round $round, Request $request)
     {
         $form = $this->formFactory->createBuilder(RoundMiscType::class, $round)->getForm();

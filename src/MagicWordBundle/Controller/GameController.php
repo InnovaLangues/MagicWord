@@ -3,6 +3,7 @@
 namespace MagicWordBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use MagicWordBundle\Entity\Game;
 
@@ -37,5 +38,19 @@ class GameController extends Controller
         $this->get('mw_manager.game')->forfeit($game);
 
         return $this->redirectToRoute('games_started');
+    }
+
+    /**
+     * @Route("/game/{id}/export", name="game_export", options={"expose"=true})
+     */
+    public function exportGameAction(Game $game)
+    {
+        $gameJSON = $this->get('mw_manager.game')->export($game);
+
+        $response = new JsonResponse($gameJSON);
+        $response->setEncodingOptions($response->getEncodingOptions() | JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
+        $response->headers->set('Content-Type', 'application/json; charset=utf-8');
+
+        return $response;
     }
 }
