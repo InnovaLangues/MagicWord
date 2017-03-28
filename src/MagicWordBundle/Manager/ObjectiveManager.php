@@ -8,6 +8,7 @@ use MagicWordBundle\Entity\RoundType\Conquer;
 use MagicWordBundle\Form\Type\RoundType;
 use MagicWordBundle\Entity\ObjectiveType\Combo;
 use MagicWordBundle\Entity\ObjectiveType\FindWord;
+use MagicWordBundle\Entity\ObjectiveType\Constraint;
 use Symfony\Component\HttpFoundation\Request;
 
 /**
@@ -140,19 +141,20 @@ class ObjectiveManager
         return $conquer;
     }
 
-    private function generateFindWord($lemmaEnough, $form, $hint, $conquer)
+    public function generateFindWord($lemmaEnough, $form, $hint, $conquer)
     {
         $findWord = new FindWord();
         $findWord->setLemmaEnough($lemmaEnough);
         $findWord->setHint($hint);
         $findWord->setInflection($form);
         $findWord->setConquer($conquer);
+
         $this->em->persist($findWord);
 
         return $findWord;
     }
 
-    private function generateCombo($number, $length, $conquer)
+    public function generateCombo($number, $length, $conquer)
     {
         $combo = new Combo();
         $combo->setNumber($number);
@@ -160,6 +162,24 @@ class ObjectiveManager
         $combo->setConquer($conquer);
 
         $this->em->persist($combo);
+
+        return $conquer;
+    }
+
+    public function generateConstraint($conquer, $properties)
+    {
+        $constraint = new Constraint();
+
+        $constraint->setNumberToFind($properties['numberToFind']);
+        $constraint->setCategory($properties['category']);
+        $constraint->setGender($properties['gender']);
+        $constraint->setTense($properties['tense']);
+        $constraint->setPerson($properties['person']);
+        $constraint->setMood($properties['mood']);
+        $constraint->setNumber($properties['number']);
+        $constraint->setConquer($conquer);
+
+        $this->em->persist($constraint);
 
         return $conquer;
     }
@@ -191,12 +211,5 @@ class ObjectiveManager
         }
 
         return $errors;
-    }
-
-    public function export($objective)
-    {
-        $objectiveJSON = $objective->export();
-
-        return $objectiveJSON;
     }
 }

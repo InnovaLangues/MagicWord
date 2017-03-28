@@ -133,7 +133,7 @@ class MassiveController extends Controller
     }
 
     /**
-     * @Route("/massive/builder/{id}", name="massive_builder")
+     * @Route("/massive/builder/{id}", name="massive_builder", options={"expose"=true})
      * @ParamConverter("massive", class="MagicWordBundle:GameType\Massive")
      * @Method("GET")
      */

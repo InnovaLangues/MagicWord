@@ -48,25 +48,34 @@ class RoundManager
         return $data;
     }
 
-    public function generateRush(Game $game, Grid $grid)
+    public function generateRush(Game $game, Grid $grid = null, $language = null, $displayOrder = null)
     {
         $round = new Rush();
         $round->setGame($game);
         $round->setGrid($grid);
-        $round->setDisplayOrder($this->getNextDisplayOrder($game));
+
+        $displayOrder = ($displayOrder) ? $displayOrder : $this->getNextDisplayOrder($game);
+        $round->setDisplayOrder($displayOrder);
+
+        $language = ($language) ? $language : $game->getLanguage();
         $round->setLanguage($game->getLanguage());
+
         $this->em->persist($round);
         $this->em->flush();
 
         return $round;
     }
 
-    public function generateConquer(Game $game, Grid $grid = null)
+    public function generateConquer(Game $game, Grid $grid = null, $language = null, $displayOrder = null)
     {
         $round = new Conquer();
         $round->setGame($game);
         $round->setGrid($grid);
-        $round->setDisplayOrder($this->getNextDisplayOrder($game));
+
+        $displayOrder = ($displayOrder) ? $displayOrder : $this->getNextDisplayOrder($game);
+        $round->setDisplayOrder($displayOrder);
+
+        $language = ($language) ? $language : $game->getLanguage();
         $round->setLanguage($game->getLanguage());
 
         $this->em->persist($round);
@@ -101,29 +110,6 @@ class RoundManager
         $form = $this->formFactory->createBuilder(RoundMiscType::class, $round)->getForm()->createView();
 
         return $form;
-    }
-
-    public function export(Round $round)
-    {
-        $roundJSON = [
-            'title' => $round->getTitle(),
-            'description' => $round->getDescription(),
-            'language' => $round->getLanguage()->getId(),
-            'type' => $round->getDiscr(),
-            'displayOrder' => $round->getDisplayOrder(),
-            'grid' => null,
-            'objectives' => [],
-        ];
-
-        $roundJSON['grid'] = $this->gridManager->export($round->getGrid());
-
-        if ($roundJSON['type'] == 'conquer') {
-            foreach ($round->getObjectives() as $objective) {
-                $roundJSON['objectives'][] = $this->objectiveManager->export($objective);
-            }
-        }
-
-        return $roundJSON;
     }
 
     public function handleMiscForm(Round $round, Request $request)

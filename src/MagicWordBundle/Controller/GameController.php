@@ -4,7 +4,9 @@ namespace MagicWordBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpFoundation\Request;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use MagicWordBundle\Entity\Game;
 
 class GameController extends Controller
@@ -45,11 +47,39 @@ class GameController extends Controller
      */
     public function exportGameAction(Game $game)
     {
-        $gameJSON = $this->get('mw_manager.game')->export($game);
+        $gameJSON = $this->get('mw_manager.export')->exportGame($game);
 
         $response = new JsonResponse($gameJSON);
         $response->setEncodingOptions($response->getEncodingOptions() | JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
         $response->headers->set('Content-Type', 'application/json; charset=utf-8');
+
+        return $response;
+    }
+
+    /**
+     * @Route("/game/import", name="json_import_form")
+     * @Method("GET")
+     */
+    public function jsonImportForm()
+    {
+        return $this->render('MagicWordBundle:Game:import.html.twig');
+    }
+
+    /**
+     * @Route("/game/import", name="json_import", options={"expose"=true})
+     * @Method("POST")
+     */
+    public function jsonImport(Request $request)
+    {
+        $json = $request->get('json');
+
+        if (!empty($json)) {
+            $gameJSON = json_decode($json, true);
+        }
+
+        $gameId = $this->get('mw_manager.import')->importGame($gameJSON);
+
+        $response = new JsonResponse(['id' => $gameId]);
 
         return $response;
     }

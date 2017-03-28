@@ -181,3 +181,4 @@ wordlengthpoints: Points bonus longueur de forme
 public: Visible publiquement
 link: Accès via le lien uniquement
 access_type: Type d'accès
+json_import: Import JSON

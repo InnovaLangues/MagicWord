@@ -14,5 +14,23 @@ var builder = {
                 $('#export-modal').modal('show');
             }
         });
+    },
+
+    import: function(){
+        wait.start("Import en cours");
+        var json = $("#import-json").val();
+        var url = Routing.generate('json_import');
+
+        $.ajax({
+            type: "POST",
+            url: url,
+            data: {
+                'json' : json
+            },
+            success: function (data) {
+                var url = Routing.generate('massive_builder', {id: data.id});
+                location.href = url;
+            }
+        });
     }
 }
