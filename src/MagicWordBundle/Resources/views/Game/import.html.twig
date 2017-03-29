@@ -6,13 +6,16 @@
         <h4>
             {{ 'json_import' | trans }}
             <span class="pull-right">
-                <span onclick="builder.import()" class="btn btn-default btn-primary">Importer</span>
+                <a class="btn btn-default" href="{{ path('massive') }}">
+                    <i class="fa fa-plus" aria-hidden="true"></i> {{ 'new_massive' | trans }}
+                </a>
                 {% include "MagicWordBundle:Common:backtohome.html.twig" %}
             </span>
         </h4>
     </div>
     <div class="panel-body">
         <textarea required="required" id="import-json" style="width:100%; height:200px;"></textarea>
+        <span onclick="builder.import()" class="btn btn-default btn-primary">Importer</span>
     </div>
 </div>
 {% endblock %}

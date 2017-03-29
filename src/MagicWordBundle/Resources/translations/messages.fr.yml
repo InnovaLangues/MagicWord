@@ -22,7 +22,7 @@ adverb: adverbe
 author: auteur
 autofill_grid: Autofill
 back_to_editor: 'Retour à l''éditeur de partie'
-back_to_home: Retour à l'accueil
+back_to_home: Accueil
 bonus_points: Points bonus
 cancel: Annuler le défi
 category: Catégorie
@@ -182,3 +182,4 @@ public: Visible publiquement
 link: Accès via le lien uniquement
 access_type: Type d'accès
 json_import: Import JSON
+export_game: Exporter la partie

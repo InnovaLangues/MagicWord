@@ -44,7 +44,7 @@ class MassiveType extends AbstractType
         ));
 
         $builder->add('save', SubmitType::class, array(
-            'attr' => array('class' => 'btn btn-default'),
+            'attr' => array('class' => 'btn btn-default btn-primary'),
             'label' => 'save',
             'translation_domain' => 'messages',
         ));

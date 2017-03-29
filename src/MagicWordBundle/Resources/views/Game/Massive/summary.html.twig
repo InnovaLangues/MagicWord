@@ -8,6 +8,10 @@
         <h4>
             {{ "summary" | trans }} <strong>{{ massive.name }}</strong>
             <span class="pull-right">
+                <span class="btn btn-default" onclick="builder.export({{massive.id}})">
+                    <i class="fa fa-clipboard" aria-hidden="true"></i>
+                    Exporter la partie
+                </span>
                 {% include "MagicWordBundle:Common:backtohome.html.twig" %}
             </span>
         </h4>
@@ -26,7 +30,9 @@
                 {% include "MagicWordBundle:Game/Massive/partials:rounds.html.twig" %}
              </div>
          </div>
-
     </div>
 </div>
+
+{% include "MagicWordBundle:Game/Massive/partials:export-modal.html.twig" %}
+
 {% endblock %}
