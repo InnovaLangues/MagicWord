@@ -3,7 +3,7 @@
     <div class="col-md-12">
         <div id="objectives">
             {% set isActive = false %}
-            <div data-type="combo" id="combos-container" onclick="objectives.click(this)" class="objectives {% if round.combos is empty %} disabled {% endif %} {% if round.combos is not empty %} active{% set isActive = true %}{% endif %}">
+            <div data-type="combo" id="combos-container" class="objectives {% if round.combos is empty %} disabled {% endif %} {% if round.combos is not empty %} active{% set isActive = true %}{% endif %}">
                 {% if round.combos is not empty %}
                 <div class="objective-list">
                     {% for i, combo in round.combos %}

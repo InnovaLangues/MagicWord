@@ -66,10 +66,14 @@ var grid = {
 			//e.preventDefault();
 		});
 
-
 		$('body').on("click touchstart", "#fullscreen", function(e){
 			screenfull.toggle(window[0]);
 		});
+
+		$('body').on("click touchstart", ".objectives", function(e){
+			objectives.click(this);
+		});
+
 
 		window.addEventListener("resize", function(e) {
 			grid.resize();
