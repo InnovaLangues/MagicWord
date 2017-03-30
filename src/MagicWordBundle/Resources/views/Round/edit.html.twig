@@ -6,7 +6,7 @@
 <div class="panel panel-default">
     <div class="panel-heading">
         <h4>
-            Edition manche
+            Edition manche -
             <strong>
                 <span id="round-title">{{ round.title ? round.title }}</span>
             </strong>
@@ -24,7 +24,7 @@
     <div class="panel-body">
         <ul class="nav nav-tabs" role="tablist">
            <li role="presentation" class="active"><a href="#grid-tab" aria-controls="grid-tab" role="tab" data-toggle="tab">Grille {{ round.discr == "conquer" ? "& objectifs" : ""}}</a></li>
-           <li role="presentation"><a href="#misc" aria-controls="misc" role="tab" data-toggle="tab">Divers</a></li>
+           <li role="presentation"><a href="#misc" aria-controls="misc" role="tab" data-toggle="tab">{{ "properties" | trans }}</a></li>
          </ul>
          <div class="tab-content">
             <div role="tabpanel" class="tab-pane active" id="grid-tab">

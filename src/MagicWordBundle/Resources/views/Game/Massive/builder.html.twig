@@ -6,7 +6,7 @@
 <div class="panel panel-default">
     <div class="panel-heading">
         <h4>
-            {{ 'massive' | trans }} <strong>{{ massive.name }}</strong> {% if massive.description %}({{ massive.description }}){% endif %}
+            {{ 'massive' | trans }} - <strong>{{ massive.name }}</strong> {% if massive.description %}({{ massive.description }}){% endif %}
             <span class="pull-right">
                 <span class="btn btn-default" onclick="builder.export({{massive.id}})">
                     <i class="fa fa-clipboard" aria-hidden="true"></i>
@@ -22,7 +22,7 @@
     <div class="panel-body">
         <ul class="nav nav-tabs" role="tablist">
            <li role="presentation" class="active"><a href="#rounds" aria-controls="rounds" role="tab" data-toggle="tab">{{ "rounds" | trans }}</a></li>
-           <li role="presentation"><a href="#misc" aria-controls="misc" role="tab" data-toggle="tab">Divers</a></li>
+           <li role="presentation"><a href="#misc" aria-controls="misc" role="tab" data-toggle="tab">{{ "properties" | trans }}</a></li>
          </ul>
 
         <div class="tab-content">
