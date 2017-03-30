@@ -4,6 +4,7 @@
 <div class="panel panel-default">
     <div class="panel-heading">
         <h4>
+            {% include "MagicWordBundle:Common:backtohome.html.twig" %}
             {{ 'profile_of' | trans }} {{ user.username }}
             <span class="pull-right">
                 {% if user == app.user %}
@@ -16,7 +17,6 @@
                 {% else %}
                     <a class="btn btn-default" href="{{ path('add_friend', {"id":  user.id}) }}">{{ 'add_to_friends' | trans }}</a>
                 {% endif %}
-                {% include "MagicWordBundle:Common:backtohome.html.twig" %}
             </span>
         </h4>
     </div>

@@ -4,10 +4,8 @@
     <div class="panel panel-default">
         <div class="panel-heading">
             <h4>
+                {% include "MagicWordBundle:Common:backtohome.html.twig" %}
                 {{ 'wordbox' | trans }} <strong>{{ language.name | trans }}</strong> ({{ acquisitions|length }})
-                <span class="pull-right">
-                    {% include "MagicWordBundle:Common:backtohome.html.twig" %}
-                </span>
             </h4>
         </div>
         <ul class="list-group">

@@ -6,6 +6,7 @@
     <div class="panel panel-default">
         <div class="panel-heading">
             <h4>
+                {% include "MagicWordBundle:Common:backtohome.html.twig" %}
                 {{ 'massives' | trans }}
                 <span class="pull-right">
                    <button type="button" class="btn btn-default btn-xs" data-order="asc" onclick="sorter.sort('popularity', this, '.games', '.game')">
@@ -20,7 +21,6 @@
                    <button type="button" class="btn btn-default btn-xs" data-order="asc" onclick="sorter.sort('date', this, '.games', '.game')">
                        <i class="fa fa-sort" aria-hidden="true"></i> {{ "date" | trans }}
                    </button>
-                   {% include "MagicWordBundle:Common:backtohome.html.twig" %}
                 </span>
             </h4>
         </div>

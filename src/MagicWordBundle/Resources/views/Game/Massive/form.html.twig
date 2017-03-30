@@ -6,13 +6,13 @@
 <div class="panel panel-default">
     <div class="panel-heading">
         <h4>
+            {% include "MagicWordBundle:Common:backtohome.html.twig" %}
             {{ 'new_massive' | trans }}
             <span class="pull-right">
                 <a class="btn btn-default" href="{{ path('json_import_form') }}">
                     <i class="fa fa-caret-square-o-right" aria-hidden="true"></i>
                     {{ "json_import" | trans }}
                 </a>
-                {% include "MagicWordBundle:Common:backtohome.html.twig" %}
             </span>
         </h4>
     </div>

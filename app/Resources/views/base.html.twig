@@ -6,7 +6,6 @@
         <meta name="mobile-web-app-capable" content="yes">
         <meta name="apple-mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-
         <meta charset="UTF-8"/>
         <title>
             {% block title %}MAGIC WORD{% endblock %}
@@ -21,7 +20,6 @@
             <div id="header-logo">
             </div>
         </a>
-
         <div class="header-buttons">
             <div class="btn-group-sm btn-group-vertical">
             {% if logged %}
@@ -42,7 +40,6 @@
         </div>
     </div>
         {% endblock %}
-
         <div class="container">
             {% for label, flashes in app.session.flashbag.all %}
                 {% for flash in flashes %}

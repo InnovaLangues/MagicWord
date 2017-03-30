@@ -4,12 +4,12 @@
 <div class="panel panel-default">
     <div class="panel-heading">
         <h4>
+            {% include "MagicWordBundle:Common:backtohome.html.twig" %}
             {{ 'json_import' | trans }}
             <span class="pull-right">
                 <a class="btn btn-default" href="{{ path('massive') }}">
                     <i class="fa fa-plus" aria-hidden="true"></i> {{ 'new_massive' | trans }}
                 </a>
-                {% include "MagicWordBundle:Common:backtohome.html.twig" %}
             </span>
         </h4>
     </div>

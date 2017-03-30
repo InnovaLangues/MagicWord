@@ -6,13 +6,13 @@
 <div class="panel panel-default">
     <div class="panel-heading">
         <h4>
+            {% include "MagicWordBundle:Common:backtohome.html.twig" %}
             {{ "summary" | trans }} <strong>{{ massive.name }}</strong>
             <span class="pull-right">
                 <span class="btn btn-default" onclick="builder.export({{massive.id}})">
                     <i class="fa fa-clipboard" aria-hidden="true"></i>
                     Exporter la partie
                 </span>
-                {% include "MagicWordBundle:Common:backtohome.html.twig" %}
             </span>
         </h4>
     </div>

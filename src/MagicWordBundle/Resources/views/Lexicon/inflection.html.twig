@@ -4,10 +4,10 @@
 <div class="panel panel-default">
     <div class="panel-heading">
         <h4>
+            {% include "MagicWordBundle:Common:backtohome.html.twig" %}
             {{ "inflexion_info" | trans}} {{ inflection.content }}
             <span class="pull-right">
                 <a class="btn btn-default" href="{{ path('add-to-wordbox', {"id":  inflection.lemma.id }) }}">{{ "add_to_wordbox" | trans}}</a>
-                {% include "MagicWordBundle:Common:backtohome.html.twig" %}
             </span>
         </h4>
     </div>

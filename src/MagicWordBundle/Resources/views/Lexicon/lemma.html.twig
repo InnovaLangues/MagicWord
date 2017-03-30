@@ -4,12 +4,12 @@
 <div class="panel panel-default">
     <div class="panel-heading">
         <h4>
+            {% include "MagicWordBundle:Common:backtohome.html.twig" %}
             {{ "lemma_info" | trans}} <strong>{{ lemma.content }}</strong>
             <span class="pull-right">
                 {% if isInWordbox(lemma) == false %}
-                <a class="btn btn-default" href="{{ path('add-to-wordbox', {"id":  lemma.id }) }}">{{ "add_to_wordbox" | trans}}</a>   
+                <a class="btn btn-default" href="{{ path('add-to-wordbox', {"id":  lemma.id }) }}">{{ "add_to_wordbox" | trans}}</a>
                 {% endif %}
-                {% include "MagicWordBundle:Common:backtohome.html.twig" %}
             </span>
         </h4>
     </div>
