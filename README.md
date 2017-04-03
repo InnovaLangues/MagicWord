@@ -16,6 +16,7 @@ Contributions to the code
 * Maryam Nejat
 * Christine Lutian
 * Benjamin Abrial
+* Joris Bouderbala
 
 The sounds are from [freesound.org](http://www.freesound.org/) and under [CC BY 3.0](https://creativecommons.org/licenses/by/3.0/). They've been converted to mp3 when needed.
 ------------
