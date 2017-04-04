@@ -80,6 +80,19 @@ class ActivityController extends Controller
     }
 
     /**
+     * @Route("/save-combo-finished/round/{roundId}/length/{length}", name="save_combo_finished", options={"expose"=true})
+     * @ParamConverter("round", class="MagicWordBundle:Round",  options={"id" = "roundId"})
+     * @ParamConverter("comboPoints", class="MagicWordBundle:Rules\ComboPoints", options={"length" = "length"})
+     * @Method("POST")
+     */
+    public function saveComboFinishedAction(Round $round, ComboPoints $comboPoints)
+    {
+        $this->get('mw_manager.activity')->saveComboFinished($round, $comboPoints);
+
+        return new JsonResponse(['points' => $comboPoints->getPoints()]);
+    }
+
+    /**
      * @Route("/activity/{activityId}/display", name="activity_display", options={"expose"=true})
      * @ParamConverter("activity", class="MagicWordBundle:Activity",  options={"id" = "activityId"})
      * @Method("GET")

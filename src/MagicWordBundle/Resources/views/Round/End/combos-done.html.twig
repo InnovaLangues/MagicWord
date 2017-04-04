@@ -1,0 +1,8 @@
+<div class="panel panel-default">
+    <ul class="list-group">
+    {% for comboDone in activity.combosdone %}
+    <li class="list-group-item">
+        {{ comboDone.total }} combos de {{ comboDone.comboType.length }}
+    {% endfor %}
+    </ul>
+</div>

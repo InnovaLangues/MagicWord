@@ -157,27 +157,26 @@ COMBO
     margin-right:1%;
 }
 
-#current-combo-1.reached{
+.reached-1, .reached-2 {
+    color:#F7941D;
+}
+.reached-3, .reached-4 {
+    color:#F37022;
+}
+.reached-6, .reached-6 {
+    color: #F04124;
+}
+
+#current-combo-1.reached, #current-combo-2.reached {
     background-color:#F7941D;
 }
 
-#current-combo-2.reached{
-    background-color:#F7941D;
-}
-
-#current-combo-3.reached{
+#current-combo-3.reached, #current-combo-4.reached {
     background-color:#F37022;
+
 }
 
-#current-combo-4.reached{
-    background-color:#F37022;
-}
-
-#current-combo-5.reached{
-    background-color:#F04124;
-}
-
-#current-combo-6.reached{
+#current-combo-5.reached, #current-combo-6.reached{
     background-color:#F04124;
 }
 

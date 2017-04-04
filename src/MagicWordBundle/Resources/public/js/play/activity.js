@@ -77,6 +77,22 @@ var activity = {
           })
 		  .done(function(data) {
              score.updateTotal(data.points);
+			 combo.displayPoints(data.points, length);
+          });
+	},
+
+	sendComboFinished: function(length){
+        var roundId = roundJSON.id;
+		var url = Routing.generate('save_combo_finished', {roundId: roundId, length: length});
+
+		$.ajax({
+              type: 'POST',
+              url: url,
+              dataType: "json",
+          })
+		  .done(function(data) {
+			  console.log();
+             //score.updateTotal(data.points);
           });
 	},
 
