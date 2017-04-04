@@ -7,5 +7,6 @@ $(document).ready(function () {
 		wait.stop();
 		$("#game-container").show();
 		grid.resize();
+		tutoriel.start();
 	});
 });
