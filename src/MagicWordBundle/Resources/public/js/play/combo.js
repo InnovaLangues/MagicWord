@@ -31,7 +31,6 @@ var combo = {
 			comboEnded = true;
 			this.endCombo();
 			this.currentComboLength = 0;
-
 			//ptete un nouveau combo est commencé
 			for (var i = this.previousIds.length; i--;) {
 				if ($.inArray(this.previousIds[i],this.newIds) != -1) {
@@ -56,6 +55,7 @@ var combo = {
 			}
 		}
 
+		this.sendPoints();
 		this.showCombo();
 	},
 
@@ -87,9 +87,24 @@ var combo = {
 		if (this.currentComboLength > 1) {
 			objectiveCombo.checkObjectives(this.currentComboLength, false);
 			if (roundJSON.type == "rush") {
-				activity.sendComboPoints(this.currentComboLength);
+				activity.sendComboFinished(this.currentComboLength);
 			}
 		}
 		this.showCombo();
+	},
+
+	sendPoints: function(){
+		if (this.currentComboLength > 1 && roundJSON.type == "rush") {
+			activity.sendComboPoints(this.currentComboLength);
+		}
+	},
+
+	displayPoints: function(points, length){
+		var pointsTag = document.createElement("sup");
+		pointsTag.innerHTML = "+"+points;
+		pointsTag.className = "reached-"+length;
+
+		var toDisplay = document.getElementById("woot");
+		toDisplay.appendChild(pointsTag);
 	}
 }

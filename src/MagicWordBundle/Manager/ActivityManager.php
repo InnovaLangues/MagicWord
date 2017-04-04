@@ -20,6 +20,7 @@ class ActivityManager
     protected $userManager;
     protected $timeManager;
     protected $wrongFormManager;
+    protected $comboManager;
     protected $currentUser;
 
     /**
@@ -30,9 +31,10 @@ class ActivityManager
      *      "userManager" = @DI\Inject("mw_manager.user"),
      *      "timeManager" = @DI\Inject("mw_manager.time"),
      *      "wrongFormManager" = @DI\Inject("mw_manager.wrongform"),
+     *      "comboManager" = @DI\Inject("mw_manager.combo"),
      * })
      */
-    public function __construct($entityManager, $tokenStorage, $scoreManager, $userManager, $timeManager, $wrongFormManager)
+    public function __construct($entityManager, $tokenStorage, $scoreManager, $userManager, $timeManager, $wrongFormManager, $comboManager)
     {
         $this->em = $entityManager;
         $this->tokenStorage = $tokenStorage;
@@ -40,6 +42,7 @@ class ActivityManager
         $this->userManager = $userManager;
         $this->timeManager = $timeManager;
         $this->wrongFormManager = $wrongFormManager;
+        $this->comboManager = $comboManager;
         $this->currentUser = $this->tokenStorage->getToken()->getUser();
     }
 
@@ -104,6 +107,21 @@ class ActivityManager
         $activity->setComboPoints($activity->getComboPoints() + $comboPoints->getPoints());
         $this->em->persist($activity);
         $this->em->flush();
+    }
+
+    public function saveComboFinished(Round $round, ComboPoints $comboPoints)
+    {
+        $activity = $this->getActivity($round);
+        $comboDone = ($comboDone = $this->em->getRepository('MagicWordBundle:CombosDone')->findOneBy(['activity' => $activity, 'comboType' => $comboPoints]))
+            ? $comboDone
+            : $this->comboManager->create($comboPoints, $activity);
+
+        $comboDone = $this->comboManager->increment($comboDone);
+
+        $this->em->persist($comboDone);
+        $this->em->flush();
+
+        return;
     }
 
     private function create(Round $round)

@@ -59,6 +59,11 @@ class Activity implements \JsonSerializable
     private $comboPoints = 0;
 
     /**
+    *  @ORM\OneToMany(targetEntity="MagicWordBundle\Entity\CombosDone", mappedBy="activity")
+    */
+    private $combosDone;
+
+    /**
      * @var int
      *
      * @ORM\Column(name="timePoints", type="integer")
@@ -435,5 +440,39 @@ class Activity implements \JsonSerializable
     public function getWrongForms()
     {
         return $this->wrongForms;
+    }
+
+    /**
+     * Add combosDone.
+     *
+     * @param \MagicWordBundle\Entity\CombosDone $combosDone
+     *
+     * @return Activity
+     */
+    public function addCombosDone(\MagicWordBundle\Entity\CombosDone $combosDone)
+    {
+        $this->combosDone[] = $combosDone;
+
+        return $this;
+    }
+
+    /**
+     * Remove combosDone.
+     *
+     * @param \MagicWordBundle\Entity\CombosDone $combosDone
+     */
+    public function removeCombosDone(\MagicWordBundle\Entity\CombosDone $combosDone)
+    {
+        $this->combosDone->removeElement($combosDone);
+    }
+
+    /**
+     * Get combosDone.
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getCombosDone()
+    {
+        return $this->combosDone;
     }
 }

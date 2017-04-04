@@ -36,6 +36,11 @@
                 {{ "foundables"|trans}}
                 </a>
             </li>
+            <li role="presentation">
+                <a href="#combos-done" aria-controls="combos-done" role="tab" data-toggle="tab">
+                {{ "combos_done"|trans}}
+                </a>
+            </li>
             {% else %}
             <li role="presentation" class="active">
                 <a href="#objectives" aria-controls="objectives" role="tab" data-toggle="tab">
@@ -56,6 +61,9 @@
             <div role="tabpanel" class="tab-pane fade in active" id="foundables" style="height:auto;">
                 {% include "MagicWordBundle:Round/End:foundable.html.twig" %}
             </div>
+            <div role="tabpanel" class="tab-pane fade" id="combos-done" style="height:auto;">
+                {% include "MagicWordBundle:Round/End:combos-done.html.twig" %}
+            </div>
             {% else %}
             <div role="tabpanel" class="tab-pane fade in active" id="objectives" style="height:auto;">
                 {% include "MagicWordBundle:Round/End:objectives.html.twig" %}
@@ -69,7 +77,6 @@
         </div>
     </div>
 </div>
-
 {% endblock %}
 
 {% block javascripts -%}
