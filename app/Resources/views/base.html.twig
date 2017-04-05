@@ -15,7 +15,7 @@
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}"/>
     </head>
     <body>
-        {% block toHideWhilePlaying %}
+        {% block topToHideWhilePlaying %}
         <a href="{{ path('home') }}">
             <div id="header-logo">
             </div>
@@ -51,6 +51,11 @@
 
             {% block body %}{% endblock %}
         </div>
+        {% block bottomToHideWhilePlaying %}
+        <div id="footer">
+            Powered by Innovalangues.
+        </div>
+        {% endblock %}
 
         <div class="modal fade" data-keyboard="false" data-backdrop="static" id="please-wait" tabindex="-1" role="dialog" aria-labelledby="please-wait">
             <div class="vertical-alignment-helper">
