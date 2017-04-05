@@ -9,49 +9,54 @@ var tutoriel = {
               position: 'right'
             },
             {
-              element: '#squares',
-              intro: '<h3>Objectif</h3><h4>Former des mots pour gagner des points.</h4><span style=\"color:blue;\">Indice :</span><br> faire un  <span style=\"color:red;\">combo</span> apporte des points rapidement.',
-              position: 'left'
-            },
-            {
-              element: '#squares',
-              intro: '<h3>Règles de bases</h3><h4><span style=\"color:red;\">Clic</span> et <span style=\"color:red;\">glisse</span> sur les lettres pour former un mot.</h4>',
+              element: '#header-logo',
+              intro: '<h4><span style=\"color:blue;\">Objectif :</span> former des mots pour gagner des points.</h4><h4><span style=\"color:blue;\">Indice :</span> faire un  <span style=\"color:orange;\">combo</span> avec les mots de la même  <span style=\"color:orange;\">famille</span> rapporte des points rapidement.</h4>',
               position: 'right'
             },
             {
               element: '#squares',
-              intro: '<h3>Règles de bases</h3><h4>Tu peux te déplacer <span style=\"color:red;\">verticalement</span>, <span style=\"color:red;\">horizontalement</span> et <span style=\"color:red;\">en diagonale</span>.</h4>',
+              intro: '<h4><span style=\"color:red;\">Clic</span> et <span style=\"color:red;\">glisse</span> sur les lettres pour former un mot.</h4>',
+              position: 'right'
+            },
+            {
+              element: '#squares',
+              intro: '<h4>Déplace-toi <span style=\"color:red;\">verticalement</span>, <span style=\"color:red;\">horizontalement</span> ou <span style=\"color:red;\">en diagonale</span>.</h4>',
               position: 'right'
             },
             {
               element: '#woot-container',
-              intro: '<h3>Bravo !</h3> Le mot que tu formes s’affiche ici.',
+              intro: '<h4>Vérifie le mot <span style=\"color:red;\">en construction</span>.</h4> ',
+              position: 'right'
+            },
+            {
+              element: '#woot',
+              intro: '<h4>Observe le nombre de <span style=\"color:red;\">point total</span> du mot et les <span style=\"color:orange;\">points combo</span> en cours.</h4> ',
               position: 'right'
             },
             {
               element: '#inflections-found',
-              intro: 'Tous les mots que tu as créés, sont stocker ici.',
-              position: 'right'
-            },
-            {
-              element: '#li-square-0-0',
-              intro: 'Chaque lettre donne un nombre de point fixe.',
+              intro: '<h4>Note les <span style=\"color:red;\">mots déjà créés</span>.</h4>',
               position: 'right'
             },
             {
               element: '#points-container',
-              intro: 'Ici, s\'affiche ton score',
-              position: 'left'
+              intro: '<h4>Suis ton <span style=\"color:red;\">score</span> à tout moment.</h4>',
+              position: 'right'
+            },
+            {
+              element: '#li-square-0-0',
+              intro: '<h4>Chaque lettre ajoute un nombre de point fixe à ton score.</h4>',
+              position: 'right'
+            },
+            {
+              element: '#points-container',
+              intro: '<h4>Pour augmenter ton score rapidement, souviens toi des <span style=\"color:orange;\">combos</span> !</h4>',
+              position: 'right'
             },
             {
               element: '#current-combo-container',
               intro: 'Chaque mot que tu créé, augmente la jauge de puissance, de 1.',
               position: 'right'
-            },
-            {
-              element: '#squares',
-              intro: 'Pour augmenter la jauge de puissance, rappelles toi des <span style=\"color:red;\">combos</span> !',
-              position: 'left'
             },
         ]
     });
