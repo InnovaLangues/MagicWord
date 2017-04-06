@@ -32,7 +32,8 @@ framework:
         gc_maxlifetime: 7200
     fragments:       ~
     http_method_override: true
-    assets: ~
+    assets:
+        version: v20170406A
 
 # Twig Configuration
 twig:
