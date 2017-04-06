@@ -24,6 +24,7 @@ module.exports = function(grunt) {
                         'src/MagicWordBundle/Resources/public/css/editor.css',
                         "bower_components/animate.css/animate.min.css",
                         "bower_components/intro.js/introjs.css",
+                        "src/MagicWordBundle/Resources/public/css/tutoriel.css",
                     ],
                 }
             }
