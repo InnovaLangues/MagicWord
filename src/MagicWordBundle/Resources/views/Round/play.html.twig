@@ -36,7 +36,7 @@
 <script>
 var gridJSON = {{ grid | json_encode()|raw }};
 var roundJSON = {{ round | json_encode()|raw }};
-var assetsBaseDir = "{{ asset('.') }}";
+var assetsBaseDir = "{{ asset('.', "noversion") }}";
 </script>
 {% endblock %}
 

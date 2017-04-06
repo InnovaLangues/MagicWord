@@ -34,6 +34,9 @@ framework:
     http_method_override: true
     assets:
         version: v20170406A
+        packages:
+            noversion:
+                version: ~
 
 # Twig Configuration
 twig:
