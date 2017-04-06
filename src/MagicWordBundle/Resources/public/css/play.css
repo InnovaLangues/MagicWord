@@ -157,13 +157,17 @@ COMBO
     margin-right:1%;
 }
 
+.locked {
+    background-color:lightgrey;
+}
+
 .reached-1, .reached-2 {
     color:#F7941D;
 }
 .reached-3, .reached-4 {
     color:#F37022;
 }
-.reached-6, .reached-6 {
+.reached-5, .reached-6 {
     color: #F04124;
 }
 

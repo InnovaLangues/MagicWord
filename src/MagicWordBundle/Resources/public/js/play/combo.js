@@ -69,9 +69,17 @@ var combo = {
 
 	showCombo: function(){
 		$(".current-combo").removeClass("reached");
-		for (var i = 1; i <= this.currentComboLength; i++) {
-			$("#current-combo-"+i).addClass("reached");
+
+		if (this.currentComboLength > 1) {
+			for (var i = 1; i <= this.currentComboLength - 1; i++) {
+				$("#current-combo-"+i).addClass("reached");
+			}
+		} else if (this.currentComboLength == 1) {
+			$(".current-combo").removeClass("locked");
+		} else {
+			$(".current-combo").addClass("locked");
 		}
+
 	},
 
 	reset: function(){
