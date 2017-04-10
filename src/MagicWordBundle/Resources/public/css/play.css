@@ -151,6 +151,8 @@ COMBO
     height:18px;
     width:15.8%;
     float: left;
+    transition:background-color 0.15s;
+    -webkit-transition:background-color 0.15s;
 }
 
 #current-combo-1, #current-combo-2, #current-combo-3, #current-combo-4, #current-combo-5 {
