@@ -4,7 +4,7 @@
     <div class="panel-heading">
         {{ 'objectives' | trans }}
         <span class="pull-right">
-            <span class='btn btn-primary btn-xs' onclick="saveObjectives()">
+            <span class='btn btn-primary btn-xs' onclick="objectives.save()">
                 <i class="fa fa-floppy-o" aria-hidden="true"></i>
                 {{ 'save_objectives' | trans }}
             </span>
@@ -79,7 +79,7 @@
     </div>
     <div id="foundables" class="col-md-7">
     {% if grid.foundableForms is defined  %}
-    {% include 'MagicWordBundle:Round/Conquer/Objective:possible-inflections.html.twig' with {'foundableForms': grid.foundableForms } %}
+    {% include 'MagicWordBundle:Grid:possible-inflections.html.twig' with {'foundableForms': grid.foundableForms, 'btn': true } %}
     {% endif %}
     </div>
 </div>

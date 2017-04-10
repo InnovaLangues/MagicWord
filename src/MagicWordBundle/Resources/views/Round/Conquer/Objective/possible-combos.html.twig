@@ -17,7 +17,7 @@
                 {% for inflection in combo.inflections %}
                 <li class="list-group-item">
                     {{ inflection }}
-                    <span class="btn btn-default btn-xs pull-right" onclick="addInflection('{{ inflection }}')">
+                    <span class="btn btn-default btn-xs pull-right" onclick="findwords.addInflection('{{ inflection }}')">
                         <i class="fa fa-plus" aria-hidden="true"></i> {{ 'add' | trans }}
                     </span>
                 </li>

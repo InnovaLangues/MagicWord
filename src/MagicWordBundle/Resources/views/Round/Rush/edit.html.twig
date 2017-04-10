@@ -1,15 +1,55 @@
 <div class="row">
     <div class="col-md-6">
-    {% set grid = rush.grid %}
-    {% include "MagicWordBundle:Round/Conquer:grid.html.twig" %}
+        {% set grid = rush.grid %}
+        <form id="grid">
+        {% include "MagicWordBundle:Round/Conquer:grid.html.twig" %}
+        <input id="rushId" type="hidden" name="rushId" value="{{ rush.id }}"/>
+        <input id="languageId" type="hidden" name="language" value="{{ rush.language.id }}">
+        </form>
     </div>
     <div class="col-md-6">
-        <ul class="list-group" style="max-height:500px; overflow-y:scroll">
-        {% for form in grid.foundableForms %}
-        <li class="list-group-item">
-            {{form.form | upper}}
-            <span class="pull-right text-muted">{{form.points}}pts</span>
-        </li>
-        {% endfor %}
+        <span class="btn btn-default" data-toggle="modal" data-target="#addword-modal">
+            <i class="fa fa-plus" aria-hidden="true"></i>
+            {{ 'addwords' | trans }}
+        </span>
+        <span onclick="rushEditor.savegrid()" class="btn btn-default">
+            <i class="fa fa-floppy-o" aria-hidden="true"></i>
+            {{ 'save_grid' | trans }}
+        </span>
+        <hr/>
+        <div id="foundables">
+            {% include 'MagicWordBundle:Grid:possible-inflections.html.twig' with {'foundableForms': grid.foundableForms, 'btn': false  } %}
+        </div>
+    </div>
+</div>
+
+<div id="addword-modal" class="modal fade" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">
+                    {{ 'addwords' | trans }}
+                </h4>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-12" >
+                        <span onclick="rushEditor.addword()" class="btn btn-default">
+                            {{ 'addword' | trans }}
+                        </span>
+                        <span onclick="rushEditor.generategrid()" id="generate-grid-btn" class="btn btn-default">
+                            {{ 'generate_grid' | trans }}
+                        </span>
+                        <hr/>
+                        <ul id="word-list" class="list-group">
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">{{ 'close' | trans }}</button>
+            </div>
+        </div>
     </div>
 </div>

@@ -37,7 +37,7 @@ class ConquerController extends Controller
     {
         $this->get('mw_manager.round')->saveConquerGrid($conquer, $request);
         $foundableForms = $conquer->getGrid()->getFoundableForms();
-        $template = $this->get('templating')->render('MagicWordBundle:Round/Conquer/Objective:possible-inflections.html.twig', ['foundableForms' => $foundableForms]);
+        $template = $this->get('templating')->render('MagicWordBundle:Grid:possible-inflections.html.twig', ['foundableForms' => $foundableForms, 'btn' => true]);
 
         $response = [
             'foundables' => $template,

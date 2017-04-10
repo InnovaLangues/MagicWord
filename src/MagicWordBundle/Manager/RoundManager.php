@@ -100,6 +100,22 @@ class RoundManager
         return $grid;
     }
 
+    public function saveRushGrid(Rush $rush, Request $request)
+    {
+        if (!$grid = $rush->getGrid()) {
+            $grid = $this->gridManager->createGrid($request, true);
+            $rush->setGrid($grid);
+            $this->em->persist($rush);
+            $this->em->flush();
+        } else {
+            $this->gridManager->updateGrid($grid, $request, $rush);
+        }
+
+        $this->em->refresh($grid);
+
+        return $grid;
+    }
+
     private function getNextDisplayOrder(Game $game)
     {
         return $game->getRounds()->count();

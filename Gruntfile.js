@@ -3,7 +3,11 @@ module.exports = function(grunt) {
 
     grunt.initConfig({
         watch: {
-            files: ['src/MagicWordBundle/Resources/public/js/**', 'src/MagicWordBundle/Resources/public/css/**'],
+            files: [
+                'Gruntfile.js',
+                'src/MagicWordBundle/Resources/public/js/**',
+                'src/MagicWordBundle/Resources/public/css/**'
+            ],
             tasks: ['uglify', 'less'],
           },
         less: {
@@ -46,9 +50,15 @@ module.exports = function(grunt) {
                         'src/MagicWordBundle/Resources/public/js/builder.js',
                         'node_modules/screenfull/dist/screenfull.js'
                     ],
-                    'web/js/grid_creation.js': [
-                        "src/MagicWordBundle/Resources/public/js/bologne.js",
-                        "src/MagicWordBundle/Resources/public/js/grid_create.js"
+                    'web/js/edit_round.js': [
+                        "src/MagicWordBundle/Resources/public/js/edit/bologne.js",
+                        "src/MagicWordBundle/Resources/public/js/edit/grid.js",
+                        "src/MagicWordBundle/Resources/public/js/edit/rush.js",
+                        "src/MagicWordBundle/Resources/public/js/edit/objectives.js",
+                        "src/MagicWordBundle/Resources/public/js/edit/constraint.js",
+                        "src/MagicWordBundle/Resources/public/js/edit/combo.js",
+                        "src/MagicWordBundle/Resources/public/js/edit/findword.js",
+                        "src/MagicWordBundle/Resources/public/js/edit/common.js",
                     ],
                     'web/js/round.js': [
                         "src/MagicWordBundle/Resources/public/js/round/details.js",

@@ -185,3 +185,5 @@ json_import: Import JSON
 export_game: Exporter la partie
 properties: Propriétés
 combos_done: Combos
+addwords: Ajouter des mots
+addword: Ajouter un mot

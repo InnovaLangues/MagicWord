@@ -18,7 +18,7 @@ class GridController extends Controller
     {
         $foundableForms = $this->get('mw_manager.grid')->getFoundableForms($request);
 
-        $template = $this->get('templating')->render('MagicWordBundle:Round/Conquer/Objective:possible-inflections.html.twig', array('foundableForms' => $foundableForms));
+        $template = $this->get('templating')->render('MagicWordBundle:Grid:possible-inflections.html.twig', array('foundableForms' => $foundableForms, 'btn' => false));
 
         return new Response($template);
     }
