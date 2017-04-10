@@ -43,6 +43,13 @@ services:
         tags:
             - { name: twig.extension }
 
+    twig.extension.generalParameters:
+        class: MagicWordBundle\Twig\GeneralParametersExtension
+        arguments:
+            "administrationManager": "@mw_manager.administration"
+        tags:
+            - { name: twig.extension }
+
     twig.extension.score:
         class: MagicWordBundle\Twig\ScoreExtension
         arguments:

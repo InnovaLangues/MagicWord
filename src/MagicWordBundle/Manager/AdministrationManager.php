@@ -8,6 +8,8 @@ use MagicWordBundle\Entity\Letter\LetterLanguage;
 use MagicWordBundle\Form\Type\WordLengthPointsType;
 use Symfony\Component\HttpFoundation\Request;
 use MagicWordBundle\Form\Type\LetterLanguagePointsType;
+use MagicWordBundle\Form\Type\GeneralParametersType;
+use MagicWordBundle\Entity\GeneralParameters;
 
 /**
  * @DI\Service("mw_manager.administration")
@@ -67,5 +69,45 @@ class AdministrationManager
         }
 
         return;
+    }
+
+    public function getGeneralParametersForm()
+    {
+        $generalParameters = $this->getGeneralParameters();
+
+        if (!$generalParameters) {
+            $generalParameters = new GeneralParameters();
+            $generalParameters->setHomeText("lorem ipsum...");
+            $generalParameters->setSelfRegistration(true);
+            $this->em->persist($generalParameters);
+            $this->em->flush();
+        }
+
+        $form = $this->formFactory->createBuilder(GeneralParametersType::class, $generalParameters)->getForm()->createView();
+
+        return $form;
+
+    }
+
+    public function handleGeneralParametersForm(Request $request){
+        $generalParameters = $this->getGeneralParameters();
+
+        $form = $this->formFactory->createBuilder(GeneralParametersType::class, $generalParameters)->getForm();
+        $form->handleRequest($request);
+
+        if ($form->isValid()) {
+            $this->em->persist($generalParameters);
+            $this->em->flush();
+        }
+
+        return;
+    }
+
+    public function getGeneralParameters()
+    {
+        $generalParameters = $this->em->getRepository("MagicWordBundle:GeneralParameters")->get();
+
+        return $generalParameters;
+
     }
 }

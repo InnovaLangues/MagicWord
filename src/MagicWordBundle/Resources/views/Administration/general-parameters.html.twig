@@ -1,0 +1,29 @@
+{% extends '::base.html.twig' %}
+
+{% block title %}{{ 'letterlanguagepoints' | trans }}{% endblock %}
+
+{% block body -%}
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h4>
+            {% include "MagicWordBundle:Common:backtohome.html.twig" %}
+            {{ "general_parameters" | trans}}
+            <span class="pull-right">
+                <a class="btn btn-default" href="{{ path('general_parameters_edit') }}">
+                    <i class="fa fa-pencil" aria-hidden="true"></i>
+                    {{ "edit" | trans }}
+                </a>
+            </span>
+        </h4>
+    </div>
+    <div class="panel-body">
+        <h4> {{ "homeText" | trans}} </h4>
+        <i class="fa fa-quote-left" aria-hidden="true"></i>
+        {{ generalParameters.homeText | raw }}
+        <i class="fa fa-quote-right" aria-hidden="true"></i>
+
+        <h4> {{ "selfRegistration" | trans}} </h4>
+        {{ generalParameters.selfRegistration ? "oui" : "non" }}
+    </div>
+</div>
+{% endblock %}

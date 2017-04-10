@@ -187,3 +187,8 @@ properties: Propriétés
 combos_done: Combos
 addwords: Ajouter des mots
 addword: Ajouter un mot
+general_parameters: Paramètres généraux
+selfRegistration: Auto-inscription
+homeText: Texte d'accueil
+self_registration_disabled: Auto-inscription désactivée
+edit: Editer

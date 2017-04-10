@@ -82,4 +82,42 @@ class AdministrationController extends Controller
 
         return $this->redirectToRoute('letterslanguage');
     }
+
+
+    /**
+     * @Route("/administration/general_parameters", name="general_parameters")
+     * @Method("GET")
+     */
+    public function generalParametersAction()
+    {
+        $generalParameters = $this->get('mw_manager.administration')->getGeneralParameters();
+
+        return $this->render('MagicWordBundle:Administration:general-parameters.html.twig', ['generalParameters' => $generalParameters]);
+    }
+
+    /**
+     * @Route("/administration/general_parameters_edit", name="general_parameters_edit")
+     * @Method("GET")
+     */
+    public function generalParametersEditAction()
+    {
+        $form = $this->get('mw_manager.administration')->getGeneralParametersForm();
+
+        return $this->render('MagicWordBundle:Administration:general-parameters-edit.html.twig', ['form' => $form]);
+    }
+
+
+    /**
+     * @Route("/administration/general_parameters_edit", name="general_parameters_submit")
+     * @Method("POST")
+     */
+    public function generalParametersSubmitAction(Request $request)
+    {
+        $this->get('mw_manager.administration')->handleGeneralParametersForm($request);
+
+        return $this->redirectToRoute('general_parameters');
+    }
+
+
+
 }
