@@ -69,6 +69,12 @@ class Round implements \JsonSerializable
     private $grid;
 
     /**
+     * @ORM\Column(type="text", nullable=true)
+     */
+    private $json;
+
+
+    /**
      * Get id.
      *
      * @return int
@@ -295,5 +301,29 @@ class Round implements \JsonSerializable
         }
 
         return $jsonArray;
+    }
+
+    /**
+     * Set json
+     *
+     * @param string $json
+     *
+     * @return Round
+     */
+    public function setJson($json)
+    {
+        $this->json = $json;
+
+        return $this;
+    }
+
+    /**
+     * Get json
+     *
+     * @return string
+     */
+    public function getJson()
+    {
+        return $this->json;
     }
 }

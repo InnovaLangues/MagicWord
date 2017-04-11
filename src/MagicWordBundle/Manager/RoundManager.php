@@ -48,6 +48,27 @@ class RoundManager
         return $data;
     }
 
+    public function saveJSON(Round $round)
+    {
+        if (!$round->getJson()) {
+            $json = json_encode($round);
+            $round->setJson($json);
+            $this->em->persist($round);
+            $this->em->flush();
+        }
+
+        $grid = $round->getGrid();
+        if (!$grid->getJson()) {
+            $json = json_encode($grid);
+            $grid->setJson($json);
+            $this->em->persist($grid);
+        }
+
+        $this->em->flush();
+        
+        return $round;
+    }
+
     public function generateRush(Game $game, Grid $grid = null, $language = null, $displayOrder = null)
     {
         $round = new Rush();

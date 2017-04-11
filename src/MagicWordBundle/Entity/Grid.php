@@ -51,6 +51,11 @@ class Grid implements \JsonSerializable
      */
     private $language;
 
+    /**
+     * @ORM\Column(type="text", nullable=true)
+     */
+    private $json;
+
     public function __construct()
     {
         $this->squares = new \Doctrine\Common\Collections\ArrayCollection();
@@ -237,5 +242,29 @@ class Grid implements \JsonSerializable
     public function getFoundableForms()
     {
         return $this->foundableForms;
+    }
+
+    /**
+     * Set json
+     *
+     * @param string $json
+     *
+     * @return Grid
+     */
+    public function setJson($json)
+    {
+        $this->json = $json;
+
+        return $this;
+    }
+
+    /**
+     * Get json
+     *
+     * @return string
+     */
+    public function getJson()
+    {
+        return $this->json;
     }
 }

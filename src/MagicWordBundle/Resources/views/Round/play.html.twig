@@ -25,17 +25,12 @@
             {% include "MagicWordBundle:Round/Play:grid.html.twig" %}
         </div>
     </div>
-
-    {# SOUND
-        {% include "MagicWordBundle:Round/Play:found.html.twig" %}
-        {% include "MagicWordBundle:Round/Play:sound.html.twig" %}
-    #}
     <div id="bot"></div>
 </div>
 
 <script>
-var gridJSON = {{ grid | json_encode()|raw }};
-var roundJSON = {{ round | json_encode()|raw }};
+var gridJSON = {{ grid.json | raw }};
+var roundJSON = {{ round.json |raw }};
 var assetsBaseDir = "{{ asset('.', "noversion") }}";
 </script>
 {% endblock %}

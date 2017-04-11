@@ -17,6 +17,7 @@ class RoundController extends Controller
      */
     public function playAction(Round $round)
     {
+        $round = $this->get('mw_manager.round')->saveJSON($round);
         $game = $round->getGame();
 
         if ($this->get('mw_manager.user')->canPlay($game)) {
