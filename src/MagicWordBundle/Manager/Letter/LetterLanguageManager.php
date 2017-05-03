@@ -11,15 +11,18 @@ use Innova\LexiconBundle\Entity\Language;
 class LetterLanguageManager
 {
     protected $em;
+    protected $bigramManager;
 
     /**
      * @DI\InjectParams({
      *      "entityManager" = @DI\Inject("doctrine.orm.entity_manager"),
+     *      "bigramManager" = @DI\Inject("mw_manager.bigram"),
      * })
      */
-    public function __construct($entityManager)
+    public function __construct($entityManager, $bigramManager)
     {
         $this->em = $entityManager;
+        $this->bigramManager = $bigramManager;
     }
 
     public function getCustomWeigth($customLetters)
@@ -34,13 +37,19 @@ class LetterLanguageManager
 
     public function getWeightedLettersByLanguage(Language $language)
     {
-        $lettersLanguage = $this->em->getRepository("MagicWordBundle:Letter\LetterLanguage")->findByLanguage($language);
-        $letters = '';
-        foreach ($lettersLanguage as $letterLanguage) {
-            $letters = $this->repeatLetter($letters, $letterLanguage->getLetter()->getValue(), $letterLanguage->getWeight());
+        if ($language->getName() != "french") {
+            $lettersLanguage = $this->em->getRepository("MagicWordBundle:Letter\LetterLanguage")->findByLanguage($language);
+            $letters = '';
+            foreach ($lettersLanguage as $letterLanguage) {
+                $letters = $this->repeatLetter($letters, $letterLanguage->getLetter()->getValue(), $letterLanguage->getWeight());
+            }
+            $letters = $this->lottery($letters, 16);
+        } else {
+            // use frequent bigrams for french
+            $letters = $this->bigramManager->generate();
         }
 
-        return $this->lottery($letters, 16);
+        return $letters;
     }
 
     private function repeatLetter($str, $letter, $count)
