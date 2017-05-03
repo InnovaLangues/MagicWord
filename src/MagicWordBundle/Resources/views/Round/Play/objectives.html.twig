@@ -7,7 +7,7 @@
                 {% if round.combos is not empty %}
                 <div class="objective-list">
                     {% for i, combo in round.combos %}
-                    <div id="objective-combo-{{ combo.id }}" class=" objective-{{ combo.id }}" data-type="combo">
+                    <div id="objective-combo-{{ combo.id }}" class="objective objective-{{ combo.id }}" data-type="combo">
                         <b>{{ combo.number }}</b> {{ 'combos__with_length' | trans }} <b>{{ combo.lenght }}</b>
                         <span class="objective-progress pull-right"></span>
                     </div>
