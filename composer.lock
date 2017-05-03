@@ -1009,12 +1009,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/InnovaLangues/WiktionaryBundle.git",
-                "reference": "d3302955de3678b54ac2c51e4a212cc9e608ed80"
+                "reference": "c93dd5738ea2855d56e0af7d36fe1562468cfb8e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/InnovaLangues/WiktionaryBundle/zipball/d3302955de3678b54ac2c51e4a212cc9e608ed80",
-                "reference": "d3302955de3678b54ac2c51e4a212cc9e608ed80",
+                "url": "https://api.github.com/repos/InnovaLangues/WiktionaryBundle/zipball/c93dd5738ea2855d56e0af7d36fe1562468cfb8e",
+                "reference": "c93dd5738ea2855d56e0af7d36fe1562468cfb8e",
                 "shasum": ""
             },
             "require": {
@@ -1042,7 +1042,7 @@
                 "Innovalangues",
                 "wiktionary"
             ],
-            "time": "2016-11-22 09:36:46"
+            "time": "2016-11-22 15:28:14"
         },
         {
             "name": "jdorn/sql-formatter",

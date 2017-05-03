@@ -25,6 +25,9 @@
 
         <h3>{{ "subcategory" | trans}}</h3>
         {{ lemma.subcategory ? lemma.subcategory.value | trans : "-" }}
+
+        <h3>{{ "wiktionary_def" | trans}}</h3>
+        {{ getDefinitions(lemma.content, lemma.language.name|slice(0,2)) | raw }}
     </div>
 </div>
 {% endblock %}
