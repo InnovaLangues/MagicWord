@@ -1,0 +1,13 @@
+.core{
+  text-align: justify;
+  font-size: 18px;
+}
+.combo{
+  color: orange;
+}
+.hint{
+  color: blue;
+}
+.important{
+  color: red;
+}
