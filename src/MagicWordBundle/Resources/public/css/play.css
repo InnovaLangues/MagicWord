@@ -9,6 +9,7 @@
 
 #combos-container, #findwords-container, #points-container{
     margin-right:2%;
+    overflow:hidden;
 }
 
 #points-container{
@@ -81,6 +82,10 @@
     cursor: hand;
     background-color:white;
     color:black;
+}
+
+.objective{
+    border-bottom:lightgrey 1px dotted;
 }
 
 #objectives {
