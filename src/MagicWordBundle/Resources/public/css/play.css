@@ -283,9 +283,12 @@ ul#squares li.wrongWord {
 }
 
 #fullscreen {
+    cursor:pointer;
     position: fixed;
-    top:5px;
-    left:5px;
+    height:25px;
+    width:25px;
+    top:10px;
+    left:10px;
 }
 
 #giveup{
@@ -296,6 +299,7 @@ ul#squares li.wrongWord {
     padding:0 10px;
     display:flex;
 }
+
 #giveup i {
     margin:auto;
 }
