@@ -86,7 +86,8 @@ module.exports = function(grunt) {
                     'web/js/translations.js': [
                         "web/bundles/bazingajstranslation/js/translator.min.js",
                         "web/js/translations/config.js",
-                        "web/js/translations/*/*.js"
+                        "web/js/translations/*/en.js",
+                        "web/js/translations/*/fr.js"
                     ]
                 }
             }
