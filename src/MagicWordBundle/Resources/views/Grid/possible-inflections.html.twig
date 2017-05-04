@@ -5,6 +5,9 @@
     <ul class="list-group" style="max-height:400px; overflow-y:scroll">
         {% for foundableForm in foundableForms %}
             <li class="list-group-item">
+                <span class="btn btn-default btn-xs" onClick="wiktionnary.getDef('{{ foundableForm.inflections[0].lemma.content }}', '{{ foundableForm.grid.language.name |slice(0,2) }}')">
+                    <i class="fa fa-wikipedia-w" aria-hidden="true"></i>
+                </span>
                 {{ foundableForm.form }}
                 <span class="text-muted">
                     ({{ foundableForm.points }}pts)
@@ -18,3 +21,7 @@
         {% endfor %}
     </ul>
 </div>
+
+{% block javascripts -%}
+<script type="text/javascript" src="{{ asset('/js/translations.js')}}"></script>
+{% endblock %}
