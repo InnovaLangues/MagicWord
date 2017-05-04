@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "37adf87ae2f2dfec24bd80aeb6db896a",
+    "content-hash": "48d02ba61ab492b0039fd9817150dba6",
     "packages": [
         {
             "name": "doctrine/annotations",
@@ -2483,6 +2483,68 @@
                 "templating"
             ],
             "time": "2016-11-19T05:52:49+00:00"
+        },
+        {
+            "name": "willdurand/js-translation-bundle",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/willdurand/BazingaJsTranslationBundle.git",
+                "reference": "d148c72f6bf80c962208d8b1ec7c9ad120b87846"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/willdurand/BazingaJsTranslationBundle/zipball/d148c72f6bf80c962208d8b1ec7c9ad120b87846",
+                "reference": "d148c72f6bf80c962208d8b1ec7c9ad120b87846",
+                "shasum": ""
+            },
+            "require": {
+                "symfony/console": "~2.7|~3.1",
+                "symfony/finder": "~2.7|~3.1",
+                "symfony/framework-bundle": "~2.7|~3.1",
+                "symfony/intl": "~2.7|~3.1",
+                "symfony/templating": "~2.7|~3.1",
+                "symfony/translation": "~2.7|~3.1"
+            },
+            "replace": {
+                "willdurand/expose-translation-bundle": "2.5.*"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^4.8|~5.7",
+                "symfony/asset": "~2.7|~3.1",
+                "symfony/browser-kit": "~2.7|~3.1",
+                "symfony/phpunit-bridge": "~2.7|~3.1",
+                "symfony/twig-bundle": "~2.7|~3.1",
+                "symfony/yaml": "~2.7|~3.1"
+            },
+            "type": "symfony-bundle",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "2.7-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Bazinga\\Bundle\\JsTranslationBundle\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "William Durand",
+                    "email": "will+git@drnd.me"
+                }
+            ],
+            "description": "A pretty nice way to expose your translation messages to your JavaScript.",
+            "keywords": [
+                "javascript",
+                "symfony",
+                "translation"
+            ],
+            "time": "2017-05-02 10:15:21"
         },
         {
             "name": "willdurand/jsonp-callback-validator",

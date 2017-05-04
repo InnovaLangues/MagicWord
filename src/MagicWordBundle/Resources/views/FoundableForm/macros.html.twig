@@ -29,7 +29,7 @@
                     {{ inflection.content }}
                     ({{ inflection.lemma.content }} - <span class="text-muted">{{ inflection.lemma.category ? inflection.lemma.category.value | trans }}</span>)
                     <span class="pull-right">
-                        <span class="btn btn-default btn-xs" onClick="wiktionnary.getDef('{{ inflection.lemma.content }}')">
+                        <span class="btn btn-default btn-xs" onClick="wiktionnary.getDef('{{ inflection.lemma.content }}', '{{ foundable.grid.language.name |slice(0,2) }}')">
                             <i class="fa fa-wikipedia-w" aria-hidden="true"></i>
                         </span>
                         {% if isInWordbox(inflection.lemma) == false %}
@@ -49,8 +49,11 @@
 {% macro foundableShort(foundable, activities) %}
 {% set percent = _self.percent(foundable, activities) %}
 <div class="sortable" style="margin-bottom:2px" data-form="{{ foundable.form }}" data-points="{{ foundable.points }}" data-percent="{{ percent }}" data-length="{{ foundable.form|length }}">
-    <div style="float:left; width:40px">
-        <div class="label label-default">{{ percent }}</div>
+    <div style="float:left; width:80px">
+        <div class="label label-default">{{ percent }}</div> &nbsp;
+        <span class="btn btn-default btn-xs" onClick="wiktionnary.getDef('{{ foundable.inflections[0].lemma.content }}', '{{ foundable.grid.language.name |slice(0,2) }}')">
+            <i class="fa fa-wikipedia-w" aria-hidden="true"></i>
+        </span>
     </div>
     {{ foundable.form | upper }} <span class="text-muted">({{ foundable.points}}pts)</span>
 </div>

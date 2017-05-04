@@ -82,6 +82,11 @@ module.exports = function(grunt) {
                         "src/MagicWordBundle/Resources/public/js/play/sound.js",
                         "bower_components/jquery-nearest/src/jquery.nearest.min.js",
                         "bower_components/FitText.js/jquery.fittext.js"
+                    ],
+                    'web/js/translations.js': [
+                        "web/bundles/bazingajstranslation/js/translator.min.js",
+                        "web/js/translations/config.js",
+                        "web/js/translations/*/*.js"
                     ]
                 }
             }
