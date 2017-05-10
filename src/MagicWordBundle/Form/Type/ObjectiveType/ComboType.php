@@ -16,6 +16,8 @@ class ComboType extends AbstractType
             'label' => 'combo_length',
             'attr' => [
                 'data-field' => 'lenght',
+                'min' => 1,
+                'step' => 1
             ],
         ));
 
@@ -24,6 +26,8 @@ class ComboType extends AbstractType
             'translation_domain' => 'messages',
             'attr' => [
                 'data-field' => 'number',
+                'min' => 1,
+                'step' => 1
             ],
         ));
     }

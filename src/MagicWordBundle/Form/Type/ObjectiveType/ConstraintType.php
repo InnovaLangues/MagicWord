@@ -19,6 +19,8 @@ class ConstraintType extends AbstractType
                 'class' => 'form-control',
                 'data-field' => 'number',
                 'maxlength' => '3',
+                'min' => 1,
+                'step' => 1
             ],
         ));
 
