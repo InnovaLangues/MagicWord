@@ -7,6 +7,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Symfony\Component\HttpFoundation\Request;
 use MagicWordBundle\Entity\GameType\Challenge;
+use MagicWordBundle\Entity\Player;
 
 class ChallengeController extends Controller
 {
@@ -30,6 +31,17 @@ class ChallengeController extends Controller
         $this->get('mw_manager.challenge')->handleChallengeForm($request);
 
         return $this->redirectToRoute('games_started');
+    }
+
+    /**
+     * @Route("/challenge/{id}", name="challenge_someone")
+     * @Method("GET")
+     */
+    public function challengeSomeoneAction(Player $challenged, Request $request)
+    {
+        $form = $this->get('mw_manager.challenge')->handleChallengeForm($request, $challenged);
+
+        return $this->render('MagicWordBundle:Game/Challenge:challenge.html.twig', array('form' => $form));
     }
 
     /**

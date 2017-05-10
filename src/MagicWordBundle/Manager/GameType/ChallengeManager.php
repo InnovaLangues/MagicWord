@@ -1,12 +1,13 @@
 <?php
 
-namespace  MagicWordBundle\Manager\GameType;
+namespace MagicWordBundle\Manager\GameType;
 
 use JMS\DiExtraBundle\Annotation as DI;
 use MagicWordBundle\Entity\GameType\Challenge;
 use MagicWordBundle\Form\Type\ChallengeType;
 use MagicWordBundle\Form\Type\ChallengeReplyType;
 use Symfony\Component\HttpFoundation\Request;
+use MagicWordBundle\Entity\Player;
 
 /**
  * @DI\Service("mw_manager.challenge")
@@ -118,10 +119,13 @@ class ChallengeManager
         return $round;
     }
 
-    public function handleChallengeForm(Request $request)
+    public function handleChallengeForm(Request $request, Player $challenged = null)
     {
         $currentUser = $this->tokenStorage->getToken()->getUser();
         $challenge = new Challenge();
+        if ($challenged) {
+            $challenge->setChallenged($challenged);
+        }
         $form = $this->formFactory->createBuilder(ChallengeType::class, $challenge, ['user' => $currentUser])->getForm();
 
         $form->handleRequest($request);
