@@ -18,13 +18,15 @@ class GameRepository extends \Doctrine\ORM\EntityRepository
         $em = $this->_em;
         $dql = "SELECT game FROM MagicWordBundle\Entity\Game game
                 LEFT JOIN game.rounds r
+                LEFT JOIN r.grid g
                 WHERE r.language = :language
                 AND game INSTANCE OF 'MagicWordBundle\Entity\GameType\Training'
                 AND NOT EXISTS(
                     SELECT a FROM MagicWordBundle\Entity\Activity a
                     WHERE a.round = r
                     AND a.player = :user
-                )";
+                )
+                AND SIZE(g.foundableForms) > 150";
 
         $query = $em->createQuery($dql);
         $query->setParameter('user', $user)
