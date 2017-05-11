@@ -21,11 +21,11 @@
                     <span id="combo-done">0</span> / <span>{{ round.combos |length}}</span>
                 </div>
             </div>
-            <div data-type="findword" id="findwords-container" onclick="objectives.click(this)" class="objectives {% if round.findWords is empty %} disabled {% endif %} {% if round.findwords is not empty and isActive == false %} active{% set isActive = true %}{% endif %}">
+            <div data-type="findword" id="findwords-container" class="objectives {% if round.findWords is empty %} disabled {% endif %} {% if round.findwords is not empty and isActive == false %} active{% set isActive = true %}{% endif %}">
                 {% if round.findWords is not empty %}
                 <div class="objective-list">
                     {% for findWord in round.findWords %}
-                    <div id="objective-findword-{{ findWord.id }}" class="objective objective-{{ findWord.id }}" data-type="findword">
+                    <div id="objective-findword-{{ findWord.id }}" class="objective objective-{{ findWord.id }} objective-findword" data-type="findword">
                         {{ findWord.hint }}
                     </div>
                     {% endfor %}

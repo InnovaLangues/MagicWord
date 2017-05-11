@@ -74,7 +74,6 @@ var grid = {
 			objectives.click(this);
 		});
 
-
 		window.addEventListener("resize", function(e) {
 			grid.resize();
 		});

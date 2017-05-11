@@ -89,10 +89,6 @@ var activity = {
               type: 'POST',
               url: url,
               dataType: "json",
-          })
-		  .done(function(data) {
-			  console.log();
-             //score.updateTotal(data.points);
           });
 	},
 

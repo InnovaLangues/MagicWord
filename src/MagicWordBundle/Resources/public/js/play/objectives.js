@@ -26,8 +26,12 @@ var objectives = {
             this.checkTypeCompletion(type);
         }
 
-        document.getElementById("points").innerHTML = this.done + "/" + this.doable;
+        objectives.displayDone();
 	},
+
+    displayDone: function(){
+        document.getElementById("points").innerHTML = this.done + " / " + this.doable;
+    },
 
     checkCompletion: function(){
         if(this.done == this.doable){
@@ -51,7 +55,13 @@ var objectives = {
         }
 
         if (objectiveType.classList.contains("active")) {
-            return;
+            if( objectiveType.scrollTop + objectiveType.offsetHeight === objectiveType.scrollHeight ){
+                objectiveType.scrollTop = 0;
+            } else {
+                var offset = document.getElementById('findwords-container').offsetHeight;
+                objectiveType.scrollTop += offset/2;
+            }
+
         } else {
             objectives.deactivateAll();
             objectiveType.classList.add("active");
@@ -60,8 +70,9 @@ var objectives = {
 
     checkTypeCompletion: function(type){
         if (objectives.doneByType[type] >= objectives.toDoByType[type]) {
+            var needToFindNext = $("[data-type='"+type+"']").hasClass("active");
             objectives.disable(type);
-            objectives.findActivable(type);
+            if (needToFindNext) objectives.findActivable(type);
         }
     },
 

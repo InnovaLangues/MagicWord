@@ -29,7 +29,7 @@ var combo = {
 
 		if(!increment){
 			comboEnded = true;
-			this.endCombo();
+			this.endCombo(this.currentComboLength);
 			this.currentComboLength = 0;
 			//ptete un nouveau combo est commencé
 			for (var i = this.previousIds.length; i--;) {
@@ -83,7 +83,7 @@ var combo = {
 	},
 
 	reset: function(){
-		this.endCombo();
+		this.endCombo(this.currentComboLength);
 		this.newIds = [];
 		this.previousIds = [];
 		this.currentComboLength = 0;
@@ -91,12 +91,10 @@ var combo = {
 		this.showCombo();
 	},
 
-	endCombo: function(){
-		if (this.currentComboLength > 1) {
-			objectiveCombo.checkObjectives(this.currentComboLength, false);
-			if (roundJSON.type == "rush") {
-				activity.sendComboFinished(this.currentComboLength);
-			}
+	endCombo: function(length){
+		if (length > 1) {
+			activity.sendComboFinished(length);
+			objectiveCombo.checkObjectives(length, false);
 		}
 		this.showCombo();
 	},

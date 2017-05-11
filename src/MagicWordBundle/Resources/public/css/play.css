@@ -62,13 +62,21 @@
 
 .objectives.active .objective-summary{
     display:none;
+    height: 100%;
 }
 
 .objectives .objective-list{
     display:none;
+    height: 100%;
 }
 
 .objectives.active .objective-list{
+    display:block;
+}
+
+.objective-findword {
+    height:50%;
+    width:100%;
     display:block;
 }
 
@@ -187,7 +195,9 @@ COMBO
 
 }
 
-#current-combo-5.reached, #current-combo-6.reached{
+#current-combo-5.reached, #current-combo-6.reached,
+#current-combo-7.reached, #current-combo-8.reached,
+#current-combo-9.reached, #current-combo-10.reached{
     background-color:#F04124;
 }
 
