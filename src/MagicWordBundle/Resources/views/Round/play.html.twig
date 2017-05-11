@@ -28,6 +28,31 @@
     <div id="bot"></div>
 </div>
 
+<div class="modal fade" id="game-start-summary" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="game-start-summary">
+    <div class="vertical-alignment-helper">
+        <div class="modal-dialog vertical-align-center" role="document">
+            <div class="modal-content ">
+                <div class="modal-header">
+                    <h4>
+                        {{ round.game.discr |trans }} -
+                        {{ round.discr |trans }}
+                    </h4>
+                </div>
+                <div class="modal-body">
+
+
+                    {% set rules = round.discr~"_rules" %}
+                    <p>{{ rules |trans }}</p>
+                    {{ "round_language" |trans }} {{ round.language.name |trans |lower }}
+                </div>
+                <div class="modal-footer">
+                    <button id="game-start" class="pull-right btn btn-sm btn-primary">{{"letsgo"|trans}}</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
 <script>
 var gridJSON = {{ grid.json | raw }};
 var roundJSON = {{ round.json |raw }};

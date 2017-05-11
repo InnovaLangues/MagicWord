@@ -20,3 +20,9 @@ var sorter = {
         $(container).html(toSort);
     }
 }
+
+var deviceSize = {
+    get: function(){
+        return $('#users-device-size').find('div:visible').first().attr('id');
+    }
+}

@@ -43,7 +43,7 @@ commonNoun: nom commun
 conditional: conditionnel
 conditionnal: conditionnel
 conjunction: conjonction
-conquer_rules: Remplissez les objectifs le plus rapidement possible.
+conquer_rules: 'Manche CONQUER : Remplissez les objectifs le plus rapidement possible pour obtenir des points bonus.'
 conquer: Conquer
 constraint_number: Nombre
 constraint: Morpho
@@ -148,7 +148,7 @@ round_type2: Type de manche que vous voulez jouer (2ème manche)
 round: Manche
 roundCount: manches
 rounds: Manches
-rush_rules: Trouvez des mots dans la grille.
+rush_rules: 'Manche RUSH : Trouvez des mots dans la grille et faites des combos pour faire un maximum de points dans le temps imparti.'
 rush: Rush
 save_grid: 'Sauvegarder la grille'
 save_objectives: 'Sauvegarder les objectifs'
@@ -193,4 +193,6 @@ homeText: Texte d'accueil
 self_registration_disabled: Auto-inscription désactivée
 edit: Editer
 wiktionary_def: Définition wiktionary
-no_combo_done: Vous n'avez pas fait de combo sur cette manche. 
+no_combo_done: Vous n'avez pas fait de combo sur cette manche.
+letsgo: "C'est parti !"
+round_language: La manche est en

@@ -93,7 +93,7 @@ var activity = {
 	},
 
 	end: function(time){
-		combo.endCombo();
+		combo.endCombo(combo.currentComboLength);
 		wait.start("Fin de la manche");
 		setTimeout(function(){
 			var url = Routing.generate('round_end', {id: roundJSON.id});
