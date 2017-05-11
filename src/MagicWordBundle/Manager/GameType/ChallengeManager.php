@@ -126,7 +126,12 @@ class ChallengeManager
         if ($challenged) {
             $challenge->setChallenged($challenged);
         }
-        $form = $this->formFactory->createBuilder(ChallengeType::class, $challenge, ['user' => $currentUser])->getForm();
+        
+        $form = $this->formFactory->createBuilder(
+            ChallengeType::class,
+            $challenge,
+            ['user' => $currentUser, 'action' => $this->router->generate("challenge")]
+        )->getForm();
 
         $form->handleRequest($request);
         if ($form->isSubmitted()) {
