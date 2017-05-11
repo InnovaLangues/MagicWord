@@ -1,8 +1,14 @@
 <div class="panel panel-default">
+    {% if activity.combosdone|length > 0 %}
     <ul class="list-group">
     {% for comboDone in activity.combosdone %}
     <li class="list-group-item">
         {{ comboDone.total }} combos de {{ comboDone.comboType.length }}
     {% endfor %}
     </ul>
+    {% else %}
+        <div class="panel-body">
+        {{ 'no_combo_done'|trans }}
+        </div>
+    {% endif %}
 </div>
