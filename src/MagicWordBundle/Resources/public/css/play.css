@@ -182,7 +182,10 @@ COMBO
 .reached-3, .reached-4 {
     color:#F37022;
 }
-.reached-5, .reached-6 {
+.reached-5, .reached-6,
+.reached-7, .reached-8,
+.reached-9, .reached-10
+.reached-11, .reached-12 {
     color: #F04124;
 }
 
@@ -195,9 +198,7 @@ COMBO
 
 }
 
-#current-combo-5.reached, #current-combo-6.reached,
-#current-combo-7.reached, #current-combo-8.reached,
-#current-combo-9.reached, #current-combo-10.reached{
+#current-combo-5.reached, #current-combo-6.reached{
     background-color:#F04124;
 }
 
