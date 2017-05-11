@@ -303,6 +303,7 @@ ul#squares li.wrongWord {
 }
 
 #giveup{
+    cursor:pointer;
     height:40px;
     background-color:white;
     margin-bottom:2%;
@@ -314,6 +315,7 @@ ul#squares li.wrongWord {
 #giveup i {
     margin:auto;
 }
+
 
 #clock-wrapper{
     height:40px;

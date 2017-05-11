@@ -66,6 +66,10 @@ var grid = {
 			//e.preventDefault();
 		});
 
+		$('body').on("click touchstart", "#giveup", function(e){
+			activity.end();
+		});
+
 		$('body').on("click touchstart", "#fullscreen", function(e){
 			screenfull.toggle(window[0]);
 		});
