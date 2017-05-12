@@ -9,16 +9,16 @@ var objectiveConstraint = {
             for (var j = 0; j < roundJSON.constraints.length; j++) {
                 var objective = roundJSON.constraints[j];
                 if(this.isPertinent(objective, currentInflectionInfos)){
-                    objectives.updateProgress(objective.id);
                     if ($.inArray(objective.id, incrementedObjs) == -1) {
+                        objectives.updateProgress(objective.id);
                         this.constraintRealized.push(objective.id);
                         incrementedObjs.push(objective.id);
+                        if(this.checkCompletion(objective)){
+                            objectives.considerAsDone(objective.id);
+                            activity.sendObjectiveDone(objective.id);
+                        }
                     }
 
-                    if(this.checkCompletion(objective)){
-                        objectives.considerAsDone(objective.id);
-                        activity.sendObjectiveDone(objective.id);
-                    }
                 }
             }
         }
