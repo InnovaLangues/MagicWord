@@ -7,6 +7,7 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 
 
 class GeneralParametersType extends AbstractType
@@ -24,6 +25,16 @@ class GeneralParametersType extends AbstractType
             'required' => false,
             'translation_domain' => 'messages',
         ));
+
+        $builder->add('tutorial', EntityType::class, array(
+          'class' => 'MagicWordBundle:Game',
+          'choice_label' => 'id',
+          'attr' => array('class' => 'form-control'),
+          'label' => 'tutorial_game_id',
+          'translation_domain' => 'messages',
+          'choice_translation_domain' => 'messages',
+        ));
+
 
         $builder->add('save', SubmitType::class, array(
             'attr' => array('class' => 'btn btn-default'),

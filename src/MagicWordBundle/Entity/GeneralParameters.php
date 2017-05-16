@@ -31,6 +31,11 @@ class GeneralParameters
     private $homeText;
 
     /**
+     * @ORM\OneToOne(targetEntity="Game")
+     */
+    private $tutorial;
+
+    /**
      * Get id
      *
      * @return integer
@@ -86,5 +91,29 @@ class GeneralParameters
     public function getHomeText()
     {
         return $this->homeText;
+    }
+
+    /**
+     * Set game.
+     *
+     * @param \MagicWordBundle\Entity\Game $game
+     *
+     * @return Tutorial
+     */
+    public function setTutorial(\MagicWordBundle\Entity\Game $tutorial = null)
+    {
+        $this->tutorial = $tutorial;
+
+        return $this;
+    }
+
+    /**
+     * Get game.
+     *
+     * @return \MagicWordBundle\Entity\Game
+     */
+    public function getTutorial()
+    {
+        return $this->tutorial;
     }
 }
