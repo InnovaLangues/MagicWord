@@ -46,47 +46,47 @@ var tutoriel = {
             {
               element: '#squares',
               intro: '<div class="core"><p><span class="important">Clique</span> et <span class="important">glisse</span> sur les lettres pour former un mot.</p></div>',
-              position: 'right'
+              position: 'top'
             },
             {
               element: '#squares',
               intro: '<div class="core">Déplace-toi :<ul><li><span class="important">verticalement</span></li><li><span class="important">horizontalement</span></li><li><span class="important">en diagonale</span></li></ul> et ce de gauche à droite, droite à gauche, de haut en bas et de bas en haut.</div>',
-              position: 'right'
+              position: 'top'
             },
             {
               element: '#woot-container',
               intro: '<div class="core"><p>Vérifie le mot <span class="important">en construction</span>. Tu peux revenir en arrière si tu le souhaites.</p></div> ',
-              position: 'right'
+              position: 'top'
             },
             {
               element: '#woot',
               intro: '<div class="core"><p>Observe le nombre de <span class="important">points total</span> du mot et les <span class="combo">points combo</span> en cours.</p></div> ',
-              position: 'right'
+              position: 'top'
             },
             {
               element: '#inflections-found',
               intro: '<div class="core"><p>Note les <span class="important">mots déjà créés</span>.En mode Conquer, cette zone liste les objectifs.</p></div>',
-              position: 'right'
+              position: 'bottom'
             },
             {
               element: '#points-container',
               intro: '<div class="core"><p>Suis ton <span class="important">score</span> à tout moment. En mode Conquer, cette zone permet de suivre ta progression sur les objectifs.</p></div>',
-              position: 'right'
+              position: 'bottom'
             },
             {
               element: '#current-combo-container',
               intro: '<div class="core"><p>Souviens toi des <span class="combo">combos</span> ! Cette barre se charge si tu enchaines les mots issus d\'un même lemme. Cela permet, en mode Rush, de gagner beaucoup de points en plus. En mode Conquer, faire des combos peut faire partie des objectifs.</p></div>',
-              position: 'right'
+              position: 'bottom'
             },
             {
               element: '#clock-wrapper',
               intro: 'N\'oublie pas, le temps est compté !',
-              position: 'right'
+              position: 'bottom'
             },
             {
               element: '#header-logo',
               intro: 'Bonne chance !',
-              position: 'right'
+              position: 'top'
             }
         ]
     });
