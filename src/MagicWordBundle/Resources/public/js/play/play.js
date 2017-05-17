@@ -21,10 +21,8 @@ var game = {
 	initEvent: function(){
 		$('body').on("click touchstart", "#game-start", function(e){
 			$('#game-start-summary').modal('hide');
-			if (deviceSize.get() == 'xs') {
 				screenfull.toggle(window[0]);
-			}
-			game.start();
+				game.start();
 		});
 	}
 }
