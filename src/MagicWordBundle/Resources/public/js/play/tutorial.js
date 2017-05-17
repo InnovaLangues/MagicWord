@@ -12,11 +12,14 @@ var game = {
 		$('#game-start-summary').modal('show');
 	},
 	start: function(){
-			clock.init();
-			$("#game-container").show();
-			grid.resize();
-      tutoriel.start();
-	},
+        activity.init(function(){
+          clock.delta = 0;
+          clock.init();
+          $("#game-container").show();
+          grid.resize();
+					tutoriel.start();
+        });
+      },
 	initEvent: function(){
 		$('body').on("click touchstart", "#game-start", function(e){
 			$('#game-start-summary').modal('hide');

@@ -9,11 +9,11 @@ var activity = {
           })
           .done(function(data) {
               clock.delta = data.delta;
-			  if (data.delta != 0) {
-			  	activity.populate(data.infos, data.combopoints);
-			  }
-			  callback();
-          });
+						  if (data.delta != 0) {
+						  	activity.populate(data.infos, data.combopoints);
+			  			}
+			  		callback();
+        });
 	},
 
 	populate: function(infos, combopoints){
