@@ -11,6 +11,13 @@
                 </h4>
             </div>
             <ul class="list-group">
+                {% set generalParameters = getGeneralParameters() %}
+                {% if generalParameters.tutorial %}
+                <li class="list-group-item">
+                    <a href="{{ path('tutorial') }}">{{ 'tutorial' | trans }}</a>
+                </li>
+                {% endif %}
+
                 <li class="list-group-item">
                     {{ 'train' | trans }}
                     {% set languages = get_languages() %}

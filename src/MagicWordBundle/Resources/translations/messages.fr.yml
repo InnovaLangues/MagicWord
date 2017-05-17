@@ -197,3 +197,5 @@ no_combo_done: Vous n'avez pas fait de combo sur cette manche.
 letsgo: "C'est parti !"
 round_language: La manche est en
 tutorial_game_id: id de la partie tuto
+tutorial: Tutoriel
+tutorial_text: Bienvenue dans le tutoriel MagicWord. Vous allez être familiarisé avec les bases du jeu et de l'interface. Vous avez 2 minutes mais, contrairement aux autres parties, vous pourrez recommencez celle-ci si vous le souhaitez.

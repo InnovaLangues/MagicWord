@@ -26,7 +26,8 @@ module.exports = function(grunt) {
                         'src/MagicWordBundle/Resources/public/css/play.css',
                         'src/MagicWordBundle/Resources/public/css/end.css',
                         'src/MagicWordBundle/Resources/public/css/editor.css',
-                        "bower_components/animate.css/animate.min.css"
+                        "bower_components/animate.css/animate.min.css",
+                        "bower_components/intro.js/introjs.css",
                     ],
                 }
             }
@@ -82,6 +83,26 @@ module.exports = function(grunt) {
                         "src/MagicWordBundle/Resources/public/js/play/sound.js",
                         "bower_components/jquery-nearest/src/jquery.nearest.min.js",
                         "bower_components/FitText.js/jquery.fittext.js"
+                    ],
+                    'web/js/tutorial.js': [
+                        "bower_components/jquery-ui/jquery-ui.min.js",
+                        "bower_components/FlipClock/compiled/flipclock.min.js",
+                        "bower_components/howler.js/dist/howler.min.js",
+                        "src/MagicWordBundle/Resources/public/js/play/activity.js",
+                        "src/MagicWordBundle/Resources/public/js/play/clock.js",
+                        "src/MagicWordBundle/Resources/public/js/play/objective-combo.js",
+                        "src/MagicWordBundle/Resources/public/js/play/objective-findword.js",
+                        "src/MagicWordBundle/Resources/public/js/play/objective-constraint.js",
+                        "src/MagicWordBundle/Resources/public/js/play/word.js",
+                        "src/MagicWordBundle/Resources/public/js/play/combo.js",
+                        "src/MagicWordBundle/Resources/public/js/play/grid.js",
+                        "src/MagicWordBundle/Resources/public/js/play/score.js",
+                        "src/MagicWordBundle/Resources/public/js/play/objectives.js",
+                        "src/MagicWordBundle/Resources/public/js/play/sound.js",
+                        "src/MagicWordBundle/Resources/public/js/play/tutorial.js",
+                        "bower_components/jquery-nearest/src/jquery.nearest.min.js",
+                        "bower_components/FitText.js/jquery.fittext.js",
+                        "bower_components/intro.js/intro.js"
                     ],
                     'web/js/translations.js': [
                         "web/bundles/bazingajstranslation/js/translator.min.js",

@@ -1,0 +1,56 @@
+{% extends '::base.html.twig'%}
+
+{% block title %}PLAY ROUND{% endblock %}
+{% block topToHideWhilePlaying %}{% endblock %}
+{% block bottomToHideWhilePlaying %}{% endblock %}
+
+{% block body -%}
+
+{% set hasObj = (round.objectives is defined and round.objectives is not empty ) ? true : false %}
+{% set grid =  round.grid %}
+
+<div id="game-container" style="display:none">
+    <div id="fullscreen" class="visible-xs fa fa-arrows-alt" aria-hidden="true"></div>
+    <div class="top-container">
+        {% include "MagicWordBundle:Round/Play:clock.html.twig" %}
+        {% include "MagicWordBundle:Round/Play:found.html.twig" %}
+        {% include "MagicWordBundle:Round/Play:objectives.html.twig" %}
+        {% include "MagicWordBundle:Round/Play:woot.html.twig" %}
+        {% include "MagicWordBundle:Round/Play:combo.html.twig" %}
+    </div>
+    <div class="row">
+        <div id="grid-container" class="col-md-12 col-xs-12 col-lg-12">
+            {% include "MagicWordBundle:Round/Play:grid.html.twig" %}
+        </div>
+    </div>
+    <div id="bot"></div>
+</div>
+
+<div class="modal fade" id="game-start-summary" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="game-start-summary">
+    <div class="vertical-alignment-helper">
+        <div class="modal-dialog vertical-align-center" role="document">
+            <div class="modal-content ">
+                <div class="modal-header">
+                    <h4>{{ "tutorial" |trans }}</h4>
+                </div>
+                <div class="modal-body">
+                    <p>{{ "tutorial_text" |trans }}</p>
+                </div>
+                <div class="modal-footer">
+                    <button id="game-start" class="pull-right btn btn-sm btn-primary">{{"letsgo"|trans}}</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+var gridJSON = {{ grid.json | raw }};
+var roundJSON = {{ round.json |raw }};
+var assetsBaseDir = "{{ asset('.', "noversion") }}";
+</script>
+{% endblock %}
+
+{% block javascripts -%}
+<script type="text/javascript" src="{{ asset('/js/tutorial.js') }}"></script>
+{% endblock %}
