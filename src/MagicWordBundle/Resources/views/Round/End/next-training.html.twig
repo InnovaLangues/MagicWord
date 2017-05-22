@@ -1,1 +1,6 @@
+<a class="please-wait btn btn-default" data-message="Génération de la grille" href="{{ path('train', {id: round.grid.language.id}) }}">
+    <i class="fa fa-repeat" aria-hidden="true"></i>
+    <span class="hidden-xs">{{ "train_again" | trans }}</span>
+</a>
+
 {% include "MagicWordBundle:Common:backtohome.html.twig" %}
