@@ -33,7 +33,7 @@ framework:
     fragments:       ~
     http_method_override: true
     assets:
-        version: v20170518A
+        version: v20170521A
         packages:
             noversion:
                 version: ~
