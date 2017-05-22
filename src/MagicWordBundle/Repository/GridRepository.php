@@ -15,6 +15,7 @@ class GridRepository extends \Doctrine\ORM\EntityRepository
         $em = $this->_em;
         $dql = "SELECT grid FROM MagicWordBundle\Entity\Grid grid
                 WHERE grid.language = :language
+                AND SIZE(grid.foundableForms) > 180
                 AND NOT EXISTS (
                     SELECT round FROM MagicWordBundle\Entity\Round round
                     INNER JOIN round.game game
@@ -25,6 +26,16 @@ class GridRepository extends \Doctrine\ORM\EntityRepository
                         OR challenge.challenged = :author
                         OR challenge.author = :author
                         OR challenge.author = :challenged
+                    )
+                )
+                AND NOT EXISTS(
+                    SELECT a FROM MagicWordBundle\Entity\Activity a
+                    INNER JOIN a.round r
+                    WHERE a.round = r
+                    AND r.grid = grid
+                    AND (
+                        a.player = :author
+                        OR a.player = :challenged
                     )
                 )";
 

@@ -26,7 +26,7 @@ class GameRepository extends \Doctrine\ORM\EntityRepository
                     WHERE a.round = r
                     AND a.player = :user
                 )
-                AND SIZE(g.foundableForms) > 150";
+                AND SIZE(g.foundableForms) > 180";
 
         $query = $em->createQuery($dql);
         $query->setParameter('user', $user)
