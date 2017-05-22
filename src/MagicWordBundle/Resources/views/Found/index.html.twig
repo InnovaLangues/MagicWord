@@ -1,0 +1,31 @@
+{% extends '::base.html.twig' %}
+
+{% block body -%}
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h4>
+                {% include "MagicWordBundle:Common:backtohome.html.twig" %}
+                {{ 'founded' | trans }} <strong>{{ language.name | trans }}</strong> ({{ found|length }})
+
+                <span class="pull-right">
+                   <button type="button" class="btn btn-default btn-xs" data-order="asc" onclick="sorter.sort('form', this, '#found', '#found li')">
+                       <i class="fa fa-sort" aria-hidden="true"></i> A-Z
+                   </button>
+                   <button type="button" class="btn btn-default btn-xs" data-order="asc" onclick="sorter.sort('points', this, '#found', '#found li')">
+                       <i class="fa fa-sort" aria-hidden="true"></i> Points
+                   </button>
+                   <button type="button" class="btn btn-default btn-xs" data-order="asc" onclick="sorter.sort('length', this, '#found', '#found li')">
+                       <i class="fa fa-sort" aria-hidden="true"></i> Longueur
+                   </button>
+                </span>
+            </h4>
+        </div>
+        <ul class="list-group" id="found">
+        {% for foundform in found %}
+            <li class="list-group-item" data-form="{{ foundform.form }}" data-points="{{ foundform.points }}" data-length="{{ foundform.form|length }}">
+                {{ foundform.form }}
+            </li>
+        {% endfor %}
+        </ul>
+    </div>
+{% endblock %}
