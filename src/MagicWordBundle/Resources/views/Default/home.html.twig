@@ -80,9 +80,9 @@
                     {% endfor %}
                 </li>
                 <li class="list-group-item">
-                    {{ 'founded' | trans }}
+                    {{ 'found' | trans }}
                     {% for language in languages %}
-                    <a href="{{ path('founded', {id: language.id}) }}">
+                    <a href="{{ path('found', {id: language.id}) }}">
                         {{ language.name | trans }}
                     </a>
                     {% endfor %}

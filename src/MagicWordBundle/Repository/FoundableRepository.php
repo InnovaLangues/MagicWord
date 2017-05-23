@@ -66,4 +66,16 @@ class FoundableRepository extends \Doctrine\ORM\EntityRepository
 
         return $query->getResult();
     }
+
+    public function foundableByLanguage(Language $language)
+    {
+        $dql = 'SELECT count(DISTINCT i.cleanedContent) FROM InnovaLexiconBundle:Inflection i
+                WHERE i.language = :language';
+
+        $query = $this->_em->createQuery($dql);
+        $query->setParameter('language', $language);
+
+        return $query->getSingleScalarResult();
+
+    }
 }
