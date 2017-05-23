@@ -201,4 +201,5 @@ tutorial: Tutoriel
 tutorial_text: Bienvenue dans le tutoriel MagicWord. Vous allez être familiarisé avec les bases du jeu et de l'interface. Vous avez 2 minutes mais, contrairement aux autres parties, vous pourrez recommencez celle-ci si vous le souhaitez.
 train_again: S'entrainer encore
 found: Formes trouvées
-being: soit
+found_percent: %count% formes trouvées sur %total%, soit %percent%%
+found_by_percent: Forme trouvée par %percent%% des joueurs

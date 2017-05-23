@@ -2,6 +2,7 @@
 
 namespace MagicWordBundle\Repository;
 use MagicWordBundle\Entity\Player;
+use MagicWordBundle\Entity\FoundableForm;
 use Innova\LexiconBundle\Entity\Language;
 
 /**
@@ -76,6 +77,24 @@ class FoundableRepository extends \Doctrine\ORM\EntityRepository
         $query->setParameter('language', $language);
 
         return $query->getSingleScalarResult();
+    }
 
+    public function foundCountByFormAndLanguage(FoundableForm $foundableForm, Language $language)
+    {
+        $dql = "SELECT count(DISTINCT p) FROM MagicWordBundle:Player p
+                WHERE EXISTS(
+                    SELECT a FROM MagicWordBundle:Activity a
+                    LEFT JOIN a.round round
+                    LEFT JOIN round.grid grid
+                    WHERE a.player = p
+                    AND :form MEMBER OF a.foundForms
+                    AND grid.language = :language
+                )";
+
+        $query = $this->_em->createQuery($dql);
+        $query->setParameter('language', $language);
+        $query->setParameter('form', $foundableForm);
+
+        return $query->getSingleScalarResult();
     }
 }

@@ -12,6 +12,10 @@
         </h4>
     </div>
     <div class="panel-body">
+        {% set percentFound = (foundCount / userCount * 100) | round(0) %}
+        <div class="alert alert-info" role="alert">
+            {{ "found_by_percent"|trans({'%percent%': percentFound}) }}
+        </div>
         {% for inflection in foundableForm.inflections %}
         {% set lemma = inflection.lemma %}
         <li class="list-group-item">

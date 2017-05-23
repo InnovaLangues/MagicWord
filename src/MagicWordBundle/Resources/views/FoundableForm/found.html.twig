@@ -5,11 +5,7 @@
         <div class="panel-heading">
             <h4>
                 {% include "MagicWordBundle:Common:backtohome.html.twig" %}
-                {% set foundCount = found|length %}
-                {% set percent =  foundCount/foundable * 100 %}
-
-                {{ 'found' | trans }} <strong>{{ language.name | trans }}</strong> ({{ foundCount }} / {{ foundable }} {{ "being"|trans}} {{ percent|round(4) }}%)
-
+                {{ 'found' | trans }} {{ language.name | trans }}
                 <span class="pull-right">
                    <button type="button" class="btn btn-default btn-xs" data-order="asc" onclick="sorter.sort('form', this, '#found', '#found li')">
                        <i class="fa fa-sort" aria-hidden="true"></i> A-Z
@@ -23,12 +19,19 @@
                 </span>
             </h4>
         </div>
-        <ul class="list-group" id="found">
-        {% for foundform in found %}
-            <li class="list-group-item" data-form="{{ foundform.form }}" data-points="{{ foundform.points }}" data-length="{{ foundform.form|length }}">
-                <a href="{{ path('form_details', {formId: foundform.id, languageId: language.id }) }}">{{ foundform.form }}</a>
-            </li>
-        {% endfor %}
-        </ul>
+        <div class="panel-body">
+            {% set foundCount = found|length %}
+            {% set percent =  (foundCount/foundable * 100) |round(4) %}
+            <div class="alert alert-info" role="alert">
+                {{ "found_percent" | trans({'%count%': foundCount, '%total%': foundable, '%percent%':percent }) }}
+            </div>
+            <ul class="list-group" id="found">
+            {% for foundform in found %}
+                <li class="list-group-item" data-form="{{ foundform.form }}" data-points="{{ foundform.points }}" data-length="{{ foundform.form|length }}">
+                    <a href="{{ path('form_details', {formId: foundform.id, languageId: language.id }) }}">{{ foundform.form }}</a>
+                </li>
+            {% endfor %}
+            </ul>
+        </div>
     </div>
 {% endblock %}
