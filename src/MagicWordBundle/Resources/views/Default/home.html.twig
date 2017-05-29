@@ -117,6 +117,8 @@
             <ul class="list-group">
                 {% for user in get_connected(500) %}
                 <li class="list-group-item">
+                    {% set picUrl = (user.profilepicPath) ? asset('upload/profilepic/' ~ user.profilepicPath) : asset('img/user.png') %}
+                    <img height="22px" src="{{ picUrl }}"/>
                     <a href="{{ path('profile', {"id":  user.id}) }}">{{ user.username }}</a>
                 </li>
                 {% endfor %}
