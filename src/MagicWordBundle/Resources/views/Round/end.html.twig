@@ -48,6 +48,11 @@
                 </a>
             </li>
             {% endif %}
+            <li role="presentation">
+                <a href="#accuracy" aria-controls="accuracy" role="tab" data-toggle="tab">
+                {{ "accuracy"|trans }}
+                </a>
+            </li>
             {% if gameType != "training" %}
             <li role="presentation">
                 <a href="#ranking" aria-controls="ranking" role="tab" data-toggle="tab">
@@ -69,6 +74,9 @@
                 {% include "MagicWordBundle:Round/End:objectives.html.twig" %}
             </div>
             {% endif %}
+            <div role="tabpanel" class="tab-pane fade" id="accuracy" style="height:auto;">
+                {% include "MagicWordBundle:Round/End:accuracy.html.twig" %}
+            </div>
             {% if gameType != "training" %}
             <div role="tabpanel" class="tab-pane fade" id="ranking" style="height:auto;">
                 {% include "MagicWordBundle:Round/End:ranking.html.twig" %}

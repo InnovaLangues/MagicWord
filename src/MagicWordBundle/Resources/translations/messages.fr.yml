@@ -203,3 +203,5 @@ train_again: S'entrainer encore
 found: Formes trouvées
 found_percent: %count% formes trouvées sur %total%, soit %percent%%
 found_by_percent: Forme trouvée par %percent%% des joueurs
+accuracy: Précision
+accuracy_text: Votre précision est de %accuracy%% (%totalFound% formes correctes trouvées pour %totalWrong% erronées).

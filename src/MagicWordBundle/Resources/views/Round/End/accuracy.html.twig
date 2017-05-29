@@ -1,0 +1,13 @@
+<div class="panel panel-default">
+    <div class="panel-body">
+        {% set totalFound = activity.foundForms|length %}
+        {% set totalWrong = activity.wrongForms|length %}
+        {% if totalFound > 0 %}
+            {% set totalForms = totalWrong + totalFound %}
+            {% set accuracy = (totalFound / totalForms * 100) |round(0) %}
+        {% else %}
+            {% set accuracy = 0 %}
+        {% endif %}
+        {{ "accuracy_text" | trans({'%accuracy%': accuracy, '%totalFound%': totalFound, '%totalWrong%': totalWrong }) }}
+    </div>
+</div>

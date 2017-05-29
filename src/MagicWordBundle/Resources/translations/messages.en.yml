@@ -180,4 +180,13 @@ wordbox: Wordbox
 wordlengthpoints: Form length bonus points
 wiktionary_def: Définition wiktionary
 no_combo_done: You did not make any combo during this round.
-round_language: The round is in 
+round_language: The round is in
+tutorial_game_id: Tutorial game id
+tutorial: Tutorial
+tutorial_text: Bienvenue dans le tutoriel MagicWord. Vous allez être familiarisé avec les bases du jeu et de l'interface. Vous avez 2 minutes mais, contrairement aux autres parties, vous pourrez recommencez celle-ci si vous le souhaitez.
+train_again: Train again
+found: Found forms
+found_percent: %count% found forms out of %total%, being %percent%%
+found_by_percent: Form found by %percent%% of all players
+accuracy: Accuracy
+accuracy_text: Your accuracy is %accuracy%% (%totalFound% correct found forms and %totalWrong% wrong ones).
