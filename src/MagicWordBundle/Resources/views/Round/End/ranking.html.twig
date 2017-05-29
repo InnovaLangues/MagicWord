@@ -1,3 +1,5 @@
+{% import "MagicWordBundle:Player:macros.html.twig" as pmacros %}
+
 <div class="panel panel-default">
     <div class="panel-body">
         <table class="table table-bordered table-striped">
@@ -18,7 +20,7 @@
                 {% for i, activity in activities %}
                 <tr {{ app.user == activity.player ? "class='success'": ""}}>
                     <td>{{ i + 1 }}</td>
-                    <td>{{ activity.player }}</td>
+                    <td>{{ pmacros.playerPicAndName(activity.player) }}</td>
                     <td>{{ activity.points }}</td>
                     {% if round.discr == "conquer" %}
                     <td>{{ getTimeSpent(activity) }}</td>

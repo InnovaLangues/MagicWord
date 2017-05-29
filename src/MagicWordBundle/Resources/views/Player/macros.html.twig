@@ -1,0 +1,5 @@
+{% macro playerPicAndName(player) %}
+    {% set picUrl = (player.profilepicPath) ? asset('upload/profilepic/' ~ player.profilepicPath) : asset('img/user.png') %}
+    <img height="22px" src="{{ picUrl }}"/>
+    <a href="{{ path('profile', {"id":  player.id}) }}">{{ player.username }}</a>
+{% endmacro %}
