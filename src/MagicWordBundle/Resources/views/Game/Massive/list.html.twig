@@ -64,6 +64,10 @@
                         </ul>
                     </div>
                 </div>
+                 {% else %}
+                <div class="panel-body">
+                    {{ "no_massive_create" |trans}} <a href="{{ path('massive') }}">{{ 'create' | trans }}</a>
+                </div>
                 {% endfor %}
             </div>
         </div>

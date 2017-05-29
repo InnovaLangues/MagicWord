@@ -49,7 +49,7 @@ constraint_number: Nombre
 constraint: Morpho
 constraints: Contraintes
 continue: Continuer
-create: Créer des parties massives
+create: Créer une partie massive
 current_combo: ""
 day: jour
 days: jours
@@ -205,3 +205,4 @@ found_percent: %count% formes trouvées sur %total%, soit %percent%%
 found_by_percent: Forme trouvée par %percent%% des joueurs
 accuracy: Précision
 accuracy_text: Votre précision est de %accuracy%% (%totalFound% formes correctes trouvées pour %totalWrong% erronées).
+no_massive_create: Il n'y a pas de partie massive disponible mais vous pouvez en créer une.

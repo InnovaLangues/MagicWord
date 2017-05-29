@@ -190,3 +190,4 @@ found_percent: %count% found forms out of %total%, being %percent%%
 found_by_percent: Form found by %percent%% of all players
 accuracy: Accuracy
 accuracy_text: Your accuracy is %accuracy%% (%totalFound% correct found forms and %totalWrong% wrong ones).
+no_massive_create: There's no massive game available but you can create a new one.
