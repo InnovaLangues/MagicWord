@@ -1,3 +1,1 @@
-<div class="col-md-3 col-xs-12 col-sm-12">
-    <input type="checkbox" id="mute-sound" {{ app.user.muteSound == true ? "checked" : "" }} />
-</div>
+<input type="hidden" id="mute-sound" value="{{ app.user.muteSound == true ? "true" : "false" }}" />
