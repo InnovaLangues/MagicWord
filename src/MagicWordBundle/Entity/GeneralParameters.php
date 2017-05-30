@@ -31,6 +31,11 @@ class GeneralParameters
     private $homeText;
 
     /**
+     * @ORM\Column(type="string", nullable=true)
+     */
+    private $piwikUrl;
+
+    /**
      * @ORM\OneToOne(targetEntity="Game")
      */
     private $tutorial;
@@ -115,5 +120,29 @@ class GeneralParameters
     public function getTutorial()
     {
         return $this->tutorial;
+    }
+
+    /**
+     * Set piwikUrl
+     *
+     * @param string $piwikUrl
+     *
+     * @return GeneralParameters
+     */
+    public function setPiwikUrl($piwikUrl)
+    {
+        $this->piwikUrl = $piwikUrl;
+
+        return $this;
+    }
+
+    /**
+     * Get piwikUrl
+     *
+     * @return string
+     */
+    public function getPiwikUrl()
+    {
+        return $this->piwikUrl;
     }
 }

@@ -7,6 +7,7 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 
 
@@ -17,6 +18,12 @@ class GeneralParametersType extends AbstractType
         $builder->add('homeText', TextareaType::class, array(
             'attr' => array('class' => 'form-control'),
             'label' => 'homeText',
+            'required' => false,
+        ));
+
+        $builder->add('piwikUrl', TextType::class, array(
+            'attr' => array('class' => 'form-control'),
+            'label' => 'piwikUrl',
             'required' => false,
         ));
 

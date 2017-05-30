@@ -1,4 +1,6 @@
 {% set logged = app.user is not null ? true : false %}
+{% set generalParameters = getGeneralParameters() %}
+
 <!DOCTYPE html>
 <html lang="{{ app.request.locale|split('_')[0] }}">
     <head>
@@ -13,6 +15,7 @@
         <link rel="stylesheet" href="{{ asset('/css/main.css')}}" type="text/css"/>
         {% block stylesheets %}{% endblock %}
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}"/>
+        {% if generalParameters.piwikUrl %}
         <!-- Piwik -->
         <script type="text/javascript">
           var _paq = _paq || [];
@@ -20,7 +23,7 @@
           _paq.push(['trackPageView']);
           _paq.push(['enableLinkTracking']);
           (function() {
-            var u="//piwik.innovalangues.net/";
+            var u="//{{ generalParameters.piwikUrl }}/";
             _paq.push(['setTrackerUrl', u+'piwik.php']);
             _paq.push(['setSiteId', '1']);
             var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
@@ -28,6 +31,7 @@
           })();
         </script>
         <!-- End Piwik Code -->
+        {% endif %}
     </head>
     <body>
         {% block topToHideWhilePlaying %}

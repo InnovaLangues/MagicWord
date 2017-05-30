@@ -207,3 +207,4 @@ accuracy: Précision
 accuracy_text: Votre précision est de %accuracy%% (%totalFound% formes correctes trouvées pour %totalWrong% erronées).
 no_massive_create: Il n'y a pas de partie massive disponible mais vous pouvez en créer une.
 save_all: Tout sauvegarder
+piwikUrl: URL piwik (sans le http(s)://)
