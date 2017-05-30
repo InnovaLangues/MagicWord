@@ -3,7 +3,7 @@ var objectives = {
         btn.closest('li').remove();
     },
 
-    save: function(){
+    save: function(callback){
         if(editor.isFormValid("objectives")){
             wait.start("Sauvegarde des objectifs");
             var url = Routing.generate('save_objectives', {id: $('#conquerId').val()});
@@ -14,11 +14,18 @@ var objectives = {
                   url: url,
                   data: data,
               })
-              .done(function(data) {
-                  wait.stop();
+              .done(function() {
+                  if (typeof callback === "function") {
+                      callback();
+                  } else {
+                       wait.stop();
+                  }
               });
         } else {
-            info.display("Un ou plusieurs objectifs ne sont correctement remplis");
+            alert("Un ou plusieurs objectifs ne sont correctement remplis");
+            if (typeof callback === "function") {
+                callback();
+            }
         }
     }
 }

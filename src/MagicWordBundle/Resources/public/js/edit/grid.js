@@ -16,7 +16,7 @@ var gridHandler = {
          .done(function(data) {
              var data = data;
              $("input[name='squares[]']").each(function( index ) {
-                 if ($(this).val() == "-" || $(this).val() == "_") {
+                 if ($(this).val() == "" || $(this).val() == "-" || $(this).val() == "_") {
                      $(this).val(data[index]);
                  }
              });
@@ -40,6 +40,8 @@ var gridHandler = {
                  roundHandler.checkConsistency();
                  wait.stop();
              });
+         } else {
+             alert("La grille n'est pas remplie");
          }
     },
 

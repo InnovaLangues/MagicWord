@@ -206,3 +206,4 @@ found_by_percent: Forme trouvée par %percent%% des joueurs
 accuracy: Précision
 accuracy_text: Votre précision est de %accuracy%% (%totalFound% formes correctes trouvées pour %totalWrong% erronées).
 no_massive_create: Il n'y a pas de partie massive disponible mais vous pouvez en créer une.
+save_all: Tout sauvegarder
