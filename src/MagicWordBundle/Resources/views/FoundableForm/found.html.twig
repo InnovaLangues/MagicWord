@@ -27,8 +27,8 @@
             </div>
             <ul class="list-group" id="found">
             {% for foundform in found %}
-                <li class="list-group-item" data-form="{{ foundform.form }}" data-points="{{ foundform.points }}" data-length="{{ foundform.form|length }}">
-                    <a href="{{ path('form_details', {formId: foundform.id, languageId: language.id }) }}">{{ foundform.form }}</a>
+                <li class="col-sm-4 list-group-item" data-form="{{ foundform.form }}" data-points="{{ foundform.points }}" data-length="{{ foundform.form|length }}">
+                    <a href="{{ path('form_details', {formId: foundform.id, languageId: language.id }) }}">{{ foundform.form | upper }}</a>
                 </li>
             {% endfor %}
             </ul>
