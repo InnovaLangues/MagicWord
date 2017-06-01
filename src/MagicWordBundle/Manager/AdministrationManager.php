@@ -86,10 +86,10 @@ class AdministrationManager
         $form = $this->formFactory->createBuilder(GeneralParametersType::class, $generalParameters)->getForm()->createView();
 
         return $form;
-
     }
 
-    public function handleGeneralParametersForm(Request $request){
+    public function handleGeneralParametersForm(Request $request)
+    {
         $generalParameters = $this->getGeneralParameters();
 
         $form = $this->formFactory->createBuilder(GeneralParametersType::class, $generalParameters)->getForm();
@@ -108,6 +108,5 @@ class AdministrationManager
         $generalParameters = $this->em->getRepository("MagicWordBundle:GeneralParameters")->get();
 
         return $generalParameters;
-
     }
 }

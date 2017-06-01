@@ -12,7 +12,7 @@ class WordLengthPointsType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('points', IntegerType::class,  array(
+        $builder->add('points', IntegerType::class, array(
             'attr' => [
                 'placeholder' => 'bonus_points',
                 'translation_domain' => 'messages',

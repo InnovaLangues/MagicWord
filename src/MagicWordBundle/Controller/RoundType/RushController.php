@@ -9,8 +9,6 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use MagicWordBundle\Entity\RoundType\Rush;
 
-
-
 class RushController extends Controller
 {
     /**
@@ -39,5 +37,4 @@ class RushController extends Controller
 
         return new JsonResponse($response);
     }
-
 }

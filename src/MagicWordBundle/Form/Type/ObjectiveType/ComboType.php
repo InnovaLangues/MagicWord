@@ -11,7 +11,7 @@ class ComboType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('lenght', IntegerType::class,  array(
+        $builder->add('lenght', IntegerType::class, array(
             'translation_domain' => 'messages',
             'label' => 'combo_length',
             'attr' => [
@@ -21,7 +21,7 @@ class ComboType extends AbstractType
             ],
         ));
 
-        $builder->add('number', IntegerType::class,  array(
+        $builder->add('number', IntegerType::class, array(
             'label' => 'combo_number',
             'translation_domain' => 'messages',
             'attr' => [

@@ -177,7 +177,9 @@ class GridManager
             }
         }
 
-        $combos = array_filter($combos, function ($v) {return count($v['inflections']) > 1;});
+        $combos = array_filter($combos, function ($v) {
+            return count($v['inflections']) > 1;
+        });
 
         usort($combos, function ($a, $b) {
             return count($b['inflections']) - count($a['inflections']);

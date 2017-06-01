@@ -23,8 +23,8 @@ class ChallengeType extends AbstractType
         $builder->add('challenged', EntityType::class, array(
            'class' => 'MagicWordBundle:Player',
            'query_builder' => function (EntityRepository $er) use ($options) {
-                return $er->getCandidates($options['user']);
-            },
+               return $er->getCandidates($options['user']);
+           },
             'required' => true,
             'placeholder' => '----------',
            'attr' => array('class' => 'form-control'),
