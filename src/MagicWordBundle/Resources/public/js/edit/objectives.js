@@ -15,10 +15,9 @@ var objectives = {
                   data: data,
               })
               .done(function() {
+                  wait.stop();
                   if (typeof callback === "function") {
                       callback();
-                  } else {
-                       wait.stop();
                   }
               });
         } else {

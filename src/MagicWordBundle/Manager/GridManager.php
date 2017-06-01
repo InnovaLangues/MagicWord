@@ -22,7 +22,7 @@ class GridManager
      * @DI\InjectParams({
      *      "entityManager"         = @DI\Inject("doctrine.orm.entity_manager"),
      *      "letterLangManager"     = @DI\Inject("mw_manager.letter_language"),
-     *      "foundableFormManager"  = @DI\Inject("mw_manager.foundableForm"),
+     *      "foundableFormManager"  = @DI\Inject("mw_manager.foundableform"),
      *      "squareManager"         = @DI\Inject("mw_manager.square"),
      *      "tokenStorage"          = @DI\Inject("security.token_storage"),
      * })

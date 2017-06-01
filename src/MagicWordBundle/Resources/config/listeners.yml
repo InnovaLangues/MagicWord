@@ -7,15 +7,12 @@ services:
 
     app.locale_listener:
         class: MagicWordBundle\Listener\LocaleListener
-        arguments:
-                "defaultLocale": '%kernel.default_locale%'
-                "tokenStorage": "@security.token_storage"
+        arguments: ['%kernel.default_locale%', "@security.token_storage"]
         tags:
             - { name: kernel.event_subscriber }
 
     app.user_registration_listener:
         class: MagicWordBundle\Listener\RegistrationListener
-        arguments:
-            "wordboxManager": "@mw_manager.wordbox"
+        arguments: ["@mw_manager.wordbox"]
         tags:
             - { name: kernel.event_listener, event: fos_user.registration.success, method: onRegistration }

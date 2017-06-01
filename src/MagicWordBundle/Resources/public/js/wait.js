@@ -5,6 +5,7 @@ var wait = {
     },
 
     stop: function(){
-        $('#please-wait').modal('hide');
+        $('.modal.in').modal('hide');
+        $('.modal-backdrop').remove();
     }
 }

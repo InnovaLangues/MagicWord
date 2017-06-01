@@ -1,66 +1,54 @@
 services:
     twig.extension.get_languages:
         class: MagicWordBundle\Twig\LanguageExtension
-        arguments:
-            "entityManager": "@doctrine.orm.entity_manager"
+        arguments: ["@doctrine.orm.entity_manager"]
         tags:
             - { name: twig.extension }
 
     twig.extension.get_point:
         class: MagicWordBundle\Twig\LetterPointExtension
-        arguments:
-            "entityManager": "@doctrine.orm.entity_manager"
+        arguments: ["@doctrine.orm.entity_manager"]
         tags:
             - { name: twig.extension }
 
     twig.extension.game:
         class: MagicWordBundle\Twig\GameExtension
-        arguments:
-            "entityManager": "@doctrine.orm.entity_manager"
+        arguments: ["@doctrine.orm.entity_manager"]
         tags:
             - { name: twig.extension }
 
     twig.extension.get_connected:
         class: MagicWordBundle\Twig\UserExtension
-        arguments:
-            "entityManager": "@doctrine.orm.entity_manager"
-            "userManager": "@mw_manager.user"
+        arguments: ["@doctrine.orm.entity_manager", "@mw_manager.user"]
         tags:
             - { name: twig.extension }
 
     twig.extension.get_word_length_point:
         class: MagicWordBundle\Twig\WordLengthPointExtension
-        arguments:
-            "entityManager": "@doctrine.orm.entity_manager"
+        arguments: ["@doctrine.orm.entity_manager"]
         tags:
             - { name: twig.extension }
 
     twig.extension.activity:
         class: MagicWordBundle\Twig\RoundActivityExtension
-        arguments:
-            "entityManager": "@doctrine.orm.entity_manager"
-            "timeManager": "@mw_manager.time"
+        arguments: ["@doctrine.orm.entity_manager", "@mw_manager.time"]
         tags:
             - { name: twig.extension }
 
     twig.extension.generalParameters:
         class: MagicWordBundle\Twig\GeneralParametersExtension
-        arguments:
-            "administrationManager": "@mw_manager.administration"
+        arguments: ["@mw_manager.administration"]
         tags:
             - { name: twig.extension }
 
     twig.extension.score:
         class: MagicWordBundle\Twig\ScoreExtension
-        arguments:
-            "entityManager": "@doctrine.orm.entity_manager"
+        arguments: ["@doctrine.orm.entity_manager"]
         tags:
             - { name: twig.extension }
 
     twig.extension.wordbox:
         class: MagicWordBundle\Twig\WordboxExtension
-        arguments:
-            "entityManager": "@doctrine.orm.entity_manager"
-            "wordboxManager": "@mw_manager.wordbox"
+        arguments: ["@doctrine.orm.entity_manager",  "@mw_manager.wordbox"]
         tags:
             - { name: twig.extension }

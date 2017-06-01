@@ -12,7 +12,7 @@
         <title>
             {% block title %}MAGIC WORD{% endblock %}
         </title>
-        <link rel="stylesheet" href="{{ asset('/css/main.css')}}" type="text/css"/>
+        <link rel="stylesheet" href="{{ asset('css/main.css')}}" type="text/css"/>
         {% block stylesheets %}{% endblock %}
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}"/>
         {% if generalParameters.piwikUrl %}
@@ -83,7 +83,7 @@
                 <div class="modal-dialog vertical-align-center" role="document">
                     <div class="modal-content">
                         <div class="modal-body noselect">
-                            <img src="{{ asset('/img/squares.gif')}}"/>
+                            <img src="{{ asset('img/squares.gif')}}"/>
                             <h3 id="please-wait-message"></h3>
                         </div>
                     </div>
@@ -111,8 +111,8 @@
         </div>
 
 
-        <script type="text/javascript" src="{{ asset('/js/translations.js')}}"></script>
-        <script type="text/javascript" src="{{ asset('/js/main.js')}}"></script>
+        <script type="text/javascript" src="{{ asset('js/translations.js')}}"></script>
+        <script type="text/javascript" src="{{ asset('js/main.js')}}"></script>
         <script src="{{ path('fos_js_routing_js', { callback: 'fos.Router.setData' }) }}"></script>
         {% block javascripts %}{% endblock %}
     </body>
