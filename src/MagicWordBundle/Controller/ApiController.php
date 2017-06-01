@@ -50,7 +50,7 @@ class ApiController extends Controller
             ];
         }
 
-        $lemmas = array_unique($lemmas,  SORT_REGULAR);
+        $lemmas = array_unique($lemmas, SORT_REGULAR);
         foreach ($lemmas as $lemma) {
             $lemmasJSON[] = [
                 'lemma' => $lemma->getContent(),

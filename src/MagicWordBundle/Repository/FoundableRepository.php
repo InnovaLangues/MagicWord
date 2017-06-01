@@ -1,6 +1,7 @@
 <?php
 
 namespace MagicWordBundle\Repository;
+
 use MagicWordBundle\Entity\Player;
 use MagicWordBundle\Entity\FoundableForm;
 use Innova\LexiconBundle\Entity\Language;

@@ -11,7 +11,6 @@ use MagicWordBundle\Entity\Bigram\Grille;
  */
 class BigramManager
 {
-
     protected $fileLocator;
 
     /**
@@ -29,8 +28,8 @@ class BigramManager
     {
         $g1 = new Grille();
         $file = $this->fileLocator->locate('files/freq_bigrammes_dico_ABU_poids.txt');
-		$g1->generGrillePonderation($file);
-		$tabCases = $g1->getTabCases();
+        $g1->generGrillePonderation($file);
+        $tabCases = $g1->getTabCases();
 
         $letters = [];
         foreach ($tabCases as $tabCase) {

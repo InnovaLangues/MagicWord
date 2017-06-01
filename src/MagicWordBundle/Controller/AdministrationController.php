@@ -117,7 +117,4 @@ class AdministrationController extends Controller
 
         return $this->redirectToRoute('general_parameters');
     }
-
-
-
 }
