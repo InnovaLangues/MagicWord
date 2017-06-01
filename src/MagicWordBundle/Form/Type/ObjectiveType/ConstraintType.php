@@ -12,7 +12,7 @@ class ConstraintType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('numberToFind', IntegerType::class,  array(
+        $builder->add('numberToFind', IntegerType::class, array(
             'label' => 'constraint_number',
             'translation_domain' => 'messages',
             'attr' => [

@@ -38,7 +38,7 @@ class FoundableFormController extends Controller
         $foundCount = $this->getDoctrine()->getRepository('MagicWordBundle:FoundableForm')->foundCountByFormAndLanguage($foundableForm, $language);
         $userCount = count($this->getDoctrine()->getRepository('MagicWordBundle:Player')->findAll());
 
-        return $this->render('MagicWordBundle:FoundableForm:details.html.twig',[
+        return $this->render('MagicWordBundle:FoundableForm:details.html.twig', [
             'foundableForm' => $foundableForm,
             'language' => $language,
             'foundCount' => $foundCount,

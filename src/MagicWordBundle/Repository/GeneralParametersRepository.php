@@ -10,7 +10,8 @@ namespace MagicWordBundle\Repository;
  */
 class GeneralParametersRepository extends \Doctrine\ORM\EntityRepository
 {
-    public function get(){
+    public function get()
+    {
         $em = $this->_em;
         $dql = "SELECT g FROM MagicWordBundle\Entity\GeneralParameters g";
 

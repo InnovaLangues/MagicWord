@@ -22,7 +22,7 @@ class GridManager
      * @DI\InjectParams({
      *      "entityManager"         = @DI\Inject("doctrine.orm.entity_manager"),
      *      "letterLangManager"     = @DI\Inject("mw_manager.letter_language"),
-     *      "foundableFormManager"  = @DI\Inject("mw_manager.foundableForm"),
+     *      "foundableFormManager"  = @DI\Inject("mw_manager.foundableform"),
      *      "squareManager"         = @DI\Inject("mw_manager.square"),
      *      "tokenStorage"          = @DI\Inject("security.token_storage"),
      * })
@@ -177,7 +177,9 @@ class GridManager
             }
         }
 
-        $combos = array_filter($combos, function ($v) {return count($v['inflections']) > 1;});
+        $combos = array_filter($combos, function ($v) {
+            return count($v['inflections']) > 1;
+        });
 
         usort($combos, function ($a, $b) {
             return count($b['inflections']) - count($a['inflections']);

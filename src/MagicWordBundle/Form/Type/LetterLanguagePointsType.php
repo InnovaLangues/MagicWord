@@ -12,7 +12,7 @@ class LetterLanguagePointsType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('point', IntegerType::class,  array(
+        $builder->add('point', IntegerType::class, array(
             'attr' => [
                 'placeholder' => 'points',
                 'translation_domain' => 'messages',
@@ -20,7 +20,7 @@ class LetterLanguagePointsType extends AbstractType
             'label' => 'points',
         ));
 
-        $builder->add('weight', IntegerType::class,  array(
+        $builder->add('weight', IntegerType::class, array(
             'attr' => [
                 'placeholder' => 'weight',
                 'translation_domain' => 'messages',
