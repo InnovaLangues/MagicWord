@@ -49,9 +49,9 @@ class GenerateGridCommand extends ContainerAwareCommand
             $executionTime = round($timeEnd - $timeStart, 2);
             $formCount = count($grid->getFoundableForms());
 
-            $output->writeln('<info>A grid has been generated. Contains '.$formCount.' forms. (in '.$executionTime.' sec.)</info>');
+
             if ($threshold && $formCount < $threshold) {
-                $output->writeln("suppression grille.");
+                $output->writeln('<comment>A grid has been generated but does not contains enough forms ('.$formCount.'). (generated in '.$executionTime.' sec.)</comment>');
                 $gridId = $grid->getId();
                 $squares = $em->getRepository('MagicWordBundle:Square')->findByGrid($gridId);
                 $foundableForms = $em->getRepository('MagicWordBundle:FoundableForm')->findByGrid($gridId);
@@ -64,8 +64,10 @@ class GenerateGridCommand extends ContainerAwareCommand
                 $em->remove($grid);
                 $em->flush();
             } else {
-                $totalFormCount += $formCount;
                 $keptGrid++;
+                $output->writeln('<info>('.$keptGrid.') A grid has been generated and contains ('.$formCount.') forms (generated in '.$executionTime.' sec.)</info>');
+
+                $totalFormCount += $formCount;
             }
             $em->clear();
         }
