@@ -46,7 +46,10 @@ class TrainingManager
             $game = new Training();
             $game->setLanguage($language);
             $game->setAuthor($user);
-            $grid = $this->gridManager->generate($language);
+            $grid = $this->em->getRepository('MagicWordBundle:Grid')->findNotPlayed($language, $user);
+            if (!$grid) {
+                $grid = $this->gridManager->generate($language);
+            }
             $round = $this->roundManager->generateRush($game, $grid);
             $this->em->persist($game);
             $this->em->flush();

@@ -18,6 +18,7 @@ class GenerateGridCommand extends ContainerAwareCommand
 
             ->addArgument('languageName', InputArgument::REQUIRED)
             ->addArgument('number', InputArgument::REQUIRED)
+            ->addArgument('threshold', InputArgument::OPTIONAL)
             ->addOption('custom', 'c', InputOption::VALUE_NONE)
            ;
     }
@@ -31,10 +32,12 @@ class GenerateGridCommand extends ContainerAwareCommand
 
         $number = $input->getArgument('number');
         $languageName = $input->getArgument('languageName');
+        $threshold = $input->getArgument('threshold');
         $custom = $input->getOption('custom');
 
         $totalFormCount = 0;
-        for ($i = 0; $i < $number; ++$i) {
+        $keptGrid = 0;
+        while ($keptGrid < $number) {
             $customLetters = ($custom)
                 ? $letterManager->getCustomWeigth($customWeightedLetters)
                 : $customLetters = null;
@@ -45,12 +48,29 @@ class GenerateGridCommand extends ContainerAwareCommand
             $timeEnd = microtime(true);
             $executionTime = round($timeEnd - $timeStart, 2);
             $formCount = count($grid->getFoundableForms());
-            $totalFormCount += $formCount;
+
             $output->writeln('<info>A grid has been generated. Contains '.$formCount.' forms. (in '.$executionTime.' sec.)</info>');
+            if ($threshold && $formCount < $threshold) {
+                $output->writeln("suppression grille.");
+                $gridId = $grid->getId();
+                $squares = $em->getRepository('MagicWordBundle:Square')->findByGrid($gridId);
+                $foundableForms = $em->getRepository('MagicWordBundle:FoundableForm')->findByGrid($gridId);
+                foreach ($squares as $square) {
+                    $em->remove($square);
+                }
+                foreach ($foundableForms as $foundableForm) {
+                    $em->remove($foundableForm);
+                }
+                $em->remove($grid);
+                $em->flush();
+            } else {
+                $totalFormCount += $formCount;
+                $keptGrid++;
+            }
             $em->clear();
         }
 
-        $average = round($totalFormCount / $number);
+        $average = round($totalFormCount / $keptGrid);
         $output->writeln('<info>Done ! (average form count: '.$average.')</info>');
     }
 }

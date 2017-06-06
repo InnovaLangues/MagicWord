@@ -15,7 +15,7 @@ class GridRepository extends \Doctrine\ORM\EntityRepository
         $em = $this->_em;
         $dql = "SELECT grid FROM MagicWordBundle\Entity\Grid grid
                 WHERE grid.language = :language
-                AND SIZE(grid.foundableForms) > 180
+                AND SIZE(grid.foundableForms) > 250
                 AND NOT EXISTS (
                     SELECT round FROM MagicWordBundle\Entity\Round round
                     INNER JOIN round.game game
@@ -42,6 +42,47 @@ class GridRepository extends \Doctrine\ORM\EntityRepository
         $query = $em->createQuery($dql);
         $query->setParameter('author', $author)
                 ->setParameter('challenged', $challenged)
+                ->setParameter('language', $language)
+                ->setMaxResults(1);
+
+        return $query->getOneOrNullResult();
+    }
+
+
+
+
+    public function findNotPlayed($language, $player)
+    {
+        $em = $this->_em;
+        $dql = "SELECT grid FROM MagicWordBundle\Entity\Grid grid
+                WHERE grid.language = :language
+                AND SIZE(grid.foundableForms) > 250
+                AND NOT EXISTS (
+                    SELECT round FROM MagicWordBundle\Entity\Round round
+                    INNER JOIN round.game game
+                    INNER JOIN MagicWordBundle\Entity\GameType\Challenge challenge WITH challenge.id = game.id
+                    WHERE round.grid = grid
+                    AND (
+                        challenge.challenged = :player
+                        OR challenge.author = :player
+                    )
+                )
+                AND NOT EXISTS (
+                    SELECT roundm FROM MagicWordBundle\Entity\Round roundm
+                    INNER JOIN roundm.game g
+                    INNER JOIN MagicWordBundle\Entity\GameType\Massive massive WITH massive.id = g.id
+                    WHERE roundm.grid = grid
+                )
+                AND NOT EXISTS(
+                    SELECT a FROM MagicWordBundle\Entity\Activity a
+                    INNER JOIN a.round r
+                    WHERE a.round = r
+                    AND r.grid = grid
+                    AND a.player = :player
+                )";
+
+        $query = $em->createQuery($dql);
+        $query->setParameter('player', $player)
                 ->setParameter('language', $language)
                 ->setMaxResults(1);
 
