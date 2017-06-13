@@ -49,7 +49,9 @@ module.exports = function(grunt) {
                         'src/MagicWordBundle/Resources/public/js/main.js',
                         'src/MagicWordBundle/Resources/public/js/wiktionnary.js',
                         'src/MagicWordBundle/Resources/public/js/builder.js',
+                        'src/MagicWordBundle/Resources/public/js/modal.js',
                         'node_modules/screenfull/dist/screenfull.js'
+
                     ],
                     'web/js/edit_round.js': [
                         "src/MagicWordBundle/Resources/public/js/edit/bologne.js",
@@ -60,6 +62,7 @@ module.exports = function(grunt) {
                         "src/MagicWordBundle/Resources/public/js/edit/combo.js",
                         "src/MagicWordBundle/Resources/public/js/edit/findword.js",
                         "src/MagicWordBundle/Resources/public/js/edit/common.js",
+                        'src/MagicWordBundle/Resources/public/js/edit/gridpattern.js',
                     ],
                     'web/js/round.js': [
                         "src/MagicWordBundle/Resources/public/js/round/details.js",

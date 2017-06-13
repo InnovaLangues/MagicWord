@@ -41,7 +41,7 @@ class GridPattern
     private $author;
 
     /**
-    *  @ORM\OneToMany(targetEntity="MagicWordBundle\Entity\GridPatternString", mappedBy="gridPattern")
+    *  @ORM\OneToMany(targetEntity="MagicWordBundle\Entity\GridPatternString", mappedBy="gridPattern", cascade={"persist", "remove"})
     */
     private $strings;
     /**

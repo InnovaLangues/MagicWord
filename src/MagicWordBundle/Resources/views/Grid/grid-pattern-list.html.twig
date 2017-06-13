@@ -1,0 +1,11 @@
+<ul class="list-group">
+    {% for pattern in patterns %}
+    <li class="list-group-item">
+        <span onclick="gridPatternHandler.use(this)" class="btn btn-default btn-xs" data-strings="{% for string in pattern.strings %}{{string.value}},{% endfor %}">
+            Use it !
+        </span>
+        {{ pattern.name }} <span class="text-muted">{{ pattern.description }}</span>
+        {% if pattern.author == app.user %}<span class="btn btn-default btn-xs pull-right" onclick="gridPatternHandler.edit({{ pattern.id }})"> edit</span>{% endif %}
+    </li>
+    {% endfor %}
+</ul>
