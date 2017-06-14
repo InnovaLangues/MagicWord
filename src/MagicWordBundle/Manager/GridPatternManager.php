@@ -54,31 +54,34 @@ class GridPatternManager
         return $form;
     }
 
-    public function savePatternString(GridPattern $gridPattern, Request $request)
+    public function save(GridPattern $gridPattern, Request $request)
     {
-        $form = $this->formFactory->createBuilder(GridPatternType::class, $gridPattern)->getForm();
+        if (!$gridPattern->getAuthor() || $gridPattern->getAuthor() == $this->currentUser) {
+            $form = $this->formFactory->createBuilder(GridPatternType::class, $gridPattern)->getForm();
 
-        $strings = new ArrayCollection();
-        foreach ($gridPattern->getStrings() as $string) {
-            $strings->add($string);
-        }
-
-        $form->handleRequest($request);
-
-        if ($form->isValid()) {
-            foreach ($strings as $string) {
-                if ($gridPattern->getStrings()->contains($string) === false) {
-                    $this->em->remove($string);
-                }
-            }
+            $strings = new ArrayCollection();
             foreach ($gridPattern->getStrings() as $string) {
-                $string->setGridPattern($gridPattern);
+                $strings->add($string);
             }
 
-            $this->em->persist($gridPattern);
-            $this->em->flush();
-        }
+            $form->handleRequest($request);
 
+            if ($form->isValid()) {
+                $gridPattern->setAuthor($this->currentUser);
+                foreach ($strings as $string) {
+                    if ($gridPattern->getStrings()->contains($string) === false) {
+                        $this->em->remove($string);
+                    }
+                }
+                foreach ($gridPattern->getStrings() as $string) {
+                    $string->setGridPattern($gridPattern);
+                }
+
+                $this->em->persist($gridPattern);
+                $this->em->flush();
+            }
+        }
+        
         return;
     }
 }

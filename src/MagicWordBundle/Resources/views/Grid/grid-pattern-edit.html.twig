@@ -1,7 +1,9 @@
 <span onclick="gridPatternHandler.list();" class="btn btn-default">
-    {{"back_to_list" | trans}}
+    <i class="fa fa-chevron-left" aria-hidden="true"></i>
+    {{"back_to_patterns_list" | trans}}
 </span>
-<span onclick="gridPatternHandler.save()" class="btn btn-primary">
+<span id="pattern-save-btn" onclick="{{ pattern.id ? "gridPatternHandler.save()" : "gridPatternHandler.create()"}}" class="btn btn-primary">
+    <i class="fa fa-floppy-o" aria-hidden="true"></i>
     {{ "save" | trans }}
 </span>
 

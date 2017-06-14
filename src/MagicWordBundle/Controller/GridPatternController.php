@@ -54,11 +54,39 @@ class GridPatternController extends Controller
      */
     public function savePatternAction(GridPattern $gridPattern, Request $request)
     {
-        $this->get('mw_manager.grid_pattern')->savePatternString($gridPattern, $request);
+        $this->get('mw_manager.grid_pattern')->save($gridPattern, $request);
         $form = $this->get('mw_manager.grid_pattern')->getForm($gridPattern);
 
         $template = $this->get('templating')->render('MagicWordBundle:Grid:grid-pattern-edit.html.twig', array('form' => $form, 'pattern' => $gridPattern ));
 
         return new JsonResponse();
+    }
+
+    /**
+     * @Route("/pattern/create-form", name="pattern_create_form", options={"expose"=true})
+     * @Method("GET")
+     */
+    public function patternCreateFormAction()
+    {
+        $gridPattern = new GridPattern();
+        $form = $this->get('mw_manager.grid_pattern')->getForm($gridPattern);
+        $template = $this->get('templating')->render('MagicWordBundle:Grid:grid-pattern-edit.html.twig', array('form' => $form, 'pattern' => $gridPattern ));
+
+        return new Response($template);
+    }
+
+    /**
+     * @Route("/pattern/create-form", name="pattern_create", options={"expose"=true})
+     * @Method("POST")
+     */
+    public function patternCreateAction(Request $request)
+    {
+        $gridPattern = new GridPattern();
+        $this->get('mw_manager.grid_pattern')->save($gridPattern, $request);
+        $form = $this->get('mw_manager.grid_pattern')->getForm($gridPattern);
+
+        $template = $this->get('templating')->render('MagicWordBundle:Grid:grid-pattern-edit.html.twig', array('form' => $form, 'pattern' => $gridPattern ));
+
+        return new Response($template);
     }
 }

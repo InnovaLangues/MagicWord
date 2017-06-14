@@ -208,3 +208,9 @@ accuracy_text: Votre précision est de %accuracy%% (%totalFound% formes correcte
 no_massive_create: Il n'y a pas de partie massive disponible mais vous pouvez en créer une.
 save_all: Tout sauvegarder
 piwikUrl: URL piwik (sans le http(s)://)
+patterns_list: Liste des patterns
+back_to_patterns_list: Retour aux patterns
+pattern_edit: Edition d'un pattern
+use_pattern: Utiliser
+add_string: Ajouter une chaîne
+pattern_create: Créer un pattern

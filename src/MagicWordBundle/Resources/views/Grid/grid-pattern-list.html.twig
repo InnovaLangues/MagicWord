@@ -1,11 +1,26 @@
+<span class="btn btn-default btn-default" onclick="gridPatternHandler.displayCreateForm()">
+    <i class="fa fa-plus" aria-hidden="true"></i>
+    {{ "pattern_create" | trans }}
+</span>
+
 <ul class="list-group">
-    {% for pattern in patterns %}
+    {% for pattern in patterns if pattern.strings |length > 0 or pattern.author == app.user %}
     <li class="list-group-item">
-        <span onclick="gridPatternHandler.use(this)" class="btn btn-default btn-xs" data-strings="{% for string in pattern.strings %}{{string.value}},{% endfor %}">
-            Use it !
-        </span>
         {{ pattern.name }} <span class="text-muted">{{ pattern.description }}</span>
-        {% if pattern.author == app.user %}<span class="btn btn-default btn-xs pull-right" onclick="gridPatternHandler.edit({{ pattern.id }})"> edit</span>{% endif %}
+        <span class="pull-right">
+            {% if pattern.author == app.user %}
+            <span class="btn btn-default btn-xs" onclick="gridPatternHandler.edit({{ pattern.id }})">
+                <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                {{ "edit" | trans }}
+            </span>
+            {% endif %}
+            {% if pattern.strings | length > 0 %}
+            <span onclick="gridPatternHandler.use(this)" class="btn btn-default btn-xs" data-strings="{% for string in pattern.strings %}{{string.value}},{% endfor %}">
+                <i class="fa fa-crosshairs" aria-hidden="true"></i>
+                {{ "use_pattern" | trans }}
+            </span>
+            {% endif %}
+        </span>
     </li>
     {% endfor %}
 </ul>
