@@ -3,10 +3,8 @@
 namespace MagicWordBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Symfony\Component\HttpFoundation\Response;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
-use Innova\LexiconBundle\Entity\Lemma;
 use Innova\LexiconBundle\Entity\Language;
 use MagicWordBundle\Entity\FoundableForm;
 

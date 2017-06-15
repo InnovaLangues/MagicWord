@@ -9,12 +9,10 @@ use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 class LocaleListener implements EventSubscriberInterface
 {
     private $defaultLocale;
-    private $tokenStorage;
 
-    public function __construct($defaultLocale = 'fr', $tokenStorage)
+    public function __construct($defaultLocale = 'fr')
     {
         $this->defaultLocale = $defaultLocale;
-        $this->tokenStorage = $tokenStorage;
     }
 
     public function onKernelRequest(GetResponseEvent $event)

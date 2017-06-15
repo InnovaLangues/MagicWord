@@ -3,7 +3,6 @@
 namespace MagicWordBundle\Manager\Letter;
 
 use JMS\DiExtraBundle\Annotation as DI;
-use Innova\LexiconBundle\Entity\Language;
 use MagicWordBundle\Entity\Bigram\Grille;
 
 /**
