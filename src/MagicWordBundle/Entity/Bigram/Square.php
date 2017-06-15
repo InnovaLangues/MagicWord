@@ -31,7 +31,7 @@ class Square
 
     public function setId($id)
     {
-        if ($id >=1 and $id <=16) {
+        if ($id >=1 && $id <=16) {
             $this->_idCase = $id;
         }
     }

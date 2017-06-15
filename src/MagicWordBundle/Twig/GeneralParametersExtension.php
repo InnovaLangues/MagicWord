@@ -3,7 +3,6 @@
 namespace  MagicWordBundle\Twig;
 
 use MagicWordBundle\Entity\Round;
-use MagicWordBundle\Entity\Player;
 
 class GeneralParametersExtension extends \Twig_Extension
 {

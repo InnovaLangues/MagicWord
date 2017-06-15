@@ -55,9 +55,6 @@ class GridPatternController extends Controller
     public function savePatternAction(GridPattern $gridPattern, Request $request)
     {
         $this->get('mw_manager.grid_pattern')->save($gridPattern, $request);
-        $form = $this->get('mw_manager.grid_pattern')->getForm($gridPattern);
-
-        $template = $this->get('templating')->render('MagicWordBundle:Grid:grid-pattern-edit.html.twig', array('form' => $form, 'pattern' => $gridPattern ));
 
         return new JsonResponse();
     }

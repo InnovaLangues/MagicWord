@@ -60,7 +60,7 @@ class GameController extends Controller
      * @Route("/game/import", name="json_import_form")
      * @Method("GET")
      */
-    public function jsonImportForm()
+    public function jsonImportFormAction()
     {
         return $this->render('MagicWordBundle:Game:import.html.twig');
     }
@@ -69,7 +69,7 @@ class GameController extends Controller
      * @Route("/game/import", name="json_import", options={"expose"=true})
      * @Method("POST")
      */
-    public function jsonImport(Request $request)
+    public function jsonImportAction(Request $request)
     {
         $json = $request->get('json');
 

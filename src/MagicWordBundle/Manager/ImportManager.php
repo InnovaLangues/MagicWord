@@ -3,7 +3,6 @@
 namespace  MagicWordBundle\Manager;
 
 use JMS\DiExtraBundle\Annotation as DI;
-use MagicWordBundle\Entity\Grid;
 use MagicWordBundle\Entity\Round;
 use MagicWordBundle\Entity\GameType\Massive;
 
