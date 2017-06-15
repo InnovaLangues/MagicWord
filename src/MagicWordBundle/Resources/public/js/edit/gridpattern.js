@@ -10,6 +10,17 @@ var gridPatternHandler = {
         });
     },
 
+    delete: function(id) {
+        var url = Routing.generate('pattern_delete', { id : id});
+        $.ajax({
+            type: 'DELETE',
+            url: url,
+        })
+        .done(function(data) {
+            gridPatternHandler.list();
+        });
+    },
+
     edit: function(id){
         var url = Routing.generate('pattern_form', { id : id});
         $.ajax({

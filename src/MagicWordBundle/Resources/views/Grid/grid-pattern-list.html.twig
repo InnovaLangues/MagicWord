@@ -3,6 +3,8 @@
     {{ "pattern_create" | trans }}
 </span>
 
+<hr/>
+
 <ul class="list-group">
     {% for pattern in patterns if pattern.strings |length > 0 or pattern.author == app.user %}
     <li class="list-group-item">

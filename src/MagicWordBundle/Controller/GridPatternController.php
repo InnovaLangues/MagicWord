@@ -89,4 +89,15 @@ class GridPatternController extends Controller
 
         return new Response($template);
     }
+
+    /**
+     * @Route("/pattern/{id}/delete", name="pattern_delete", options={"expose"=true})
+     * @Method("DELETE")
+     */
+    public function patternDeleteAction(GridPattern $gridPattern)
+    {
+        $this->get('mw_manager.grid_pattern')->delete($gridPattern);
+
+        return new Response();
+    }
 }

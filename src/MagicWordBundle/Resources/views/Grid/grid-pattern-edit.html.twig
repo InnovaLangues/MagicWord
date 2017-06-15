@@ -6,6 +6,14 @@
     <i class="fa fa-floppy-o" aria-hidden="true"></i>
     {{ "save" | trans }}
 </span>
+{% if pattern.id %}
+<span onclick="gridPatternHandler.delete({{ pattern.id }})" class="btn btn-xs btn-danger pull-right">
+    <i class="fa fa-floppy-o" aria-hidden="true"></i>
+    {{ "delete" | trans }}
+</span>
+{% endif %}
+
+<hr/>
 
 <form id="gridpattern" method="POST">
     {{ form_row(form.name) }}
@@ -27,7 +35,7 @@
 {% macro strings_prototype(string) %}
 <li class="col-md-6 list-group-item string">
     {{ form_widget(string.value) }}
-    <span onclick="gridPatternHandler.removeString(this);" class="btn btn-danger">
+    <span onclick="gridPatternHandler.removeString(this);" class="btn btn-danger btn-xs">
         <i class="fa fa-times" aria-hidden="true"></i>
     </span>
 </li>

@@ -81,7 +81,17 @@ class GridPatternManager
                 $this->em->flush();
             }
         }
-        
+
+        return;
+    }
+
+    public function delete(GridPattern $gridPattern)
+    {
+        if ($gridPattern->getAuthor() == $this->currentUser) {
+            $this->em->remove($gridPattern);
+            $this->em->flush();
+        }
+
         return;
     }
 }
