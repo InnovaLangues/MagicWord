@@ -141,7 +141,6 @@ profile_text: Description du profil
 pronoun: pronom
 rank: Rang
 ranking: Classement
-rankings_and_stats: Classements et statistiques
 remove__from_friends: 'Retirer des contacts'
 round_type: Type de manche que vous voulez jouer (1ère manche)
 round_type2: Type de manche que vous voulez jouer (2ème manche)
@@ -214,3 +213,4 @@ pattern_edit: Edition d'un pattern
 use_pattern: Utiliser
 add_string: Ajouter une chaîne
 pattern_create: Créer un pattern
+rankings: Classements

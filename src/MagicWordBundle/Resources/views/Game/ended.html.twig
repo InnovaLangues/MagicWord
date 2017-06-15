@@ -7,21 +7,15 @@
         <div class="panel-heading">
             <h4>
                 {% include "MagicWordBundle:Common:backtohome.html.twig" %}
-                {{ 'rankings_and_stats' | trans }}
+                {{ 'rankings' | trans }}
             </h4>
         </div>
-
 
         <!-- Nav tabs -->
         <ul class="nav nav-tabs  nav-justified" role="tablist">
             <li role="presentation" class="active"><a href="#massives" aria-controls="massives" role="tab" data-toggle="tab">{{ "massives" | trans }}</a></li>
             <li role="presentation"><a href="#challenges" aria-controls="challenges" role="tab" data-toggle="tab">{{"challenges" | trans }}</a></li>
             <li role="presentation"><a href="#ranking" aria-controls="ranking" role="tab" data-toggle="tab">{{ "ranking" | trans}}</a></li>
-            <li role="presentation">
-                <a href="#stats" aria-controls="stats" role="tab" data-toggle="tab">
-                    <i class="fa fa-bar-chart" aria-hidden="true"></i> {{ "stats" | trans }}
-                </a>
-            </li>
         </ul>
 
          <!-- Tab panes -->
@@ -41,18 +35,7 @@
                 </ul>
             </div>
             <div role="tabpanel" class="tab-pane" id="ranking">...</div>
-            <div role="tabpanel" class="tab-pane" id="stats">
-                <ul class="list-group">
-                    <li class="list-group-item">
-                        <strong>Max points:</strong>
-                        {% if best is not null %}
-                            {{ best.points }} points avec {{ best.form|upper }}
-                        {% endif %}
-                    </li>
-                </ul>
-            </div>
         </div>
-
     </div>
 {% endblock %}
 

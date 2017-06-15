@@ -27,9 +27,8 @@ class GameController extends Controller
     public function listEndedGamesAction()
     {
         $games = $this->get('security.token_storage')->getToken()->getUser()->getEndedGames();
-        $best = $this->get('mw_manager.user')->getBestForm();
 
-        return $this->render('MagicWordBundle:Game:ended.html.twig', ['games' => $games, 'best' => $best]);
+        return $this->render('MagicWordBundle:Game:ended.html.twig', ['games' => $games]);
     }
 
     /**

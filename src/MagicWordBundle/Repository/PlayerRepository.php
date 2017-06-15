@@ -8,24 +8,6 @@ namespace MagicWordBundle\Repository;
  */
 class PlayerRepository extends \Doctrine\ORM\EntityRepository
 {
-    public function getBestForm($user)
-    {
-        $dql = 'SELECT f FROM MagicWordBundle:FoundableForm f
-                WHERE EXISTS(
-                    SELECT a FROM MagicWordBundle:Activity a
-                    WHERE a.player = :user
-                    AND f MEMBER OF a.foundForms
-                ) ORDER BY f.points DESC';
-
-        $query = $this->_em->createQuery($dql);
-        $query->setParameter('user', $user);
-        $query->setMaxResults(1);
-
-        $foundable = $query->getOneOrNullResult();
-
-        return $foundable;
-    }
-
     public function countByGame($game)
     {
         $dql = 'SELECT DISTINCT count(p.id) FROM MagicWordBundle:Player p
