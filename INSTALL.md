@@ -10,13 +10,14 @@
 ## NODE
 > curl -sL https://deb.nodesource.com/setup_6.x | sudo -E bash -
 
-> apt-get install nodejs
+> sudo apt-get install nodejs
 
 ## APC
 (selon la version de php)
 
 ## Clone project
 > git clone https://github.com/InnovaLangues/MagicWord.git
+> cd MagicWord
 
 ## Set up permissions
 > sudo setfacl -dR -m u:www-data:rwx -m u:`whoami`:rwx var  
