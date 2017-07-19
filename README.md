@@ -20,6 +20,7 @@ Contributions (since 2014)
 * Mathieu Loiseau
 * Benjamin Abrial
 * Judith Chambre
+
 ### Design and experiments
 * Mathieu Loiseau
 * Virginie Zampa
@@ -34,8 +35,10 @@ Contributions (since 2014)
 * Agnès Montaufier
 * Pauline Rebourgeon
 * Haydée Silva
+
 ### Graphic Design
 * [David Fraisse](http://www.davidfraisse.com)
+
 ### Sounds
 All sounds come from [freesound.org](http://www.freesound.org/) and are licensed under [CC BY 3.0](https://creativecommons.org/licenses/by/3.0/). They've been converted to mp3 when needed :
 * http://www.freesound.org/people/chripei/sounds/165492/
@@ -46,8 +49,10 @@ All sounds come from [freesound.org](http://www.freesound.org/) and are licensed
 * http://www.freesound.org/people/Autistic%20Lucario/sounds/142608/
 * http://www.freesound.org/people/cabled_mess/sounds/360602/
 * http://www.freesound.org/people/Taira%20Komori/sounds/212527/
+
 ### Dictionaries
-TODO
+* French - [Morphalou3](https://repository.ortolang.fr/api/content/morphalou/2/LISEZ_MOI.html#idp37270384) (LGPL-LR)
+* English - [DELA](http://infolingu.univ-mlv.fr/DonneesLinguistiques/Dictionnaires/telechargement.html) (LGPL-LR)
 
 Associated research
 -------------------
