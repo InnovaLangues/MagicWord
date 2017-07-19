@@ -31,6 +31,11 @@ class GeneralParameters
     private $homeText;
 
     /**
+     * @ORM\Column(type="text", nullable=true)
+     */
+    private $footer;
+
+    /**
      * @ORM\Column(type="string", nullable=true)
      */
     private $piwikUrl;
@@ -144,5 +149,29 @@ class GeneralParameters
     public function getPiwikUrl()
     {
         return $this->piwikUrl;
+    }
+
+    /**
+     * Set footer
+     *
+     * @param string $footer
+     *
+     * @return GeneralParameters
+     */
+    public function setFooter($footer)
+    {
+        $this->footer = $footer;
+
+        return $this;
+    }
+
+    /**
+     * Get footer
+     *
+     * @return string
+     */
+    public function getFooter()
+    {
+        return $this->footer;
     }
 }

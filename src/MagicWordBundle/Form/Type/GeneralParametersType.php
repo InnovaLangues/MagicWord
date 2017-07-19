@@ -20,6 +20,12 @@ class GeneralParametersType extends AbstractType
             'required' => false,
         ));
 
+        $builder->add('footer', TextareaType::class, array(
+            'attr' => array('class' => 'form-control'),
+            'label' => 'footer',
+            'required' => false,
+        ));
+
         $builder->add('piwikUrl', TextType::class, array(
             'attr' => array('class' => 'form-control'),
             'label' => 'piwikUrl',
