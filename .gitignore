@@ -22,3 +22,5 @@
 !/web/upload/profilepic/.gitkeep
 /bower_components/*
 /node_modules/*
+/web/files/*
+!web/files/.gitkeep

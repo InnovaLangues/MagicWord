@@ -1,46 +1,15 @@
 magicword
 =========
 
-A Symfony project developed mostly by Arnaud Bey and based on :
+A Symfony3 project developed mostly ([see all contributors](CONTRIBUTORS.md)) by Arnaud Bey and based on :
 * https://github.com/InnovaLangues/Magic-Word-game : the first prototype, augmented little by little by various persons from the initial code of Pauline Rebourgeon and Christine Lutian ;
 * https://github.com/giacomo-mambelli/magicword : the "Bologne" prototype, coded by Giacomo Mambelli, contains the infamous "Bologna algorithm" by Marco Roccetti that allows the [conquer mode](https://github.com/InnovaLangues/MagicWord/wiki/Conquer).
 
 See [the wiki](https://github.com/InnovaLangues/MagicWord/wiki) for more information (or you can have a look at our [French teaser](https://vimeo.com/216809745)).
 
-Contributions (since 2014)
-------------
-### Code
-* Arnaud Bey
-* Pauline Rebourgeon
-* Giacomo Mambelli
-* David Graceffa
-* Maryam Nejat
-* Christine Lutian
-* Joris Bouderbala
-* Mathieu Loiseau
-* Benjamin Abrial
-* Judith Chambre
-
-### Design and experiments
-* Mathieu Loiseau
-* Virginie Zampa
-* Racha Hallal
-* Pauline Ballot
-* Arnaud Bey
-* Francesca Bianco
-* Richard Boualavong
-* Joris Bouderbala
-* Cristiana Cervini
-* Christine Lutian
-* Agnès Montaufier
-* Pauline Rebourgeon
-* Haydée Silva
-
-### Graphic Design
-* [David Fraisse](http://www.davidfraisse.com)
-
 ### Sounds
 All sounds come from [freesound.org](http://www.freesound.org/) and are licensed under [CC BY 3.0](https://creativecommons.org/licenses/by/3.0/). They've been converted to mp3 when needed :
+
 * http://www.freesound.org/people/chripei/sounds/165492/
 * http://www.freesound.org/people/sandyrb/sounds/41381/
 * http://www.freesound.org/people/zgump/sounds/82523/

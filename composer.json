@@ -36,7 +36,8 @@
         "ramsey/uuid": "^3.5",
         "innovalangues/lexicon-bundle": "dev-master",
         "willdurand/js-translation-bundle": "^2.6",
-        "twig/twig": "v1.32"
+        "twig/twig": "v1.32",
+        "michelf/php-markdown": "^1.7"
     },
     "require-dev": {
         "sensio/generator-bundle": "^3.0",

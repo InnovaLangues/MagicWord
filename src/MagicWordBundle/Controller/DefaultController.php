@@ -4,6 +4,7 @@ namespace MagicWordBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Michelf\Markdown;
 
 class DefaultController extends Controller
 {
@@ -20,6 +21,8 @@ class DefaultController extends Controller
      */
     public function indexAction()
     {
-        return $this->render('MagicWordBundle:Default:index.html.twig');
+        $contributors = Markdown::defaultTransform(file_get_contents("files/CONTRIBUTORS.md"));
+
+        return $this->render('MagicWordBundle:Default:index.html.twig', ['contributors' => $contributors]);
     }
 }

@@ -124,11 +124,16 @@ module.exports = function(grunt) {
                 cwd: '',
                 dest: 'web/fonts/',
                 src: ['bower_components/font-awesome/fonts/*']
+            },
+            files: {
+                src: ['CONTRIBUTORS.md'],
+                dest: 'web/files/'
             }
+
         },
 
     });
     grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks('grunt-contrib-copy');
-    grunt.registerTask('default', ["less", "uglify", "copy:fonts", "watch"]);
+    grunt.registerTask('default', ["less", "uglify", "copy:fonts", "copy:files", "watch"]);
 };

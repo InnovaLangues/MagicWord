@@ -5,9 +5,18 @@
     <div class="col-md-12">
         <div class="panel panel-default">
             <div class="panel-body">
-                <i class="fa fa-quote-left" aria-hidden="true"></i>
-                {{ generalParameters.homeText | raw }}
-                <i class="fa fa-quote-right" aria-hidden="true"></i>
+                {% if generalParameters.homeText %}
+                    <i class="fa fa-quote-left" aria-hidden="true"></i>
+                    {{ generalParameters.homeText | raw }}
+                    <i class="fa fa-quote-right" aria-hidden="true"></i>
+                    <hr/>
+                {% endif %}
+
+                <div class='embed-container'>
+                    <iframe src='https://player.vimeo.com/video/216809745' frameborder='0' webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>
+                </div>
+
+                {{ contributors | raw }}
             </div>
         </div>
     </div>
