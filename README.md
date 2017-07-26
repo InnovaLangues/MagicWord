@@ -23,6 +23,8 @@ All sounds come from [freesound.org](http://www.freesound.org/) and are licensed
 * French - [Morphalou3](https://repository.ortolang.fr/api/content/morphalou/2/LISEZ_MOI.html#idp37270384) (LGPL-LR)
 * English - [DELA](http://infolingu.univ-mlv.fr/DonneesLinguistiques/Dictionnaires/telechargement.html) (LGPL-LR)
 
+Lexicons are handled with [LexiconBundle](https://github.com/InnovaLangues/LexiconBundle)
+
 Associated research
 -------------------
 Magic Word is part of the research carried out at the [LIDILEM lab](http://lidilem.u-grenoble3.fr) :
