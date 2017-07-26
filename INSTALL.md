@@ -5,6 +5,7 @@
 > sudo apt-get install curl apache2 php7.0 php7.0-apcu mysql-server
 
 ## COMPOSER
+will install dependencies, such as [lexicon](https://github.com/InnovaLangues/WiktionaryBundle) and [wiktionary](https://github.com/InnovaLangues/WiktionaryBundle) bundles
 > sudo curl -sS https://getcomposer.org/installer | sudo php -- --install-dir=/usr/local/bin --filename=composer
 
 ## NODE
