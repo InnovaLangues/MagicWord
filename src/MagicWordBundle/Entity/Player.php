@@ -48,6 +48,13 @@ class Player extends BaseUser
     private $muteSound = false;
 
     /**
+     * @var bool
+     *
+     * @ORM\Column(name="display_mail", type="boolean", nullable=true)
+     */
+    private $displayMail = false;
+
+    /**
      * @ORM\ManyToOne(targetEntity="LanguageUI")
      */
     private $languageUI;
@@ -348,5 +355,29 @@ class Player extends BaseUser
     public function getProfilePicFile()
     {
         return $this->profilePicFile;
+    }
+
+    /**
+     * Set displayMail
+     *
+     * @param boolean $displayMail
+     *
+     * @return Player
+     */
+    public function setDisplayMail($displayMail)
+    {
+        $this->displayMail = $displayMail;
+
+        return $this;
+    }
+
+    /**
+     * Get displayMail
+     *
+     * @return boolean
+     */
+    public function getDisplayMail()
+    {
+        return $this->displayMail;
     }
 }

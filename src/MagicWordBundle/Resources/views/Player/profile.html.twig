@@ -28,13 +28,20 @@
     </div>
     <div class="panel-body">
     {% if user.profilepicPath %}
+        <h4> {{ "profile_pic" | trans }} </h4>
         <img height="200px" src="{{ asset('upload/profilepic/' ~ user.profilepicPath) }}"/>
         <hr/>
     {% endif %}
     {% if user.profileText %}
-    <i class="fa fa-quote-left" aria-hidden="true"></i>
-    {{ user.profileText }}
-    <i class="fa fa-quote-right" aria-hidden="true"></i>
+        <h4> {{ "profile_text" | trans }} </h4>
+        <i class="fa fa-quote-left" aria-hidden="true"></i>
+        {{ user.profileText }}
+        <i class="fa fa-quote-right" aria-hidden="true"></i>
+        <hr/>
+    {% endif %}
+    {% if app.user == user or user.displayMail %}
+    <h4> {{ "profile_email" | trans }} </h4>
+        {{ user.email }}
     {% endif %}
     </div>
 </div>

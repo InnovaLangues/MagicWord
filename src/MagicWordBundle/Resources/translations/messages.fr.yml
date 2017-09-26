@@ -57,6 +57,7 @@ decline_challenge: Refuser le défi
 definition: Définition de
 description: Description
 determiner: déterminant
+display_mail: Afficher son email
 done_objectives: Objectifs réalisés
 edit_game: 'Editer partie'
 edit_password: Changer de mot de passe
@@ -138,6 +139,7 @@ present: présent
 profile_of: 'Profil de'
 profile_pic: Image du profil
 profile_text: Description du profil
+profile_email: Email
 pronoun: pronom
 rank: Rang
 ranking: Classement
