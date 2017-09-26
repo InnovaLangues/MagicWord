@@ -7,6 +7,7 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 
 class ProfileType extends AbstractType
 {
@@ -23,6 +24,11 @@ class ProfileType extends AbstractType
             'data_class' => null,
             'label' => 'profile_pic',
             'required' => false,
+        ));
+
+        $builder->add('email', TextType::class, array(
+            'attr' => array('class' => 'form-control'),
+            'label' => 'email',
         ));
 
         $builder->add('save', SubmitType::class, array(
