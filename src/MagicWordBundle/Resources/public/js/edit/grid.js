@@ -47,7 +47,6 @@ var gridHandler = {
 
     generate: function(){
         if ($(".findWord").length > 0) {
-            wait.start("Génération de la grille");
             var word_list = [];
             $(".findWord").each(function( index ) {
                 var inflection = $(this).find(findwords.inflectionSelector).val();
@@ -68,7 +67,6 @@ var gridHandler = {
                 };
             };
             findwords.checkInsertedWords(best.insertedWords);
-            wait.stop();
         } else {
             info.display("Au moins une forme doit être renseignée afin de générer la grille.");
         }
