@@ -58,4 +58,4 @@ ft_stopword_file = ""
 ## Fixtures & lexicon
 > mysql -u root -proot -h localhost mw < mw_fixtures.sql
 
-> mysql -u root -proot -h localhost lexicon < mw_lexiconsql
+> mysql -u root -proot -h localhost lexicon < ./vendor/innovalangues/lexicon-bundle/Innova/LexiconBundle/lexicon.sql
